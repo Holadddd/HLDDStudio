@@ -274,6 +274,7 @@ class MixerView: UIView {
         for bar in 1...40 {
             barArr.append(bar)
         }
+        
     }
     
     override func layoutSubviews() {
@@ -283,7 +284,7 @@ class MixerView: UIView {
         routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
         
     }
-    
+
 }
 //IOStatusBar
 extension MixerView {

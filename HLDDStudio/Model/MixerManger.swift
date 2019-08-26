@@ -52,9 +52,34 @@ enum MixerMangerSubTilte {
     case checkInputSource
 }
 
+enum MixerError: Error{
+    
+    case recordFileError
+}
+
 class MixerManger {
 
     static let manger = MixerManger()
+    
+    let semaphore = DispatchSemaphore(value: 0)
+    
+    var bar = 0 {
+        didSet {
+            
+        }
+    }
+    
+    var beat = 0 {
+        didSet {
+            
+        }
+    }
+    
+    let metronome = AKMetronome()
+    
+    var metronomeBooster: AKBooster!
+    
+    var metronomeStartTime:AVAudioTime = AVAudioTime.now()
     
     var mic: AKMicrophone!
 
@@ -63,6 +88,10 @@ class MixerManger {
     var mixerForMaster: AKMixer = AKMixer()
     
     var recorder: AKClipRecorder!
+    
+    var recordFile: AKAudioFile!
+    
+    var recordFileName: String = ""
     
     var titleContent: String = "" {
         didSet {
@@ -75,10 +104,40 @@ class MixerManger {
             NotificationCenter.default.post(.init(name: .mixerNotificationSubTitleChange))
         }
     }
+    
+    var mixerStatus = MixerStatus.stopRecordingAndPlaying
+    
     init() {
-        
+        metronome.callback = metronomeCallBack
+        metronomeBooster = AKBooster(metronome)
         mic = AKMicrophone()
         recorder = AKClipRecorder(node: mixer)
+        //
+        let recordResult = Result{try AKAudioFile()}
+        switch recordResult {
+        case .success(let recordFile):
+            self.recordFile = recordFile
+        case .failure:
+            print(MixerError.recordFileError)
+        }
+    }
+    
+    func metronomeCallBack() {
+        print("\(self.bar) | \((self.beat % 4) + 1 )")
+        NotificationCenter.default.post(.init(name: .mixerBarTitleChange))
+        if mixerStatus  == .prepareToRecordAndPlay {
+            metronomeStartTime = AVAudioTime.now()
+            mixerStatus = .recordingAndPlaying
+            print("metronomeFirstCallBackTime:\(DispatchTime.now())")
+            print("1")
+            semaphore.signal()
+        }
+        print("metronomeTime:\(DispatchTime.now())")
+        DispatchQueue.main.async {
+            self.beat += 1
+            self.bar = Int(self.beat/4)
+        }
+        
     }
     
     func title(with title: MixerMangerTilte) {

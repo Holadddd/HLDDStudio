@@ -18,7 +18,7 @@ class ViewController: UIViewController {
     
     var bufferTime: Double = 2.0
     
-    var mic: AKMicrophone!
+//    var mic: AKMicrophone!
 
     var bar = 0
     
@@ -34,14 +34,14 @@ class ViewController: UIViewController {
     
     var filePlayerTwo = AKPlayer()
     
-    var allInputSource: [AKNode] = []
+//    var allInputSource: [AKNode] = []
     
 //    var mixer: AKMixer!
 //
 //    //record
 //    var mixerForMaster: AKMixer!
 //
-    var recorder: AKClipRecorder!
+//    var recorder: AKClipRecorder!
     
     var recordFile: AKAudioFile!
     
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
 //        mixer = AKMixer()
 //        mixerForMaster = AKMixer()
         //set clean input
-        mic = AKMicrophone()
+//        mic = AKMicrophone()
         
         
         //metronomeSetting
@@ -82,7 +82,7 @@ class ViewController: UIViewController {
         metronomeBooster.gain = 0
         
         //SetRecorderAndGiveItDefaultFile
-        recorder = AKClipRecorder(node: MixerManger.manger.mixer)
+//        recorder = AKClipRecorder(node: MixerManger.manger.mixer)
         recordFile = try? AKAudioFile()
         
         //SetAnotherMixerForMetronome PassRecorder
@@ -390,7 +390,7 @@ extension ViewController: MixerDelegate {
         let oneBarTime = (60 / metronome.tempo) * 4
         let durationTime = (stop - start + 1) * oneBarTime
         //needStartRecorder
-        recorder.start()
+        MixerManger.manger.recorder.start()
         
         DispatchQueue.main.async {
             print("start")
@@ -409,7 +409,7 @@ extension ViewController: MixerDelegate {
         let recorderStartTimeSec = oneBarTime * start - processTime.toSeconds(hostTime: processTime.hostTime)
         
         DispatchQueue.main.async {
-            try? self.recorder.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
+            try? MixerManger.manger.recorder.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
                 guard let strongSelf = self  else{ fatalError() }
                 switch result {
                 case .clip(let clip):
@@ -426,7 +426,7 @@ extension ViewController: MixerDelegate {
                         print(error)
                     }
                     
-                    strongSelf.recorder.stop()
+                    MixerManger.manger.recorder.stop()
                     strongSelf.mixerView.recordButtonAction()
                     
                 case .error(let error):
@@ -684,7 +684,7 @@ extension ViewController: IOGridViewCellDelegate {
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
                 
-                PlugInCreater.shared.plugInOntruck[0].inputNode = mic
+                PlugInCreater.shared.plugInOntruck[0].inputNode = MixerManger.manger.mic
 
                 setTrackNode(track: 1)
                 
@@ -737,7 +737,7 @@ extension ViewController: IOGridViewCellDelegate {
                 print("InputDeviceAsInputMixerBus2Source:\(currentDevice)")
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Tracktwo Input Source."
-                PlugInCreater.shared.plugInOntruck[1].inputNode = mic
+                PlugInCreater.shared.plugInOntruck[1].inputNode = MixerManger.manger.mic
                 //need adjust for audioFile into plugIn
                 PlugInCreater.shared.resetTrackNode(Track: 2)
                 setTrackNode(track: 2)

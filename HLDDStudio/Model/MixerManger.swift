@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import AudioKit
+import AVKit
 
 enum TrackInputStatus {
     
@@ -54,10 +55,14 @@ enum MixerMangerSubTilte {
 class MixerManger {
 
     static let manger = MixerManger()
-
-    var mixer = AKMixer()
     
-    var mixerForMaster = AKMixer()
+    var mic: AKMicrophone!
+
+    var mixer: AKMixer = AKMixer()
+    
+    var mixerForMaster: AKMixer = AKMixer()
+    
+    var recorder: AKClipRecorder!
     
     var titleContent: String = "" {
         didSet {
@@ -69,6 +74,11 @@ class MixerManger {
         didSet {
             NotificationCenter.default.post(.init(name: .mixerNotificationSubTitleChange))
         }
+    }
+    init() {
+        
+        mic = AKMicrophone()
+        recorder = AKClipRecorder(node: mixer)
     }
     
     func title(with title: MixerMangerTilte) {

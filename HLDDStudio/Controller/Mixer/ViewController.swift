@@ -36,11 +36,11 @@ class ViewController: UIViewController {
     
     var allInputSource: [AKNode] = []
     
-    var mixer: AKMixer!
-    
-    //record
-    var mixerForMaster: AKMixer!
-    
+//    var mixer: AKMixer!
+//
+//    //record
+//    var mixerForMaster: AKMixer!
+//
     var recorder: AKClipRecorder!
     
     var recordFile: AKAudioFile!
@@ -70,8 +70,8 @@ class ViewController: UIViewController {
         mixerView.trackGridView.dataSource = self
         
         
-        mixer = AKMixer()
-        mixerForMaster = AKMixer()
+//        mixer = AKMixer()
+//        mixerForMaster = AKMixer()
         //set clean input
         mic = AKMicrophone()
         
@@ -82,19 +82,19 @@ class ViewController: UIViewController {
         metronomeBooster.gain = 0
         
         //SetRecorderAndGiveItDefaultFile
-        recorder = AKClipRecorder(node: mixer)
+        recorder = AKClipRecorder(node: MixerManger.manger.mixer)
         recordFile = try? AKAudioFile()
         
         //SetAnotherMixerForMetronome PassRecorder
-        mixerForMaster.connect(input: mixer, bus: 1)
+        MixerManger.manger.mixerForMaster.connect(input: MixerManger.manger.mixer, bus: 1)
         
-        mixerForMaster.connect(input: metronomeBooster, bus: 0)
-        AudioKit.output = mixerForMaster
+        MixerManger.manger.mixerForMaster.connect(input: metronomeBooster, bus: 0)
+        AudioKit.output = MixerManger.manger.mixerForMaster
       
         //MakeTwoTrackNode
         for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
             PlugInCreater.shared.plugInOntruck[index].inputNode = AKPlayer()
-            mixer.connect(input: PlugInCreater.shared.plugInOntruck[index].inputNode, bus: index + 1)
+            MixerManger.manger.mixer.connect(input: PlugInCreater.shared.plugInOntruck[index].inputNode, bus: index + 1)
         } 
         for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
             setTrackNode(track: index + 1)
@@ -123,10 +123,10 @@ class ViewController: UIViewController {
 
     func setTrackNode(track: Int) {
         try? AudioKit.stop()
-        mixer.disconnectInput(bus: track)
+        MixerManger.manger.mixer.disconnectInput(bus: track)
         PlugInCreater.shared.resetTrackNode(Track: track)
         PlugInCreater.shared.resetTrack(track: track)
-        mixer.connect(input: PlugInCreater.shared.plugInOntruck[track - 1].node, bus: track)
+        MixerManger.manger.mixer.connect(input: PlugInCreater.shared.plugInOntruck[track - 1].node, bus: track)
         try? AudioKit.start()
     }
     
@@ -472,8 +472,8 @@ extension ViewController: MixerDelegate {
     }
     
     func masterVolumeDidChange(volume: Float) {
-        mixerForMaster.volume = Double(volume)
-        print(mixerForMaster.volume)
+        MixerManger.manger.mixerForMaster.volume = Double(volume)
+        print(MixerManger.manger.mixerForMaster.volume)
     }
 }
 
@@ -812,7 +812,7 @@ extension ViewController: IOGridViewCellDelegate {
         case 0:
             
             firstTrackStatus = .noInput
-            mixer.disconnectInput(bus: 1)
+            MixerManger.manger.mixer.disconnectInput(bus: 1)
             MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
             secondTrackStatus = .noInput
@@ -860,17 +860,17 @@ extension ViewController {
         
         switch plugIn {
         case .reverb:
-            mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         
         case .guitarProcessor:
-            mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .guitarProcessor(AKRhinoGuitarProcessor(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         case .delay:
-            mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .delay(AKDelay(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         case .chorus:
-            mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .chorus(AKChorus(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         }
         

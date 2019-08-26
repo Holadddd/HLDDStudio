@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AudioKit
 
 enum TrackInputStatus {
     
@@ -54,6 +55,10 @@ class MixerManger {
 
     static let manger = MixerManger()
 
+    var mixer = AKMixer()
+    
+    var mixerForMaster = AKMixer()
+    
     var titleContent: String = "" {
         didSet {
             NotificationCenter.default.post(.init(name: .mixerNotificationTitleChange))

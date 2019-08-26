@@ -479,6 +479,7 @@ extension MixerView {
     
     @objc func showDrumVCButtonAction(_ sender:Any) {
         delegate?.showDrumVC()
+        print("touch")
     }
     
 }

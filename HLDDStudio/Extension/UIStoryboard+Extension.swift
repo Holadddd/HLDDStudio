@@ -18,11 +18,11 @@ private struct StoryboardCategory {
 
 extension UIStoryboard {
     
-    static var main: UIStoryboard { return stStoryboard(name: StoryboardCategory.main) }
+    static var main: UIStoryboard { return HLDDStoryboard(name: StoryboardCategory.main) }
     
-    static var drumMachine: UIStoryboard { return stStoryboard(name: StoryboardCategory.drumMachine) }
+    static var drumMachine: UIStoryboard { return HLDDStoryboard(name: StoryboardCategory.drumMachine) }
     
-    private static func stStoryboard(name: String) -> UIStoryboard {
+    private static func HLDDStoryboard(name: String) -> UIStoryboard {
         
         return UIStoryboard(name: name, bundle: nil)
     }

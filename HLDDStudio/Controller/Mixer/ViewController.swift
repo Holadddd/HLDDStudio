@@ -150,6 +150,20 @@ extension ViewController: MixerDelegate {
     
     func showDrumVC() {
         
+        var vc: UIViewController = UIViewController()
+        if #available(iOS 13.0, *) {
+            vc = UIStoryboard.drumMachine.instantiateViewController(identifier: String(describing: DrumMachineViewController.self))
+        } else {
+            // Fallback on earlier versions
+            vc = UIStoryboard.drumMachine.instantiateViewController(withIdentifier: String(describing: DrumMachineViewController.self) )
+        }
+        
+        guard let drumVC = vc as? DrumMachineViewController else { fatalError() }
+        drumVC.modalPresentationStyle = .fullScreen
+        present(drumVC, animated: true) {
+            print("save parameter")
+        }
+        
     }
     
     func didSelectInputDevice(_ deviceID: DeviceID) {

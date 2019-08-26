@@ -101,6 +101,9 @@ class PlugInCreater {
     
     var showingTrackOnPlugInVC = 0
     
+    var mixer = AKMixer()
+    
+    var mixerForMaster = AKMixer()
     
     var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1"), HLDDMixerTrack(name: "BUS2")] {
         didSet {

@@ -21,4 +21,8 @@ class DrumMachineViewController: UIViewController {
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
     
+    override func viewWillLayoutSubviews() {
+        
+    }
+    
 }

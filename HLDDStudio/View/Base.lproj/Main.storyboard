@@ -395,10 +395,32 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc4-uj-Ff0">
-                                                <rect key="frame" x="5" y="122" width="133" height="30"/>
-                                                <state key="normal" title="Button"/>
-                                            </button>
+                                            <view multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mH7-Sb-D8j">
+                                                <rect key="frame" x="27.5" y="102" width="83" height="83"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc4-uj-Ff0">
+                                                        <rect key="frame" x="0.0" y="0.0" width="83" height="83"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" secondItem="Kc4-uj-Ff0" secondAttribute="height" multiplier="1:1" id="rJG-ga-zsJ"/>
+                                                        </constraints>
+                                                        <state key="normal" title="Button" image="DrumMachine-512"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="bottom" secondItem="Kc4-uj-Ff0" secondAttribute="bottom" id="565-K0-CgW"/>
+                                                    <constraint firstItem="Kc4-uj-Ff0" firstAttribute="leading" secondItem="mH7-Sb-D8j" secondAttribute="leading" id="YFh-DH-Whq"/>
+                                                    <constraint firstItem="Kc4-uj-Ff0" firstAttribute="top" secondItem="mH7-Sb-D8j" secondAttribute="top" id="aZ8-Kd-NPF"/>
+                                                    <constraint firstAttribute="trailing" secondItem="Kc4-uj-Ff0" secondAttribute="trailing" id="cy9-6l-1UR"/>
+                                                    <constraint firstAttribute="width" secondItem="mH7-Sb-D8j" secondAttribute="height" id="ods-NL-p16"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Master Volume" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zRN-qU-PmU">
+                                                <rect key="frame" x="5" y="532" width="133" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -406,21 +428,24 @@
                                             <constraint firstItem="OY0-BU-4DW" firstAttribute="leading" secondItem="6p8-VZ-uS6" secondAttribute="leading" id="6fw-ei-dFm"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="width" secondItem="OY0-BU-4DW" secondAttribute="width" multiplier="0.4" id="Bn3-U2-xWT"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="height" secondItem="OY0-BU-4DW" secondAttribute="height" multiplier="0.225" id="CgQ-zT-1YS"/>
+                                            <constraint firstItem="mH7-Sb-D8j" firstAttribute="centerX" secondItem="6p8-VZ-uS6" secondAttribute="centerX" id="EIa-ab-B5i"/>
                                             <constraint firstAttribute="bottom" secondItem="OY0-BU-4DW" secondAttribute="bottom" id="FUu-OK-k85"/>
                                             <constraint firstAttribute="trailing" secondItem="MEm-BN-jsc" secondAttribute="trailing" constant="12" id="HVF-q1-JDK"/>
+                                            <constraint firstItem="mH7-Sb-D8j" firstAttribute="top" secondItem="MEm-BN-jsc" secondAttribute="bottom" constant="30" id="Hyo-b2-RMw"/>
                                             <constraint firstAttribute="trailing" secondItem="OY0-BU-4DW" secondAttribute="trailing" id="Jqu-uf-yU6"/>
                                             <constraint firstItem="MEm-BN-jsc" firstAttribute="leading" secondItem="zBP-4s-CRv" secondAttribute="trailing" constant="12" id="Qda-hM-eOW"/>
                                             <constraint firstItem="MEm-BN-jsc" firstAttribute="top" secondItem="50r-VJ-2at" secondAttribute="bottom" constant="16" id="RN4-bN-VdZ"/>
                                             <constraint firstItem="zBP-4s-CRv" firstAttribute="leading" secondItem="6p8-VZ-uS6" secondAttribute="leading" id="YKE-Cq-50w"/>
-                                            <constraint firstItem="Kc4-uj-Ff0" firstAttribute="top" secondItem="MEm-BN-jsc" secondAttribute="bottom" constant="50" id="akv-2M-kjy"/>
                                             <constraint firstItem="zBP-4s-CRv" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="b4i-mh-Fku"/>
-                                            <constraint firstAttribute="trailing" secondItem="Kc4-uj-Ff0" secondAttribute="trailing" id="dt0-Hu-nZi"/>
+                                            <constraint firstAttribute="trailing" secondItem="zRN-qU-PmU" secondAttribute="trailing" id="dRk-Zj-vii"/>
+                                            <constraint firstItem="nfF-TH-thi" firstAttribute="top" secondItem="zRN-qU-PmU" secondAttribute="bottom" constant="8" id="faE-fg-Q2k"/>
+                                            <constraint firstItem="zRN-qU-PmU" firstAttribute="leading" secondItem="zBP-4s-CRv" secondAttribute="trailing" id="gTC-h1-UtL"/>
                                             <constraint firstItem="50r-VJ-2at" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" constant="8" id="hhA-bK-nPx"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="centerY" secondItem="OY0-BU-4DW" secondAttribute="centerY" multiplier="1.725" id="kpv-54-zco"/>
                                             <constraint firstAttribute="bottom" secondItem="zBP-4s-CRv" secondAttribute="bottom" id="pFJ-mx-KEW"/>
                                             <constraint firstAttribute="trailing" secondItem="50r-VJ-2at" secondAttribute="trailing" constant="4" id="sAk-Uz-ATw"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="centerX" secondItem="OY0-BU-4DW" secondAttribute="centerX" id="tZ9-iB-4og"/>
-                                            <constraint firstItem="Kc4-uj-Ff0" firstAttribute="leading" secondItem="zBP-4s-CRv" secondAttribute="trailing" id="uLW-eg-LWx"/>
+                                            <constraint firstItem="mH7-Sb-D8j" firstAttribute="width" secondItem="OY0-BU-4DW" secondAttribute="width" multiplier="0.6" id="vvy-lw-5Sw"/>
                                             <constraint firstItem="OY0-BU-4DW" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="z4e-a4-Ooa"/>
                                         </constraints>
                                     </view>
@@ -608,6 +633,7 @@
         <image name="BarStatusLabelBlurLayer" width="1056" height="200"/>
         <image name="BarStatusRedLightImageView" width="381" height="200"/>
         <image name="BarStatusView" width="164" height="52"/>
+        <image name="DrumMachine-512" width="256" height="256"/>
         <image name="GlassImageView" width="371" height="200"/>
         <image name="Icons_24px_Back02" width="24" height="24"/>
         <image name="MainBG" width="500" height="1770"/>

@@ -71,7 +71,7 @@ class IOGridViewCell: GridViewCell {
             inputSourceTextField.leftViewMode = .always
             
             inputSourceTextField.delegate = self
-            print("touch")
+            
         }
     }
    

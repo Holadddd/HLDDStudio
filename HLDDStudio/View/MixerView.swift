@@ -95,6 +95,7 @@ class MixerView: UIView {
                 UIImage.asset(.DeviceInput4),
                 for: .normal
             )
+            
             inputDeviceButton.setBackgroundImage(
                 UIImage.asset(.DeviceInput3),
                 for: .selected
@@ -261,6 +262,7 @@ class MixerView: UIView {
         trackGridView.minimumScale = Scale(x: 1, y: 1)
         
         setRouterPiskerView()
+        inputDeviceButton.isSelected = true
         
         metronomeButton.addTarget(self, action: #selector(MixerView.metronomeState), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(MixerView.stopButtonAction), for: .touchUpInside)
@@ -283,7 +285,6 @@ class MixerView: UIView {
         let h = iOStatusBar.bounds.height
         let w = iOStatusBar.bounds.width
         routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
-        print("layoutSubviews")
         
     }
     
@@ -379,6 +380,21 @@ extension MixerView: UITextFieldDelegate {
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
+        switch textField{
+        case inputDeviceTextField:
+            inputDeviceButton.isSelected = false
+        case tempoTextField:
+            return
+        case startRecordTextField:
+            return
+        case stopRecordTextField:
+            return
+        case fileNameTextField:
+            
+            return
+        default:
+            return
+        }
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {

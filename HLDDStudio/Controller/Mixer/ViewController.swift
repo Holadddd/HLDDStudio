@@ -732,6 +732,7 @@ extension ViewController: IOGridViewCellDelegate {
                 PlugInCreater.shared.plugInOntruck[0].inputNode = mic
 
                 setTrackNode(track: 1)
+                
                 try? AudioKit.start()
                 //switch the track status
                 firstTrackStatus = .lineIn
@@ -888,7 +889,6 @@ extension ViewController: IOGridViewCellDatasource {
         let result = Result{try FileManager.default.contentsOfDirectory(atPath: path)}
         switch result {
         case .success(let fileArr):
-            print("FILEARRAYINDEVICE: \(fileArr)")
             fileNameArr = fileArr
         case .failure(let error):
             print(error)

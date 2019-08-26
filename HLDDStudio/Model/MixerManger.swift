@@ -56,14 +56,12 @@ class MixerManger {
 
     var titleContent: String = "" {
         didSet {
-            print("mixerNotificationTitleChange")
             NotificationCenter.default.post(.init(name: .mixerNotificationTitleChange))
         }
     }
 
     var subTitleContent: String = ""{
         didSet {
-            print("mixerNotificationSubTitleChange")
             NotificationCenter.default.post(.init(name: .mixerNotificationSubTitleChange))
         }
     }

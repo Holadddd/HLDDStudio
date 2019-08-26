@@ -59,7 +59,7 @@ enum PlugIn {
             self = .delay(newDelay)
         case .chorus(let chorus):
             
-            let newChorus = AKChorus(node, frequency: chorus.frequency, depth: chorus.depth, feedback: chorus.frequency, dryWetMix: chorus.dryWetMix)
+            let newChorus = AKChorus(node, frequency: chorus.frequency, depth: chorus.depth, feedback: chorus.feedback, dryWetMix: chorus.dryWetMix)
             self = .chorus(newChorus)
         }
     }
@@ -112,13 +112,14 @@ class PlugInCreater {
     }
 
     func resetTrack(track: Int) {
-        try? AudioKit.stop()
+        
         let oldEqulizerAndPanner = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner
         let panValue = oldEqulizerAndPanner.busPanner.pan
         let lowGain = oldEqulizerAndPanner.busLowEQ.gain
         let midGain = oldEqulizerAndPanner.busMidEQ.gain
         let highGain = oldEqulizerAndPanner.busHighEQ.gain
         let volume = oldEqulizerAndPanner.busBooster.gain
+        try? AudioKit.stop()
         PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner = FaderEqualizerAndPanner(node: PlugInCreater.shared.plugInOntruck[track - 1].node, pan: panValue, lowGain: lowGain, midGain: midGain, highGain: highGain, volume: volume)
         PlugInCreater.shared.plugInOntruck[track - 1].node = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner.busBooster
         try? AudioKit.start()
@@ -147,11 +148,14 @@ class PlugInCreater {
         PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.plugInOntruck[Track - 1].inputNode
 
         if numberOfPlugIn != 0 {
-                        for seq in 0 ..< numberOfPlugIn{
-                
+            
+            print("outside")
+            for seq in 0 ..< numberOfPlugIn {
+                print("resetTrackNode: \(PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn)\(Track - 1)\(seq)")
+                            
                 PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: PlugInCreater.shared.plugInOntruck[Track - 1].node)
                 
-                PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
+                            PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
             }
             
         }

@@ -82,7 +82,6 @@ class PlugInGridViewCell: GridViewCell {
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
-            print("mixerCellPlugInUpdate")
         }
     }
     @objc func didRemovePlugIn(_ notification: Notification){

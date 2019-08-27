@@ -212,8 +212,7 @@ class MixerView: UIView {
         trackGridView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         trackGridView.bounces = false
         trackGridView.isPagingEnabled = true
-        trackGridView.invalidateLayout(horizontally: true)
-        
+        trackGridView.isDirectionalLockEnabled = true
         trackGridView.clipsToBounds = true
         //trackGridView.superview?.clipsToBounds = true
         trackGridView.contentSize = self.bounds.size

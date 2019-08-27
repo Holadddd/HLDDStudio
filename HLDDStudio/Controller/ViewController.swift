@@ -80,7 +80,11 @@ class ViewController: UIViewController {
         
        
     }
-    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarStyle = .lightContent
+        
+    }
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
@@ -332,7 +336,7 @@ extension ViewController: GridViewDelegate {
 extension ViewController: GridViewDataSource {
     
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 4
+        return 2
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -365,7 +369,7 @@ extension ViewController: GridViewDataSource {
         case 0:
             return 50
         case 1:
-            return (mixerView.bounds.height-50)/2
+            return gridView.bounds.height - 50  - (mixerView.bounds.height-50)/2
         case 2:
             return (mixerView.bounds.height-50)/2
         default:

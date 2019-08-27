@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MarqueeLabel
 protocol PlugInTableViewCellDelegate: AnyObject {
     func bypassPlugin(_ cell: PlugInTableViewCell)
 }
@@ -17,7 +18,8 @@ class PlugInTableViewCell: UITableViewCell {
     
     @IBOutlet weak var bypassButton: UIButton!
     
-    @IBOutlet weak var gifImageView: UIImageView!
+    @IBOutlet weak var plugInMarqueeLabel: MarqueeLabel!
+    
     
     weak var delegate: PlugInTableViewCellDelegate?
     static var nib: UINib {
@@ -27,15 +29,12 @@ class PlugInTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bypassButton.addTarget(self, action: #selector(PlugInTableViewCell.bypassButtonDidTouch), for: .touchUpInside)
-        DispatchQueue.main.async {
-            self.gifImageView.loadGif(name: "GifEffect3")
-        }
-        gifImageView.alpha = 0.6
+       
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
+        
         // Configure the view for the selected state
     }
 

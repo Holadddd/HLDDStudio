@@ -36,7 +36,7 @@ class PlugInGridViewCell: GridViewCell {
         tableView.bounces = false
         imageViewTwo.alpha = 0.2
         imageViewOne.addSubview(imageViewTwo)
-        imageViewTwo.contentMode = .scaleToFill
+        imageViewTwo.contentMode = .scaleAspectFill
         tableView.backgroundView = imageViewOne
         //for next time renew
         NotificationCenter.default.addObserver(self,
@@ -58,7 +58,11 @@ class PlugInGridViewCell: GridViewCell {
 }
 
 extension PlugInGridViewCell: UITableViewDelegate {
-
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
+        cell.plugInMarqueeLabel.restartLabel()
+    }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let selfVc = vc else { fatalError() }
         DispatchQueue.main.async {
@@ -73,7 +77,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        return 80
+        return 60
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -87,8 +91,10 @@ extension PlugInGridViewCell: UITableViewDataSource {
         
         switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
         case .reverb(let reverb):
-            cell.plugInLabel.text = "REVERB"
             guard let reverb = reverb as? AKReverb else { fatalError() }
+            cell.plugInLabel.text = "REVERB"
+            cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f", reverb.dryWetMix) )"
+            
             switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass {
             case true:
                 

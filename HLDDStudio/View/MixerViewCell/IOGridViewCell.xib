@@ -64,6 +64,10 @@
                         <action selector="addPlugInButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="2oS-iK-EyP"/>
                     </connections>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-NI-ASJ">
+                    <rect key="frame" x="0.0" y="38" width="219" height="2"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -71,6 +75,7 @@
                 <constraint firstItem="K2h-je-AKo" firstAttribute="centerY" secondItem="mtR-ar-ztF" secondAttribute="centerY" id="1T5-LW-XXY"/>
                 <constraint firstItem="HJa-20-KsA" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1d5-jN-upf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5k4-Vb-L9a" secondAttribute="bottom" id="2aa-Fo-g8Q"/>
+                <constraint firstAttribute="bottom" secondItem="ndF-NI-ASJ" secondAttribute="bottom" id="9ex-3T-otu"/>
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.3" priority="999" id="E3h-Yw-lkY"/>
                 <constraint firstItem="OaV-dq-B0a" firstAttribute="centerY" secondItem="5k4-Vb-L9a" secondAttribute="centerY" id="G1o-By-233"/>
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="GGb-0Y-IAs"/>
@@ -81,6 +86,7 @@
                 <constraint firstItem="r6y-J4-XLw" firstAttribute="height" secondItem="mtR-ar-ztF" secondAttribute="height" multiplier="0.5" id="M4P-sy-38P"/>
                 <constraint firstItem="OaV-dq-B0a" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" multiplier="1.4" id="NV1-Rv-le4"/>
                 <constraint firstItem="4bG-UD-1cA" firstAttribute="centerY" secondItem="JHW-Yn-5Be" secondAttribute="centerY" id="P0x-Ou-I7E"/>
+                <constraint firstItem="ndF-NI-ASJ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="QMW-C9-Ly2"/>
                 <constraint firstItem="4bG-UD-1cA" firstAttribute="centerX" secondItem="JHW-Yn-5Be" secondAttribute="centerX" id="QTN-pL-tgY"/>
                 <constraint firstItem="4bG-UD-1cA" firstAttribute="height" secondItem="JHW-Yn-5Be" secondAttribute="height" id="SMi-vR-vdd"/>
                 <constraint firstItem="mtR-ar-ztF" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="-5" id="TJy-xX-RUE"/>
@@ -91,6 +97,8 @@
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hGC-PR-kyR"/>
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="imP-af-h4j"/>
                 <constraint firstItem="mtR-ar-ztF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="-5" id="nvM-85-brh"/>
+                <constraint firstItem="ndF-NI-ASJ" firstAttribute="width" secondItem="HJa-20-KsA" secondAttribute="width" id="s2p-fn-jLO"/>
+                <constraint firstItem="ndF-NI-ASJ" firstAttribute="height" secondItem="HJa-20-KsA" secondAttribute="height" id="s3j-Lh-HLv"/>
                 <constraint firstItem="r6y-J4-XLw" firstAttribute="centerY" secondItem="mtR-ar-ztF" secondAttribute="centerY" id="uFY-9s-XTn"/>
                 <constraint firstItem="OaV-dq-B0a" firstAttribute="height" secondItem="5k4-Vb-L9a" secondAttribute="height" multiplier="0.8" id="we6-Gg-W1U"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mtR-ar-ztF" secondAttribute="bottom" constant="-5" id="yzL-hB-l42"/>

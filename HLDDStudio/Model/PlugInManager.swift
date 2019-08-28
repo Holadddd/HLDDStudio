@@ -28,14 +28,11 @@ enum PlugIn<T> {
         }
     }
     
+    
+    
 }
 
-protocol PlugInNeededInfo {
-    var bypass: Bool { get set }
-}
-protocol ReverbNeededInfo: PlugInNeededInfo {
-    var factory: String {get set}
-}
+
 
 struct ReverNeededInfo {
     var factory: String
@@ -63,4 +60,24 @@ class PlugInCreater {
         
     }
     
+}
+//extensionAKReverbFactoryProperty
+let reverbFactory = ["Cathedral", "Large Hall", "Large Hall 2",
+                     "Large Room", "Large Room 2", "Medium Chamber",
+                     "Medium Hall", "Medium Hall 2", "Medium Hall 3",
+                     "Medium Room", "Plate", "Small Room"]
+extension AKReverb {
+    
+    struct Default {
+        static var factory: String = "Cathedral"
+    }
+    var factory: String {
+        get{
+            return Default.factory
+        }
+        set(newFactory){
+            Default.factory = newFactory
+        }
+        
+    }
 }

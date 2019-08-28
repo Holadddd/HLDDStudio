@@ -460,7 +460,7 @@ extension ViewController: PlugInViewControllerDelegate {
         }
     }
     
-    func plugInReverbSelectFactory(_ factory: String) {
+    func plugInReverbSelectFactory(_ factoryRawValue: Int) {
         
         switch plugInArr[0].plugIn {
         case .reverb(let reverb):
@@ -468,10 +468,11 @@ extension ViewController: PlugInViewControllerDelegate {
             guard let reverb = reverb as? AKReverb else{ fatalError() }
             
             
-            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
-            let rawValue = Int(numberInFactory)
+//            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
+            let rawValue = factoryRawValue
             guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
             reverb.loadFactoryPreset(set)
+            reverb.factory = reverbFactory[rawValue]
         }
         
     }

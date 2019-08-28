@@ -14,7 +14,7 @@ protocol PlugInReverbTableViewCellDelegate: AnyObject {
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell)
     
-    func plugInReverbFactorySelect(_ factory: String)
+    func plugInReverbFactorySelect(_ factoryRawValue: Int)
     
     func dryWetMixValueChange(_ value: Float)
 }
@@ -110,7 +110,8 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
 extension PlugInReverbTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let factory = textField.text else { return }
-        delegate?.plugInReverbFactorySelect(factory)
+        guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
+        delegate?.plugInReverbFactorySelect(numberInFactory)
     }
 }
 

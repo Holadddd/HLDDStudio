@@ -15,7 +15,7 @@ protocol PlugInViewControllerDelegate: AnyObject {
     
     func plugInReverbDryWetMixValueChange(value: Float)
     
-    func plugInReverbSelectFactory(_ factory: String)
+    func plugInReverbSelectFactory(_ factoryRawValue: Int)
     
 }
 
@@ -73,7 +73,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
             //defauld factory
             
-            cell.factoryTextField.text = "Cathedral"
+            cell.factoryTextField.text = reverb.factory
             cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
             
             switch plugInArr[indexPath.row].bypass{
@@ -99,14 +99,16 @@ extension PlugInViewController: UITableViewDataSource{
 //PlugInReverbProtocol
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     
+    
+    
     func dryWetMixValueChange(_ value: Float) {
    
         delegate?.plugInReverbDryWetMixValueChange(value: value)
     }
     
-    func plugInReverbFactorySelect(_ factory: String) {
-        print("ReverbSelectFactoryAs:\(factory)")
-        delegate?.plugInReverbSelectFactory(factory)
+    func plugInReverbFactorySelect(_ factoryRawValue: Int) {
+        print("ReverbSelectFactoryAs:\(reverbFactory[factoryRawValue])")
+        delegate?.plugInReverbSelectFactory(factoryRawValue)
     }
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {

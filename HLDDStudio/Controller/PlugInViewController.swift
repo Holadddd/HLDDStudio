@@ -67,19 +67,23 @@ extension PlugInViewController: UITableViewDataSource{
         guard let plugInArr = plugInArr else { fatalError() }
         
         switch plugInArr[indexPath.row].plugIn {
-        case .reverb:
+        case .reverb(let reverb):
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
+            guard let reverb = reverb as? AKReverb else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
             //defauld factory
+            
             cell.factoryTextField.text = "Cathedral"
+            cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
+            
             switch plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
-                cell.dryWetMixSlider.isEnabled = false
+                cell.dryWetMixKnob.isEnabled = false
                 cell.factoryTextField.isEnabled = false
             case false:
                 cell.plugInBarView.bypassButton.isSelected = false
-                cell.dryWetMixSlider.isEnabled = true
+                cell.dryWetMixKnob.isEnabled = true
                 cell.factoryTextField.isEnabled = true
             }
             
@@ -95,13 +99,9 @@ extension PlugInViewController: UITableViewDataSource{
 //PlugInReverbProtocol
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     
-    
+    func dryWetMixValueChange(_ value: Float) {
    
-    
-    
-    func dryWetMixValueChange(_ sender: UISlider) {
-        print(sender.value)
-        delegate?.plugInReverbDryWetMixValueChange(value: sender.value)
+        delegate?.plugInReverbDryWetMixValueChange(value: value)
     }
     
     func plugInReverbFactorySelect(_ factory: String) {

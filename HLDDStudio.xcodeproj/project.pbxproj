@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010D781E231652EA0099D76D /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D781D231652EA0099D76D /* GestureManager.swift */; };
+		01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01280F9723289E27004AF13C /* HLDDKnob.swift */; };
 		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
 		016F4D25232561B50027D507 /* ReverbSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D24232561B50027D507 /* ReverbSet.swift */; };
 		016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D272325F10A0027D507 /* PlugInManager.swift */; };
@@ -37,6 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		010D781D231652EA0099D76D /* GestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
+		01280F9723289E27004AF13C /* HLDDKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDKnob.swift; sourceTree = "<group>"; };
 		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D24232561B50027D507 /* ReverbSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbSet.swift; sourceTree = "<group>"; };
 		016F4D272325F10A0027D507 /* PlugInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInManager.swift; sourceTree = "<group>"; };
@@ -160,6 +164,8 @@
 			children = (
 				0171723D2323DEA100049F3B /* UIImage+Extension.swift */,
 				0179404323254797000DCFCB /* UIView+Extension.swift */,
+				01280F9723289E27004AF13C /* HLDDKnob.swift */,
+				010D781D231652EA0099D76D /* GestureManager.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -337,6 +343,8 @@
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
+				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
+				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,

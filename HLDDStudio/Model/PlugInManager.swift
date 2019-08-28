@@ -21,6 +21,24 @@ enum PlugIn<T> {
     
     case reverb(T)
     
+    var neededInfo: AnyObject {
+        switch self {
+        case .reverb:
+            return ReverNeededInfo(factory: "Cathedral") as AnyObject
+        }
+    }
+    
+}
+
+protocol PlugInNeededInfo {
+    var bypass: Bool { get set }
+}
+protocol ReverbNeededInfo: PlugInNeededInfo {
+    var factory: String {get set}
+}
+
+struct ReverNeededInfo {
+    var factory: String
 }
 
 

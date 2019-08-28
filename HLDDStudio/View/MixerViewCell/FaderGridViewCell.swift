@@ -10,10 +10,10 @@ import Foundation
 import UIKit
 import G3GridView
 
-class FaderGridViewCell: GridViewCell {
+class FaderGridViewCell: GridViewCell, HLDDKnobDelegate {
     
+    @IBOutlet weak var knob: Knob!
     
-    @IBOutlet weak var trackVolumeSlider: UISlider!
     
     static var nib: UINib {
         return UINib(nibName: "FaderGridViewCell", bundle: Bundle(for: self))
@@ -21,7 +21,16 @@ class FaderGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        trackVolumeSlider.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
+        knob.delegate = self
+        knob.minimumValue = -10
+        knob.maximumValue = 40
+        knob.value = 3
+        knob.reloadKnob()
+        
     }
     
+    
+    func valueDidChange(knobValue value: Float) {
+        print(value)
+    }
 }

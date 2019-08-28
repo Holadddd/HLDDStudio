@@ -258,12 +258,9 @@ extension ViewController: MixerDelegate {
                 }
                 
             }
-            
-            
+        
         }
-        
-        
-        
+    
     }
     
     func stopRecord() {
@@ -456,41 +453,29 @@ extension ViewController: PlugInViewControllerDelegate {
     }
     
     func plugInReverbDryWetMixValueChange(value: Float) {
-        guard let reverb = PlugInCreater.shared.providePlugInNode(with: plugInArr[0]) as? AKReverb else { fatalError() }
-        reverb.dryWetMix = Double(value)
+        switch plugInArr[0].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else{ fatalError() }
+            reverb.dryWetMix = Double(value)
+        }
     }
     
     func plugInReverbSelectFactory(_ factory: String) {
-        guard let reverb = PlugInCreater.shared.providePlugInNode(with: plugInArr[0]) as? AKReverb else { fatalError() }
-        switch factory {
-        case "Cathedral":
-            reverb.loadFactoryPreset(.cathedral)
-        case "Large Hall":
-            reverb.loadFactoryPreset(.largeChamber)
-        case "Large Hall 2":
-            reverb.loadFactoryPreset(.largeHall2)
-        case "Large Room":
-            reverb.loadFactoryPreset(.largeRoom)
-        case "Large Room 2":
-            reverb.loadFactoryPreset(.largeRoom2)
-        case "Medium Chamber":
-            reverb.loadFactoryPreset(.mediumChamber)
-        case "Medium Hall":
-            reverb.loadFactoryPreset(.mediumHall)
-        case "Medium Hall 2":
-            reverb.loadFactoryPreset(.mediumHall2)
-        case "Medium Hall 3":
-            reverb.loadFactoryPreset(.mediumHall3)
-        case "Medium Room":
-            reverb.loadFactoryPreset(.mediumRoom)
-        case "Plate":
-            reverb.loadFactoryPreset(.plate)
-        case "Small Room":
-            reverb.loadFactoryPreset(.smallRoom)
-        default:
-            break
+        
+        switch plugInArr[0].plugIn {
+        case .reverb(let reverb):
+            
+            guard let reverb = reverb as? AKReverb else{ fatalError() }
+            
+            
+            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
+            let rawValue = Int(numberInFactory)
+            guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
+            reverb.loadFactoryPreset(set)
         }
+        
     }
+    
 }
 
 extension ViewController: PlugInTableViewCellDelegate{

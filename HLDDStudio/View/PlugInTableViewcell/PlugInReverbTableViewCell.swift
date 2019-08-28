@@ -16,15 +16,16 @@ protocol PlugInReverbTableViewCellDelegate: AnyObject {
     
     func plugInReverbFactorySelect(_ factory: String)
     
-    func dryWetMixValueChange(_ sender: UISlider)
+    func dryWetMixValueChange(_ value: Float)
 }
 
 protocol PlugInReverbTableViewCellDatasource: AnyObject {
     
     func plugInReverbPresetParameter() -> [String]?
+    
 }
 
-class PlugInReverbTableViewCell: UITableViewCell {
+class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     @IBOutlet weak var plugInBarView: PlugInBarView!
     
@@ -55,7 +56,7 @@ class PlugInReverbTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dryWetMixLabel: UILabel!
     
-    @IBOutlet weak var dryWetMixSlider: UISlider!
+    @IBOutlet weak var dryWetMixKnob: Knob!
     
     weak var delegate: PlugInReverbTableViewCellDelegate?
     
@@ -70,13 +71,17 @@ class PlugInReverbTableViewCell: UITableViewCell {
         
         plugInBarView.delegate = self
         plugInBarView.datasource = self
-      
-        dryWetMixSlider.addTarget(self, action: #selector(PlugInReverbTableViewCell.sliderValueChange), for: UIControl.Event.valueChanged)
+        dryWetMixKnob.delegate = self
+        dryWetMixKnob.minimumValue = 0.0
+        dryWetMixKnob.maximumValue = 1.0
+        dryWetMixKnob.value = 0
+        dryWetMixKnob.reloadKnob()
+        
     }
     
-    @objc func sliderValueChange(_ sender: UISlider) {
-        dryWetMixLabel.text = String(format: "%.2f", sender.value)
-        delegate?.dryWetMixValueChange(sender)
+    func valueDidChange(knobValue value: Float) {
+        dryWetMixLabel.text = String(format: "%.2f", value)
+        delegate?.dryWetMixValueChange(value)
     }
     
 }
@@ -119,7 +124,7 @@ extension PlugInReverbTableViewCell: PlugInBarViewDelegate {
         delegate?.plugInReverbBypassSwitch(bool, cell: self)
         
         factoryTextField.isEnabled = !plugInBarView.bypassButton.isSelected
-        dryWetMixSlider.isEnabled = !plugInBarView.bypassButton.isSelected
+        dryWetMixKnob.isEnabled = !plugInBarView.bypassButton.isSelected
         
     }
 

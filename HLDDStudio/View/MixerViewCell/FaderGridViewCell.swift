@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import G3GridView
 
-class FaderGridViewCell: GridViewCell, HLDDKnobDelegate {
+class FaderGridViewCell: GridViewCell, HLDDFaderDelegate {
     
-    @IBOutlet weak var knob: Knob!
+    @IBOutlet weak var volumeFader: Fader!
     
     
     static var nib: UINib {
@@ -21,16 +21,13 @@ class FaderGridViewCell: GridViewCell, HLDDKnobDelegate {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        knob.delegate = self
-        knob.minimumValue = -10
-        knob.maximumValue = 40
-        knob.value = 3
-        knob.reloadKnob()
+        
         
     }
     
-    
-    func valueDidChange(knobValue value: Float) {
-        print(value)
+    func valueDidChange(faderValue value: Float) {
+        print("Fader: \(value)")
     }
+    
+
 }

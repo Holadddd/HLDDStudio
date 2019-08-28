@@ -16,24 +16,24 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UY6-vj-FmB" customClass="Knob" customModule="HLDDStudio" customModuleProvider="target">
-                    <rect key="frame" x="157" y="50" width="100" height="100"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ujz-C7-uKS" customClass="Fader" customModule="HLDDStudio" customModuleProvider="target">
+                    <rect key="frame" x="187" y="60" width="40" height="80"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="100" id="283-y5-E6h"/>
-                        <constraint firstAttribute="height" constant="100" id="Q1U-dl-j3E"/>
+                        <constraint firstAttribute="width" secondItem="ujz-C7-uKS" secondAttribute="height" multiplier="1:2" id="KLa-rK-HJt"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.15519248032327837" green="0.15519248032327837" blue="0.15519248032327837" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="UY6-vj-FmB" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="4If-Zl-xpw"/>
-                <constraint firstItem="UY6-vj-FmB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="asi-cI-iw1"/>
+                <constraint firstItem="ujz-C7-uKS" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="D9b-fF-Q96"/>
+                <constraint firstItem="ujz-C7-uKS" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.4" id="bEX-Ba-52R"/>
+                <constraint firstItem="ujz-C7-uKS" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="lkD-9s-H00"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="knob" destination="UY6-vj-FmB" id="pYj-9T-rbU"/>
+                <outlet property="volumeFader" destination="ujz-C7-uKS" id="MCt-1g-6oj"/>
             </connections>
         </view>
     </objects>

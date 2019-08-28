@@ -1,21 +1,22 @@
 //
-//  HLDDKnob.swift
+//  HLDDFader.swift
 //  HLDDStudio
 //
-//  Created by wu1221 on 2019/9/11.
+//  Created by wu1221 on 2019/8/28.
 //  Copyright © 2019 wu1221. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-protocol HLDDKnobDelegate:AnyObject {
+protocol HLDDFaderDelegate:AnyObject {
     
-    func valueDidChange(knobValue value: Float)
+    func valueDidChange(faderValue value: Float)
     
 }
 
-class Knob: UIControl {
+class Fader: UIControl {
+    
     /** Contains the minimum value of the receiver. */
     var minimumValue: Float = -1
     
@@ -25,27 +26,15 @@ class Knob: UIControl {
     /** Contains the receiver’s current value. */
     var value: Float = 0 {
         didSet {
-            reloadKnob()
+            reloadFader()
         }
     }
     
-    weak var delegate: HLDDKnobDelegate?
+    weak var delegate: HLDDFaderDelegate?
     
     var offsetY: CGFloat = 0.0
     
-    func knobValueChange(dirIsUp: Bool) {
-        let valueABSRange = abs(maximumValue - minimumValue)
-        let scaleOfKnob:Float = 0.01
-        switch dirIsUp {
-        case true:
-            guard value <= maximumValue-0.01 else{ return}
-            value += valueABSRange * scaleOfKnob
-            delegate?.valueDidChange(knobValue: value)
-        case false:
-            guard value >= minimumValue+0.01 else {return}
-            value -= valueABSRange * scaleOfKnob
-            delegate?.valueDidChange(knobValue: value)
-        }
+    func faderValueChange(dirIsUp: Bool) {
         
     }
     
@@ -56,8 +45,8 @@ class Knob: UIControl {
     
     // add imageView
     
-    let knobMeasureView = UIImageView(image: UIImage(named: "HLDDKnobMeasure"))
-    let knobView = UIImageView(image: UIImage(named: "HLDDKnob"))
+    let faderTrackView = UIImageView(image: UIImage(named: "FaderTrack"))
+    let faderKnobView = UIImageView(image: UIImage(named: "FaderKnob"))
     
     
     override init(frame: CGRect) {
@@ -72,38 +61,35 @@ class Knob: UIControl {
         commonInit()
         
     }
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        commonInit()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        faderTrackView.frame = self.bounds
+        
+    }
     
     private func commonInit() {
         //加入手勢
-        let gestureRecognizer = RotationGestureRecognizer(target: self, action: #selector(Knob.handleGesture(_:)))
+        let gestureRecognizer = RotationGestureRecognizer(target: self, action: #selector(Fader.handleGesture(_:)))
         addGestureRecognizer(gestureRecognizer)
-        
-        self.backgroundColor = .clear
-        self.stickSubView(knobMeasureView)
-        self.stickSubView(knobView)
-        
+        self.addSubview(faderTrackView)
     }
     
     @objc private func handleGesture(_ gesture: RotationGestureRecognizer) {
-
-        //6
-        let dir = gesture.dirIsUp
-        knobValueChange(dirIsUp: dir)
+        faderKnobView.frame.origin.y -= 1
+        print("touch")
     }
     
-    func reloadKnob() {
+    func reloadFader() {
         
-        let valueABSRange = abs(maximumValue - minimumValue)
         
-        let averangeValue = minimumValue + (valueABSRange / 2)
-        
-        let percentageOfValue = (value - averangeValue) / valueABSRange + 0.5
-        
-        let newAngle = CGFloat(-Double.pi * (5/6)) +  (CGFloat(Double.pi * (5/3)) * CGFloat(percentageOfValue))
-        knobView.transform = CGAffineTransform.init(rotationAngle: newAngle)
     }
 }
-
 import UIKit.UIGestureRecognizerSubclass
 
 private class RotationGestureRecognizer: UIPanGestureRecognizer {
@@ -170,4 +156,3 @@ private class RotationGestureRecognizer: UIPanGestureRecognizer {
         minimumNumberOfTouches = 1
     }
 }
-

@@ -23,7 +23,11 @@ class Knob: UIControl {
     var maximumValue: Float = 1
     
     /** Contains the receiver’s current value. */
-    var value: Float = 0
+    var value: Float = 0 {
+        didSet {
+            reloadKnob()
+        }
+    }
     
     weak var delegate: HLDDKnobDelegate?
     
@@ -43,8 +47,6 @@ class Knob: UIControl {
             delegate?.valueDidChange(knobValue: value)
         }
         
-        reloadKnob()
-        
     }
     
     /** Contains a Boolean value indicating whether changes
@@ -62,11 +64,13 @@ class Knob: UIControl {
         super.init(frame: frame)
         commonInit()
         
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         commonInit()
+        
     }
     
     private func commonInit() {
@@ -79,6 +83,7 @@ class Knob: UIControl {
         knobMeasureView.frame = self.bounds
         self.addSubview(knobMeasureView)
         self.addSubview(knobView)
+        
     }
     
     @objc private func handleGesture(_ gesture: RotationGestureRecognizer) {

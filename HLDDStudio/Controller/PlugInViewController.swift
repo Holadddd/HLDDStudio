@@ -75,6 +75,7 @@ extension PlugInViewController: UITableViewDataSource{
             
             cell.factoryTextField.text = reverb.factory
             cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
+            cell.dryWetMixLabel.text = String(format: "%.2f", reverb.dryWetMix)
             
             switch plugInArr[indexPath.row].bypass{
             case true:

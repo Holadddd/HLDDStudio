@@ -74,9 +74,7 @@ class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
         dryWetMixKnob.delegate = self
         dryWetMixKnob.minimumValue = 0.0
         dryWetMixKnob.maximumValue = 1.0
-        dryWetMixKnob.value = 0
-        dryWetMixKnob.reloadKnob()
-        
+    
     }
     
     func valueDidChange(knobValue value: Float) {

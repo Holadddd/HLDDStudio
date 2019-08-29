@@ -24,7 +24,7 @@ class PlugInGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         tableView.register(PlugInTableViewCell.nib, forCellReuseIdentifier: "PlugInTableViewCell")
-
+        tableView.bounces = false
     }
     
 }

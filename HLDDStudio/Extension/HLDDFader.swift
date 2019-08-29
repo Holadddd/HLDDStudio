@@ -11,7 +11,9 @@ import UIKit
 
 protocol HLDDFaderDelegate:AnyObject {
     
-    func valueDidChange(faderValue value: Float)
+    func faderValueDidChange(faderValue value: Float, fader: Fader)
+    
+    func faderIsTouching(bool: Bool, fader: Fader)
     
 }
 
@@ -68,28 +70,65 @@ class Fader: UIControl {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+        let w = faderTrackView.bounds.width
+        let h = faderTrackView.bounds.height
         faderTrackView.frame = self.bounds
-        
+        faderKnobView.frame = CGRect(origin: CGPoint(x: 0, y: h * 0.05), size: CGSize(width: w, height: w/3))
     }
     
     private func commonInit() {
         //加入手勢
         let gestureRecognizer = RotationGestureRecognizer(target: self, action: #selector(Fader.handleGesture(_:)))
         addGestureRecognizer(gestureRecognizer)
+        
         self.addSubview(faderTrackView)
+        faderTrackView.addSubview(faderKnobView)
+        
     }
     
     @objc private func handleGesture(_ gesture: RotationGestureRecognizer) {
-        faderKnobView.frame.origin.y -= 1
-        print("touch")
+        let isTouching = gesture.userIsTouching
+        delegate?.faderIsTouching(bool: isTouching, fader: self)
+        
+        offsetY = gesture.touchOffsetY
+        
+        let w = faderTrackView.bounds.width
+        let h = faderTrackView.bounds.height
+        let minY = faderTrackView.frame.minY + h * 0.05
+        let maxY = faderTrackView.frame.maxY - w/3
+        
+        if offsetY < maxY  && offsetY > minY  {
+            let absRange = abs(maxY - minY)
+            let percentageOfFader = abs( (offsetY - maxY) / absRange )
+            //print(String(format: "%.2f", percentageOfFader))
+            let valueRange = maximumValue - minimumValue
+            value = Float(CGFloat(minimumValue) + CGFloat(abs(valueRange)) * CGFloat(percentageOfFader))
+        } else {
+            return
+        }
+        delegate?.faderValueDidChange(faderValue: value, fader: self)
+        reloadFader()
     }
     
     func reloadFader() {
         
+        let w = faderTrackView.bounds.width
+        let h = faderTrackView.bounds.height
+        let minY = faderTrackView.frame.minY + h * 0.05
+        let maxY = faderTrackView.frame.maxY - w/3
+        
+        if offsetY < maxY  && offsetY > minY  {
+            faderKnobView.frame.origin.y = offsetY
+        } else {
+            return
+        }
         
     }
+    
+    
+    
 }
+
 import UIKit.UIGestureRecognizerSubclass
 
 private class RotationGestureRecognizer: UIPanGestureRecognizer {
@@ -99,10 +138,18 @@ private class RotationGestureRecognizer: UIPanGestureRecognizer {
     
     private(set) var touchOffsetY: CGFloat = 0
     
+    var userIsTouching = false
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         
         updateAngle(with: touches)
+        userIsTouching = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
+        userIsTouching = false
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {

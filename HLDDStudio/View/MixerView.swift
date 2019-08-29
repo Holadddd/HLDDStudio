@@ -42,6 +42,11 @@ protocol MixerDatasource: AnyObject {
     func nameOfInputDevice() -> [DeviceID]
 }
 
+protocol GridViewStopScrollingWhileUIKitIsTouchingDelegate: AnyObject {
+    
+    func isInteractWithUser(bool: Bool)
+}
+
 class MixerView: UIView {
     
     @IBOutlet weak var iOStatusBar: UIView!
@@ -199,6 +204,10 @@ class MixerView: UIView {
         trackGridView.register(PlugInGridViewCell.nib, forCellWithReuseIdentifier: "PlugInGridViewCell")
         trackGridView.register(FaderGridViewCell.nib, forCellWithReuseIdentifier: "FaderGridViewCell")
         trackGridView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        trackGridView.bounces = false
+        trackGridView.isPagingEnabled = true
+        trackGridView.invalidateLayout(horizontally: true)
+        
         
         trackGridView.superview?.clipsToBounds = true
         trackGridView.contentSize = self.bounds.size
@@ -224,15 +233,22 @@ class MixerView: UIView {
         }
     }
     
+    override func layoutSubviews() {
+        
+        let h = iOStatusBar.bounds.height
+        let w = iOStatusBar.bounds.width
+        routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
+
+    }
+    
 }
 //IOStatusBar
 extension MixerView {
     
     func setRouterPiskerView() {
+        
         iOStatusBar.addSubview(routePickerView)
-        let h = iOStatusBar.bounds.height
-        let w = iOStatusBar.bounds.width
-        routePickerView.frame = CGRect(origin: CGPoint(x: w - h - 8, y: 0), size: CGSize(width: h, height: h))
+        
     }
 }
 

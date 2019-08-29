@@ -77,11 +77,14 @@ class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     }
     
-    func valueDidChange(knobValue value: Float) {
+    func knobValueDidChange(knobValue value: Float, knob: Knob) {
         dryWetMixLabel.text = String(format: "%.2f", value)
         delegate?.dryWetMixValueChange(value)
     }
     
+    func knobIsTouching(bool: Bool, knob: Knob) {
+        print("knobIsTouching:\(bool)")
+    }
 }
 
 extension PlugInReverbTableViewCell: UIPickerViewDelegate {

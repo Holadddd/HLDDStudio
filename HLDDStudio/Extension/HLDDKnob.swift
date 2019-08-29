@@ -11,7 +11,9 @@ import UIKit
 
 protocol HLDDKnobDelegate:AnyObject {
     
-    func valueDidChange(knobValue value: Float)
+    func knobValueDidChange(knobValue value: Float, knob: Knob)
+    
+    func knobIsTouching(bool: Bool, knob: Knob)
     
 }
 
@@ -40,11 +42,11 @@ class Knob: UIControl {
         case true:
             guard value <= maximumValue-0.01 else{ return}
             value += valueABSRange * scaleOfKnob
-            delegate?.valueDidChange(knobValue: value)
+            delegate?.knobValueDidChange(knobValue: value, knob: self)
         case false:
             guard value >= minimumValue+0.01 else {return}
             value -= valueABSRange * scaleOfKnob
-            delegate?.valueDidChange(knobValue: value)
+            delegate?.knobValueDidChange(knobValue: value, knob: self)
         }
         
     }
@@ -85,7 +87,7 @@ class Knob: UIControl {
     }
     
     @objc private func handleGesture(_ gesture: RotationGestureRecognizer) {
-
+        delegate?.knobIsTouching(bool: gesture.userIsTouching, knob: self)
         //6
         let dir = gesture.dirIsUp
         knobValueChange(dirIsUp: dir)
@@ -113,10 +115,18 @@ private class RotationGestureRecognizer: UIPanGestureRecognizer {
     
     private(set) var touchOffsetY: CGFloat = 0
     
+    var userIsTouching = false
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent) {
         super.touchesBegan(touches, with: event)
         
         updateAngle(with: touches)
+        userIsTouching = true
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent) {
+        super.touchesEnded(touches, with: event)
+        userIsTouching = false
     }
     
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {

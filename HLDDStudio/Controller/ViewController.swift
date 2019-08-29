@@ -316,14 +316,23 @@ extension ViewController: MixerDatasource {
     }
     
 }
+extension ViewController: GridViewStopScrollingWhileUIKitIsTouchingDelegate {
+    
+    func isInteractWithUser(bool: Bool) {
+        mixerView.trackGridView.isPagingEnabled = bool
+    }
+    
+    
+}
 
 extension ViewController: GridViewDelegate {
     
 }
 
 extension ViewController: GridViewDataSource {
+    
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 1
+        return 4
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -346,7 +355,7 @@ extension ViewController: GridViewDataSource {
             return cell
         case 2:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "FaderGridViewCell", for: indexPath) as? FaderGridViewCell else { fatalError() }
-            
+            cell.delegate = self
             return cell
         default:
             return GridViewCell()
@@ -367,7 +376,7 @@ extension ViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, widthForColumn column: Int) -> CGFloat {
-        return mixerView.bounds.width
+        return mixerView.bounds.width/2
     }
     
 }

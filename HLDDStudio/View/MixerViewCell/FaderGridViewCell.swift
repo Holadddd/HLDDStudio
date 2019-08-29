@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import G3GridView
 
-class FaderGridViewCell: GridViewCell, HLDDFaderDelegate, HLDDKnobDelegate {
+class FaderGridViewCell: GridViewCell {
     
     @IBOutlet weak var volumeFader: Fader!
     
@@ -32,25 +32,53 @@ class FaderGridViewCell: GridViewCell, HLDDFaderDelegate, HLDDKnobDelegate {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        volumeFader.delegate = self
-        panKnob.delegate = self
-        lowKnob.delegate = self
-        midKnob.delegate = self
-        highKnob.delegate = self
+        setUpCustomUIKit()
         
     }
     
     
+    
+}
+
+extension FaderGridViewCell: HLDDFaderDelegate, HLDDKnobDelegate {
+    
+    func setUpCustomUIKit() {
+        volumeFader.delegate = self
+        volumeFader.maximumValue = 2
+        volumeFader.minimumValue = 0
+        volumeFader.value = 1
+        
+        panKnob.delegate = self
+        panKnob.maximumValue = 1
+        panKnob.minimumValue = 0
+        panKnob.value = 0.5
+        
+        lowKnob.delegate = self
+        lowKnob.maximumValue = 2
+        lowKnob.minimumValue = 0
+        lowKnob.value = 1
+        
+        midKnob.delegate = self
+        midKnob.maximumValue = 2
+        midKnob.minimumValue = 0
+        midKnob.value = 1
+        
+        highKnob.delegate = self
+        highKnob.maximumValue = 2
+        highKnob.minimumValue = 0
+        highKnob.value = 1
+    }
+    
     func knobValueDidChange(knobValue value: Float, knob: Knob) {
         switch knob {
         case panKnob:
-            print("panKnob")
+            FaderLabel.text = String(format: "Pan: %.2f", knob.value)
         case lowKnob:
-            print("lowKnob")
+            FaderLabel.text = String(format: "low: %.2f", knob.value)
         case midKnob:
-            print("midKnob")
+            FaderLabel.text = String(format: "mid: %.2f", knob.value)
         case highKnob:
-            print("highKnob")
+            FaderLabel.text = String(format: "high: %.2f", knob.value)
         default:
             return
         }
@@ -64,7 +92,7 @@ class FaderGridViewCell: GridViewCell, HLDDFaderDelegate, HLDDKnobDelegate {
     func faderValueDidChange(faderValue value: Float, fader: Fader) {
         switch fader {
         case volumeFader:
-            print("volumeFader")
+            FaderLabel.text = String(format: "Volume: %.2f", fader.value)
         default:
             return
         }

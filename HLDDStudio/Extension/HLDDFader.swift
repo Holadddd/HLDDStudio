@@ -74,6 +74,7 @@ class Fader: UIControl {
         let h = faderTrackView.bounds.height
         faderTrackView.frame = self.bounds
         faderKnobView.frame = CGRect(origin: CGPoint(x: 0, y: h * 0.05), size: CGSize(width: w, height: w/3))
+        reloadFader()
     }
     
     private func commonInit() {
@@ -92,13 +93,15 @@ class Fader: UIControl {
         
         offsetY = gesture.touchOffsetY
         
+        
         let w = faderTrackView.bounds.width
         let h = faderTrackView.bounds.height
         let minY = faderTrackView.frame.minY + h * 0.05
         let maxY = faderTrackView.frame.maxY - w/3
-        
+        let absRange = abs(maxY - minY)
+        //use offset to reset value
         if offsetY < maxY  && offsetY > minY  {
-            let absRange = abs(maxY - minY)
+            
             let percentageOfFader = abs( (offsetY - maxY) / absRange )
             //print(String(format: "%.2f", percentageOfFader))
             let valueRange = maximumValue - minimumValue
@@ -107,7 +110,7 @@ class Fader: UIControl {
             return
         }
         delegate?.faderValueDidChange(faderValue: value, fader: self)
-        reloadFader()
+        
     }
     
     func reloadFader() {
@@ -116,12 +119,20 @@ class Fader: UIControl {
         let h = faderTrackView.bounds.height
         let minY = faderTrackView.frame.minY + h * 0.05
         let maxY = faderTrackView.frame.maxY - w/3
-        
-        if offsetY < maxY  && offsetY > minY  {
-            faderKnobView.frame.origin.y = offsetY
+        let valueRange = maximumValue - minimumValue
+        //use value to reset offsetY
+        if value < maximumValue && value > minimumValue {
+            let absRange = abs(maxY - minY)
+            let percntageOfFaderOffsetY = abs((value - minimumValue)/valueRange)
+            DispatchQueue.main.async {
+                self.faderKnobView.frame.origin.y = CGFloat(maxY - CGFloat(percntageOfFaderOffsetY) * absRange)
+            }
         } else {
+            
             return
+            
         }
+        
         
     }
     

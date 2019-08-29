@@ -54,8 +54,6 @@ class Knob: UIControl {
     /** Contains a Boolean value indicating whether changes
      in the sliders value generate continuous update events. */
     var isContinuous = true
-    
-    
     // add imageView
     
     let knobMeasureView = UIImageView(image: UIImage(named: "HLDDKnobMeasure"))
@@ -102,7 +100,10 @@ class Knob: UIControl {
         let percentageOfValue = (value - averangeValue) / valueABSRange + 0.5
         
         let newAngle = CGFloat(-Double.pi * (5/6)) +  (CGFloat(Double.pi * (5/3)) * CGFloat(percentageOfValue))
-        knobView.transform = CGAffineTransform.init(rotationAngle: newAngle)
+        DispatchQueue.main.async {
+            self.knobView.transform = CGAffineTransform.init(rotationAngle: newAngle)
+        }
+        
     }
 }
 

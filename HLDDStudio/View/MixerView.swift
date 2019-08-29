@@ -55,6 +55,8 @@ class MixerView: UIView {
     
     let inputPicker = UIPickerView()
     
+    let inputDeviceButton = UIButton(type: .custom)
+    
     @IBOutlet weak var inputDeviceTextField: UITextField! {
         
         didSet {
@@ -65,20 +67,24 @@ class MixerView: UIView {
             
             inputDeviceTextField.inputView = inputPicker
             
-            let button = UIButton(type: .custom)
+            inputDeviceButton.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-            
-            button.setBackgroundImage(
-                UIImage.asset(.Icons_24px_DropDown),
+            inputDeviceButton.setBackgroundImage(
+                UIImage.asset(.DeviceInput4),
                 for: .normal
             )
+            inputDeviceButton.setBackgroundImage(
+                UIImage.asset(.DeviceInput3),
+                for: .selected
+            )
             
-            button.isUserInteractionEnabled = false
             
-            inputDeviceTextField.rightView = button
+            inputDeviceButton.isUserInteractionEnabled = false
+            inputDeviceButton.tintColor = .blue
             
-            inputDeviceTextField.rightViewMode = .always
+            inputDeviceTextField.leftView = inputDeviceButton
+            
+            inputDeviceTextField.leftViewMode = .always
             
             inputDeviceTextField.delegate = self
             
@@ -208,8 +214,8 @@ class MixerView: UIView {
         trackGridView.isPagingEnabled = true
         trackGridView.invalidateLayout(horizontally: true)
         
-        
-        trackGridView.superview?.clipsToBounds = true
+        trackGridView.clipsToBounds = true
+        //trackGridView.superview?.clipsToBounds = true
         trackGridView.contentSize = self.bounds.size
         
         trackGridView.isInfinitable = false
@@ -301,6 +307,7 @@ extension MixerView: UIPickerViewDataSource {
         case inputPicker:
             guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
             inputDeviceTextField.text = inputDeviceNameArr[row]
+            
         case tempoPicker:
             tempoTextField.text = "\(tempoArr[row])"
         case startBarPicker:
@@ -325,6 +332,7 @@ extension MixerView: UITextFieldDelegate {
         case inputDeviceTextField:
             guard let devieID = textField.text else { return }
             delegate?.didSelectInputDevice(devieID)
+            inputDeviceButton.isSelected = true
         case tempoTextField:
             guard let bpmString = tempoTextField.text else { return }
             guard let bpm = Int(bpmString) else { return }
@@ -371,13 +379,14 @@ extension MixerView {
             guard let stopString = stopRecordTextField.text else { return }
             guard let start = Int(startString) else { return }
             guard let stop = Int(stopString) else { return }
+            //if not trigger show in notification
             delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
             
         case true:
             //playAndResumeButtonAction()
             delegate?.stopRecord()
         }
-        
+        print(recordButton.isSelected)
         recordButton.isSelected = !recordButton.isSelected
         //Switch playing button but not doing playing audio function
         playAndResumeButton.isSelected = !playAndResumeButton.isSelected

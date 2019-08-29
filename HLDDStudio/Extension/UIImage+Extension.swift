@@ -30,6 +30,12 @@ enum ImageAsset: String {
     //Save Star
     case ic_star_border_24px
     case ic_star_filled_24px
+    
+    case JackAudioInput
+    case DeviceInput1
+    case DeviceInput2
+    case DeviceInput3
+    case DeviceInput4
 }
 
 // swiftlint:enable identifier_name

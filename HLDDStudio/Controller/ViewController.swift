@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Foundation
 import G3GridView
 import AVKit
 import AudioKit
+
 
 
 class ViewController: UIViewController {
@@ -26,6 +28,7 @@ class ViewController: UIViewController {
     
     var bar = 1
     var beat = 0
+
     let metronome = AKMetronome()
     
     var filePlayer = AKPlayer()
@@ -111,7 +114,7 @@ extension ViewController: MixerDelegate {
     }
     
     func metronomeCallBack() {
-        
+        print("\(self.bar) | \((self.beat % 4) + 1 )")
         
         DispatchQueue.main.async {
             self.mixerView.barLabel.text = "\(self.bar) | \((self.beat % 4) + 1 )"
@@ -119,7 +122,7 @@ extension ViewController: MixerDelegate {
             self.bar = Int(self.beat/4) + 1
         }
         
-        print("click,click")
+        
     }
     
     func metronomeSwitch(isOn: Bool) {
@@ -163,6 +166,7 @@ extension ViewController: MixerDelegate {
             print("lineIN")
         case .audioFile :
             //Bug If playIsNotPlaying this wont back to begining
+            filePlayer.start(at: AVAudioTime(hostTime: 0))
             filePlayer.stop()
             print("PlaySelectFile")
         }
@@ -221,36 +225,56 @@ extension ViewController: MixerDelegate {
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
         
-        let startTime = AVAudioTime.now() + bufferTime
-        let dispatchTime = DispatchTime(uptimeNanoseconds: startTime.hostTime )
+        let audioStartTime = AVAudioTime.now() + bufferTime
+        let disPatchStartTime = DispatchTime.now() + bufferTime
+        let oneBarTime = ((60 / metronome.tempo) * 4)
+        print(metronome.tempo)
+        let stardRecordTime = DispatchTime.now() + 0.15 + (oneBarTime * start)
         
-        self.recordPlayer.play(at: startTime)
-        
-        try? self.recorder.reset()
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+        DispatchQueue.main.asyncAfter(deadline: disPatchStartTime ) {
             
-            let result = Result{try self.recorder.record()}
-            
-            print("StartRecordBeforeSwitch")
-            switch result {
-            case .success():
-                print("StartRecord")
-            case .failure(let error):
-                print("FailToRecord:\(error)")
+            DispatchQueue.main.async {
+                self.bar = 1
+                self.beat = 0
+                self.mixerView.barLabel.text = "1 | 1"
             }
-            print(start, stop)
+            self.metronome.restart()
+            
+            
+            self.recordPlayer.play(at: audioStartTime)
+            
+            try? self.recorder.reset()
+            //recorder.durationToRecord = ((stop - start + 1) * oneBarTime)
+            
+            DispatchQueue.main.asyncAfter(deadline: stardRecordTime) {
+                let result = Result{try self.recorder.record()}
+                
+                
+                switch result {
+                case .success():
+                    print("StartRecord")
+                case .failure(let error):
+                    print("FailToRecord:\(error)")
+                }
+                print(start, stop)
+            }
+            
+            
         }
+        
+        
         
     }
     
     func stopRecord() {
         recorder.stop()
         recordPlayer.stop()
+        metronome.stop()
         print("stoprecord")
         
         tape = recorder.audioFile
         
-        
+        //export file name HLDD.m4a
         tape.exportAsynchronously(name: "HLDD",
                                   baseDir: .documents,
                                   exportFormat: .m4a) { _, error in

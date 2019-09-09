@@ -46,6 +46,8 @@ class MixerView: UIView {
     
     @IBOutlet weak var iOStatusBar: UIView!
     
+    @IBOutlet weak var barLabel: UILabel!
+    
     let inputPicker = UIPickerView()
     
     @IBOutlet weak var inputDeviceTextField: UITextField! {

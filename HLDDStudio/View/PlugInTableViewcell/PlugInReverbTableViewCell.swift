@@ -14,7 +14,7 @@ protocol PlugInReverbTableViewCellDelegate: AnyObject {
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell)
     
-    func plugInReverbFactorySelect(_ factory:String)
+    func plugInReverbFactorySelect(_ factory: String)
     
     func dryWetMixValueChange(_ sender: UISlider)
 }

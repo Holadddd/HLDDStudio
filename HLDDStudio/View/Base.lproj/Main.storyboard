@@ -285,6 +285,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <connections>
+                            <outlet property="barLabel" destination="Y5X-AB-Yk4" id="HJw-y7-Ctp"/>
                             <outlet property="iOStatusBar" destination="DXj-ZG-H1H" id="33j-OW-dlm"/>
                             <outlet property="inputDeviceTextField" destination="czf-Uj-HEJ" id="LFr-hi-RwC"/>
                             <outlet property="metronomeButton" destination="1UZ-W6-sr8" id="f0i-k6-ajg"/>

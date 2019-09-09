@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import AudioKit
 
 protocol PlugInViewControllerDelegate: AnyObject {
     
     func plugInReverbBypass(indexPathAtPlugInArr indexPath: IndexPath)
+    
+    func plugInReverbDryWetMixValueChange(value: Float)
+    
+    func plugInReverbSelectFactory(_ factory: String)
     
 }
 
@@ -61,6 +66,7 @@ extension PlugInViewController: UITableViewDataSource{
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
             cell.plugInBarView.bypassButton.isSelected = mixer.byPass
+            cell.factoryTextField.text = "Cathedral"
             cell.delegate = self
             cell.datasource = self
             return cell
@@ -71,15 +77,19 @@ extension PlugInViewController: UITableViewDataSource{
 }
 //PlugInReverbProtocol
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
+    
+    
    
     
     
     func dryWetMixValueChange(_ sender: UISlider) {
         print(sender.value)
+        delegate?.plugInReverbDryWetMixValueChange(value: sender.value)
     }
     
     func plugInReverbFactorySelect(_ factory: String) {
         print("ReverbSelectFactoryAs:\(factory)")
+        delegate?.plugInReverbSelectFactory(factory)
     }
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {

@@ -28,6 +28,8 @@ protocol MixerDelegate: AnyObject {
     
     func resumeAudioPlayer()
     
+    func pauseAudioPlayer()
+    
     func startRecordAudioPlayer(frombar start: Int, tobar stop:Int)
     
     func stopRecord()
@@ -338,7 +340,7 @@ extension MixerView {
         case true:
             delegate?.playingAudioPlayer()
         case false:
-            delegate?.stopAudioPlayer()
+            delegate?.pauseAudioPlayer()
         }
     }
     

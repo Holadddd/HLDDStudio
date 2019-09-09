@@ -10,6 +10,7 @@
 		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
 		016F4D25232561B50027D507 /* ReverbSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D24232561B50027D507 /* ReverbSet.swift */; };
 		016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D272325F10A0027D507 /* PlugInManager.swift */; };
+		016F4D2A23264F0E0027D507 /* MixerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D2923264F0E0027D507 /* MixerManger.swift */; };
 		0171720D232380D900049F3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0171720C232380D900049F3B /* AppDelegate.swift */; };
 		0171720F232380D900049F3B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0171720E232380D900049F3B /* ViewController.swift */; };
 		01717212232380D900049F3B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 01717210232380D900049F3B /* Main.storyboard */; };
@@ -39,6 +40,7 @@
 		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D24232561B50027D507 /* ReverbSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbSet.swift; sourceTree = "<group>"; };
 		016F4D272325F10A0027D507 /* PlugInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInManager.swift; sourceTree = "<group>"; };
+		016F4D2923264F0E0027D507 /* MixerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerManger.swift; sourceTree = "<group>"; };
 		01717209232380D900049F3B /* HLDDStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLDDStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0171720C232380D900049F3B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0171720E232380D900049F3B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -85,6 +87,7 @@
 			children = (
 				016F4D24232561B50027D507 /* ReverbSet.swift */,
 				016F4D272325F10A0027D507 /* PlugInManager.swift */,
+				016F4D2923264F0E0027D507 /* MixerManger.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,
 				01717215232380D900049F3B /* HLDDStudio.xcdatamodeld in Sources */,
+				016F4D2A23264F0E0027D507 /* MixerManger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

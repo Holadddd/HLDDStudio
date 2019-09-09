@@ -14,7 +14,11 @@ import AudioKit
 
 class ViewController: UIViewController {
     
+    var bufferTime = 0.25
+    //inputAndFile
     var plugInArr:[HLDDStudioPlugIn] = [HLDDStudioPlugIn(plugIn: .reverb, byPass: false)]
+    
+    var reverb: AKReverb?
     
     let mic = AKMicrophone()
     
@@ -27,8 +31,16 @@ class ViewController: UIViewController {
     var allInputSource: [AKNode] = []
     
     let mixer = AKMixer()
+    //record
+    var recorder: AKNodeRecorder!
+    
+    var tape: AKAudioFile!
+    
+    var recordPlayer: AKPlayer!
     
     @IBOutlet var mixerView: MixerView!
+    
+    var firstTrackStatus = TrackInputStatus.lineIn
     
     weak var cellTableView: UITableView?
 
@@ -43,23 +55,36 @@ class ViewController: UIViewController {
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
         //set clean input
-        bus1Node = mic
+        reverb = AKReverb(mic)
+        reverb?.dryWetMix = 1
+        bus1Node = reverb
+        //set recorder
+        recorder = try? AKNodeRecorder(node: mixer)
+        if let file = recorder.audioFile {
+            recordPlayer = AKPlayer(audioFile: file)
+        }
+        recordPlayer.isLooping = true
+        mixer.connect(input: recordPlayer, bus: 2)
+        
         AudioKit.output = mixer
         try? AudioKit.start()
+        
+        
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         super.viewDidAppear(animated)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
+    
     }
     
 }
 
 extension ViewController: MixerDelegate {
-    
-    
     
     func didSelectInputDevice(_ deviceID: DeviceID) {
         
@@ -104,27 +129,98 @@ extension ViewController: MixerDelegate {
     }
     
     func stopAudioPlayer() {
+        provideReverb()
         print("StopPlayer")
         metronome.stop()
+        switch firstTrackStatus {
+        case .lineIn:
+            
+            print("lineIN")
+        case .audioFile :
+            //Bug If playIsNotPlaying this wont back to begining
+            filePlayer.stop()
+            print("PlaySelectFile")
+        }
     }
     
     func playingAudioPlayer() {
         print("playingPlayer")
         metronome.start()
         //for each player play
+        let start = AVAudioTime.now()
+        switch firstTrackStatus {
+        case .lineIn:
+            
+            print("lineIN")
+        case .audioFile :
+            
+            if filePlayer.isPaused {
+                filePlayer.resume()
+            } else {
+                filePlayer.play(at:start + bufferTime )
+            }
+        
+            print("PlaySelectFile")
+        }
+    }
+    
+    func pauseAudioPlayer() {
+        
+        switch firstTrackStatus {
+        case .lineIn:
+            
+            print("lineIN")
+        case .audioFile :
+            
+            filePlayer.pause()
+            
+            print("PlaySelectFile")
+        }
     }
     
     func resumeAudioPlayer() {
-        print("ResumePlayer")
+        print("PausePlayer")
+        metronome.start()
+        //for each player play
+        
+        switch firstTrackStatus {
+        case .lineIn:
+            
+            print("lineIN")
+        case .audioFile :
+            
+            filePlayer.pause()
+            print("PlaySelectFile")
+        }
     }
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
+        let result = Result{try recorder.record()}
+        switch result {
+        case .success():
+            print("StartRecord")
+        case .failure(let error):
+            print("FailToRecord:\(error)")
+        }
         print(start, stop)
     }
     
     func stopRecord() {
+        recorder.stop()
+        recordPlayer.stop()
         print("stoprecord")
+        tape = recorder.audioFile!
+        recordPlayer.load(audioFile: tape)
         
+        tape.exportAsynchronously(name: "HLDD",
+                                  baseDir: .documents,
+                                  exportFormat: .m4a) { _, error in
+                                    if let error = error {
+                                        AKLog("Export Failed \(error)")
+                                    } else {
+                                        AKLog("Export succeeded")
+                                    }
+        }
     }
     
 }
@@ -282,9 +378,11 @@ extension ViewController: IOGridViewCellDelegate {
             //connect with mixer to do callBack before playing
             //使用 mixer bus 1 as input
             try? AudioKit.stop()
-            mixer.disconnectInput(bus: 2)
+            mixer.disconnectInput(bus: 3)
             mixer.connect(input: micNode, bus: 1)
             try? AudioKit.start()
+            //switch the track status
+            firstTrackStatus = .lineIn
             return
             
         } else {
@@ -302,8 +400,11 @@ extension ViewController: IOGridViewCellDelegate {
                     case .success(let file):
                         filePlayer = AKPlayer(audioFile: file)
                         try? AudioKit.stop()
-                        mixer.connect(input: filePlayer, bus: 2)
+                        mixer.connect(input: filePlayer, bus: 3)
                         try? AudioKit.start()
+                        print("FileSelectIn:\(fileName)")
+                        //switch the track status
+                        firstTrackStatus = .audioFile
                         return
                     case .failure(let error):
                         print(error)
@@ -342,3 +443,10 @@ extension ViewController: IOGridViewCellDatasource {
     }
 }
 
+extension ViewController {
+    
+    func provideReverb() {
+
+        
+    }
+}

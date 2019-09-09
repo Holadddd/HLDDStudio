@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="PlugInTableViewCell" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="PlugInTableViewCell" id="9Mf-nm-9eM" customClass="PlugInTableViewCell" customModule="HLDDStudio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Mf-nm-9eM" id="eNN-KR-aky">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z43-Zp-cqu">
+                        <rect key="frame" x="0.0" y="0.0" width="364" height="43.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJs-bv-0YX">
+                        <rect key="frame" x="364" y="0.0" width="50" height="43.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="fU4-HG-2fj"/>
+                        </constraints>
+                        <state key="normal" title="Bypass"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="QJs-bv-0YX" firstAttribute="top" secondItem="eNN-KR-aky" secondAttribute="top" id="79a-2u-xlD"/>
+                    <constraint firstItem="QJs-bv-0YX" firstAttribute="leading" secondItem="z43-Zp-cqu" secondAttribute="trailing" id="CNk-sm-Irn"/>
+                    <constraint firstItem="z43-Zp-cqu" firstAttribute="leading" secondItem="eNN-KR-aky" secondAttribute="leading" id="KO3-5t-IwI"/>
+                    <constraint firstAttribute="trailing" secondItem="QJs-bv-0YX" secondAttribute="trailing" id="PE4-F9-NW6"/>
+                    <constraint firstAttribute="bottom" secondItem="z43-Zp-cqu" secondAttribute="bottom" id="Y4D-EE-SNE"/>
+                    <constraint firstItem="z43-Zp-cqu" firstAttribute="top" secondItem="eNN-KR-aky" secondAttribute="top" id="a8C-p9-HTF"/>
+                    <constraint firstAttribute="bottom" secondItem="QJs-bv-0YX" secondAttribute="bottom" id="oZH-mx-c1c"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="bypassButton" destination="QJs-bv-0YX" id="JDp-PY-vtf"/>
+                <outlet property="plugInLabel" destination="z43-Zp-cqu" id="poT-jr-G3e"/>
+            </connections>
+            <point key="canvasLocation" x="217" y="-2"/>
+        </tableViewCell>
+    </objects>
+</document>

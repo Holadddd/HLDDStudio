@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="IOGridViewCell" id="iN0-l3-epB" customClass="IOGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Input:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="caR-xI-8CN">
+                    <rect key="frame" x="0.0" y="0.0" width="44" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="select Input" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5k4-Vb-L9a">
+                    <rect key="frame" x="56" y="0.0" width="131.5" height="40"/>
+                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Output:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bHt-ze-ibG">
+                    <rect key="frame" x="187.5" y="0.0" width="58" height="40"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="bHt-ze-ibG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="00d-Oy-tIQ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="5k4-Vb-L9a" secondAttribute="bottom" id="2aa-Fo-g8Q"/>
+                <constraint firstItem="caR-xI-8CN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="7cj-5L-gcd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="caR-xI-8CN" secondAttribute="bottom" id="BVQ-Au-vIN"/>
+                <constraint firstItem="caR-xI-8CN" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="H9Y-AB-Z9W"/>
+                <constraint firstItem="5k4-Vb-L9a" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="IDL-BH-dMd"/>
+                <constraint firstItem="5k4-Vb-L9a" firstAttribute="leading" secondItem="caR-xI-8CN" secondAttribute="trailing" constant="12" id="MyX-ek-zyF"/>
+                <constraint firstItem="bHt-ze-ibG" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Sk2-wZ-W8i"/>
+                <constraint firstItem="bHt-ze-ibG" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="XcY-nl-ket"/>
+                <constraint firstItem="bHt-ze-ibG" firstAttribute="leading" secondItem="5k4-Vb-L9a" secondAttribute="trailing" id="cFs-LV-JfE"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bHt-ze-ibG" secondAttribute="bottom" id="n6z-2g-06W"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="inputSourceTextField" destination="5k4-Vb-L9a" id="eA6-Kq-tHW"/>
+            </connections>
+            <point key="canvasLocation" x="32.799999999999997" y="-428.18590704647681"/>
+        </view>
+    </objects>
+</document>

@@ -18,24 +18,25 @@ class ViewController: UIViewController {
     
     var bufferTime = 0.25
     //inputAndFile
-    var plugInArr:[HLDDStudioPlugIn] = [HLDDStudioPlugIn(plugIn: .reverb, byPass: false)]
-    
-    var reverb: AKReverb?
+    var plugInArr:[HLDDStudioPlugIn] = []
     
     var mic: AKMicrophone!
     
     var bus1Node: AKNode?
     
-    var bar = 1
+    var bar = 0
     var beat = 0
 
     let metronome = AKMetronome()
+    
+    var metronomeBooster: AKBooster!
     
     var filePlayer = AKPlayer()
     
     var allInputSource: [AKNode] = []
     
     var mixer: AKMixer!
+    
     //record
     var recorder: AKNodeRecorder!
     
@@ -55,6 +56,9 @@ class ViewController: UIViewController {
         mic = AKMicrophone()
         mixer = AKMixer()
         metronome.callback = metronomeCallBack
+        metronomeBooster = AKBooster(metronome)
+        metronomeBooster.gain = 0
+        mixer.connect(input: metronomeBooster, bus: 0)
         
         mixerView.delegate = self
         mixerView.datasource = self
@@ -62,12 +66,10 @@ class ViewController: UIViewController {
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
         //set clean input
+        bus1Node = mic
         
-        reverb = AKReverb(mic)
-        reverb?.loadFactoryPreset(.cathedral)
-        bus1Node = reverb
         //set recorder
-        recorder = try? AKNodeRecorder(node: mixer)
+        recorder = try? AKNodeRecorder(node: bus1Node)
         if let file = recorder.audioFile {
             recordPlayer = AKPlayer(audioFile: file)
         }
@@ -76,9 +78,7 @@ class ViewController: UIViewController {
         
         AudioKit.output = mixer
         try? AudioKit.start()
-        
-        
-        
+        plugInProvide()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -119,9 +119,8 @@ extension ViewController: MixerDelegate {
         DispatchQueue.main.async {
             self.mixerView.barLabel.text = "\(self.bar) | \((self.beat % 4) + 1 )"
             self.beat += 1
-            self.bar = Int(self.beat/4) + 1
+            self.bar = Int(self.beat/4)
         }
-        
         
     }
     
@@ -131,13 +130,13 @@ extension ViewController: MixerDelegate {
         case true:
             
             try? AudioKit.stop()
-            mixer.connect(input: metronome, bus: 0)
+            metronomeBooster.gain = 1
             try? AudioKit.start()
             
         case false:
             
             try? AudioKit.stop()
-            mixer.disconnectInput(bus: 0)
+            metronomeBooster.gain = 0
             try? AudioKit.start()
             
         }
@@ -155,9 +154,9 @@ extension ViewController: MixerDelegate {
         
         
         DispatchQueue.main.async {
-            self.bar = 1
+            self.bar = 0
             self.beat = 0
-            self.mixerView.barLabel.text = "1 | 1"
+            self.mixerView.barLabel.text = "0 | 1"
         }
         
         switch firstTrackStatus {
@@ -229,14 +228,15 @@ extension ViewController: MixerDelegate {
         let disPatchStartTime = DispatchTime.now() + bufferTime
         let oneBarTime = ((60 / metronome.tempo) * 4)
         print(metronome.tempo)
+        //need adjust
         let stardRecordTime = DispatchTime.now() + 0.15 + (oneBarTime * start)
         
         DispatchQueue.main.asyncAfter(deadline: disPatchStartTime ) {
             
             DispatchQueue.main.async {
-                self.bar = 1
+                self.bar = 0
                 self.beat = 0
-                self.mixerView.barLabel.text = "1 | 1"
+                self.mixerView.barLabel.text = "0 | 1"
             }
             self.metronome.restart()
             
@@ -244,11 +244,11 @@ extension ViewController: MixerDelegate {
             self.recordPlayer.play(at: audioStartTime)
             
             try? self.recorder.reset()
-            //recorder.durationToRecord = ((stop - start + 1) * oneBarTime)
+            self.recorder.durationToRecord = ((stop - start + 1) * oneBarTime)
             
             DispatchQueue.main.asyncAfter(deadline: stardRecordTime) {
-                let result = Result{try self.recorder.record()}
                 
+                let result = Result{try self.recorder.record()}
                 
                 switch result {
                 case .success():
@@ -256,7 +256,7 @@ extension ViewController: MixerDelegate {
                 case .failure(let error):
                     print("FailToRecord:\(error)")
                 }
-                print(start, stop)
+                
             }
             
             
@@ -339,7 +339,6 @@ extension ViewController: GridViewDataSource {
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "IOGridViewCell", for: indexPath) as? IOGridViewCell else { fatalError() }
             cell.delegate = self
             cell.datasource = self
-            cell.backgroundColor = .red
             return cell
         case 1:
             //need set tableView
@@ -350,7 +349,7 @@ extension ViewController: GridViewDataSource {
             return cell
         case 2:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "FaderGridViewCell", for: indexPath) as? FaderGridViewCell else { fatalError() }
-            cell.backgroundColor = .green
+            
             return cell
         default:
             return GridViewCell()
@@ -409,69 +408,85 @@ extension ViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
-        let plugIn = plugInArr[indexPath.row]
-        cell.plugInLabel.text = "\(plugIn.plugIn.self)"
-        cell.bypassButton.isSelected = plugIn.byPass
+        
+        switch plugInArr[indexPath.row].plugIn {
+        case .reverb(let reverb):
+            cell.plugInLabel.text = "REVERB"
+            guard let reverb = reverb as? AKReverb else { fatalError() }
+            switch plugInArr[indexPath.row].bypass {
+            case true:
+                
+                cell.bypassButton.isSelected = true
+                reverb.bypass()
+            case false:
+                
+                cell.bypassButton.isSelected = false
+                reverb.start()
+            }
+        }
         cell.delegate = self
+        
         return cell
     }
     
 }
 
 extension ViewController: PlugInViewControllerDelegate {
+    
     //this change is come from pluginVC
     func plugInReverbBypass(indexPathAtPlugInArr indexPath: IndexPath) {
-        plugInArr[indexPath.row].byPass = !plugInArr[indexPath.row].byPass
-        cellTableView?.reloadData()
-        switch plugInArr[indexPath.row].byPass {
-        case true:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: 1)
-            bus1Node = mic
-            mixer.connect(input: bus1Node, bus: 1)
-            try? AudioKit.start()
-            print("ReverbBypass")
-        case false:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: 1)
-            reverb = AKReverb(mic)
-            bus1Node = reverb
-            mixer.connect(input: bus1Node, bus: 1)
-            try? AudioKit.start()
-            print("ReverbNotBypass")
+        //342
+        //plugInArr[indexPath.row].byPass = !plugInArr[indexPath.row].byPass
+        try? AudioKit.stop()
+        
+        switch plugInArr[indexPath.row].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else { fatalError() }
+            switch plugInArr[indexPath.row].bypass {
+            case true:
+                plugInArr[indexPath.row].bypass = false
+                reverb.bypass()
+            case false:
+                plugInArr[indexPath.row].bypass = true
+                reverb.start()
+            }
         }
+        try? AudioKit.start()
+        cellTableView?.reloadData()
     }
     
     func plugInReverbDryWetMixValueChange(value: Float) {
-        reverb?.dryWetMix = Double(value)
+        guard let reverb = PlugInCreater.shared.providePlugInNode(with: plugInArr[0]) as? AKReverb else { fatalError() }
+        reverb.dryWetMix = Double(value)
     }
     
     func plugInReverbSelectFactory(_ factory: String) {
+        guard let reverb = PlugInCreater.shared.providePlugInNode(with: plugInArr[0]) as? AKReverb else { fatalError() }
         switch factory {
         case "Cathedral":
-            reverb?.loadFactoryPreset(.cathedral)
+            reverb.loadFactoryPreset(.cathedral)
         case "Large Hall":
-            reverb?.loadFactoryPreset(.largeChamber)
+            reverb.loadFactoryPreset(.largeChamber)
         case "Large Hall 2":
-            reverb?.loadFactoryPreset(.largeHall2)
+            reverb.loadFactoryPreset(.largeHall2)
         case "Large Room":
-            reverb?.loadFactoryPreset(.largeRoom)
+            reverb.loadFactoryPreset(.largeRoom)
         case "Large Room 2":
-            reverb?.loadFactoryPreset(.largeRoom2)
+            reverb.loadFactoryPreset(.largeRoom2)
         case "Medium Chamber":
-            reverb?.loadFactoryPreset(.mediumChamber)
+            reverb.loadFactoryPreset(.mediumChamber)
         case "Medium Hall":
-            reverb?.loadFactoryPreset(.mediumHall)
+            reverb.loadFactoryPreset(.mediumHall)
         case "Medium Hall 2":
-            reverb?.loadFactoryPreset(.mediumHall2)
+            reverb.loadFactoryPreset(.mediumHall2)
         case "Medium Hall 3":
-            reverb?.loadFactoryPreset(.mediumHall3)
+            reverb.loadFactoryPreset(.mediumHall3)
         case "Medium Room":
-            reverb?.loadFactoryPreset(.mediumRoom)
+            reverb.loadFactoryPreset(.mediumRoom)
         case "Plate":
-            reverb?.loadFactoryPreset(.plate)
+            reverb.loadFactoryPreset(.plate)
         case "Small Room":
-            reverb?.loadFactoryPreset(.smallRoom)
+            reverb.loadFactoryPreset(.smallRoom)
         default:
             break
         }
@@ -483,27 +498,22 @@ extension ViewController: PlugInTableViewCellDelegate{
     func bypassPlugin(_ cell: PlugInTableViewCell) {
         
         guard let indexPath = cellTableView?.indexPath(for: cell) else{ return }
-        //set data as bypass
-        plugInArr[indexPath.row].byPass = !plugInArr[indexPath.row].byPass
-        switch plugInArr[indexPath.row].byPass {
-        case true:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: 1)
-            bus1Node = mic
-            mixer.connect(input: bus1Node, bus: 1)
-            try? AudioKit.start()
-            print("ReverbBypassTBV")
-        case false:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: 1)
-            mic = AKMicrophone()
-            reverb = AKReverb(mic)
-            bus1Node = reverb
-            mixer.connect(input: bus1Node, bus: 1)
-            try? AudioKit.start()
-            print("ReverbNotBypassTBV")
-        }
+
+        try? AudioKit.stop()
         
+        switch plugInArr[indexPath.row].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else { fatalError() }
+            switch plugInArr[indexPath.row].bypass {
+            case true:
+                plugInArr[indexPath.row].bypass = false
+                reverb.bypass()
+            case false:
+                plugInArr[indexPath.row].bypass = true
+                reverb.start()
+            }
+        }
+        try? AudioKit.start()
     }
     
 }
@@ -585,5 +595,21 @@ extension ViewController: IOGridViewCellDatasource {
         }
         return fileNameArr
     }
+}
+
+extension ViewController {
+    
+    func plugInProvide() {
+        try? AudioKit.stop()
+        plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: 0))
+        switch plugInArr[0].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else { fatalError() }
+            reverb.start()
+        }
+        bus1Node = PlugInCreater.shared.providePlugInNode(with: plugInArr[0])
+        try? AudioKit.start()
+    }
+    
 }
 

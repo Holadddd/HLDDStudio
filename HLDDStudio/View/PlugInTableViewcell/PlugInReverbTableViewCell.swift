@@ -70,7 +70,7 @@ class PlugInReverbTableViewCell: UITableViewCell {
         
         plugInBarView.delegate = self
         plugInBarView.datasource = self
-        
+      
         dryWetMixSlider.addTarget(self, action: #selector(PlugInReverbTableViewCell.sliderValueChange), for: UIControl.Event.valueChanged)
     }
     
@@ -117,6 +117,10 @@ extension PlugInReverbTableViewCell: PlugInBarViewDelegate {
     
     func isBypass(_ bool: Bool) {
         delegate?.plugInReverbBypassSwitch(bool, cell: self)
+        
+        factoryTextField.isEnabled = !plugInBarView.bypassButton.isSelected
+        dryWetMixSlider.isEnabled = !plugInBarView.bypassButton.isSelected
+        
     }
 
 }

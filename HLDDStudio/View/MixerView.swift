@@ -28,6 +28,8 @@ protocol MixerDelegate: AnyObject {
     
     func resumeAudioPlayer()
     
+    func pauseAudioPlayer()
+    
     func startRecordAudioPlayer(frombar start: Int, tobar stop:Int)
     
     func stopRecord()
@@ -43,6 +45,8 @@ protocol MixerDatasource: AnyObject {
 class MixerView: UIView {
     
     @IBOutlet weak var iOStatusBar: UIView!
+    
+    @IBOutlet weak var barLabel: UILabel!
     
     let inputPicker = UIPickerView()
     
@@ -338,7 +342,7 @@ extension MixerView {
         case true:
             delegate?.playingAudioPlayer()
         case false:
-            delegate?.stopAudioPlayer()
+            delegate?.pauseAudioPlayer()
         }
     }
     

@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import AudioKit
 
 protocol PlugInViewControllerDelegate: AnyObject {
     
     func plugInReverbBypass(indexPathAtPlugInArr indexPath: IndexPath)
+    
+    func plugInReverbDryWetMixValueChange(value: Float)
+    
+    func plugInReverbSelectFactory(_ factory: String)
     
 }
 
@@ -34,6 +39,11 @@ class PlugInViewController: UIViewController {
         plugInView.tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        plugInView.tableView.reloadData()
+    }
+    
     @objc func backButtonAction() {
         dismiss(animated: true) {
             
@@ -55,14 +65,27 @@ extension PlugInViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let plugInArr = plugInArr else { fatalError() }
-        let mixer = plugInArr[indexPath.row]
-        switch mixer.plugIn {
+        
+        switch plugInArr[indexPath.row].plugIn {
         case .reverb:
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
-            cell.plugInBarView.bypassButton.isSelected = mixer.byPass
+            //defauld factory
+            cell.factoryTextField.text = "Cathedral"
+            switch plugInArr[indexPath.row].bypass{
+            case true:
+                cell.plugInBarView.bypassButton.isSelected = true
+                cell.dryWetMixSlider.isEnabled = false
+                cell.factoryTextField.isEnabled = false
+            case false:
+                cell.plugInBarView.bypassButton.isSelected = false
+                cell.dryWetMixSlider.isEnabled = true
+                cell.factoryTextField.isEnabled = true
+            }
+            
             cell.delegate = self
             cell.datasource = self
+            
             return cell
         }
         
@@ -71,15 +94,19 @@ extension PlugInViewController: UITableViewDataSource{
 }
 //PlugInReverbProtocol
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
+    
+    
    
     
     
     func dryWetMixValueChange(_ sender: UISlider) {
         print(sender.value)
+        delegate?.plugInReverbDryWetMixValueChange(value: sender.value)
     }
     
     func plugInReverbFactorySelect(_ factory: String) {
         print("ReverbSelectFactoryAs:\(factory)")
+        delegate?.plugInReverbSelectFactory(factory)
     }
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {

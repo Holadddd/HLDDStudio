@@ -12,12 +12,16 @@ import G3GridView
 
 class FaderGridViewCell: GridViewCell {
     
+    
+    @IBOutlet weak var trackVolumeSlider: UISlider!
+    
     static var nib: UINib {
         return UINib(nibName: "FaderGridViewCell", bundle: Bundle(for: self))
     }
     
     override func awakeFromNib() {
         super .awakeFromNib()
+        trackVolumeSlider.transform = CGAffineTransform(rotationAngle: -CGFloat.pi/2)
     }
     
 }

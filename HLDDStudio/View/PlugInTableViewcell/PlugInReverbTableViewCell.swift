@@ -83,7 +83,7 @@ class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     }
     
     func knobIsTouching(bool: Bool, knob: Knob) {
-        print("knobIsTouching:\(bool)")
+        
     }
 }
 

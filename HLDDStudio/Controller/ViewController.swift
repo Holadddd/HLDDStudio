@@ -17,13 +17,6 @@ import AudioKit
 class ViewController: UIViewController {
     
     var bufferTime = 0.25
-    //inputAndFile
-    var plugInArr:[HLDDStudioPlugIn] = [] {
-        didSet {
-            mixerView.trackGridView.reloadData()
-            print("addsomething")
-        }
-    }
     
     var mic: AKMicrophone!
     
@@ -84,7 +77,7 @@ class ViewController: UIViewController {
         AudioKit.output = mixer
         try? AudioKit.start()
         //plugInProvide()
-        setNotification()
+        
        
     }
     
@@ -356,9 +349,7 @@ extension ViewController: GridViewDataSource {
         case 1:
             //need set tableView
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "PlugInGridViewCell", for: indexPath) as? PlugInGridViewCell else { fatalError() }
-            cellTableView = cell.tableView
-            cell.tableView.delegate = self
-            cell.tableView.dataSource = self
+            cell.vc = self
             return cell
         case 2:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "FaderGridViewCell", for: indexPath) as? FaderGridViewCell else { fatalError() }
@@ -388,112 +379,9 @@ extension ViewController: GridViewDataSource {
     
 }
 
-extension ViewController: UITableViewDelegate {
-    //將資料傳到 plugIn 的 VC
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let controller = segue.destination as? PlugInViewController else { return }
-        controller.plugInArr = plugInArr
-        controller.delegate = self
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        DispatchQueue.main.async {
-            self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
-        }
-        
-    }
-    
-}
 
-extension ViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        return 80
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return plugInArr.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
-        
-        switch plugInArr[indexPath.row].plugIn {
-        case .reverb(let reverb):
-            cell.plugInLabel.text = "REVERB"
-            guard let reverb = reverb as? AKReverb else { fatalError() }
-            switch plugInArr[indexPath.row].bypass {
-            case true:
-                
-                cell.bypassButton.isSelected = true
-                reverb.bypass()
-            case false:
-                
-                cell.bypassButton.isSelected = false
-                reverb.start()
-            }
-        }
-        cell.delegate = self
-        
-        return cell
-    }
-    
-}
 
-extension ViewController: PlugInViewControllerDelegate {
-    
-    //this change is come from pluginVC
-    func plugInReverbBypass(indexPathAtPlugInArr indexPath: IndexPath) {
-        //342
-        //plugInArr[indexPath.row].byPass = !plugInArr[indexPath.row].byPass
-        try? AudioKit.stop()
-        
-        switch plugInArr[indexPath.row].plugIn {
-        case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else { fatalError() }
-            switch plugInArr[indexPath.row].bypass {
-            case true:
-                plugInArr[indexPath.row].bypass = false
-                reverb.bypass()
-            case false:
-                plugInArr[indexPath.row].bypass = true
-                reverb.start()
-            }
-        }
-        try? AudioKit.start()
-        cellTableView?.reloadData()
-    }
-    
-    func plugInReverbDryWetMixValueChange(value: Float) {
-        switch plugInArr[0].plugIn {
-        case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else{ fatalError() }
-            reverb.dryWetMix = Double(value)
-        }
-    }
-    
-    func plugInReverbSelectFactory(_ factoryRawValue: Int) {
-        
-        switch plugInArr[0].plugIn {
-        case .reverb(let reverb):
-            
-            guard let reverb = reverb as? AKReverb else{ fatalError() }
-            
-            
-//            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
-            let rawValue = factoryRawValue
-            guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
-            reverb.loadFactoryPreset(set)
-            reverb.factory = reverbFactory[rawValue]
-        }
-        
-    }
-    
-}
+
 
 extension ViewController: PlugInTableViewCellDelegate{
     
@@ -503,15 +391,15 @@ extension ViewController: PlugInTableViewCellDelegate{
 
         try? AudioKit.stop()
         
-        switch plugInArr[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
-            switch plugInArr[indexPath.row].bypass {
+            switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass {
             case true:
-                plugInArr[indexPath.row].bypass = false
+                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = false
                 reverb.bypass()
             case false:
-                plugInArr[indexPath.row].bypass = true
+                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = true
                 reverb.start()
             }
         }
@@ -608,30 +496,17 @@ extension ViewController {
     func plugInProvide() {
         try? AudioKit.stop()
         let plugIn = HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: 0)
-        
-        plugInArr.append(plugIn)
+    
         PlugInCreater.shared.plugInOntruck.append(plugIn)
-        switch plugInArr[0].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[0].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
             reverb.start()
         }
-        bus1Node = PlugInCreater.shared.providePlugInNode(with: plugInArr[0])
+        bus1Node = PlugInCreater.shared.providePlugInNode(with: PlugInCreater.shared.plugInOntruck[0])
         try? AudioKit.start()
+        mixerView.trackGridView.reloadData()
     }
     
 }
 
-extension ViewController {
-    
-    func setNotification() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(ViewController.didChangePlugIn(_:)),
-                                               name: .didUpdatePlugIn, object: nil)
-    }
-    
-    @objc func didChangePlugIn(_ notification: Notification){
-        
-        print("didChangePlugIn")
-    }
-}

@@ -86,7 +86,6 @@ extension FaderGridViewCell: HLDDFaderDelegate, HLDDKnobDelegate {
     
     func knobIsTouching(bool: Bool, knob: Knob) {
         delegate?.isInteractWithUser(bool: !bool)
-        print(bool)
     }
     
     func faderValueDidChange(faderValue value: Float, fader: Fader) {
@@ -100,6 +99,5 @@ extension FaderGridViewCell: HLDDFaderDelegate, HLDDKnobDelegate {
     
     func faderIsTouching(bool: Bool, fader: Fader) {
         delegate?.isInteractWithUser(bool: !bool)
-        print(bool)
     }
 }

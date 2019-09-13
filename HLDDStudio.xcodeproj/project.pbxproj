@@ -41,6 +41,8 @@
 		0179404223253B2E000DCFCB /* PlugInBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179404123253B2E000DCFCB /* PlugInBarView.xib */; };
 		0179404423254797000DCFCB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179404323254797000DCFCB /* UIView+Extension.swift */; };
 		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
+		01F1661D232BBBD300F1C107 /* MixerMasterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661C232BBBD300F1C107 /* MixerMasterView.swift */; };
+		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +83,8 @@
 		0179404123253B2E000DCFCB /* PlugInBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInBarView.xib; sourceTree = "<group>"; };
 		0179404323254797000DCFCB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
+		01F1661C232BBBD300F1C107 /* MixerMasterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerMasterView.swift; sourceTree = "<group>"; };
+		01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDRedFader.swift; sourceTree = "<group>"; };
 		2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLDDStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.release.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.release.xcconfig"; sourceTree = "<group>"; };
 		A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.debug.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -170,6 +174,7 @@
 				0179403723251271000DCFCB /* MixerViewCell */,
 				01794038232512AA000DCFCB /* PlugInView.swift */,
 				0179403A2325368F000DCFCB /* PlugInTableViewcell */,
+				01F1661C232BBBD300F1C107 /* MixerMasterView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -190,6 +195,7 @@
 				0179404323254797000DCFCB /* UIView+Extension.swift */,
 				01280F9723289E27004AF13C /* HLDDKnob.swift */,
 				010D781F231681690099D76D /* HLDDFader.swift */,
+				01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */,
 				010D781D231652EA0099D76D /* GestureManager.swift */,
 				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
 			);
@@ -376,6 +382,7 @@
 				010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */,
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
+				01F1661D232BBBD300F1C107 /* MixerMasterView.swift in Sources */,
 				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
@@ -384,6 +391,7 @@
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,
 				01717215232380D900049F3B /* HLDDStudio.xcdatamodeld in Sources */,
+				01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */,
 				016F4D2A23264F0E0027D507 /* MixerManger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

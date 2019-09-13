@@ -370,13 +370,49 @@
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwe-7U-eeY" customClass="GridView" customModule="G3GridView">
                                                 <rect key="frame" x="0.0" y="0.0" width="250" height="542"/>
                                             </scrollView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6p8-VZ-uS6" customClass="MixerMasterView" customModule="HLDDStudio" customModuleProvider="target">
+                                                <rect key="frame" x="250" y="0.0" width="125" height="542"/>
+                                                <subviews>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainBG" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OY0-BU-4DW">
+                                                        <rect key="frame" x="0.0" y="0.0" width="125" height="542"/>
+                                                    </imageView>
+                                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodStickView2" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-4s-CRv">
+                                                        <rect key="frame" x="0.0" y="0.0" width="5" height="542.00000000000364"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="5" id="o36-aH-z4U"/>
+                                                        </constraints>
+                                                    </imageView>
+                                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nfF-TH-thi" customClass="RedFader" customModule="HLDDStudio" customModuleProvider="target">
+                                                        <rect key="frame" x="37.5" y="413.5" width="50" height="121.5"/>
+                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstItem="OY0-BU-4DW" firstAttribute="leading" secondItem="6p8-VZ-uS6" secondAttribute="leading" id="6fw-ei-dFm"/>
+                                                    <constraint firstItem="nfF-TH-thi" firstAttribute="width" secondItem="OY0-BU-4DW" secondAttribute="width" multiplier="0.4" id="Bn3-U2-xWT"/>
+                                                    <constraint firstItem="nfF-TH-thi" firstAttribute="height" secondItem="OY0-BU-4DW" secondAttribute="height" multiplier="0.225" id="CgQ-zT-1YS"/>
+                                                    <constraint firstAttribute="bottom" secondItem="OY0-BU-4DW" secondAttribute="bottom" id="FUu-OK-k85"/>
+                                                    <constraint firstAttribute="trailing" secondItem="OY0-BU-4DW" secondAttribute="trailing" id="Jqu-uf-yU6"/>
+                                                    <constraint firstItem="zBP-4s-CRv" firstAttribute="leading" secondItem="6p8-VZ-uS6" secondAttribute="leading" id="YKE-Cq-50w"/>
+                                                    <constraint firstItem="zBP-4s-CRv" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="b4i-mh-Fku"/>
+                                                    <constraint firstItem="nfF-TH-thi" firstAttribute="centerY" secondItem="OY0-BU-4DW" secondAttribute="centerY" multiplier="1.75" id="kpv-54-zco"/>
+                                                    <constraint firstAttribute="bottom" secondItem="zBP-4s-CRv" secondAttribute="bottom" id="pFJ-mx-KEW"/>
+                                                    <constraint firstItem="nfF-TH-thi" firstAttribute="centerX" secondItem="OY0-BU-4DW" secondAttribute="centerX" id="tZ9-iB-4og"/>
+                                                    <constraint firstItem="OY0-BU-4DW" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="z4e-a4-Ooa"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="6p8-VZ-uS6" firstAttribute="top" secondItem="H8k-WS-udr" secondAttribute="top" id="18u-xE-JAr"/>
                                             <constraint firstItem="Nwe-7U-eeY" firstAttribute="top" secondItem="H8k-WS-udr" secondAttribute="top" id="2nE-gs-Yx2"/>
                                             <constraint firstAttribute="bottom" secondItem="Nwe-7U-eeY" secondAttribute="bottom" id="6qA-bs-H0j"/>
                                             <constraint firstAttribute="trailing" secondItem="Nwe-7U-eeY" secondAttribute="trailing" multiplier="1.5" id="C13-Mr-Lng"/>
+                                            <constraint firstAttribute="bottom" secondItem="6p8-VZ-uS6" secondAttribute="bottom" id="Pgq-dr-Jub"/>
                                             <constraint firstItem="Nwe-7U-eeY" firstAttribute="leading" secondItem="H8k-WS-udr" secondAttribute="leading" id="Rrc-Be-OKh"/>
+                                            <constraint firstAttribute="trailing" secondItem="6p8-VZ-uS6" secondAttribute="trailing" id="TJu-bt-UMS"/>
+                                            <constraint firstItem="6p8-VZ-uS6" firstAttribute="leading" secondItem="Nwe-7U-eeY" secondAttribute="trailing" id="h2e-si-4S0"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -491,6 +527,7 @@
         <image name="BarStatusView" width="164" height="52"/>
         <image name="GlassImageView" width="371" height="200"/>
         <image name="Icons_44px_Back01" width="44" height="44"/>
+        <image name="MainBG" width="500" height="1770"/>
         <image name="OffButtonImage" width="104" height="200"/>
         <image name="OnButtonImage" width="105" height="200"/>
         <image name="Pause" width="241" height="200"/>
@@ -499,5 +536,6 @@
         <image name="Rec_on" width="64" height="64"/>
         <image name="StatuseBar8888ImageView" width="655" height="200"/>
         <image name="Stop" width="44" height="44"/>
+        <image name="WoodStickView2" width="500" height="16231"/>
     </resources>
 </document>

@@ -27,7 +27,9 @@ class PlugInTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bypassButton.addTarget(self, action: #selector(PlugInTableViewCell.bypassButtonDidTouch), for: .touchUpInside)
-        gifImageView.loadGif(name: "GifEffect3")
+        DispatchQueue.main.async {
+            self.gifImageView.loadGif(name: "GifEffect3")
+        }
         gifImageView.alpha = 0.6
     }
 

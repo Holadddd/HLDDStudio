@@ -25,13 +25,15 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJs-bv-0YX">
-                        <rect key="frame" x="250" y="0.0" width="50" height="99.5"/>
-                        <color key="backgroundColor" red="0.79847605740000005" green="0.9379678199" blue="0.94258779290000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QJs-bv-0YX">
+                        <rect key="frame" x="250" y="25" width="50" height="50"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="width" secondItem="QJs-bv-0YX" secondAttribute="height" multiplier="1:1" id="eyK-vi-ZpI"/>
                             <constraint firstAttribute="width" constant="50" id="fU4-HG-2fj"/>
                         </constraints>
-                        <state key="normal" title="Bypass"/>
+                        <state key="normal" title="Bypass" image="SwitchOn1"/>
+                        <state key="selected" image="SwitchOff1"/>
                     </button>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0hn-dP-Trr">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="99.5"/>
@@ -41,14 +43,13 @@
                 <constraints>
                     <constraint firstItem="0hn-dP-Trr" firstAttribute="top" secondItem="eNN-KR-aky" secondAttribute="top" id="0q0-Mc-QEJ"/>
                     <constraint firstAttribute="bottom" secondItem="0hn-dP-Trr" secondAttribute="bottom" id="4xc-e6-dxe"/>
-                    <constraint firstItem="QJs-bv-0YX" firstAttribute="top" secondItem="eNN-KR-aky" secondAttribute="top" id="79a-2u-xlD"/>
+                    <constraint firstItem="QJs-bv-0YX" firstAttribute="centerY" secondItem="eNN-KR-aky" secondAttribute="centerY" id="BbT-oA-VtT"/>
                     <constraint firstItem="z43-Zp-cqu" firstAttribute="leading" secondItem="eNN-KR-aky" secondAttribute="leading" id="KO3-5t-IwI"/>
                     <constraint firstAttribute="trailing" secondItem="QJs-bv-0YX" secondAttribute="trailing" id="PE4-F9-NW6"/>
                     <constraint firstItem="z43-Zp-cqu" firstAttribute="width" secondItem="eNN-KR-aky" secondAttribute="width" multiplier="0.3" id="Zg3-Ve-6YD"/>
                     <constraint firstItem="z43-Zp-cqu" firstAttribute="top" secondItem="eNN-KR-aky" secondAttribute="top" id="a8C-p9-HTF"/>
                     <constraint firstItem="z43-Zp-cqu" firstAttribute="height" secondItem="eNN-KR-aky" secondAttribute="height" multiplier="0.5" id="dgO-13-fq4"/>
                     <constraint firstItem="0hn-dP-Trr" firstAttribute="height" secondItem="eNN-KR-aky" secondAttribute="height" id="jDG-Hk-b4D"/>
-                    <constraint firstAttribute="bottom" secondItem="QJs-bv-0YX" secondAttribute="bottom" id="oZH-mx-c1c"/>
                     <constraint firstItem="QJs-bv-0YX" firstAttribute="leading" secondItem="0hn-dP-Trr" secondAttribute="trailing" id="oit-4a-a8J"/>
                     <constraint firstItem="0hn-dP-Trr" firstAttribute="leading" secondItem="eNN-KR-aky" secondAttribute="leading" id="t50-8I-C8L"/>
                 </constraints>
@@ -61,4 +62,8 @@
             <point key="canvasLocation" x="215.94202898550725" y="-2.0089285714285712"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="SwitchOff1" width="200" height="200"/>
+        <image name="SwitchOn1" width="200" height="200"/>
+    </resources>
 </document>

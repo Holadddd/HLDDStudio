@@ -48,11 +48,14 @@ enum ImageAsset: String {
     case PlugInBackgroundView6
     case PlugInBackgroundView7
     case PlugInBackgroundView8
+    
+    case PowerSwitchIcon
 }
 
 // swiftlint:enable identifier_name
 
 extension UIImage {
+    
     
     static func asset(_ asset: ImageAsset) -> UIImage? {
         

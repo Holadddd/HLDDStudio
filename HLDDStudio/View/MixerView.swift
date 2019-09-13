@@ -224,7 +224,6 @@ class MixerView: UIView {
         
         
         setRouterPiskerView()
-        
         metronomeButton.addTarget(self, action: #selector(MixerView.metronomeState), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(MixerView.stopButtonAction), for: .touchUpInside)
         playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)

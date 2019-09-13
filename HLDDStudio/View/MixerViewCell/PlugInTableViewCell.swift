@@ -17,6 +17,8 @@ class PlugInTableViewCell: UITableViewCell {
     
     @IBOutlet weak var bypassButton: UIButton!
     
+    @IBOutlet weak var gifImageView: UIImageView!
+    
     weak var delegate: PlugInTableViewCellDelegate?
     static var nib: UINib {
         return UINib(nibName: "PlugInTableViewCell", bundle: Bundle(for: self))
@@ -25,6 +27,8 @@ class PlugInTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bypassButton.addTarget(self, action: #selector(PlugInTableViewCell.bypassButtonDidTouch), for: .touchUpInside)
+        gifImageView.loadGif(name: "GifEffect3")
+        gifImageView.alpha = 0.6
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -37,4 +41,5 @@ class PlugInTableViewCell: UITableViewCell {
         bypassButton.isSelected = !bypassButton.isSelected
         delegate?.bypassPlugin(self)
     }
+    
 }

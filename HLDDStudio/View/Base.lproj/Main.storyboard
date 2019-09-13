@@ -137,6 +137,7 @@
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czf-Uj-HEJ">
                                                 <rect key="frame" x="40" y="4" width="32" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="czf-Uj-HEJ" secondAttribute="height" multiplier="1:1" id="5Md-a0-yOI"/>
                                                 </constraints>
@@ -176,14 +177,17 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="kSr-2q-BYP">
                                                 <rect key="frame" x="-5" y="32.5" width="385" height="32.5"/>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-W6-sr8">
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UZ-W6-sr8">
                                                 <rect key="frame" x="4" y="6" width="30" height="53"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="30" id="PJI-qE-EJq"/>
                                                 </constraints>
-                                                <state key="normal" title="Button" image="OffButtonImage"/>
-                                                <state key="selected" image="OnButtonImage"/>
-                                                <state key="highlighted" image="OnButtonImage"/>
+                                                <state key="normal" title="Button" image="OffButtonImage">
+                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
+                                                <state key="selected" image="OnButtonImage">
+                                                    <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                </state>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9VI-ey-zzC">
                                                 <rect key="frame" x="112.5" y="0.0" width="150" height="65"/>
@@ -364,14 +368,14 @@
                                         <rect key="frame" x="0.0" y="105" width="375" height="542"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nwe-7U-eeY" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="187.5" height="542"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="542"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Nwe-7U-eeY" firstAttribute="top" secondItem="H8k-WS-udr" secondAttribute="top" id="2nE-gs-Yx2"/>
                                             <constraint firstAttribute="bottom" secondItem="Nwe-7U-eeY" secondAttribute="bottom" id="6qA-bs-H0j"/>
-                                            <constraint firstAttribute="trailing" secondItem="Nwe-7U-eeY" secondAttribute="trailing" multiplier="2" id="C13-Mr-Lng"/>
+                                            <constraint firstAttribute="trailing" secondItem="Nwe-7U-eeY" secondAttribute="trailing" multiplier="1.5" id="C13-Mr-Lng"/>
                                             <constraint firstItem="Nwe-7U-eeY" firstAttribute="leading" secondItem="H8k-WS-udr" secondAttribute="leading" id="Rrc-Be-OKh"/>
                                         </constraints>
                                     </view>

@@ -17,6 +17,8 @@ class PlugInGridViewCell: GridViewCell {
     
     var plugInArr:[String] = []
     
+    let imageViewOne = UIImageView(image: UIImage.asset(.PlugInBackgroundView1))
+    let imageViewTwo = UIImageView(image: UIImage.asset(.PlugInBackgroundView6))
     static var nib: UINib {
         return UINib(nibName: "PlugInGridViewCell", bundle: Bundle(for: self))
     }
@@ -25,7 +27,16 @@ class PlugInGridViewCell: GridViewCell {
         super .awakeFromNib()
         tableView.register(PlugInTableViewCell.nib, forCellReuseIdentifier: "PlugInTableViewCell")
         tableView.bounces = false
+        imageViewTwo.alpha = 0.2
+        imageViewOne.addSubview(imageViewTwo)
+        imageViewTwo.contentMode = .scaleToFill
+        tableView.backgroundView = imageViewOne
+        
     }
     
+    override func layoutIfNeeded() {
+        super.layoutIfNeeded()
+        imageViewTwo.frame = tableView.frame
+    }
 }
 

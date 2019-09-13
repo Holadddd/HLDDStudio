@@ -23,6 +23,8 @@ class IOGridViewCell: GridViewCell {
     
     weak var datasource: IOGridViewCellDatasource?
     
+    let inputSourceButton = UIButton(type: .custom)
+    
     @IBOutlet weak var inputSourceTextField: UITextField! {
         didSet {
             let inputPicker = UIPickerView()
@@ -33,18 +35,21 @@ class IOGridViewCell: GridViewCell {
             
             inputSourceTextField.inputView = inputPicker
             
-            let button = UIButton(type: .custom)
+            inputSourceButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-            
-            button.setBackgroundImage(
-                UIImage.asset(.Icons_24px_DropDown),
+            inputSourceButton.setBackgroundImage(
+                UIImage.asset(.NodeInputIconNormal),
                 for: .normal
             )
             
-            button.isUserInteractionEnabled = false
+            inputSourceButton.setBackgroundImage(
+                UIImage.asset(.NodeInputIconSelected),
+                for: .selected
+            )
             
-            inputSourceTextField.rightView = button
+            inputSourceButton.isUserInteractionEnabled = false
+            
+            inputSourceTextField.rightView = inputSourceButton
             
             inputSourceTextField.rightViewMode = .always
             
@@ -52,6 +57,10 @@ class IOGridViewCell: GridViewCell {
             
         }
     }
+   
+    @IBOutlet weak var busLabel: UILabel!
+    
+    @IBOutlet weak var selectedInputLabel: UILabel!
     
     static var nib: UINib {
         return UINib(nibName: "IOGridViewCell", bundle: Bundle(for: self))
@@ -93,5 +102,18 @@ extension IOGridViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputSource = inputSourceTextField.text else {return}
         delegate?.didSelectInputSource(inputSource: inputSource)
+       
+        inputSourceButton.isSelected = true
+    }
+    
+    
+}
+extension String {
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
     }
 }

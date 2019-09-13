@@ -78,7 +78,9 @@ class ViewController: UIViewController {
         
         AudioKit.output = mixer
         try? AudioKit.start()
-        plugInProvide()
+        //plugInProvide()
+        
+       
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -376,7 +378,7 @@ extension ViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, widthForColumn column: Int) -> CGFloat {
-        return mixerView.bounds.width/2
+        return mixerView.bounds.width * 2 / 3
     }
     
 }

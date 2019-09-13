@@ -40,6 +40,7 @@
 		0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179403F23253A94000DCFCB /* PlugInBarView.swift */; };
 		0179404223253B2E000DCFCB /* PlugInBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179404123253B2E000DCFCB /* PlugInBarView.xib */; };
 		0179404423254797000DCFCB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179404323254797000DCFCB /* UIView+Extension.swift */; };
+		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
 		248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */; };
 /* End PBXBuildFile section */
 
@@ -79,6 +80,7 @@
 		0179403F23253A94000DCFCB /* PlugInBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInBarView.swift; sourceTree = "<group>"; };
 		0179404123253B2E000DCFCB /* PlugInBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInBarView.xib; sourceTree = "<group>"; };
 		0179404323254797000DCFCB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
 		2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLDDStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.release.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.release.xcconfig"; sourceTree = "<group>"; };
 		A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.debug.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.debug.xcconfig"; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				01280F9723289E27004AF13C /* HLDDKnob.swift */,
 				010D781F231681690099D76D /* HLDDFader.swift */,
 				010D781D231652EA0099D76D /* GestureManager.swift */,
+				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
 				010D7820231681690099D76D /* HLDDFader.swift in Sources */,
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
+				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,

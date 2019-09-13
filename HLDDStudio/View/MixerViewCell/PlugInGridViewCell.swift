@@ -10,12 +10,20 @@ import Foundation
 import G3GridView
 import UIKit
 
+protocol PlugInGridViewCellDataSource: AnyObject {
+    func plugInTrack() -> [HLDDStudioPlugIn]
+}
+
 class PlugInGridViewCell: GridViewCell {
     
     
     @IBOutlet weak var tableView: UITableView!
     
-    var plugInArr:[String] = []
+    var plugInArr:[HLDDStudioPlugIn] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     let imageViewOne = UIImageView(image: UIImage.asset(.PlugInBackgroundView1))
     let imageViewTwo = UIImageView(image: UIImage.asset(.PlugInBackgroundView6))
@@ -31,12 +39,20 @@ class PlugInGridViewCell: GridViewCell {
         imageViewOne.addSubview(imageViewTwo)
         imageViewTwo.contentMode = .scaleToFill
         tableView.backgroundView = imageViewOne
-        
+        //for next time renew
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(ViewController.didChangePlugIn(_:)),
+                                               name: .didUpdatePlugIn, object: nil)
     }
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
         imageViewTwo.frame = tableView.frame
+    }
+    
+    @objc func didChangePlugIn(_ notification: Notification){
+        plugInArr = PlugInCreater.shared.plugInOntruck
+        print("didChangePlugIn")
     }
 }
 

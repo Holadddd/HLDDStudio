@@ -11,6 +11,9 @@ import G3GridView
 
 protocol IOGridViewCellDelegate: AnyObject {
     func didSelectInputSource(inputSource: String)
+    
+    func addPlugIn(with plugIn: PlugIn<IndexPath>)
+
 }
 
 protocol IOGridViewCellDatasource: AnyObject {
@@ -61,6 +64,10 @@ class IOGridViewCell: GridViewCell {
     @IBOutlet weak var busLabel: UILabel!
     
     @IBOutlet weak var selectedInputLabel: UILabel!
+    //需要寫一個 singleTon 的 manger 管理
+    @IBAction func addPlugInButton(_ sender: UIButton) {
+        delegate?.addPlugIn(with: .reverb(IndexPath(row: 0, column: 0)))
+    }
     
     static var nib: UINib {
         return UINib(nibName: "IOGridViewCell", bundle: Bundle(for: self))

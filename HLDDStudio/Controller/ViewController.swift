@@ -18,7 +18,12 @@ class ViewController: UIViewController {
     
     var bufferTime = 0.25
     //inputAndFile
-    var plugInArr:[HLDDStudioPlugIn] = []
+    var plugInArr:[HLDDStudioPlugIn] = [] {
+        didSet {
+            mixerView.trackGridView.reloadData()
+            print("addsomething")
+        }
+    }
     
     var mic: AKMicrophone!
     
@@ -79,7 +84,7 @@ class ViewController: UIViewController {
         AudioKit.output = mixer
         try? AudioKit.start()
         //plugInProvide()
-        
+        setNotification()
        
     }
     
@@ -568,6 +573,10 @@ extension ViewController: IOGridViewCellDelegate {
         }
     }
     
+    func addPlugIn(with plugIn: PlugIn<IndexPath>) {
+        plugInProvide()
+    }
+
 }
 
 extension ViewController: IOGridViewCellDatasource {
@@ -598,7 +607,10 @@ extension ViewController {
     
     func plugInProvide() {
         try? AudioKit.stop()
-        plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: 0))
+        let plugIn = HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: 0)
+        
+        plugInArr.append(plugIn)
+        PlugInCreater.shared.plugInOntruck.append(plugIn)
         switch plugInArr[0].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
@@ -610,3 +622,16 @@ extension ViewController {
     
 }
 
+extension ViewController {
+    
+    func setNotification() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(ViewController.didChangePlugIn(_:)),
+                                               name: .didUpdatePlugIn, object: nil)
+    }
+    
+    @objc func didChangePlugIn(_ notification: Notification){
+        
+        print("didChangePlugIn")
+    }
+}

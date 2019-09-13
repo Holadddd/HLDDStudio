@@ -54,6 +54,16 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r6y-J4-XLw">
+                    <rect key="frame" x="170.5" y="7.5" width="44.5" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="r6y-J4-XLw" secondAttribute="height" multiplier="55:31" id="QOG-jX-NoQ"/>
+                    </constraints>
+                    <state key="normal" title="Button" image="AddPlugIn3"/>
+                    <connections>
+                        <action selector="addPlugInButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="2oS-iK-EyP"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
@@ -68,6 +78,7 @@
                 <constraint firstItem="HJa-20-KsA" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="IEh-oI-tcO"/>
                 <constraint firstItem="5k4-Vb-L9a" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="JPy-Lb-VS6"/>
                 <constraint firstAttribute="trailing" secondItem="HJa-20-KsA" secondAttribute="trailing" id="LIu-IR-NSD"/>
+                <constraint firstItem="r6y-J4-XLw" firstAttribute="height" secondItem="mtR-ar-ztF" secondAttribute="height" multiplier="0.5" id="M4P-sy-38P"/>
                 <constraint firstItem="OaV-dq-B0a" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" multiplier="1.4" id="NV1-Rv-le4"/>
                 <constraint firstItem="4bG-UD-1cA" firstAttribute="centerY" secondItem="JHW-Yn-5Be" secondAttribute="centerY" id="P0x-Ou-I7E"/>
                 <constraint firstItem="4bG-UD-1cA" firstAttribute="centerX" secondItem="JHW-Yn-5Be" secondAttribute="centerX" id="QTN-pL-tgY"/>
@@ -80,9 +91,11 @@
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="hGC-PR-kyR"/>
                 <constraint firstItem="JHW-Yn-5Be" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="imP-af-h4j"/>
                 <constraint firstItem="mtR-ar-ztF" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="-5" id="nvM-85-brh"/>
+                <constraint firstItem="r6y-J4-XLw" firstAttribute="centerY" secondItem="mtR-ar-ztF" secondAttribute="centerY" id="uFY-9s-XTn"/>
                 <constraint firstItem="OaV-dq-B0a" firstAttribute="height" secondItem="5k4-Vb-L9a" secondAttribute="height" multiplier="0.8" id="we6-Gg-W1U"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mtR-ar-ztF" secondAttribute="bottom" constant="-5" id="yzL-hB-l42"/>
                 <constraint firstItem="K2h-je-AKo" firstAttribute="height" secondItem="mtR-ar-ztF" secondAttribute="height" id="zAH-Xv-ayO"/>
+                <constraint firstItem="r6y-J4-XLw" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-4" id="za5-Zf-oSk"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -95,6 +108,7 @@
         </view>
     </objects>
     <resources>
+        <image name="AddPlugIn3" width="356" height="200"/>
         <image name="BarStatusView2" width="819" height="200"/>
         <image name="PlugInInputImageView" width="1246" height="200"/>
         <image name="PlugInLayerImageView" width="577" height="200"/>

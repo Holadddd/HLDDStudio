@@ -28,8 +28,6 @@ enum PlugIn<T> {
         }
     }
     
-    
-    
 }
 
 
@@ -44,6 +42,13 @@ class PlugInCreater {
     
     static let shared = PlugInCreater()
     
+    var plugInOntruck: [HLDDStudioPlugIn] = [] {
+        didSet {
+            
+            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: self, userInfo: nil))
+        }
+    }
+    
     func plugInProvider(with plugIn: PlugIn<AKNode>) -> AKNode {
         switch plugIn {
         case .reverb:
@@ -57,7 +62,6 @@ class PlugInCreater {
         case .reverb(let reverb):
             return reverb
         }
-        
     }
     
 }
@@ -81,3 +85,4 @@ extension AKReverb {
         
     }
 }
+

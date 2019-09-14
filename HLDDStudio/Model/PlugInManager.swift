@@ -9,6 +9,16 @@
 import Foundation
 import AudioKit
 
+struct HLDDMixerTrack {
+    var name: String
+    var plugInArr: [HLDDStudioPlugIn]
+    var bus: Int
+    var pan: Double
+    var low: Double
+    var mid: Double
+    var high: Double
+    var volume: Double
+}
 
 struct HLDDStudioPlugIn {
     var plugIn: PlugIn<AKNode>
@@ -42,10 +52,20 @@ class PlugInCreater {
     
     static let shared = PlugInCreater()
     
-    var plugInOntruck: [HLDDStudioPlugIn] = [] {
+    var eventRow = 0
+    
+    var eventColumn = 0
+    
+    var showingTrackOnPlugInVC = 0
+    
+    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], bus: 1, pan: 0.5, low: 0.5, mid: 0.5, high: 0.5, volume: 1),
+        HLDDMixerTrack(name: "BUS2", plugInArr: [], bus: 11, pan: 0.5, low: 0.5, mid: 0.5, high: 0.5, volume: 1)] {
         didSet {
             
-            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: self, userInfo: nil))
+            
+            NotificationCenter.default.post(.init(name: .didInsertPlugIn, object: IndexPath(row: eventRow, column: eventColumn), userInfo: nil))
+//            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: self, userInfo: nil))
+//            NotificationCenter.default.post(.init(name: .didRemovePlugIn, object: self, userInfo: nil))
         }
     }
     

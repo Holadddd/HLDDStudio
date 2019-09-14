@@ -451,6 +451,7 @@
                             <outlet property="barLabel" destination="Y5X-AB-Yk4" id="HJw-y7-Ctp"/>
                             <outlet property="iOStatusBar" destination="DXj-ZG-H1H" id="33j-OW-dlm"/>
                             <outlet property="inputDeviceTextField" destination="czf-Uj-HEJ" id="LFr-hi-RwC"/>
+                            <outlet property="masterFader" destination="nfF-TH-thi" id="c3h-iR-Tw4"/>
                             <outlet property="metronomeButton" destination="1UZ-W6-sr8" id="f0i-k6-ajg"/>
                             <outlet property="playAndResumeButton" destination="b62-zP-vQn" id="beV-rt-mUl"/>
                             <outlet property="recordButton" destination="dY8-lg-rNX" id="GC0-Jn-BFk"/>

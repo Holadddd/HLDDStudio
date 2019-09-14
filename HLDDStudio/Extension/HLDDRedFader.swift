@@ -20,13 +20,13 @@ protocol HLDDRedFaderDelegate:AnyObject {
 class RedFader: UIControl {
     
     /** Contains the minimum value of the receiver. */
-    var minimumValue: Float = -1
+    var minimumValue: Float = -0.01
     
     /** Contains the maximum value of the receiver. */
-    var maximumValue: Float = 1
+    var maximumValue: Float = 2
     
     /** Contains the receiver’s current value. */
-    var value: Float = 0 {
+    var value: Float = 1 {
         didSet {
             reloadFader()
         }

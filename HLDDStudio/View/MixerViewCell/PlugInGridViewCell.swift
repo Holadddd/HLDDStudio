@@ -11,6 +11,13 @@ import G3GridView
 import UIKit
 import AudioKit
 
+protocol PlugInGridViewCellDelegate: AnyObject {
+    
+    func bypassPlugin(atRow row: Int,Column column: Int)
+    
+    func perforPlugInVC(forTrack column: Int)
+}
+
 protocol PlugInGridViewCellDataSource: AnyObject {
     func plugInTrack() -> [HLDDStudioPlugIn]
 }
@@ -20,7 +27,9 @@ class PlugInGridViewCell: GridViewCell {
     
     @IBOutlet weak var tableView: UITableView!
     
-    weak var vc: ViewController?
+    var isNumberOfRowPassData = false
+    
+    weak var delegate: PlugInGridViewCellDelegate?
     
     let imageViewOne = UIImageView(image: UIImage.asset(.PlugInBackgroundView1))
     let imageViewTwo = UIImageView(image: UIImage.asset(.PlugInBackgroundView6))
@@ -31,17 +40,25 @@ class PlugInGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         tableView.register(PlugInTableViewCell.nib, forCellReuseIdentifier: "PlugInTableViewCell")
+//        tableView.delegate = self
+//        tableView.dataSource = self
+        tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.bounces = false
         imageViewTwo.alpha = 0.2
         imageViewOne.addSubview(imageViewTwo)
         imageViewTwo.contentMode = .scaleAspectFill
         tableView.backgroundView = imageViewOne
         //for next time renew
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(PlugInGridViewCell.didChangePlugIn(_:)),
-                                               name: .didUpdatePlugIn, object: nil)
+                                               selector: #selector(PlugInGridViewCell.didInsertPlugIn(_:)),
+                                               name: .didInsertPlugIn, object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(PlugInGridViewCell.didChangePlugIn(_:)),
+//                                               name: .didUpdatePlugIn, object: nil)
+//        NotificationCenter.default.addObserver(self,
+//                                               selector: #selector(PlugInGridViewCell.didRemovePlugIn(_:)),
+//                                               name: .didRemovePlugIn, object: nil)
     }
     
     override func layoutIfNeeded() {
@@ -49,26 +66,45 @@ class PlugInGridViewCell: GridViewCell {
         imageViewTwo.frame = tableView.frame
     }
     
-    @objc func didChangePlugIn(_ notification: Notification){
+    @objc func didInsertPlugIn(_ notification: Notification){
+        print("didInsertPlugIn")
+        
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
-        print("didChangePlugIn")
     }
+    
+    @objc func didChangePlugIn(_ notification: Notification){
+        
+        
+        print("didChangePlugI")
+    }
+    @objc func didRemovePlugIn(_ notification: Notification){
+        
+        
+        print("didRemovePlugIn")
+    }
+}
+
+extension PlugInGridViewCell: PlugInTableViewCellDelegate{
+    
+    func bypassPlugin(_ cell: PlugInTableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { fatalError() }
+        let row = indexPath.row
+        let column = self.indexPath.column
+        delegate?.bypassPlugin(atRow: row, Column: column)
+    }
+    
 }
 
 extension PlugInGridViewCell: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
         cell.plugInMarqueeLabel.restartLabel()
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let selfVc = vc else { fatalError() }
-        DispatchQueue.main.async {
-            selfVc.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
-        }
-        
+        delegate?.perforPlugInVC(forTrack: self.indexPath.column)
     }
     
 }
@@ -79,23 +115,27 @@ extension PlugInGridViewCell: UITableViewDataSource {
         
         return 60
     }
-    
+    //!!!!!!!
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PlugInCreater.shared.plugInOntruck.count
+        guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }
+        
+        return PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
+        guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
         
-        switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
             cell.plugInLabel.text = "REVERB"
-            cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f", reverb.dryWetMix) )"
+            cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f.", reverb.dryWetMix) )"
             
-            switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass {
+            switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
                 
                 cell.bypassButton.isSelected = true
@@ -106,9 +146,10 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 reverb.start()
             }
         }
-        cell.delegate = vc
         
         return cell
     }
     
 }
+
+

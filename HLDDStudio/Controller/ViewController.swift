@@ -46,7 +46,7 @@ class ViewController: UIViewController {
     
     var firstTrackStatus = TrackInputStatus.lineIn
     
-    weak var cellTableView: UITableView?
+    var cellTableView: [UITableView]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,7 +78,7 @@ class ViewController: UIViewController {
         try? AudioKit.start()
         //plugInProvide()
         
-       
+        
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -295,6 +295,10 @@ extension ViewController: MixerDelegate {
         
     }
     
+    func masterVolumeDidChange(volume: Float) {
+        mixer.volume = Double(volume)
+        print(mixer.volume)
+    }
 }
 
 extension ViewController: MixerDatasource {
@@ -326,7 +330,6 @@ extension ViewController: GridViewStopScrollingWhileUIKitIsTouchingDelegate {
         mixerView.trackGridView.isPagingEnabled = bool
     }
     
-    
 }
 
 extension ViewController: GridViewDelegate {
@@ -353,7 +356,9 @@ extension ViewController: GridViewDataSource {
         case 1:
             //need set tableView
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "PlugInGridViewCell", for: indexPath) as? PlugInGridViewCell else { fatalError() }
-            cell.vc = self
+            
+            cell.delegate = self
+            
             return cell
         case 2:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "FaderGridViewCell", for: indexPath) as? FaderGridViewCell else { fatalError() }
@@ -383,31 +388,46 @@ extension ViewController: GridViewDataSource {
     
 }
 
-
-
-
-
-extension ViewController: PlugInTableViewCellDelegate{
+extension ViewController: PlugInGridViewCellDelegate {
     
-    func bypassPlugin(_ cell: PlugInTableViewCell) {
+    
+    
+    func bypassPlugin(atRow row: Int, Column column: Int) {
         
-        guard let indexPath = cellTableView?.indexPath(for: cell) else{ return }
-
+        
+        //guard let indexPath = cellTableView?.indexPath(for: cell) else{ return }
+        
         try? AudioKit.stop()
         
-        switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
-            switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass {
+            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = false
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
                 reverb.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = true
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 reverb.start()
             }
         }
         try? AudioKit.start()
+        
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let d = segue.destination as? PlugInViewController else { fatalError() }
+        d.track = PlugInCreater.shared.showingTrackOnPlugInVC
+        print("2")
+    }
+    
+    func perforPlugInVC(forTrack column: Int) {
+        print("1")
+        PlugInCreater.shared.showingTrackOnPlugInVC = column
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
+        }
+        
+        print("3")
     }
     
 }
@@ -466,7 +486,12 @@ extension ViewController: IOGridViewCellDelegate {
     }
     
     func addPlugIn(with plugIn: PlugIn<IndexPath>) {
-        plugInProvide()
+        
+        switch plugIn {
+        case .reverb(let indexPath):
+            plugInProvide(row: indexPath.row, column: indexPath.column, plugIn: .reverb(indexPath))
+        }
+        
     }
 
 }
@@ -497,19 +522,22 @@ extension ViewController: IOGridViewCellDatasource {
 
 extension ViewController {
     
-    func plugInProvide() {
+    func plugInProvide(row: Int, column: Int, plugIn: PlugIn<IndexPath>) {
         try? AudioKit.stop()
-        let plugIn = HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: 0)
-    
-        PlugInCreater.shared.plugInOntruck.append(plugIn)
-        switch PlugInCreater.shared.plugInOntruck[0].plugIn {
-        case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else { fatalError() }
-            reverb.start()
+        
+        
+        switch plugIn {
+        case .reverb(let indexPath):
+            let newPlugIn = HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: indexPath.row)
+            PlugInCreater.shared.eventRow = row
+            PlugInCreater.shared.eventRow = column
+            PlugInCreater.shared.plugInOntruck[indexPath.column].plugInArr.append(newPlugIn)
+            bus1Node = PlugInCreater.shared.providePlugInNode(with: PlugInCreater.shared.plugInOntruck[indexPath.column].plugInArr[indexPath.row])
         }
-        bus1Node = PlugInCreater.shared.providePlugInNode(with: PlugInCreater.shared.plugInOntruck[0])
+        
         try? AudioKit.start()
-        mixerView.trackGridView.reloadData()
+        
+        
     }
     
 }

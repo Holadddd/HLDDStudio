@@ -33,6 +33,8 @@ protocol MixerDelegate: AnyObject {
     func startRecordAudioPlayer(frombar start: Int, tobar stop:Int)
     
     func stopRecord()
+    
+    func masterVolumeDidChange(volume: Float)
 }
 
 protocol MixerDatasource: AnyObject {
@@ -200,6 +202,10 @@ class MixerView: UIView {
     
     @IBOutlet weak var trackGridView: GridView!
     
+    //MasterFader
+    
+    @IBOutlet weak var masterFader: RedFader!
+    
     weak var delegate: MixerDelegate?
     
     weak var datasource: MixerDatasource?
@@ -227,6 +233,7 @@ class MixerView: UIView {
         stopButton.addTarget(self, action: #selector(MixerView.stopButtonAction), for: .touchUpInside)
         playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)
         recordButton.addTarget(self, action: #selector(MixerView.recordButtonAction), for: .touchUpInside)
+        masterFader.delegate = self
         
         for tempo in 40...240 {
             tempoArr.append(tempo)
@@ -389,4 +396,18 @@ extension MixerView {
         //Switch playing button but not doing playing audio function
         playAndResumeButton.isSelected = !playAndResumeButton.isSelected
     }
+}
+
+extension MixerView: HLDDRedFaderDelegate {
+    
+    func redFaderValueDidChange(faderValue value: Float, fader: RedFader) {
+        delegate?.masterVolumeDidChange(volume: value)
+    }
+    
+    func redFaderIsTouching(bool: Bool, fader: RedFader) {
+        
+    }
+    
+    
+    
 }

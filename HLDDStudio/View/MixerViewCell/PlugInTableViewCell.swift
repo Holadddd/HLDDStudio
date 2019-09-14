@@ -22,6 +22,7 @@ class PlugInTableViewCell: UITableViewCell {
     
     
     weak var delegate: PlugInTableViewCellDelegate?
+    
     static var nib: UINib {
         return UINib(nibName: "PlugInTableViewCell", bundle: Bundle(for: self))
     }
@@ -41,6 +42,7 @@ class PlugInTableViewCell: UITableViewCell {
     @objc func bypassButtonDidTouch() {
         bypassButton.isSelected = !bypassButton.isSelected
         delegate?.bypassPlugin(self)
+        
     }
     
 }

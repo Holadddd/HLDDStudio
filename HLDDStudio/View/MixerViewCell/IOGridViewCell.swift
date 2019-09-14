@@ -10,6 +10,7 @@ import UIKit
 import G3GridView
 
 protocol IOGridViewCellDelegate: AnyObject {
+    
     func didSelectInputSource(inputSource: String)
     
     func addPlugIn(with plugIn: PlugIn<IndexPath>)
@@ -66,7 +67,10 @@ class IOGridViewCell: GridViewCell {
     @IBOutlet weak var selectedInputLabel: UILabel!
     //需要寫一個 singleTon 的 manger 管理
     @IBAction func addPlugInButton(_ sender: UIButton) {
-        delegate?.addPlugIn(with: .reverb(IndexPath(row: 0, column: 0)))
+        let row = PlugInCreater.shared.plugInOntruck[self.indexPath.column].plugInArr.count
+        let column = self.indexPath.column
+        //再加上多種 plugin
+        delegate?.addPlugIn(with: .reverb(IndexPath(row: row, column: column)))
     }
     
     static var nib: UINib {

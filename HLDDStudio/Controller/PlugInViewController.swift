@@ -15,6 +15,8 @@ class PlugInViewController: UIViewController {
     
     @IBOutlet var plugInView: PlugInView!
     
+    var track = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         backButton.addTarget(self, action: #selector(PlugInViewController.backButtonAction), for: .touchUpInside)
@@ -45,12 +47,12 @@ extension PlugInViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return PlugInCreater.shared.plugInOntruck.count
+        return PlugInCreater.shared.plugInOntruck[track].plugInArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
             guard let reverb = reverb as? AKReverb else { fatalError() }
@@ -61,7 +63,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
             cell.dryWetMixLabel.text = String(format: "%.2f", reverb.dryWetMix)
             
-            switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass{
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
                 cell.dryWetMixKnob.isEnabled = false
@@ -85,10 +87,10 @@ extension PlugInViewController: UITableViewDataSource{
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     
     
-    
+    //FIXFIXNeedIndexPath
     func dryWetMixValueChange(_ value: Float) {
         
-        switch PlugInCreater.shared.plugInOntruck[0].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[0].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else{ fatalError() }
             reverb.dryWetMix = Double(value)
@@ -96,7 +98,8 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     }
     
     func plugInReverbFactorySelect(_ factoryRawValue: Int) {
-        switch PlugInCreater.shared.plugInOntruck[0].plugIn {
+        
+        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[0].plugIn {
         case .reverb(let reverb):
             
             guard let reverb = reverb as? AKReverb else{ fatalError() }
@@ -115,15 +118,15 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         try? AudioKit.stop()
         
-        switch PlugInCreater.shared.plugInOntruck[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
-            switch PlugInCreater.shared.plugInOntruck[indexPath.row].bypass {
+            switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = false
+                PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass = false
                 reverb.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[indexPath.row].bypass = true
+                PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass = true
                 reverb.start()
             }
         }

@@ -86,20 +86,10 @@ extension PlugInViewController: UITableViewDataSource{
 //PlugInReverbProtocol
 extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     
-    
-    //FIXFIXNeedIndexPath
-    func dryWetMixValueChange(_ value: Float) {
+    func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell) {
+        guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         
-        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[0].plugIn {
-        case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else{ fatalError() }
-            reverb.dryWetMix = Double(value)
-        }
-    }
-    
-    func plugInReverbFactorySelect(_ factoryRawValue: Int) {
-        
-        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[0].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             
             guard let reverb = reverb as? AKReverb else{ fatalError() }
@@ -110,7 +100,20 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
             guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
             reverb.loadFactoryPreset(set)
             reverb.factory = reverbFactory[rawValue]
+            
         }
+        NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
+    }
+    
+    func dryWetMixValueChange(_ value: Float, cell: PlugInReverbTableViewCell) {
+        guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else{ fatalError() }
+            reverb.dryWetMix = Double(value)
+        }
+        
+        NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
     }
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {
@@ -118,7 +121,7 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         try? AudioKit.stop()
         
-        switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let reverb = reverb as? AKReverb else { fatalError() }
             switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass {
@@ -130,6 +133,7 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
                 reverb.start()
             }
         }
+        NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
         try? AudioKit.start()
     }
 }

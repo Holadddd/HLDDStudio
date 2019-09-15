@@ -20,9 +20,28 @@ class ViewController: UIViewController {
     
     var mic: AKMicrophone!
     
-    var bus1Node: AKNode?
+    var bus1Panner: AKPanner!
+    
+    var bus1LowEQ: AKEqualizerFilter!
+    
+    var bus1MidEQ: AKEqualizerFilter!
+    
+    var bus1HighEQ: AKEqualizerFilter!
+    
+    var bus1Booster: AKBooster!
+    
+    var bus2Panner: AKPanner!
+    
+    var bus2LowEQ: AKEqualizerFilter!
+    
+    var bus2MidEQ: AKEqualizerFilter!
+    
+    var bus2HighEQ: AKEqualizerFilter!
+    
+    var bus2Booster: AKBooster!
     
     var bar = 0
+    
     var beat = 0
 
     let metronome = AKMetronome()
@@ -31,11 +50,15 @@ class ViewController: UIViewController {
     
     var filePlayer = AKPlayer()
     
+    var filePlayerTwo = AKPlayer()
+    
     var allInputSource: [AKNode] = []
     
     var mixer: AKMixer!
     
     //record
+    var mixerForRecord = AKMixer()
+    
     var recorder: AKNodeRecorder!
     
     var tape: AKAudioFile!
@@ -44,7 +67,9 @@ class ViewController: UIViewController {
 
     @IBOutlet var mixerView: MixerView!
     
-    var firstTrackStatus = TrackInputStatus.lineIn
+    var firstTrackStatus = TrackInputStatus.noInput
+    
+    var secondTrackStatus = TrackInputStatus.noInput
     
     var cellTableView: [UITableView]?
 
@@ -52,6 +77,8 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         mic = AKMicrophone()
+        PlugInCreater.shared.plugInOntruck[0].node = mic
+        
         mixer = AKMixer()
         metronome.callback = metronomeCallBack
         metronomeBooster = AKBooster(metronome)
@@ -64,27 +91,31 @@ class ViewController: UIViewController {
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
         //set clean input
-        bus1Node = mic
+        PlugInCreater.shared.plugInOntruck[1].node = filePlayerTwo
+        
         
         //set recorder
-        recorder = try? AKNodeRecorder(node: bus1Node)
+        
+        
+        
+        recorder = try? AKNodeRecorder(node: mixer)
         if let file = recorder.audioFile {
             recordPlayer = AKPlayer(audioFile: file)
         }
         recordPlayer.isLooping = true
-        mixer.connect(input: recordPlayer, bus: 2)
+        
+        mixer.connect(input: recordPlayer, bus: 3)
         
         AudioKit.output = mixer
         try? AudioKit.start()
-        //plugInProvide()
-        
         
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
-        
+
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         
         super.viewDidAppear(animated)
@@ -92,6 +123,35 @@ class ViewController: UIViewController {
         
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
     
+    }
+    
+    func setTrackNode(track: Int,node: AKNode) {
+        switch track {
+        case 1:
+            try? AudioKit.stop()
+            //mixer.disconnectInput(bus: 1)
+            bus1Panner = AKPanner(node, pan: 0)
+            bus1LowEQ = AKEqualizerFilter(bus1Panner, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
+            bus1MidEQ = AKEqualizerFilter(bus1LowEQ, centerFrequency: 2_000, bandwidth: 2_282, gain: 1.0)
+            bus1HighEQ = AKEqualizerFilter(bus1MidEQ, centerFrequency: 12_000, bandwidth: 8_112, gain: 1.0)
+            bus1Booster = AKBooster(bus1HighEQ, gain: 1)
+            //會覆寫
+            mixer.connect(input: bus1Booster, bus: track)
+            try? AudioKit.start()
+        case 2:
+            try? AudioKit.stop()
+            //mixer.disconnectInput(bus: 2)
+            bus2Panner = AKPanner(node, pan: 0)
+            bus2LowEQ = AKEqualizerFilter(bus2Panner, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
+            bus2MidEQ = AKEqualizerFilter(bus2LowEQ, centerFrequency: 2_000, bandwidth: 2_282, gain: 1.0)
+            bus2HighEQ = AKEqualizerFilter(bus2MidEQ, centerFrequency: 12_000, bandwidth: 8_112, gain: 1.0)
+            bus2Booster = AKBooster(bus2HighEQ, gain: 1)
+            mixer.connect(input: bus2Booster, bus: track)
+            try? AudioKit.start()
+        default:
+            print("no such bus")
+        }
+        
     }
     
 }
@@ -166,12 +226,27 @@ extension ViewController: MixerDelegate {
         switch firstTrackStatus {
         case .lineIn:
             
-            print("lineIN")
+            print("firstTracklineIN")
         case .audioFile :
             //Bug If playIsNotPlaying this wont back to begining
             filePlayer.start(at: AVAudioTime(hostTime: 0))
             filePlayer.stop()
-            print("PlaySelectFile")
+            print("firstTrackPlayerSelectFile")
+        case .noInput:
+            print("firstTrackNoInput")
+        }
+        
+        switch secondTrackStatus {
+        case .lineIn:
+            
+            print("secondTracklineIN")
+        case .audioFile :
+            //Bug If playIsNotPlaying this wont back to begining
+            filePlayerTwo.start(at: AVAudioTime(hostTime: 0))
+            filePlayerTwo.stop()
+            print("secondTrackPlaySelectFile")
+        case .noInput:
+            print("secondTrackNoInput")
         }
     }
     
@@ -180,10 +255,11 @@ extension ViewController: MixerDelegate {
         metronome.start()
         //for each player play
         let start = AVAudioTime.now()
+        
         switch firstTrackStatus {
         case .lineIn:
             
-            print("lineIN")
+            print("firstTracklineIN")
         case .audioFile :
             
             if filePlayer.isPaused {
@@ -192,21 +268,56 @@ extension ViewController: MixerDelegate {
                 filePlayer.play(at:start + bufferTime )
             }
         
-            print("PlaySelectFile")
+            print("firstTrackPlaySelectFile")
+        case .noInput:
+            print("firstTrackNoInput")
+        }
+        
+        switch secondTrackStatus {
+        case .lineIn:
+            
+            print("secondTracklineIN")
+        case .audioFile :
+            
+            if filePlayerTwo.isPaused {
+                filePlayerTwo.resume()
+            } else {
+                filePlayerTwo.play(at:start + bufferTime )
+            }
+            
+            print("secondTrackPlaySelectFile")
+        case .noInput:
+            print("secondTrackNoInput")
         }
     }
     
     func pauseAudioPlayer() {
         metronome.stop()
+        
         switch firstTrackStatus {
         case .lineIn:
             
-            print("lineIN")
+            print("firstTracklineIN")
         case .audioFile :
             
             filePlayer.pause()
             
-            print("PlaySelectFile")
+            print("firstTrackPlaySelectFile")
+        case .noInput:
+            print("firstTrackNoInput")
+        }
+        
+        switch secondTrackStatus {
+        case .lineIn:
+            
+            print("secondTracklineIN")
+        case .audioFile :
+            
+            filePlayerTwo.pause()
+            
+            print("secondTrackPlaySelectFile")
+        case .noInput:
+            print("secondTrackNoInput")
         }
     }
     
@@ -218,11 +329,25 @@ extension ViewController: MixerDelegate {
         switch firstTrackStatus {
         case .lineIn:
             
-            print("lineIN")
+            print("firstTracklineIN")
         case .audioFile :
             
             filePlayer.pause()
-            print("PlaySelectFile")
+            print("firstTrackPlaySelectFile")
+        case .noInput:
+            print("firstTrackNoInput")
+        }
+        
+        switch secondTrackStatus {
+        case .lineIn:
+            
+            print("secondTracklineIN")
+        case .audioFile :
+            
+            filePlayerTwo.pause()
+            print("secondTrackPlaySelectFile")
+        case .noInput:
+            print("secondTrackNoInput")
         }
     }
     
@@ -244,9 +369,8 @@ extension ViewController: MixerDelegate {
             }
             self.metronome.restart()
             
-            
             self.recordPlayer.play(at: audioStartTime)
-            
+            //直接覆寫原來的檔案
             try? self.recorder.reset()
             self.recorder.durationToRecord = ((stop - start + 1) * oneBarTime)
             
@@ -288,9 +412,9 @@ extension ViewController: MixerDelegate {
         }
         
         try? AudioKit.stop()
-        mixer.disconnectInput(bus: 2)
+        mixer.disconnectInput(bus: 3)
         recordPlayer = AKPlayer(audioFile: tape)
-        mixer.connect(input: recordPlayer, bus: 2)
+        mixer.connect(input: recordPlayer, bus: 3)
         try? AudioKit.start()
         
     }
@@ -315,7 +439,6 @@ extension ViewController: MixerDatasource {
         var inputDevieNameArr: [DeviceID] = []
         
         guard let inputDeviceArr = AudioKit.inputDevices else { fatalError() }
-        
         for inputDevice in inputDeviceArr {
             inputDevieNameArr.append(inputDevice.deviceID)
         }
@@ -327,7 +450,7 @@ extension ViewController: MixerDatasource {
 extension ViewController: GridViewStopScrollingWhileUIKitIsTouchingDelegate {
     
     func isInteractWithUser(bool: Bool) {
-        mixerView.trackGridView.isPagingEnabled = bool
+        //mixerView.trackGridView.isPagingEnabled = bool
     }
     
 }
@@ -347,9 +470,11 @@ extension ViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
+        
         switch indexPath.row {
         case 0:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "IOGridViewCell", for: indexPath) as? IOGridViewCell else { fatalError() }
+            cell.busLabel.text = PlugInCreater.shared.plugInOntruck[indexPath.column].name
             cell.delegate = self
             cell.datasource = self
             return cell
@@ -362,6 +487,7 @@ extension ViewController: GridViewDataSource {
             return cell
         case 2:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "FaderGridViewCell", for: indexPath) as? FaderGridViewCell else { fatalError() }
+            cell.touchingDelegate = self
             cell.delegate = self
             return cell
         default:
@@ -389,13 +515,8 @@ extension ViewController: GridViewDataSource {
 }
 
 extension ViewController: PlugInGridViewCellDelegate {
-    
-    
-    
+
     func bypassPlugin(atRow row: Int, Column column: Int) {
-        
-        
-        //guard let indexPath = cellTableView?.indexPath(for: cell) else{ return }
         
         try? AudioKit.stop()
         
@@ -414,84 +535,235 @@ extension ViewController: PlugInGridViewCellDelegate {
         try? AudioKit.start()
         
     }
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let d = segue.destination as? PlugInViewController else { fatalError() }
-        d.track = PlugInCreater.shared.showingTrackOnPlugInVC
-        print("2")
-    }
+    
     
     func perforPlugInVC(forTrack column: Int) {
-        print("1")
+  
         PlugInCreater.shared.showingTrackOnPlugInVC = column
         DispatchQueue.main.async {
             self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
         }
-        
-        print("3")
+
     }
+    
+}
+
+extension ViewController: FaderGridViewCellDelegate {
+    func pannerValueChange(value: Float, cell: FaderGridViewCell) {
+        let value = Double(value)
+        switch cell.indexPath.column {
+        case 0:
+            bus1Panner.pan = value
+            PlugInCreater.shared.plugInOntruck[0].pan = value
+        case 1:
+            bus2Panner.pan = value
+            PlugInCreater.shared.plugInOntruck[1].pan = value
+        default:
+            print("No Such Column")
+        }
+    }
+    
+    func lowEQValueChange(value: Float, cell: FaderGridViewCell) {
+        let value = Double(value)
+        switch cell.indexPath.column {
+        case 0:
+            bus1LowEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[0].low = value
+        case 1:
+            bus2LowEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[1].low = value
+        default:
+            print("No Such Column")
+        }
+    }
+    
+    func midEQValueChange(value: Float, cell: FaderGridViewCell) {
+        let value = Double(value)
+        switch cell.indexPath.column {
+        case 0:
+            bus1MidEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[0].mid = value
+        case 1:
+            bus2MidEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[1].mid = value
+        default:
+            print("No Such Column")
+        }
+    }
+    
+    func highEQValueChange(value: Float, cell: FaderGridViewCell) {
+        let value = Double(value)
+        switch cell.indexPath.column {
+        case 0:
+            bus1HighEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[0].high = value
+        case 1:
+            bus2HighEQ.gain = value
+            PlugInCreater.shared.plugInOntruck[1].high = value
+        default:
+            print("No Such Column")
+        }
+    }
+    
+    func volumeChange(value: Float, cell: FaderGridViewCell) {
+        let value = Double(value)
+        switch cell.indexPath.column {
+        case 0:
+            bus1Booster.gain = value
+            PlugInCreater.shared.plugInOntruck[0].volume = value
+        case 1:
+            bus2Booster.gain = value
+            PlugInCreater.shared.plugInOntruck[1].volume = value
+        default:
+            print("No Such Column")
+        }
+    }
+    
+    
     
 }
 
 extension ViewController: IOGridViewCellDelegate {
     
-    func didSelectInputSource(inputSource: String) {
-        let currentDevice = currentInputDevice()
-        let fileInDevice = getFileFromDevice()
+    func didSelectInputSource(inputSource: String, cell: IOGridViewCell) {
         
-        if inputSource == currentDevice {
-            try? AudioKit.stop()
-            print("InputDeviceAsInputMixerSource:\(currentDevice)")
-            //take the mic node after plugin
-            guard let micNode = bus1Node else { fatalError() }
-            //connect with mixer to do callBack before playing
-            //使用 mixer bus 1 as input
+        
+        switch cell.indexPath.column {
             
-            mixer.disconnectInput(bus: 3)
-            mixer.connect(input: micNode, bus: 1)
-            try? AudioKit.start()
-            //switch the track status
-            firstTrackStatus = .lineIn
-            return
-            
-        } else {
-            //disconnect on bus 1 (mic bus)
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: 1)
-            try? AudioKit.start()
-            
-            for fileName in fileInDevice{
-                if fileName == inputSource {
-                    //set the file as mixer input
-                    let result = Result{ try AKAudioFile(readFileName: fileName, baseDir: .documents)}
+        case 0:  //Bus1
+            print("BUS1")
+            let currentDevice = currentInputDevice()
+            let fileInDeviceArr = getFileFromDevice()
+            if inputSource == currentDevice {
+                
+                try? AudioKit.stop()
+                //can be remove
+//                mixer.disconnectInput(bus: 1)
+                print("InputDeviceAsInputMixerBus1Source:\(currentDevice)")
+               
+                setTrackNode(track: 1, node: PlugInCreater.shared.plugInOntruck[0].node)
+                try? AudioKit.start()
+                //switch the track status
+                firstTrackStatus = .lineIn
+                
+                
+                return
+                
+            } else {
+                for fileName in fileInDeviceArr {
                     
-                    switch result {
-                    case .success(let file):
-                        filePlayer = AKPlayer(audioFile: file)
+                    if fileName == inputSource {
                         try? AudioKit.stop()
-                        mixer.connect(input: filePlayer, bus: 3)
+                        //set the file as mixer input
+                        let result = Result{ try AKAudioFile(readFileName: fileName, baseDir: .documents)}
+                        
+                        switch result {
+                        case .success(let file):
+//                            mixer.disconnectInput(bus: 1)
+                            filePlayer = AKPlayer(audioFile: file)
+                            PlugInCreater.shared.plugInOntruck[0].node = filePlayer
+                            setTrackNode(track: 1, node: PlugInCreater.shared.plugInOntruck[0].node)
+                            
+                            
+                            print("FirstTrackFileSelectIn:\(fileName)")
+                            //switch the track status
+                            firstTrackStatus = .audioFile
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                        
                         try? AudioKit.start()
-                        print("FileSelectIn:\(fileName)")
-                        //switch the track status
-                        firstTrackStatus = .audioFile
                         return
-                    case .failure(let error):
-                        print(error)
                     }
                 }
             }
-            // do error handle
-            print(inputSource)
-            print("dont use")
+        case 1:  //Bus2
+            print("BUS2")
+            let currentDevice = currentInputDevice()
+            let fileInDeviceArr = getFileFromDevice()
+            if inputSource == currentDevice {
+                print("TrackTwo need fix")
+//                try? AudioKit.stop()
+//                //can be remove
+//                mixer.disconnectInput(bus: 1)
+//                print("InputDeviceAsInputMixerBus1Source:\(currentDevice)")
+//                //take the mic node after plugin
+//
+//                guard let bus1Node = bus1Node else { fatalError() }
+//                //connect with mixer to do callBack before playing
+//                //使用 mixer bus 1 as input
+//
+//                mixer.connect(input: bus1Node, bus: 1)
+//                try? AudioKit.start()
+//                //switch the track status
+//                secondTrackStatus = .lineIn
+//                return
+                
+            } else {
+                for fileName in fileInDeviceArr {
+                    
+                    if fileName == inputSource {
+                        //set the file as mixer input
+                        try? AudioKit.stop()
+                        let result = Result{ try AKAudioFile(readFileName: fileName, baseDir: .documents)}
+                        
+                        switch result {
+                        case .success(let file):
+                            filePlayerTwo = AKPlayer(audioFile: file)
+                            
+                            mixer.disconnectInput(bus: 2)
+                            mixer.connect(input: filePlayerTwo, bus: 2)
+                            
+                            print("SecondTrackFileSelectIn:\(fileName)")
+                            //switch the track status
+                            secondTrackStatus = .audioFile
+                            
+                        case .failure(let error):
+                            print(error)
+                        }
+                        
+                        
+                        try? AudioKit.start()
+                        return
+                    }
+                }
+            }
+            
+        default:
+            print("ERROR OF SETTING INPUT")
         }
+        // do error handle
+        print(inputSource)
+        print("dont use")
     }
     
-    func addPlugIn(with plugIn: PlugIn<IndexPath>) {
+    func addPlugIn(with plugIn: PlugIn<IndexPath>, cell: IOGridViewCell) {
         
         switch plugIn {
         case .reverb(let indexPath):
             plugInProvide(row: indexPath.row, column: indexPath.column, plugIn: .reverb(indexPath))
         }
         
+    }
+    
+    func noInputSource(cell: IOGridViewCell) {
+        
+        try? AudioKit.stop()
+        let indexPath = cell.indexPath
+        switch indexPath.column {
+        case 0:
+            
+            firstTrackStatus = .noInput
+            mixer.disconnectInput(bus: 1)
+        case 1:
+            secondTrackStatus = .noInput
+            print("Need Disconnect bus2 track")
+        default:
+            print("No Need For Disconnect")
+        }
+        print("HandelNoInputSource")
+        try? AudioKit.start()
     }
 
 }
@@ -502,6 +774,7 @@ extension ViewController: IOGridViewCellDatasource {
         var fileInDeviceNameArr = getFileFromDevice()
         guard let currentInputDevice = AudioKit.inputDevice?.deviceID else { fatalError() }
         fileInDeviceNameArr.insert(currentInputDevice, at: 0)
+        fileInDeviceNameArr.insert("No Input", at: 0)
         return fileInDeviceNameArr
     }
     
@@ -522,22 +795,35 @@ extension ViewController: IOGridViewCellDatasource {
 
 extension ViewController {
     
+    //Here
     func plugInProvide(row: Int, column: Int, plugIn: PlugIn<IndexPath>) {
         try? AudioKit.stop()
         
         
         switch plugIn {
         case .reverb(let indexPath):
-            let newPlugIn = HLDDStudioPlugIn(plugIn: .reverb(AKReverb(mic)), bypass: false, sequence: indexPath.row)
-            PlugInCreater.shared.eventRow = row
-            PlugInCreater.shared.eventRow = column
-            PlugInCreater.shared.plugInOntruck[indexPath.column].plugInArr.append(newPlugIn)
-            bus1Node = PlugInCreater.shared.providePlugInNode(with: PlugInCreater.shared.plugInOntruck[indexPath.column].plugInArr[indexPath.row])
+            mixer.disconnectInput(bus: column + 1)
+            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
+        
         }
         
+        
         try? AudioKit.start()
+        resetNodeOnPlugInManger(column: column)
+    }
+    
+    func resetNodeOnPlugInManger(column: Int){
+        try? AudioKit.stop()
+        let row = PlugInCreater.shared.plugInOntruck[column].plugInArr.count - 1
+        switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].plugIn {
+        case .reverb(let reverb):
+            guard let reverb = reverb as? AKReverb else { fatalError() }
+            reverb.start()
+        }
         
-        
+        PlugInCreater.shared.plugInOntruck[column].node = PlugInCreater.shared.providePlugInNode(with: PlugInCreater.shared.plugInOntruck[column].plugInArr[row])
+        setTrackNode(track: column + 1 , node: PlugInCreater.shared.plugInOntruck[column].node)
+        try? AudioKit.start()
     }
     
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import MarqueeLabel
+
 protocol PlugInTableViewCellDelegate: AnyObject {
     func bypassPlugin(_ cell: PlugInTableViewCell)
 }

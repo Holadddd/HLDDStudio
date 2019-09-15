@@ -14,9 +14,9 @@ protocol PlugInReverbTableViewCellDelegate: AnyObject {
     
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell)
     
-    func plugInReverbFactorySelect(_ factoryRawValue: Int)
+    func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell)
     
-    func dryWetMixValueChange(_ value: Float)
+    func dryWetMixValueChange(_ value: Float, cell: PlugInReverbTableViewCell)
 }
 
 protocol PlugInReverbTableViewCellDatasource: AnyObject {
@@ -79,7 +79,8 @@ class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     func knobValueDidChange(knobValue value: Float, knob: Knob) {
         dryWetMixLabel.text = String(format: "%.2f", value)
-        delegate?.dryWetMixValueChange(value)
+        delegate?.dryWetMixValueChange(value, cell: self)
+        
     }
     
     func knobIsTouching(bool: Bool, knob: Knob) {
@@ -112,7 +113,8 @@ extension PlugInReverbTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let factory = textField.text else { return }
         guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
-        delegate?.plugInReverbFactorySelect(numberInFactory)
+        delegate?.plugInReverbFactorySelect(numberInFactory, cell: self)
+        
     }
 }
 

@@ -12,6 +12,7 @@ import AudioKit
 struct HLDDMixerTrack {
     var name: String
     var plugInArr: [HLDDStudioPlugIn]
+    var node: AKNode
     var bus: Int
     var pan: Double
     var low: Double
@@ -27,6 +28,7 @@ struct HLDDStudioPlugIn {
 }
 
 //exist plugIn
+let existPlugInArr = ["REVERB", "REVERB2 REVERB2", "REVERB3 REVERB3 REVERB3", "REVERB4"]
 enum PlugIn<T> {
     
     case reverb(T)
@@ -39,8 +41,6 @@ enum PlugIn<T> {
     }
     
 }
-
-
 
 struct ReverNeededInfo {
     var factory: String
@@ -58,12 +58,12 @@ class PlugInCreater {
     
     var showingTrackOnPlugInVC = 0
     
-    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], bus: 1, pan: 0.5, low: 0.5, mid: 0.5, high: 0.5, volume: 1),
-        HLDDMixerTrack(name: "BUS2", plugInArr: [], bus: 11, pan: 0.5, low: 0.5, mid: 0.5, high: 0.5, volume: 1)] {
+    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], node: AKNode(), bus: 1, pan: 0, low: 0, mid: 0, high: 0, volume: 1),
+                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], node: AKNode(), bus: 11, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
         didSet {
             
             
-            NotificationCenter.default.post(.init(name: .didInsertPlugIn, object: IndexPath(row: eventRow, column: eventColumn), userInfo: nil))
+            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: IndexPath(row: eventRow, column: eventColumn), userInfo: nil))
 //            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: self, userInfo: nil))
 //            NotificationCenter.default.post(.init(name: .didRemovePlugIn, object: self, userInfo: nil))
         }

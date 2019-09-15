@@ -53,9 +53,9 @@ class PlugInGridViewCell: GridViewCell {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(PlugInGridViewCell.didInsertPlugIn(_:)),
                                                name: .didInsertPlugIn, object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(PlugInGridViewCell.didChangePlugIn(_:)),
-//                                               name: .didUpdatePlugIn, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(PlugInGridViewCell.didUpdatePlugIn(_:)),
+                                               name: .didUpdatePlugIn, object: nil)
 //        NotificationCenter.default.addObserver(self,
 //                                               selector: #selector(PlugInGridViewCell.didRemovePlugIn(_:)),
 //                                               name: .didRemovePlugIn, object: nil)
@@ -67,20 +67,21 @@ class PlugInGridViewCell: GridViewCell {
     }
     
     @objc func didInsertPlugIn(_ notification: Notification){
-        print("didInsertPlugIn")
+        //make animation
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
         
+    }
+    
+    @objc func didUpdatePlugIn(_ notification: Notification){
+
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
     }
-    
-    @objc func didChangePlugIn(_ notification: Notification){
-        
-        
-        print("didChangePlugI")
-    }
     @objc func didRemovePlugIn(_ notification: Notification){
-        
+        //make animation
         
         print("didRemovePlugIn")
     }
@@ -147,6 +148,8 @@ extension PlugInGridViewCell: UITableViewDataSource {
             }
         }
         
+        cell.delegate = self
+        cell.plugInMarqueeLabel.restartLabel()
         return cell
     }
     

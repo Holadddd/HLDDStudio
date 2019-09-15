@@ -8,7 +8,7 @@
 
 import Foundation
 extension Notification.Name {
-    static let didInsertPlugIn = Notification.Name("didUpdatePlugIn")
+    static let didInsertPlugIn = Notification.Name("didInsertPlugIn")
     static let didUpdatePlugIn = Notification.Name("didUpdatePlugIn")
-    static let didRemovePlugIn = Notification.Name("didUpdatePlugIn")
+    static let didRemovePlugIn = Notification.Name("didRemovePlugIn")
 }

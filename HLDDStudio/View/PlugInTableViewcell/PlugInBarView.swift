@@ -82,6 +82,7 @@ class PlugInBarView: UIView {
     @objc func bypassButtonAction() {
         bypassButton.isSelected = !bypassButton.isSelected
         delegate?.isBypass(bypassButton.isSelected)
+        
     }
     
 }

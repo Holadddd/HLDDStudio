@@ -8,12 +8,15 @@
 
 import UIKit
 import G3GridView
+import MarqueeLabel
 
 protocol IOGridViewCellDelegate: AnyObject {
     
-    func didSelectInputSource(inputSource: String)
+    func noInputSource(cell: IOGridViewCell)
     
-    func addPlugIn(with plugIn: PlugIn<IndexPath>)
+    func didSelectInputSource(inputSource: String, cell: IOGridViewCell)
+    
+    func addPlugIn(with plugIn: PlugIn<IndexPath>, cell: IOGridViewCell)
 
 }
 
@@ -64,13 +67,32 @@ class IOGridViewCell: GridViewCell {
    
     @IBOutlet weak var busLabel: UILabel!
     
-    @IBOutlet weak var selectedInputLabel: UILabel!
+    @IBOutlet weak var plugInSelectLabel: UILabel!
+    
+    var indexForSelectedPlugIn = 0
+    
+    @IBAction func plugInSwitchSelectedButton(_ sender: UIButton) {
+        let existPlugInNumber = existPlugInArr.count
+        let plugIn = existPlugInArr[indexForSelectedPlugIn % existPlugInNumber]
+        plugInSelectLabel.text = plugIn
+        indexForSelectedPlugIn += 1
+    }
+    
+    @IBOutlet weak var selectedInputLabel:MarqueeLabel!
     //需要寫一個 singleTon 的 manger 管理
     @IBAction func addPlugInButton(_ sender: UIButton) {
         let row = PlugInCreater.shared.plugInOntruck[self.indexPath.column].plugInArr.count
         let column = self.indexPath.column
         //再加上多種 plugin
-        delegate?.addPlugIn(with: .reverb(IndexPath(row: row, column: column)))
+        switch plugInSelectLabel.text {
+        case "REVERB":
+            delegate?.addPlugIn(with: .reverb(IndexPath(row: row, column: column)), cell: self)
+        default:
+            print("error of selected plugIn.")
+        }
+        
+        plugInSelectLabel.text = ""
+        indexForSelectedPlugIn = 0
     }
     
     static var nib: UINib {
@@ -110,9 +132,17 @@ extension IOGridViewCell: UIPickerViewDataSource {
 }
 
 extension IOGridViewCell: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputSource = inputSourceTextField.text else {return}
-        delegate?.didSelectInputSource(inputSource: inputSource)
+        
+        if inputSource == "No Input" {
+            inputSourceButton.isSelected = false
+            delegate?.noInputSource(cell: self)
+            return
+        }
+        
+        delegate?.didSelectInputSource(inputSource: inputSource, cell: self)
        
         inputSourceButton.isSelected = true
     }

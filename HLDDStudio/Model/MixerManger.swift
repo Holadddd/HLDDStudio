@@ -10,6 +10,8 @@ import Foundation
 
 enum TrackInputStatus {
     
+    case noInput
+    
     case lineIn
     
     case audioFile

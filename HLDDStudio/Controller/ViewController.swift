@@ -46,7 +46,7 @@ class ViewController: UIViewController {
 
     let metronome = AKMetronome()
     
-    var metronomeBooster: AKBooster!
+    var metronomeBooster = AKBooster()
     
     var filePlayer = AKPlayer()
     
@@ -54,18 +54,14 @@ class ViewController: UIViewController {
     
     var allInputSource: [AKNode] = []
     
-    var mixer: AKMixer!
+    var mixer = AKMixer()
     
     //record
     var mixerForMaster = AKMixer()
     
-    var recorder: AKNodeRecorder!
-    
     var recorderTwo: AKClipRecorder!
     
     var recordFile: AKAudioFile!
-    
-    var tape: AKAudioFile!
     
     var recordFileName: String = "HLDD"
     //var recordPlayer: AKPlayer!
@@ -78,20 +74,23 @@ class ViewController: UIViewController {
     
     var recorderStatus = RecorderStatus.stopRecording
     
-    var recordMetronomeStartTime:AVAudioTime = AVAudioTime.now()
+    //var recordMetronomeStartTime:AVAudioTime = AVAudioTime.now()
     
     var cellTableView: [UITableView]?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
         mic = AKMicrophone()
         PlugInCreater.shared.plugInOntruck[0].node = mic
         
         mixer = AKMixer()
         
-        metronome.tempo = 40
+        
+        
         metronome.callback = metronomeCallBack
+        
         metronomeBooster = AKBooster(metronome)
         metronomeBooster.gain = 0
         
@@ -110,18 +109,28 @@ class ViewController: UIViewController {
         
         recorderTwo = AKClipRecorder(node: mixer)
         
+        recordFile = try? AKAudioFile()
+        
+        setTrackNode(track: 1, node: filePlayer)
+        setTrackNode(track: 2, node: filePlayerTwo)
         //!!!!!!!
         
         mixerForMaster.connect(input: mixer, bus: 1)
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
+        
+//
         try? AudioKit.start()
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        MixerManger.manger.title(with: .HLDDStudio)
+        MixerManger.manger.subTitle(with: .selectInputDevice)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -161,6 +170,18 @@ class ViewController: UIViewController {
         
     }
     
+    @objc func notificationTitleChange(_ notification: Notification){
+        DispatchQueue.main.async {
+            self.mixerView.notificationTitleLabel.text = MixerManger.manger.titleContent
+        }
+    }
+
+    @objc func notificationSubTitleChange(_ notification: Notification){
+        DispatchQueue.main.async {
+            self.mixerView.notificationSubTitleLabel.text = MixerManger.manger.subTitleContent
+        }
+    }
+    
 }
 
 extension ViewController: MixerDelegate {
@@ -174,21 +195,20 @@ extension ViewController: MixerDelegate {
                 switch result {
                 case .success():
                     print("Set \(device.deviceID) As InputDevice")
-                    //??????why
+                    MixerManger.manger.subTitleContent = "Selected \(device.deviceID) As Input Device"
                     try? AudioKit.setInputDevice(device)
                 case .failure(let error):
                     print(error)
                 }
             }
         }
-        
     }
     
     func metronomeCallBack() {
         print("\(self.bar) | \((self.beat % 4) + 1 )")
         
         if recorderStatus == .prepareToRecord {
-            recordMetronomeStartTime = AVAudioTime.now()
+            print("recorddddddddd")
             recorderStatus = .recording
         }
         
@@ -208,13 +228,13 @@ extension ViewController: MixerDelegate {
             try? AudioKit.stop()
             metronomeBooster.gain = 1
             try? AudioKit.start()
-            
+//            MixerManger.manger.subTitle(with: .metronomeIsOn)
         case false:
             
             try? AudioKit.stop()
             metronomeBooster.gain = 0
             try? AudioKit.start()
-            
+//            MixerManger.manger.subTitle(with: .metronomeIsOff)
         }
         
     }
@@ -265,6 +285,7 @@ extension ViewController: MixerDelegate {
     func playingAudioPlayer() {
         print("playingPlayer")
         metronome.start()
+        
         //for each player play
         let start = AVAudioTime.now()
         
@@ -378,9 +399,9 @@ extension ViewController: MixerDelegate {
             self.bar = 0
             self.beat = 0
             self.mixerView.barLabel.text = "0 | 1"
-            self.metronome.restart()
+            self.metronome.start()
         }
-        
+        let recordMetronomeStartTime = AVAudioTime.now()
         let processTime = AVAudioTime.init(hostTime: AVAudioTime.now().hostTime - recordMetronomeStartTime.hostTime)
         
         let recorderStartTimeSec = oneBarTime * start - processTime.toSeconds(hostTime: processTime.hostTime)
@@ -393,7 +414,8 @@ extension ViewController: MixerDelegate {
 //        print("AVAudioTimeNowSecond:\(AVAudioTime.now())")
 //        print("AVAudioTimeNowThird:\(AVAudioTime.now())")
 //        print("processTimeSec\(processTime)")
-//        print("recorderStartTimeSec\(recorderStartTimeSec)")
+        print("recorderStartTimeSec:\(recorderStartTimeSec)")
+        
         DispatchQueue.main.async {
             try? self.recorderTwo.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
                 guard let strongSelf = self  else{ fatalError() }
@@ -426,20 +448,24 @@ extension ViewController: MixerDelegate {
             }
             //        play audio
             if self.firstTrackStatus == .audioFile {
-                self.filePlayer.play(at: self.recordMetronomeStartTime + oneBarTime)
+                self.filePlayer.play(at: recordMetronomeStartTime + oneBarTime)
             }
             if self.secondTrackStatus == .audioFile {
-                self.filePlayerTwo.play(at: self.recordMetronomeStartTime + oneBarTime)
+                self.filePlayerTwo.play(at: recordMetronomeStartTime + oneBarTime)
             }
         }
+//        MixerManger.manger.title(with: .recording)
+//        MixerManger.manger.subTitleContent = "Device Is Recording From Bar \(start) to \(stop). Duration: \(String(format: "%.2f", durationTime)) seconds."
         
     }
     
     func stopRecord() {
         
         try? AudioKit.stop()
-    
-        print("stoprecord")
+        MixerManger.manger.title(with: .finishingRecording)
+        MixerManger.manger.subTitleContent = "File: \(recordFileName) is saved"
+        mixerView.fileNameTextField.placeholder = "FileName"
+        
         DispatchQueue.main.async {
             print("metronomReset")
             self.bar = 0
@@ -452,9 +478,13 @@ extension ViewController: MixerDelegate {
         
     }
     
+    func changeRecordFileName(fileName: String) {
+        recordFileName = fileName
+    }
+    
     func masterVolumeDidChange(volume: Float) {
         mixerForMaster.volume = Double(volume)
-        print(mixer.volume)
+        print(mixerForMaster.volume)
     }
 }
 
@@ -681,7 +711,7 @@ extension ViewController: IOGridViewCellDelegate {
                 //can be remove
 //                mixer.disconnectInput(bus: 1)
                 print("InputDeviceAsInputMixerBus1Source:\(currentDevice)")
-               
+                MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
                 setTrackNode(track: 1, node: PlugInCreater.shared.plugInOntruck[0].node)
                 try? AudioKit.start()
                 //switch the track status
@@ -708,6 +738,7 @@ extension ViewController: IOGridViewCellDelegate {
                             
                             
                             print("FirstTrackFileSelectIn:\(fileName)")
+                            MixerManger.manger.subTitleContent = "Selected \(fileName) As Trackone Input File."
                             //switch the track status
                             firstTrackStatus = .audioFile
                             
@@ -758,6 +789,7 @@ extension ViewController: IOGridViewCellDelegate {
                             mixer.connect(input: filePlayerTwo, bus: 2)
                             
                             print("SecondTrackFileSelectIn:\(fileName)")
+                            MixerManger.manger.subTitleContent = "Selected \(fileName) As Tracktwo Input File."
                             //switch the track status
                             secondTrackStatus = .audioFile
                             
@@ -774,6 +806,7 @@ extension ViewController: IOGridViewCellDelegate {
             
         default:
             print("ERROR OF SETTING INPUT")
+            MixerManger.manger.subTitleContent = "ERROR OF SETTING INPUT"
         }
         // do error handle
         print(inputSource)
@@ -798,8 +831,10 @@ extension ViewController: IOGridViewCellDelegate {
             
             firstTrackStatus = .noInput
             mixer.disconnectInput(bus: 1)
+            MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
             secondTrackStatus = .noInput
+            MixerManger.manger.subTitleContent = "Disconnect Tracktwo."
             print("Need Disconnect bus2 track")
         default:
             print("No Need For Disconnect")

@@ -13,6 +13,10 @@ extension Notification.Name {
     static let didInsertPlugIn = Notification.Name("didInsertPlugIn")
     static let didUpdatePlugIn = Notification.Name("didUpdatePlugIn")
     static let didRemovePlugIn = Notification.Name("didRemovePlugIn")
+    
+    static let mixerNotificationTitleChange = Notification.Name("mixerNotificationTitleChange")
+    
+    static let mixerNotificationSubTitleChange = Notification.Name("mixerNotificationSubTitleChange")
 }
 
 

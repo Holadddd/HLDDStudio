@@ -22,7 +22,9 @@ protocol IOGridViewCellDelegate: AnyObject {
 }
 
 protocol IOGridViewCellDatasource: AnyObject {
+    
     func inputSource() -> [String]
+    
 }
 
 class IOGridViewCell: GridViewCell {

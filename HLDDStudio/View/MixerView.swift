@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import G3GridView
 import AVKit
+import MarqueeLabel
 import AudioKit
 import IQKeyboardManager
 
@@ -34,6 +35,8 @@ protocol MixerDelegate: AnyObject {
     
     func stopRecord()
     
+    func changeRecordFileName(fileName: String)
+    
     func masterVolumeDidChange(volume: Float)
 }
 
@@ -57,6 +60,10 @@ class MixerView: UIView {
     @IBOutlet weak var iOStatusBar: UIView!
     
     @IBOutlet weak var barLabel: UILabel!
+    
+    @IBOutlet weak var notificationTitleLabel: MarqueeLabel!
+    
+    @IBOutlet weak var notificationSubTitleLabel: MarqueeLabel!
     
     let inputPicker = UIPickerView()
     
@@ -208,6 +215,11 @@ class MixerView: UIView {
     @IBOutlet weak var trackGridView: GridView!
     
     //MasterFader
+    @IBOutlet weak var fileNameTextField: UITextField! {
+        didSet {
+            fileNameTextField.delegate = self
+        }
+    }
     
     @IBOutlet weak var masterFader: RedFader!
     
@@ -232,8 +244,8 @@ class MixerView: UIView {
         trackGridView.maximumScale = Scale(x: 1, y: 1)
         trackGridView.minimumScale = Scale(x: 1, y: 1)
         
-        
         setRouterPiskerView()
+        
         metronomeButton.addTarget(self, action: #selector(MixerView.metronomeState), for: .touchUpInside)
         stopButton.addTarget(self, action: #selector(MixerView.stopButtonAction), for: .touchUpInside)
         playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)
@@ -250,11 +262,11 @@ class MixerView: UIView {
     }
     
     override func layoutSubviews() {
-        
+//        super.layoutSubviews()
         let h = iOStatusBar.bounds.height
         let w = iOStatusBar.bounds.width
         routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
-
+        print("layoutSubviews")
     }
     
 }
@@ -267,6 +279,7 @@ extension MixerView {
         
     }
 }
+
 
 extension MixerView: UIPickerViewDelegate {
     
@@ -338,6 +351,7 @@ extension MixerView: UITextFieldDelegate {
     }
     
     func textFieldDidEndEditing(_ textField: UITextField) {
+        
         switch textField{
         case inputDeviceTextField:
             guard let devieID = textField.text else { return }
@@ -351,6 +365,12 @@ extension MixerView: UITextFieldDelegate {
             print(startRecordTextField.text!)
         case stopRecordTextField:
             print(stopRecordTextField.text!)
+        case fileNameTextField:
+            
+            guard textField.text != nil else{return}
+            
+            guard let fileName = fileNameTextField.text else{ fatalError()}
+            delegate?.changeRecordFileName(fileName: fileName)
         default:
             return
         }
@@ -384,6 +404,8 @@ extension MixerView {
         guard let inputStatus = datasource?.trackInputStatusIsReadyForRecord() else { fatalError()}
         if !inputStatus {
             print("Check Input Source.")
+            MixerManger.manger.title(with: .recordWarning)
+            MixerManger.manger.subTitle(with: .checkInputSource)
             return
         }
         

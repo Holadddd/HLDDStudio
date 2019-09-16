@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AudioKit
 import G3GridView
 import MarqueeLabel
 
@@ -16,7 +17,7 @@ protocol IOGridViewCellDelegate: AnyObject {
     
     func didSelectInputSource(inputSource: String, cell: IOGridViewCell)
     
-    func addPlugIn(with plugIn: PlugIn<IndexPath>, cell: IOGridViewCell)
+    func addPlugIn(with plugIn: PlugIn, row: Int, column: Int, cell: IOGridViewCell)
 
 }
 
@@ -86,7 +87,7 @@ class IOGridViewCell: GridViewCell {
         //再加上多種 plugin
         switch plugInSelectLabel.text {
         case "REVERB":
-            delegate?.addPlugIn(with: .reverb(IndexPath(row: row, column: column)), cell: self)
+            delegate?.addPlugIn(with: .reverb(AKReverb()), row: row, column: column, cell: self)
         default:
             print("error of selected plugIn.")
         }

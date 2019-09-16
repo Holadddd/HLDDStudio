@@ -42,6 +42,9 @@ protocol MixerDatasource: AnyObject {
     func currentInputDevice() -> DeviceID
     
     func nameOfInputDevice() -> [DeviceID]
+    
+    func trackInputStatusIsReadyForRecord() -> Bool
+
 }
 
 protocol GridViewStopScrollingWhileUIKitIsTouchingDelegate: AnyObject {
@@ -127,6 +130,8 @@ class MixerView: UIView {
             tempoTextField.rightView = button
             
             tempoTextField.rightViewMode = .always
+            
+            tempoTextField.text = "40"
             
             tempoTextField.delegate = self
         }
@@ -376,25 +381,33 @@ extension MixerView {
     }
     
     @objc func recordButtonAction() {
-        
-        switch recordButton.isSelected {
-        case false:
-            //playAndResumeButtonAction()
-            guard let startString = startRecordTextField.text else { return }
-            guard let stopString = stopRecordTextField.text else { return }
-            guard let start = Int(startString) else { return }
-            guard let stop = Int(stopString) else { return }
-            //if not trigger show in notification
-            delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
-            
-        case true:
-            //playAndResumeButtonAction()
-            delegate?.stopRecord()
+        guard let inputStatus = datasource?.trackInputStatusIsReadyForRecord() else { fatalError()}
+        if !inputStatus {
+            print("Check Input Source.")
+            return
         }
-        print(recordButton.isSelected)
-        recordButton.isSelected = !recordButton.isSelected
-        //Switch playing button but not doing playing audio function
-        playAndResumeButton.isSelected = !playAndResumeButton.isSelected
+        
+        DispatchQueue.main.async {
+            switch self.recordButton.isSelected {
+            case false:
+                //playAndResumeButtonAction()
+                guard let startString = self.startRecordTextField.text else { return }
+                guard let stopString = self.stopRecordTextField.text else { return }
+                guard let start = Int(startString) else { return }
+                guard let stop = Int(stopString) else { return }
+                //if not trigger show in notification
+                self.delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
+                
+            case true:
+                //playAndResumeButtonAction()
+                self.delegate?.stopRecord()
+            }
+            
+            self.recordButton.isSelected = !self.recordButton.isSelected
+            //Switch playing button but not doing playing audio function
+            self.playAndResumeButton.isSelected = !self.playAndResumeButton.isSelected
+        }
+        
     }
 }
 

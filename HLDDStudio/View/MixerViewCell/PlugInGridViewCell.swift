@@ -132,7 +132,6 @@ extension PlugInGridViewCell: UITableViewDataSource {
         
         switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else { fatalError() }
             cell.plugInLabel.text = "REVERB"
             cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f.", reverb.dryWetMix) )"
             

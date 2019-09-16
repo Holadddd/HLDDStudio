@@ -28,7 +28,9 @@ class PlugInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+    
         plugInView.tableView.reloadData()
+        
     }
     
     @objc func backButtonAction() {
@@ -55,7 +57,6 @@ extension PlugInViewController: UITableViewDataSource{
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
-            guard let reverb = reverb as? AKReverb else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
             //defauld factory
             
@@ -92,9 +93,6 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             
-            guard let reverb = reverb as? AKReverb else{ fatalError() }
-            
-            
             //            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
             let rawValue = factoryRawValue
             guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
@@ -109,7 +107,7 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else{ fatalError() }
+            
             reverb.dryWetMix = Double(value)
         }
         
@@ -123,7 +121,7 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
         
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            guard let reverb = reverb as? AKReverb else { fatalError() }
+            
             switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass {
             case true:
                 PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass = false

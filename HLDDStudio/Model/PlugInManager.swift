@@ -22,16 +22,16 @@ struct HLDDMixerTrack {
 }
 
 struct HLDDStudioPlugIn {
-    var plugIn: PlugIn<AKNode>
+    var plugIn: PlugIn
     var bypass: Bool
     var sequence: Int
 }
 
 //exist plugIn
 let existPlugInArr = ["REVERB", "REVERB2 REVERB2", "REVERB3 REVERB3 REVERB3", "REVERB4"]
-enum PlugIn<T> {
+enum PlugIn {
     
-    case reverb(T)
+    case reverb(AKReverb)
     
     var neededInfo: AnyObject {
         switch self {
@@ -40,6 +40,17 @@ enum PlugIn<T> {
         }
     }
     
+    mutating func replaceInputNodeInPlugIn(node: AKNode)  {
+        switch self {
+        case let .reverb(reverb):
+            let newReverb = AKReverb(node, dryWetMix: reverb.dryWetMix)
+            guard let rawValue = reverbFactory.firstIndex(of: reverb.factory) else { fatalError() }
+            guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
+            newReverb.loadFactoryPreset(set)
+            self = .reverb(newReverb)
+            
+        }
+    }
 }
 
 struct ReverNeededInfo {
@@ -59,7 +70,7 @@ class PlugInCreater {
     var showingTrackOnPlugInVC = 0
     
     var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], node: AKNode(), bus: 1, pan: 0, low: 0, mid: 0, high: 0, volume: 1),
-                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], node: AKNode(), bus: 11, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
+                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], node: AKNode(), bus: 2, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
         didSet {
             
             
@@ -69,12 +80,12 @@ class PlugInCreater {
         }
     }
     
-    func plugInProvider(with plugIn: PlugIn<AKNode>) -> AKNode {
-        switch plugIn {
-        case .reverb:
-            return AKReverb()
-        }
-    }
+//    func plugInProvider(with plugIn: PlugIn<AKNode>) -> AKNode {
+//        switch plugIn {
+//        case .reverb:
+//            return AKReverb()
+//        }
+//    }
     
     func providePlugInNode(with HLDD: HLDDStudioPlugIn) -> AKNode {
         let plugIn = HLDD.plugIn
@@ -82,6 +93,20 @@ class PlugInCreater {
         case .reverb(let reverb):
             return reverb
         }
+    }
+    
+    func resetTrackNode(column: Int) {
+        
+        try? AudioKit.stop()
+        let numberOfPlugIn = plugInOntruck[column].plugInArr.count
+        for seq in 0 ..< numberOfPlugIn{
+            let lastNode = PlugInCreater.shared.plugInOntruck[column].node
+            var plugIn = PlugInCreater.shared.plugInOntruck[column].plugInArr[seq].plugIn
+            plugIn.replaceInputNodeInPlugIn(node: lastNode)
+            PlugInCreater.shared.plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[seq])
+        }
+        try? AudioKit.start()
+//        plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[numberOfPlugIn - 1])
     }
     
 }

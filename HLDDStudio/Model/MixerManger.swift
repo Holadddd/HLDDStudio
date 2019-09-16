@@ -16,3 +16,12 @@ enum TrackInputStatus {
     
     case audioFile
 }
+
+enum RecorderStatus {
+    
+    case prepareToRecord
+    
+    case recording
+    
+    case stopRecording
+}

@@ -109,9 +109,8 @@ class ViewController: UIViewController {
         recorderTwo = AKClipRecorder(node: mixer)
         
         recordFile = try? AKAudioFile()
-        
-        setTrackNode(track: 1, node: filePlayer)
-        setTrackNode(track: 2, node: filePlayerTwo)
+
+
         //!!!!!!!
         
         
@@ -119,11 +118,13 @@ class ViewController: UIViewController {
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
         try? AudioKit.start()
+        setTrackNode(track: 1, node: filePlayer)
+        setTrackNode(track: 2, node: filePlayerTwo)
 //
         
-//        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
-//        
-//        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
         
     }
     
@@ -208,7 +209,6 @@ extension ViewController: MixerDelegate {
         print("\(self.bar) | \((self.beat % 4) + 1 )")
         
         if recorderStatus == .prepareToRecord {
-            print("recorddddddddd")
             recorderStatus = .recording
         }
         
@@ -228,13 +228,13 @@ extension ViewController: MixerDelegate {
             try? AudioKit.stop()
             metronomeBooster.gain = 1
             try? AudioKit.start()
-//            MixerManger.manger.subTitle(with: .metronomeIsOn)
+            
         case false:
             
             try? AudioKit.stop()
             metronomeBooster.gain = 0
             try? AudioKit.start()
-//            MixerManger.manger.subTitle(with: .metronomeIsOff)
+            
         }
         
     }
@@ -466,7 +466,8 @@ extension ViewController: MixerDelegate {
         
         try? AudioKit.stop()
         MixerManger.manger.title(with: .finishingRecording)
-        MixerManger.manger.subTitleContent = "File: \(recordFileName) is saved"
+        MixerManger.manger.subTitleContent = "File: \(recordFileName) is saved."
+        mixerView.fileNameTextField.text = nil
         mixerView.fileNameTextField.placeholder = "FileName"
         
         DispatchQueue.main.async {

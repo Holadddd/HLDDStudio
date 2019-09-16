@@ -44,9 +44,9 @@ class ViewController: UIViewController {
     
     var beat = 0
 
-    let metronome = AKMetronome()
+    var metronome = AKMetronome()
     
-    var metronomeBooster = AKBooster()
+    var metronomeBooster: AKBooster!
     
     var filePlayer = AKPlayer()
     
@@ -87,12 +87,11 @@ class ViewController: UIViewController {
         
         mixer = AKMixer()
         
-        
-        
+        //metronome.tempo = Double(40)
         metronome.callback = metronomeCallBack
-        
         metronomeBooster = AKBooster(metronome)
         metronomeBooster.gain = 0
+        
         
         mixerView.delegate = self
         mixerView.datasource = self
@@ -114,16 +113,17 @@ class ViewController: UIViewController {
         setTrackNode(track: 1, node: filePlayer)
         setTrackNode(track: 2, node: filePlayerTwo)
         //!!!!!!!
+        try? AudioKit.start()
         
         mixerForMaster.connect(input: mixer, bus: 1)
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
         
 //
-        try? AudioKit.start()
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
+//        
+//        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
         
     }
     
@@ -284,7 +284,10 @@ extension ViewController: MixerDelegate {
     
     func playingAudioPlayer() {
         print("playingPlayer")
-        metronome.start()
+        print(metronome.tempo)
+        
+        metronome.restart()
+        
         
         //for each player play
         let start = AVAudioTime.now()

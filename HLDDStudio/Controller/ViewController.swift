@@ -44,7 +44,7 @@ class ViewController: UIViewController {
     
     var beat = 0
 
-    var metronome = AKMetronome()
+    let metronome = AKMetronome()
     
     var metronomeBooster: AKBooster!
     
@@ -54,7 +54,7 @@ class ViewController: UIViewController {
     
     var allInputSource: [AKNode] = []
     
-    var mixer = AKMixer()
+    var mixer: AKMixer!
     
     //record
     var mixerForMaster = AKMixer()
@@ -74,7 +74,7 @@ class ViewController: UIViewController {
     
     var recorderStatus = RecorderStatus.stopRecording
     
-    //var recordMetronomeStartTime:AVAudioTime = AVAudioTime.now()
+    var recordMetronomeStartTime:AVAudioTime = AVAudioTime.now()
     
     var cellTableView: [UITableView]?
 
@@ -113,12 +113,12 @@ class ViewController: UIViewController {
         setTrackNode(track: 1, node: filePlayer)
         setTrackNode(track: 2, node: filePlayerTwo)
         //!!!!!!!
-        try? AudioKit.start()
+        
         
         mixerForMaster.connect(input: mixer, bus: 1)
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
-        
+        try? AudioKit.start()
 //
         
 //        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)

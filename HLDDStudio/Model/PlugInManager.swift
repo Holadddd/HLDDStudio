@@ -80,12 +80,7 @@ class PlugInCreater {
         }
     }
     
-//    func plugInProvider(with plugIn: PlugIn<AKNode>) -> AKNode {
-//        switch plugIn {
-//        case .reverb:
-//            return AKReverb()
-//        }
-//    }
+
     
     func providePlugInNode(with HLDD: HLDDStudioPlugIn) -> AKNode {
         let plugIn = HLDD.plugIn
@@ -95,16 +90,23 @@ class PlugInCreater {
         }
     }
     
-    func resetTrackNode(column: Int) {
+    func resetTrackNode(Track: Int) {
         
         try? AudioKit.stop()
-        let numberOfPlugIn = plugInOntruck[column].plugInArr.count
-        for seq in 0 ..< numberOfPlugIn{
-            let lastNode = PlugInCreater.shared.plugInOntruck[column].node
-            var plugIn = PlugInCreater.shared.plugInOntruck[column].plugInArr[seq].plugIn
-            plugIn.replaceInputNodeInPlugIn(node: lastNode)
-            PlugInCreater.shared.plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[seq])
+        let numberOfPlugIn = plugInOntruck[Track - 1].plugInArr.count
+        
+        if numberOfPlugIn != 0 {
+            
+            for seq in 0 ..< numberOfPlugIn{
+                let lastNode = PlugInCreater.shared.plugInOntruck[Track - 1].node
+                
+                PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: lastNode)
+                
+                PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
+            }
+            
         }
+        
         try? AudioKit.start()
 //        plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[numberOfPlugIn - 1])
     }

@@ -18,13 +18,13 @@ enum TrackInputStatus {
     case audioFile
 }
 
-enum RecorderStatus {
+enum MixerStatus {
     
-    case prepareToRecord
+    case prepareToRecordAndPlay
     
-    case recording
+    case recordingAndPlaying
     
-    case stopRecording
+    case stopRecordingAndPlaying
 }
 
 enum MixerMangerTilte {

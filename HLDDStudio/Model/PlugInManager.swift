@@ -51,6 +51,8 @@ enum PlugIn {
             
         }
     }
+    
+   
 }
 
 struct ReverNeededInfo {
@@ -117,19 +119,37 @@ let reverbFactory = ["Cathedral", "Large Hall", "Large Hall 2",
                      "Large Room", "Large Room 2", "Medium Chamber",
                      "Medium Hall", "Medium Hall 2", "Medium Hall 3",
                      "Medium Room", "Plate", "Small Room"]
+//extension AKReverb {
+//
+//    struct Default {
+//        static var factory: String = "Cathedral"
+//    }
+//
+//    var factory: String {
+//        get{
+//            return Default.factory
+//        }
+//        set(newFactory){
+//            Default.factory = newFactory
+//            print("factoryset")
+//        }
+//
+//    }
+//
+//}
+
 extension AKReverb {
+    private static var _myComputedProperty = [String: String]()
     
-    struct Default {
-        static var factory: String = "Cathedral"
-    }
-    var factory: String {
-        get{
-            return Default.factory
+    var factory:String {
+        get {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return AKReverb._myComputedProperty[tmpAddress] ?? "Cathedral"
         }
-        set(newFactory){
-            Default.factory = newFactory
+        set(newValue) {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            AKReverb._myComputedProperty[tmpAddress] = newValue
+            print("factoryset")
         }
-        
     }
 }
-

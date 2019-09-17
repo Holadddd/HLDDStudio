@@ -78,6 +78,7 @@ class PlugInGridViewCell: GridViewCell {
 
         DispatchQueue.main.async {
             self.tableView.reloadData()
+            print("mixerCellPlugInUpdate")
         }
     }
     @objc func didRemovePlugIn(_ notification: Notification){
@@ -129,12 +130,13 @@ extension PlugInGridViewCell: UITableViewDataSource {
         guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
-        
+        print("column:\(gridCell.indexPath.column)")
+        print("row:\(indexPath.row)")
         switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             cell.plugInLabel.text = "REVERB"
             cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f.", reverb.dryWetMix) )"
-            
+            print("Factory: \(reverb.factory)")
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
                 

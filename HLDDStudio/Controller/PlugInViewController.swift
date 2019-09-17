@@ -15,8 +15,6 @@ class PlugInViewController: UIViewController {
     
     @IBOutlet var plugInView: PlugInView!
     
-    var track = 0
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         backButton.addTarget(self, action: #selector(PlugInViewController.backButtonAction), for: .touchUpInside)
@@ -49,12 +47,12 @@ extension PlugInViewController: UITableViewDelegate {
 extension PlugInViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
         return PlugInCreater.shared.plugInOntruck[track].plugInArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
@@ -90,26 +88,28 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     
     func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell) {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
-        
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+        print("track:\(track)")
+        print("indexPath:\(indexPath)")
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
+            guard let set = AVAudioUnitReverbPreset(rawValue: factoryRawValue) else{ fatalError()}
             
-            //            guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
-            let rawValue = factoryRawValue
-            guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
             reverb.loadFactoryPreset(set)
-            reverb.factory = reverbFactory[rawValue]
-            
+            reverb.factory = reverbFactory[factoryRawValue]
+            PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn = PlugIn.reverb(reverb)
         }
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
     }
     
     func dryWetMixValueChange(_ value: Float, cell: PlugInReverbTableViewCell) {
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            
-            reverb.dryWetMix = Double(value)
+             reverb.dryWetMix = Double(value)
+            PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn = PlugIn.reverb(reverb)
         }
         
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
@@ -118,17 +118,18 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
     func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {
         print("ReverbisBypass:\(isBypass)")
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
         try? AudioKit.stop()
         
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             
-            switch PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass {
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass = false
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass = false
                 reverb.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[0].plugInArr[indexPath.row].bypass = true
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass = true
                 reverb.start()
             }
         }

@@ -110,6 +110,7 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
 }
 
 extension PlugInReverbTableViewCell: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let factory = textField.text else { return }
         guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}

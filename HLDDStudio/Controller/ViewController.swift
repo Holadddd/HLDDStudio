@@ -82,6 +82,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        try? AudioKit.start()
         // Do any additional setup after loading the view.
         mixerView.delegate = self
         mixerView.datasource = self
@@ -107,11 +108,16 @@ class ViewController: UIViewController {
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
         
-        try? AudioKit.start()
+        //try? AudioKit.start()
+        
         //MakeTwoTrackNode
         setTrackNode(track: 1)
         setTrackNode(track: 2)
-
+        PlugInCreater.shared.plugInOntruck[0].inputNode = filePlayer
+        PlugInCreater.shared.plugInOntruck[1].inputNode = filePlayerTwo
+        PlugInCreater.shared.resetTrackNode(Track: 1)
+        PlugInCreater.shared.resetTrackNode(Track: 2)
+        
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
@@ -122,16 +128,15 @@ class ViewController: UIViewController {
         super.viewWillAppear(animated)
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        
         super.viewDidAppear(animated)
     
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
-    
     }
-    
+
     func setTrackNode(track: Int) {
         switch track {
         case 1:
@@ -570,6 +575,7 @@ extension ViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        print("reloadGridViewHiegh")
         switch indexPath.row {
         case 0:
             return 50
@@ -589,6 +595,8 @@ extension ViewController: GridViewDataSource {
 }
 
 extension ViewController: PlugInGridViewCellDelegate {
+    
+    
 
     func bypassPlugin(atRow row: Int, Column column: Int) {
         
@@ -617,6 +625,10 @@ extension ViewController: PlugInGridViewCellDelegate {
             self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
         }
 
+    }
+    
+    func resetTrackOn(Track track: Int) {
+        setTrackNode(track: track)
     }
     
 }
@@ -713,7 +725,7 @@ extension ViewController: IOGridViewCellDelegate {
                 print("InputDeviceAsInputMixerBus1Source:\(currentDevice)")
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
-                PlugInCreater.shared.plugInOntruck[0].node = mic
+                PlugInCreater.shared.plugInOntruck[0].inputNode = mic
                 //need adjust for audioFile into plugIn
                 PlugInCreater.shared.resetTrackNode(Track: 1)
                 setTrackNode(track: 1)
@@ -735,7 +747,7 @@ extension ViewController: IOGridViewCellDelegate {
                         case .success(let file):
 
                             filePlayer = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[0].node = filePlayer
+                            PlugInCreater.shared.plugInOntruck[0].inputNode = filePlayer
                             
                             //need adjust for audioFile into plugIn
                             PlugInCreater.shared.resetTrackNode(Track: 1)
@@ -766,7 +778,7 @@ extension ViewController: IOGridViewCellDelegate {
                 print("InputDeviceAsInputMixerBus2Source:\(currentDevice)")
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Tracktwo Input Source."
-                PlugInCreater.shared.plugInOntruck[1].node = mic
+                PlugInCreater.shared.plugInOntruck[1].inputNode = mic
                 //need adjust for audioFile into plugIn
                 PlugInCreater.shared.resetTrackNode(Track: 2)
                 setTrackNode(track: 2)
@@ -787,7 +799,7 @@ extension ViewController: IOGridViewCellDelegate {
                         switch result {
                         case .success(let file):
                             filePlayerTwo = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[1].node = filePlayerTwo
+                            PlugInCreater.shared.plugInOntruck[1].inputNode = filePlayerTwo
                             
                             //need adjust for audioFile into plugIn
                             PlugInCreater.shared.resetTrackNode(Track: 2)
@@ -885,14 +897,13 @@ extension ViewController {
         switch plugIn {
         case .reverb:
             mixer.disconnectInput(bus: column + 1)
-            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb()), bypass: false, sequence: row))
+            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         
         }
-        try? AudioKit.start()
         
         PlugInCreater.shared.resetTrackNode(Track: column + 1)
         setTrackNode(track: column + 1)
-        
+//        try? AudioKit.start()
     }
     
 }

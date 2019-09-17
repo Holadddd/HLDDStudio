@@ -16,6 +16,8 @@ protocol PlugInGridViewCellDelegate: AnyObject {
     func bypassPlugin(atRow row: Int,Column column: Int)
     
     func perforPlugInVC(forTrack column: Int)
+    
+    func resetTrackOn(Track track: Int) 
 }
 
 protocol PlugInGridViewCellDataSource: AnyObject {
@@ -23,7 +25,6 @@ protocol PlugInGridViewCellDataSource: AnyObject {
 }
 
 class PlugInGridViewCell: GridViewCell {
-    
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -45,6 +46,8 @@ class PlugInGridViewCell: GridViewCell {
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.dragInteractionEnabled = true
+        
         imageViewTwo.alpha = 0.2
         imageViewOne.addSubview(imageViewTwo)
         imageViewTwo.contentMode = .scaleAspectFill
@@ -64,6 +67,7 @@ class PlugInGridViewCell: GridViewCell {
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
         imageViewTwo.frame = tableView.frame
+        //tableView.layoutIfNeeded()
     }
     
     @objc func didInsertPlugIn(_ notification: Notification){
@@ -130,8 +134,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
         guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "PlugInTableViewCell") as? PlugInTableViewCell else{ fatalError() }
-        print("column:\(gridCell.indexPath.column)")
-        print("row:\(indexPath.row)")
+    
         switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             cell.plugInLabel.text = "REVERB"
@@ -154,6 +157,21 @@ extension PlugInGridViewCell: UITableViewDataSource {
         return cell
     }
     
-}
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }
+        let track = gridCell.indexPath.column + 1
+        let seq = indexPath.row
+        //this method need trigger by editingStyle
+        if editingStyle == .delete {
+            PlugInCreater.shared.deletePlugInOnTrack(track, seq: seq)
+            delegate?.resetTrackOn(Track: track)
+        }
+        
+        if editingStyle == .insert{
+            
+            print(indexPath)
+        }
+    }
 
+}
 

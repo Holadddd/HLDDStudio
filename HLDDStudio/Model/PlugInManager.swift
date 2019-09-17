@@ -12,6 +12,7 @@ import AudioKit
 struct HLDDMixerTrack {
     var name: String
     var plugInArr: [HLDDStudioPlugIn]
+    var inputNode: AKNode
     var node: AKNode
     var bus: Int
     var pan: Double
@@ -71,8 +72,8 @@ class PlugInCreater {
     
     var showingTrackOnPlugInVC = 0
     
-    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], node: AKNode(), bus: 1, pan: 0, low: 0, mid: 0, high: 0, volume: 1),
-                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], node: AKNode(), bus: 2, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
+    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], inputNode: AKNode(), node: AKNode(), bus: 1, pan: 0, low: 0, mid: 0, high: 0, volume: 1),
+                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], inputNode: AKNode(), node: AKNode(), bus: 2, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
         didSet {
             
             
@@ -97,9 +98,10 @@ class PlugInCreater {
         try? AudioKit.stop()
         let numberOfPlugIn = plugInOntruck[Track - 1].plugInArr.count
         
+        PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.plugInOntruck[Track - 1].inputNode
+
         if numberOfPlugIn != 0 {
-            
-            for seq in 0 ..< numberOfPlugIn{
+                        for seq in 0 ..< numberOfPlugIn{
                 let lastNode = PlugInCreater.shared.plugInOntruck[Track - 1].node
                 
                 PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: lastNode)
@@ -113,30 +115,20 @@ class PlugInCreater {
 //        plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[numberOfPlugIn - 1])
     }
     
+    func deletePlugInOnTrack(_ track: Int, seq: Int) {
+        try? AudioKit.stop()
+        let column = track - 1
+        PlugInCreater.shared.plugInOntruck[column].plugInArr.remove(at: seq)
+        
+        PlugInCreater.shared.resetTrackNode(Track: track)
+    }
+    
 }
 //extensionAKReverbFactoryProperty
 let reverbFactory = ["Cathedral", "Large Hall", "Large Hall 2",
                      "Large Room", "Large Room 2", "Medium Chamber",
                      "Medium Hall", "Medium Hall 2", "Medium Hall 3",
                      "Medium Room", "Plate", "Small Room"]
-//extension AKReverb {
-//
-//    struct Default {
-//        static var factory: String = "Cathedral"
-//    }
-//
-//    var factory: String {
-//        get{
-//            return Default.factory
-//        }
-//        set(newFactory){
-//            Default.factory = newFactory
-//            print("factoryset")
-//        }
-//
-//    }
-//
-//}
 
 extension AKReverb {
     private static var _myComputedProperty = [String: String]()

@@ -9,6 +9,7 @@
 import UIKit
 import MarqueeLabel
 
+
 protocol PlugInTableViewCellDelegate: AnyObject {
     func bypassPlugin(_ cell: PlugInTableViewCell)
 }
@@ -20,7 +21,6 @@ class PlugInTableViewCell: UITableViewCell {
     @IBOutlet weak var bypassButton: UIButton!
     
     @IBOutlet weak var plugInMarqueeLabel: MarqueeLabel!
-    
     
     weak var delegate: PlugInTableViewCellDelegate?
     

@@ -11,5 +11,6 @@ target 'HLDDStudio' do
   pod 'G3GridView'
   pod 'IQKeyboardManager'
   pod 'MarqueeLabel'
+  pod 'SwipeCellKit'
   
 end

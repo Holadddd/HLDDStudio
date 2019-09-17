@@ -40,7 +40,6 @@
 		0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179403F23253A94000DCFCB /* PlugInBarView.swift */; };
 		0179404223253B2E000DCFCB /* PlugInBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179404123253B2E000DCFCB /* PlugInBarView.xib */; };
 		0179404423254797000DCFCB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179404323254797000DCFCB /* UIView+Extension.swift */; };
-		01DC7670232FD26400CA105E /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC766F232FD26400CA105E /* test.swift */; };
 		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
@@ -83,7 +82,6 @@
 		0179403F23253A94000DCFCB /* PlugInBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInBarView.swift; sourceTree = "<group>"; };
 		0179404123253B2E000DCFCB /* PlugInBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInBarView.xib; sourceTree = "<group>"; };
 		0179404323254797000DCFCB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
-		01DC766F232FD26400CA105E /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
 		01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDRedFader.swift; sourceTree = "<group>"; };
 		01F16620232BCFD700F1C107 /* CustonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustonIcon.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 			children = (
 				0171720E232380D900049F3B /* ViewController.swift */,
 				0179403523251236000DCFCB /* PlugInViewController.swift */,
-				01DC766F232FD26400CA105E /* test.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -390,7 +387,6 @@
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,
-				01DC7670232FD26400CA105E /* test.swift in Sources */,
 				0179403623251236000DCFCB /* PlugInViewController.swift in Sources */,
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,

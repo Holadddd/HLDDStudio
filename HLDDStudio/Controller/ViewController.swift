@@ -16,7 +16,7 @@ import AudioKit
 
 class ViewController: UIViewController {
     
-    var bufferTime = 0.25
+    var bufferTime = 2.0
     
     var mic: AKMicrophone!
     
@@ -283,15 +283,28 @@ extension ViewController: MixerDelegate {
     }
     
     func playingAudioPlayer() {
+        
         print("playingPlayer")
         print(metronome.tempo)
         
-        metronome.restart()
+        DispatchQueue.main.async {
+            self.bar = 1
+            self.beat = 4
+            self.mixerView.barLabel.text = "1 | 1"
+        }
         
         
-        //for each player play
-        let start = AVAudioTime.now()
+        //use AVAudioTime.now() as base timestamp
+        let start = AVAudioTime.now() + bufferTime
+        let dispatchTime = DispatchTime.init(uptimeNanoseconds: start.hostTime)
         
+        print("start:\(start.hostTime)")
+        print("dispatchTime:\(dispatchTime.uptimeNanoseconds)")
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            print("start")
+            self.metronome.restart()
+        }
+        print("runrun")
         switch firstTrackStatus {
         case .lineIn:
             
@@ -301,7 +314,8 @@ extension ViewController: MixerDelegate {
             if filePlayer.isPaused {
                 filePlayer.resume()
             } else {
-                filePlayer.play(at:start + bufferTime )
+                filePlayer.play(at:start )
+                
             }
         
             print("firstTrackPlaySelectFile")
@@ -318,7 +332,7 @@ extension ViewController: MixerDelegate {
             if filePlayerTwo.isPaused {
                 filePlayerTwo.resume()
             } else {
-                filePlayerTwo.play(at:start + bufferTime )
+                filePlayerTwo.play(at:start )
             }
             
             print("secondTrackPlaySelectFile")
@@ -412,12 +426,12 @@ extension ViewController: MixerDelegate {
 //        print("oneBarTime:\(oneBarTime)")
 //        print("durationTime:\(durationTime)")
 //        print("startBarTime:\(startBarTime)")
-//        print("audioStartTime:\(recordMetronomeStartTime + oneBarTime)")
+//        print("audioStartTime:\(recordMetronomeStartTime + oneBarTime)")
 //        print("AVAudioTimeNowFirst:\(AVAudioTime.now())")
 //        print("AVAudioTimeNowSecond:\(AVAudioTime.now())")
 //        print("AVAudioTimeNowThird:\(AVAudioTime.now())")
 //        print("processTimeSec\(processTime)")
-        print("recorderStartTimeSec:\(recorderStartTimeSec)")
+//        print("recorderStartTimeSec:\(recorderStartTimeSec)")
         
         DispatchQueue.main.async {
             try? self.recorderTwo.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
@@ -432,7 +446,7 @@ extension ViewController: MixerDelegate {
 //                    print("url:\(clip.url)")
                     do {
                         
-                        let urlInDocs = FileManager.docs.appendingPathComponent(strongSelf.recordFileName).appendingPathExtension(clip.url.pathExtension)
+                        let urlInDocs = FileManager.docs.appendingPathComponent("\(strongSelf.recordFileName)(\(Int(strongSelf.metronome.tempo)))").appendingPathExtension(clip.url.pathExtension)
                         
                         try FileManager.default.moveItem(at: clip.url, to: urlInDocs)
                         strongSelf.recordFile = try AKAudioFile(forReading: urlInDocs)

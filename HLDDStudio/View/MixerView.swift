@@ -138,7 +138,7 @@ class MixerView: UIView {
             
             tempoTextField.rightViewMode = .always
             
-            tempoTextField.text = "40"
+            tempoTextField.text = "60"
             
             tempoTextField.delegate = self
         }

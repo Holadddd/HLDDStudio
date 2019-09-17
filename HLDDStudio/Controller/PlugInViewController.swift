@@ -24,6 +24,7 @@ class PlugInViewController: UIViewController {
         plugInView.tableView.delegate = self
         plugInView.tableView.dataSource = self
         plugInView.tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

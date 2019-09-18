@@ -21,6 +21,24 @@ protocol PlugInBarViewDelegate: AnyObject {
     func plugInPresetSelect(_ parameter: String)
 }
 
+protocol PlugInControlDelegate: AnyObject {
+    
+    func plugInBypassSwitch(_ isBypass: Bool, cell: UITableViewCell)
+    
+    func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell)
+    
+    func dryWetMixValueChange(_ value: Float, cell: UITableViewCell)
+    
+    func guitarProcessorValueChange(_ value: Float, type: GuitarProcessorValueType, cell: UITableViewCell)
+    
+    func delayValueChange(_ value: Float, type: DelayValueType, cell: UITableViewCell)
+}
+
+protocol PlugInControlDatasource: AnyObject {
+    
+    func plugInReverbPresetParameter(cell: PlugInReverbTableViewCell) -> [String]?
+    
+}
 class PlugInBarView: UIView {
     
     @IBOutlet var contentView: UIView!

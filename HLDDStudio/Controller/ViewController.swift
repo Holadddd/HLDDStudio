@@ -612,6 +612,24 @@ extension ViewController: PlugInGridViewCellDelegate {
                 PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 reverb.start()
             }
+        case .guitarProcessor(let guitarProcessor):
+            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                guitarProcessor.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                guitarProcessor.start()
+            }
+        case .delay(let delay):
+            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                delay.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                delay.start()
+            }
         }
         try? AudioKit.start()
         
@@ -835,6 +853,10 @@ extension ViewController: IOGridViewCellDelegate {
         switch plugIn {
         case .reverb(let reverb):
             plugInProvide(row: row, column: column, plugIn: .reverb(reverb))
+        case .guitarProcessor(let guitarProcessor):
+            plugInProvide(row: row, column: column, plugIn: .guitarProcessor(guitarProcessor))
+        case .delay(let delay):
+            plugInProvide(row: row, column: column, plugIn: .delay(delay))
         }
         
     }
@@ -899,6 +921,12 @@ extension ViewController {
             mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         
+        case .guitarProcessor:
+            mixer.disconnectInput(bus: column + 1)
+            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .guitarProcessor(AKRhinoGuitarProcessor(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
+        case .delay:
+            mixer.disconnectInput(bus: column + 1)
+            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .delay(AKDelay(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         }
         
         PlugInCreater.shared.resetTrackNode(Track: column + 1)

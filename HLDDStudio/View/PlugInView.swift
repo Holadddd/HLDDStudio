@@ -18,7 +18,8 @@ class PlugInView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
-        
+        tableView.register(PlugInGuitarProcessorTableViewCell.nib, forCellReuseIdentifier: "PlugInGuitarProcessorTableViewCell")
+        tableView.register(PlugInDelayTableViewCell.nib, forCellReuseIdentifier: "PlugInDelayTableViewCell")
     }
     
 

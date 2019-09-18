@@ -10,21 +10,6 @@ import Foundation
 import UIKit
 import AudioKit
 
-protocol PlugInReverbTableViewCellDelegate: AnyObject {
-    
-    func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell)
-    
-    func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell)
-    
-    func dryWetMixValueChange(_ value: Float, cell: PlugInReverbTableViewCell)
-}
-
-protocol PlugInReverbTableViewCellDatasource: AnyObject {
-    
-    func plugInReverbPresetParameter() -> [String]?
-    
-}
-
 class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     @IBOutlet weak var plugInBarView: PlugInBarView!
@@ -58,9 +43,9 @@ class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     @IBOutlet weak var dryWetMixKnob: Knob!
     
-    weak var delegate: PlugInReverbTableViewCellDelegate?
+    weak var delegate: PlugInControlDelegate?
     
-    weak var datasource: PlugInReverbTableViewCellDatasource?
+    weak var datasource: PlugInControlDatasource?
     
     static var nib: UINib {
         return UINib(nibName: "PlugInReverbTableViewCell", bundle: Bundle(for: self))
@@ -126,7 +111,7 @@ extension PlugInReverbTableViewCell: PlugInBarViewDelegate {
     }
     
     func isBypass(_ bool: Bool) {
-        delegate?.plugInReverbBypassSwitch(bool, cell: self)
+        delegate?.plugInBypassSwitch(bool, cell: self)
         
         factoryTextField.isEnabled = !plugInBarView.bypassButton.isSelected
         dryWetMixKnob.isEnabled = !plugInBarView.bypassButton.isSelected
@@ -139,7 +124,7 @@ extension PlugInReverbTableViewCell: PlugInBarViewDatasource {
     
     func presetParameter() -> [String]? {
         
-        return datasource?.plugInReverbPresetParameter()
+        return datasource?.plugInReverbPresetParameter(cell: self)
         
     }
     

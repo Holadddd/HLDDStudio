@@ -29,17 +29,14 @@ struct HLDDStudioPlugIn {
 }
 
 //exist plugIn
-let existPlugInArr = ["REVERB", "REVERB2 REVERB2", "REVERB3 REVERB3 REVERB3", "REVERB4"]
+let existPlugInArr = ["REVERB", "GuitarProcessor" , "DELAY"]
 enum PlugIn {
     
     case reverb(AKReverb)
     
-    var neededInfo: AnyObject {
-        switch self {
-        case .reverb:
-            return ReverNeededInfo(factory: "Cathedral") as AnyObject
-        }
-    }
+    case guitarProcessor(AKRhinoGuitarProcessor)
+    
+    case delay(AKDelay)
     
     mutating func replaceInputNodeInPlugIn(node: AKNode)  {
         switch self {
@@ -50,17 +47,33 @@ enum PlugIn {
             newReverb.loadFactoryPreset(set)
             self = .reverb(newReverb)
             
+        case let .guitarProcessor(guitarProcessor):
+            let newRhinoGuitarProcessor = AKRhinoGuitarProcessor(node, preGain: guitarProcessor.preGain, postGain: guitarProcessor.postGain, lowGain: 0, midGain: 0, highGain: 0, distortion: guitarProcessor.distortion)
+            self = .guitarProcessor(newRhinoGuitarProcessor)
+        case .delay(let delay):
+            let newDelay = AKDelay(node, time: delay.time, feedback: delay.feedback, lowPassCutoff: 22_050, dryWetMix: delay.dryWetMix)
+            self = .delay(newDelay)
         }
     }
     
    
 }
 
-struct ReverNeededInfo {
-    var factory: String
+enum GuitarProcessorValueType {
+    case preGain
+    
+    case dist
+    
+    case outputGain
 }
 
-
+enum DelayValueType {
+    case time
+    
+    case feedback
+    
+    case mix
+}
 
 class PlugInCreater {
     
@@ -90,6 +103,10 @@ class PlugInCreater {
         switch plugIn {
         case .reverb(let reverb):
             return reverb
+        case .guitarProcessor(let GhinoGuitarProcessor):
+            return GhinoGuitarProcessor
+        case .delay(let delay):
+            return delay
         }
     }
     
@@ -121,6 +138,44 @@ class PlugInCreater {
         PlugInCreater.shared.plugInOntruck[column].plugInArr.remove(at: seq)
         
         PlugInCreater.shared.resetTrackNode(Track: track)
+    }
+    
+    func plugInBypass(_ track: Int, seq: Int) {
+        try? AudioKit.stop()
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].plugIn {
+        case .reverb(let reverb):
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                reverb.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                reverb.start()
+            }
+            
+        case .guitarProcessor(let guitarProcessor):
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                guitarProcessor.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                guitarProcessor.start()
+            }
+        case .delay(let delay):
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                delay.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                delay.start()
+            }
+        }
+        try? AudioKit.start()
     }
     
 }

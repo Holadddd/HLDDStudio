@@ -90,6 +90,10 @@ class IOGridViewCell: GridViewCell {
         switch plugInSelectLabel.text {
         case "REVERB":
             delegate?.addPlugIn(with: .reverb(AKReverb()), row: row, column: column, cell: self)
+        case "GuitarProcessor":
+            delegate?.addPlugIn(with: .guitarProcessor(AKRhinoGuitarProcessor()), row: row, column: column, cell: self)
+        case "DELAY":
+            delegate?.addPlugIn(with: .delay(AKDelay()), row: row, column: column, cell: self)
         default:
             print("error of selected plugIn.")
         }

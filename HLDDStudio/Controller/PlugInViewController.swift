@@ -60,8 +60,8 @@ extension PlugInViewController: UITableViewDataSource{
             //defauld factory
             
             cell.factoryTextField.text = reverb.factory
-            cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
             cell.dryWetMixLabel.text = String(format: "%.2f", reverb.dryWetMix)
+            cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
             
             switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
@@ -78,13 +78,66 @@ extension PlugInViewController: UITableViewDataSource{
             cell.datasource = self
             
             return cell
+            
+        case .guitarProcessor(let guitarProcessor):
+            guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInGuitarProcessorTableViewCell") as? PlugInGuitarProcessorTableViewCell else { fatalError() }
+            cell.plugInBarView.plugInTitleLabel.text = "GuitarProcessor"
+            
+            cell.distLabel.text = String(format: "%.2f", guitarProcessor.distortion)
+            cell.disKnob.value = Float(guitarProcessor.distortion)
+            
+            cell.preGainLabel.text = String(format: "%.2f", guitarProcessor.preGain)
+            cell.preGainKnob.value = Float(guitarProcessor.preGain)
+            
+            cell.outputGainLabel.text = String(format: "%.2f", guitarProcessor.postGain)
+            cell.outputKnob.value = Float(guitarProcessor.postGain)
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            case true:
+                cell.plugInBarView.bypassButton.isSelected = true
+                
+            case false:
+                cell.plugInBarView.bypassButton.isSelected = false
+                
+            }
+            cell.delegate = self
+            cell.datasource = self
+            return cell
+        case .delay(let delay):
+            guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInDelayTableViewCell") as? PlugInDelayTableViewCell else { fatalError() }
+            cell.plugInBarView.plugInTitleLabel.text = "Delay"
+            
+            cell.timeLabel.text = String(format: "%.2f", delay.time)
+            cell.timeKnob.value = Float(delay.time)
+            
+            cell.feedbackLabel.text = String(format: "%.2f", delay.feedback)
+            cell.feedbackKnob.value = Float(delay.feedback)
+            
+            cell.mixLabel.text = String(format: "%.2f", delay.dryWetMix)
+            cell.mixKnob.value = Float(delay.dryWetMix)
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            case true:
+                cell.plugInBarView.bypassButton.isSelected = true
+                
+            case false:
+                cell.plugInBarView.bypassButton.isSelected = false
+                
+            }
+            cell.delegate = self
+            cell.datasource = self
+            return cell
         }
         
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 200
+    }
+    
 }
-//PlugInReverbProtocol
-extension PlugInViewController: PlugInReverbTableViewCellDelegate {
+//PlugInReverbProtocol  要改成不局限於 reverb 讓要改參數直接呼叫 pluginmanger
+extension PlugInViewController: PlugInControlDelegate {
     
     func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell) {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
@@ -98,51 +151,98 @@ extension PlugInViewController: PlugInReverbTableViewCellDelegate {
             reverb.loadFactoryPreset(set)
             reverb.factory = reverbFactory[factoryRawValue]
             PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn = PlugIn.reverb(reverb)
+        case .guitarProcessor(_):
+            return
+        case .delay(_):
+            return
         }
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
     }
     
-    func dryWetMixValueChange(_ value: Float, cell: PlugInReverbTableViewCell) {
-        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+    func dryWetMixValueChange(_ value: Float, cell: UITableViewCell) {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+        let row = indexPath.row
         
-        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn {
         case .reverb(let reverb):
-             reverb.dryWetMix = Double(value)
-            PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn = PlugIn.reverb(reverb)
+            reverb.dryWetMix = Double(value)
+            PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.reverb(reverb)
+        case .guitarProcessor(_):
+            return
+        case .delay(_):
+            return
         }
         
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
     }
     
-    func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell) {
-        print("ReverbisBypass:\(isBypass)")
+    func guitarProcessorValueChange(_ value: Float, type: GuitarProcessorValueType, cell: UITableViewCell) {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         let track = PlugInCreater.shared.showingTrackOnPlugInVC
-        try? AudioKit.stop()
-        
-        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
-        case .reverb(let reverb):
-            
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass {
-            case true:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass = false
-                reverb.bypass()
-            case false:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass = true
-                reverb.start()
+        let row = indexPath.row
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn {
+        case .reverb(_):
+            return
+        case .guitarProcessor(let guitarProcessor):
+            switch type {
+            case .dist:
+                guitarProcessor.distortion = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.guitarProcessor(guitarProcessor)
+            case .outputGain:
+                guitarProcessor.postGain = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.guitarProcessor(guitarProcessor)
+            case .preGain:
+                guitarProcessor.preGain = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.guitarProcessor(guitarProcessor)
             }
+            return
+        case .delay(_):
+            return
         }
+        
+    }
+    
+    func delayValueChange(_ value: Float, type: DelayValueType, cell: UITableViewCell) {
+        guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+        let row = indexPath.row
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn {
+        case .reverb(_):
+            return
+        case .guitarProcessor(_):
+            return
+        case .delay(let delay):
+            switch type {
+            case .time:
+                delay.time = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.delay(delay)
+            case .feedback:
+                delay.feedback = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.delay(delay)
+            case .mix:
+                delay.dryWetMix = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.delay(delay)
+            }
+            return
+        }
+    }
+    
+    func plugInBypassSwitch(_ isBypass: Bool, cell: UITableViewCell) {
+        guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+        let row = indexPath.row
+        PlugInCreater.shared.plugInBypass(track, seq: row)
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
-        try? AudioKit.start()
+        
     }
 }
 
-extension PlugInViewController: PlugInReverbTableViewCellDatasource {
-
-    func plugInReverbPresetParameter() -> [String]? {
-        return ["set1", "set2", "set3"]
-    }
+extension PlugInViewController: PlugInControlDatasource {
     
+    func plugInReverbPresetParameter(cell: PlugInReverbTableViewCell) -> [String]? {
+        return nil
+    }
+ 
 }
 

@@ -137,8 +137,8 @@ extension PlugInGridViewCell: UITableViewDataSource {
     
         switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            cell.plugInLabel.text = "REVERB"
-            cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f.", reverb.dryWetMix) )"
+            cell.plugInLabel.text = "Reverb"
+            cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f", reverb.dryWetMix)).   "
             print("Factory: \(reverb.factory)")
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
@@ -149,6 +149,32 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 
                 cell.bypassButton.isSelected = false
                 reverb.start()
+            }
+        case .guitarProcessor(let guitarProcessor):
+            cell.plugInLabel.text = "GuitarProcessor"
+            cell.plugInMarqueeLabel.text = "PreGain: \(String(format:"%.2f", guitarProcessor.preGain)), Distortion:\(String(format:"%.2f", guitarProcessor.distortion)), PostGain:\(String(format:"%.2f", guitarProcessor.postGain)).   "
+            switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
+            case true:
+                
+                cell.bypassButton.isSelected = true
+                guitarProcessor.bypass()
+            case false:
+                
+                cell.bypassButton.isSelected = false
+                guitarProcessor.start()
+            }
+        case .delay(let delay):
+            cell.plugInLabel.text = "Delay"
+            cell.plugInMarqueeLabel.text = "Time: \(String(format:"%.2f", delay.time)), Feedback: \(String(format:"%.2f", delay.feedback)), Mix: \(String(format:"%.2f", delay.dryWetMix)).   "
+            switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
+            case true:
+                
+                cell.bypassButton.isSelected = true
+                delay.bypass()
+            case false:
+                
+                cell.bypassButton.isSelected = false
+                delay.start()
             }
         }
         
@@ -174,4 +200,3 @@ extension PlugInGridViewCell: UITableViewDataSource {
     }
 
 }
-

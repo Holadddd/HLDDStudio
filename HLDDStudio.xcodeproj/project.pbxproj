@@ -40,6 +40,10 @@
 		0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179403F23253A94000DCFCB /* PlugInBarView.swift */; };
 		0179404223253B2E000DCFCB /* PlugInBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0179404123253B2E000DCFCB /* PlugInBarView.xib */; };
 		0179404423254797000DCFCB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0179404323254797000DCFCB /* UIView+Extension.swift */; };
+		01DC76742331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC76722331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift */; };
+		01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */; };
+		01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */; };
+		01DC76792331F94100CA105E /* PlugInDelayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */; };
 		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
@@ -82,6 +86,10 @@
 		0179403F23253A94000DCFCB /* PlugInBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInBarView.swift; sourceTree = "<group>"; };
 		0179404123253B2E000DCFCB /* PlugInBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInBarView.xib; sourceTree = "<group>"; };
 		0179404323254797000DCFCB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		01DC76722331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInGuitarProcessorTableViewCell.swift; sourceTree = "<group>"; };
+		01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInGuitarProcessorTableViewCell.xib; sourceTree = "<group>"; };
+		01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInDelayTableViewCell.swift; sourceTree = "<group>"; };
+		01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInDelayTableViewCell.xib; sourceTree = "<group>"; };
 		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
 		01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDRedFader.swift; sourceTree = "<group>"; };
 		01F16620232BCFD700F1C107 /* CustonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustonIcon.swift; sourceTree = "<group>"; };
@@ -224,6 +232,10 @@
 				0179404123253B2E000DCFCB /* PlugInBarView.xib */,
 				0179403B232536C1000DCFCB /* PlugInReverbTableViewCell.swift */,
 				016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */,
+				01DC76722331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift */,
+				01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */,
+				01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */,
+				01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */,
 			);
 			path = PlugInTableViewcell;
 			sourceTree = "<group>";
@@ -311,8 +323,10 @@
 				0179404223253B2E000DCFCB /* PlugInBarView.xib in Resources */,
 				010D7829232B74DA0099D76D /* GifEffect3.gif in Resources */,
 				017172392323997000049F3B /* FaderGridViewCell.xib in Resources */,
+				01DC76792331F94100CA105E /* PlugInDelayTableViewCell.xib in Resources */,
 				016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */,
 				0171722D232390B200049F3B /* IOGridViewCell.xib in Resources */,
+				01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */,
 				0171721A232380DB00049F3B /* LaunchScreen.storyboard in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
@@ -375,6 +389,7 @@
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
 				010D7820231681690099D76D /* HLDDFader.swift in Sources */,
+				01DC76742331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift in Sources */,
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
@@ -382,6 +397,7 @@
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,
 				010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */,
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
+				01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */,
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
 				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,

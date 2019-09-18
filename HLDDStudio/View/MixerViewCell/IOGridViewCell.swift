@@ -88,12 +88,14 @@ class IOGridViewCell: GridViewCell {
         let column = self.indexPath.column
         //再加上多種 plugin
         switch plugInSelectLabel.text {
-        case "REVERB":
+        case "Reverb":
             delegate?.addPlugIn(with: .reverb(AKReverb()), row: row, column: column, cell: self)
         case "GuitarProcessor":
             delegate?.addPlugIn(with: .guitarProcessor(AKRhinoGuitarProcessor()), row: row, column: column, cell: self)
-        case "DELAY":
+        case "Delay":
             delegate?.addPlugIn(with: .delay(AKDelay()), row: row, column: column, cell: self)
+        case "Chorus":
+            delegate?.addPlugIn(with: .chorus(AKChorus()), row: row, column: column, cell: self)
         default:
             print("error of selected plugIn.")
         }
@@ -155,13 +157,4 @@ extension IOGridViewCell: UITextFieldDelegate {
     }
     
     
-}
-extension String {
-    func capitalizingFirstLetter() -> String {
-        return prefix(1).uppercased() + self.lowercased().dropFirst()
-    }
-    
-    mutating func capitalizeFirstLetter() {
-        self = self.capitalizingFirstLetter()
-    }
 }

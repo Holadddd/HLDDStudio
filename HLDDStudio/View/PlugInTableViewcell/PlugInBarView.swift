@@ -32,6 +32,8 @@ protocol PlugInControlDelegate: AnyObject {
     func guitarProcessorValueChange(_ value: Float, type: GuitarProcessorValueType, cell: UITableViewCell)
     
     func delayValueChange(_ value: Float, type: DelayValueType, cell: UITableViewCell)
+    
+    func chorusValueChange(_ value: Float, type: ChorusValueType, cell: UITableViewCell)
 }
 
 protocol PlugInControlDatasource: AnyObject {

@@ -29,7 +29,7 @@ struct HLDDStudioPlugIn {
 }
 
 //exist plugIn
-let existPlugInArr = ["REVERB", "GuitarProcessor" , "DELAY"]
+let existPlugInArr = ["Reverb", "GuitarProcessor" , "Delay", "Chorus"]
 enum PlugIn {
     
     case reverb(AKReverb)
@@ -37,6 +37,8 @@ enum PlugIn {
     case guitarProcessor(AKRhinoGuitarProcessor)
     
     case delay(AKDelay)
+    
+    case chorus(AKChorus)
     
     mutating func replaceInputNodeInPlugIn(node: AKNode)  {
         switch self {
@@ -48,11 +50,17 @@ enum PlugIn {
             self = .reverb(newReverb)
             
         case let .guitarProcessor(guitarProcessor):
-            let newRhinoGuitarProcessor = AKRhinoGuitarProcessor(node, preGain: guitarProcessor.preGain, postGain: guitarProcessor.postGain, lowGain: 0, midGain: 0, highGain: 0, distortion: guitarProcessor.distortion)
+            
+            let newRhinoGuitarProcessor = AKRhinoGuitarProcessor(node, preGain: guitarProcessor.HLDDPreGain, postGain: guitarProcessor.postGain, lowGain: -0.5, midGain: -0.5, highGain: -0.5, distortion: guitarProcessor.distortion)
+            
+            
             self = .guitarProcessor(newRhinoGuitarProcessor)
         case .delay(let delay):
             let newDelay = AKDelay(node, time: delay.time, feedback: delay.feedback, lowPassCutoff: 22_050, dryWetMix: delay.dryWetMix)
             self = .delay(newDelay)
+        case .chorus(let chorus):
+            let newChorus = AKChorus(node, frequency: chorus.frequency, depth: chorus.depth, feedback: chorus.frequency, dryWetMix: chorus.dryWetMix)
+            self = .chorus(newChorus)
         }
     }
     
@@ -60,7 +68,7 @@ enum PlugIn {
 }
 
 enum GuitarProcessorValueType {
-    case preGain
+    case HLDDPreGain
     
     case dist
     
@@ -73,6 +81,16 @@ enum DelayValueType {
     case feedback
     
     case mix
+}
+
+enum ChorusValueType {
+    case feedback
+    
+    case depth
+    
+    case mix
+    
+    case frequency
 }
 
 class PlugInCreater {
@@ -107,6 +125,8 @@ class PlugInCreater {
             return GhinoGuitarProcessor
         case .delay(let delay):
             return delay
+        case .chorus(let chorus):
+            return chorus
         }
     }
     
@@ -148,10 +168,10 @@ class PlugInCreater {
             switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
-                reverb.bypass()
+                reverb.start()
             case false:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
-                reverb.start()
+                reverb.bypass()
             }
             
         case .guitarProcessor(let guitarProcessor):
@@ -159,24 +179,36 @@ class PlugInCreater {
             switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
-                guitarProcessor.bypass()
+                guitarProcessor.start()
+                
             case false:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
-                guitarProcessor.start()
+                guitarProcessor.bypass()
             }
         case .delay(let delay):
             
             switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
-                delay.bypass()
+                delay.start()
             case false:
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
-                delay.start()
+                delay.bypass()
+            }
+        case .chorus(let chorus):
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                chorus.start()
+            case false:
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                chorus.bypass()
             }
         }
         try? AudioKit.start()
     }
+    
     
 }
 //extensionAKReverbFactoryProperty
@@ -196,6 +228,34 @@ extension AKReverb {
         set(newValue) {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
             AKReverb._myComputedProperty[tmpAddress] = newValue
+            print("factoryset")
+        }
+    }
+}
+
+extension AKRhinoGuitarProcessor {
+    private static var _myComputedProperty = [String: Double]()
+    
+    var HLDDPreGain: Double {
+        get {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] ?? 2.0
+        }
+        set(newValue) {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] = newValue
+            print("factoryset")
+        }
+    }
+    
+    var HLDDPostGain: Double {
+        get {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            return AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] ?? 0.5
+        }
+        set(newValue) {
+            let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
+            AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] = newValue
             print("factoryset")
         }
     }

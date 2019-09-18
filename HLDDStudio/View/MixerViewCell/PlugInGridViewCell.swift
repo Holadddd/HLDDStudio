@@ -176,6 +176,20 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 cell.bypassButton.isSelected = false
                 delay.start()
             }
+        case .chorus(let chorus):
+            cell.plugInLabel.text = "Chorus"
+            cell.plugInMarqueeLabel.text = "Feedback: \(String(format:"%.2f", chorus.feedback)), Depth: \(String(format:"%.2f", chorus.depth)), Mix: \(String(format:"%.2f", chorus.dryWetMix)), Frequency: \(chorus.frequency).   "
+            
+            switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
+            case true:
+                
+                cell.bypassButton.isSelected = true
+                chorus.bypass()
+            case false:
+                
+                cell.bypassButton.isSelected = false
+                chorus.start()
+            }
         }
         
         cell.delegate = self

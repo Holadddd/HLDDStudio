@@ -20,6 +20,7 @@ class PlugInView: UIView {
         tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
         tableView.register(PlugInGuitarProcessorTableViewCell.nib, forCellReuseIdentifier: "PlugInGuitarProcessorTableViewCell")
         tableView.register(PlugInDelayTableViewCell.nib, forCellReuseIdentifier: "PlugInDelayTableViewCell")
+        tableView.register(PlugInChorusTableViewCell.nib, forCellReuseIdentifier: "PlugInChorusTableViewCell")
     }
     
 

@@ -630,6 +630,15 @@ extension ViewController: PlugInGridViewCellDelegate {
                 PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 delay.start()
             }
+        case .chorus(let chorus):
+            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            case true:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                chorus.bypass()
+            case false:
+                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                chorus.start()
+            }
         }
         try? AudioKit.start()
         
@@ -857,6 +866,8 @@ extension ViewController: IOGridViewCellDelegate {
             plugInProvide(row: row, column: column, plugIn: .guitarProcessor(guitarProcessor))
         case .delay(let delay):
             plugInProvide(row: row, column: column, plugIn: .delay(delay))
+        case .chorus(let chorus):
+            plugInProvide(row: row, column: column, plugIn: .chorus(chorus))
         }
         
     }
@@ -927,6 +938,9 @@ extension ViewController {
         case .delay:
             mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .delay(AKDelay(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
+        case .chorus:
+            mixer.disconnectInput(bus: column + 1)
+            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .chorus(AKChorus(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
         }
         
         PlugInCreater.shared.resetTrackNode(Track: column + 1)

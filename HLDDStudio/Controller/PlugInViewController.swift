@@ -127,6 +127,33 @@ extension PlugInViewController: UITableViewDataSource{
             cell.delegate = self
             cell.datasource = self
             return cell
+        case .chorus(let chorus):
+            guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInChorusTableViewCell") as? PlugInChorusTableViewCell else { fatalError() }
+            cell.plugInBarView.plugInTitleLabel.text = "Chorus"
+            
+            cell.feedbackLabel.text = String(format: "%.2f", chorus.feedback)
+            cell.feedbackKnob.value = Float(chorus.feedback)
+            
+            cell.depthLabel.text = String(format: "%.2f", chorus.depth)
+            cell.depthKnob.value = Float(chorus.depth)
+            
+            cell.mixLabel.text = String(format: "%.2f", chorus.dryWetMix)
+            cell.mixKnob.value = Float(chorus.dryWetMix)
+            
+            cell.frequencyLabel.text = String(format: "%.2f", chorus.frequency)
+            cell.frequencyKnob.value = Float(chorus.frequency)
+            
+            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            case true:
+                cell.plugInBarView.bypassButton.isSelected = true
+                
+            case false:
+                cell.plugInBarView.bypassButton.isSelected = false
+                
+            }
+            cell.delegate = self
+            cell.datasource = self
+            return cell
         }
         
     }
@@ -155,6 +182,8 @@ extension PlugInViewController: PlugInControlDelegate {
             return
         case .delay(_):
             return
+        case .chorus(_):
+            return
         }
         NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: nil, userInfo: nil))
     }
@@ -171,6 +200,8 @@ extension PlugInViewController: PlugInControlDelegate {
         case .guitarProcessor(_):
             return
         case .delay(_):
+            return
+        case .chorus(_):
             return
         }
         
@@ -192,12 +223,15 @@ extension PlugInViewController: PlugInControlDelegate {
             case .outputGain:
                 guitarProcessor.postGain = Double(value)
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.guitarProcessor(guitarProcessor)
-            case .preGain:
+            case .HLDDPreGain:
                 guitarProcessor.preGain = Double(value)
+                guitarProcessor.HLDDPreGain = Double(value)
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.guitarProcessor(guitarProcessor)
             }
             return
         case .delay(_):
+            return
+        case .chorus(_):
             return
         }
         
@@ -223,6 +257,38 @@ extension PlugInViewController: PlugInControlDelegate {
             case .mix:
                 delay.dryWetMix = Double(value)
                 PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.delay(delay)
+            }
+            return
+        case .chorus(_):
+            return
+        }
+    }
+    
+    func chorusValueChange(_ value: Float, type: ChorusValueType, cell: UITableViewCell) {
+        guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
+        let track = PlugInCreater.shared.showingTrackOnPlugInVC
+        let row = indexPath.row
+        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn {
+        case .reverb(_):
+            return
+        case .guitarProcessor(_):
+            return
+        case .delay(_):
+            return
+        case .chorus(let chorus):
+            switch type{
+            case .depth:
+                chorus.depth = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.chorus(chorus)
+            case .feedback:
+                chorus.feedback = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.chorus(chorus)
+            case .frequency:
+                chorus.frequency = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.chorus(chorus)
+            case .mix:
+                chorus.dryWetMix = Double(value)
+                PlugInCreater.shared.plugInOntruck[track].plugInArr[row].plugIn = PlugIn.chorus(chorus)
             }
             return
         }

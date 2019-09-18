@@ -65,7 +65,7 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
         switch knob {
         case preGainKnob:
             preGainLabel.text = String(format: "%.2f", value)
-            delegate?.guitarProcessorValueChange(value, type: .preGain, cell: self)
+            delegate?.guitarProcessorValueChange(value, type: .HLDDPreGain, cell: self)
         case disKnob:
             distLabel.text = String(format: "%.2f", value)
             delegate?.guitarProcessorValueChange(value, type: .dist, cell: self)
@@ -90,6 +90,10 @@ extension PlugInGuitarProcessorTableViewCell: PlugInBarViewDelegate {
     
     func isBypass(_ bool: Bool) {
         delegate?.plugInBypassSwitch(bool, cell: self)
+        
+        preGainKnob.isEnabled = !plugInBarView.bypassButton.isSelected
+        disKnob.isEnabled = !plugInBarView.bypassButton.isSelected
+        outputKnob.isEnabled = !plugInBarView.bypassButton.isSelected
     }
     
 }

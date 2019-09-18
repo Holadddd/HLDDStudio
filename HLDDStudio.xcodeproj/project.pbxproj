@@ -14,6 +14,8 @@
 		010D7827232B73560099D76D /* GifEffect2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 010D7826232B73560099D76D /* GifEffect2.gif */; };
 		010D7829232B74DA0099D76D /* GifEffect3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 010D7828232B74DA0099D76D /* GifEffect3.gif */; };
 		01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01280F9723289E27004AF13C /* HLDDKnob.swift */; };
+		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
+		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
 		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
 		016F4D25232561B50027D507 /* ReverbSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D24232561B50027D507 /* ReverbSet.swift */; };
 		016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D272325F10A0027D507 /* PlugInManager.swift */; };
@@ -58,6 +60,8 @@
 		010D7826232B73560099D76D /* GifEffect2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GifEffect2.gif; sourceTree = "<group>"; };
 		010D7828232B74DA0099D76D /* GifEffect3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GifEffect3.gif; sourceTree = "<group>"; };
 		01280F9723289E27004AF13C /* HLDDKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDKnob.swift; sourceTree = "<group>"; };
+		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
+		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D24232561B50027D507 /* ReverbSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbSet.swift; sourceTree = "<group>"; };
 		016F4D272325F10A0027D507 /* PlugInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInManager.swift; sourceTree = "<group>"; };
@@ -236,6 +240,8 @@
 				01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */,
 				01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */,
 				01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */,
+				015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */,
+				015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */,
 			);
 			path = PlugInTableViewcell;
 			sourceTree = "<group>";
@@ -331,6 +337,7 @@
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
 				01717212232380D900049F3B /* Main.storyboard in Resources */,
+				015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,6 +406,7 @@
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
 				01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */,
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
+				015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */,
 				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,

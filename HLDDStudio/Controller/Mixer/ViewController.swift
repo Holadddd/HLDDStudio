@@ -56,10 +56,10 @@ class ViewController: UIViewController {
     
     var allInputSource: [AKNode] = []
     
-    let mixer = AKMixer()
+    var mixer: AKMixer!
     
     //record
-    let mixerForMaster = AKMixer()
+    var mixerForMaster: AKMixer!
     
     var recorder: AKClipRecorder!
     
@@ -82,17 +82,19 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        try? AudioKit.start()
+        //try? AudioKit.start()
         // Do any additional setup after loading the view.
         mixerView.delegate = self
         mixerView.datasource = self
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
         
+        
+        mixer = AKMixer()
+        mixerForMaster = AKMixer()
         //set clean input
         mic = AKMicrophone()
-        PlugInCreater.shared.plugInOntruck[0].node = filePlayer
-        PlugInCreater.shared.plugInOntruck[1].node = filePlayerTwo
+        
         
         //metronomeSetting
         metronome.callback = metronomeCallBack
@@ -105,19 +107,20 @@ class ViewController: UIViewController {
         
         //SetAnotherMixerForMetronome PassRecorder
         mixerForMaster.connect(input: mixer, bus: 1)
+        
         mixerForMaster.connect(input: metronomeBooster, bus: 0)
         AudioKit.output = mixerForMaster
-        
-        //try? AudioKit.start()
-        
+      
         //MakeTwoTrackNode
-        setTrackNode(track: 1)
-        setTrackNode(track: 2)
-        PlugInCreater.shared.plugInOntruck[0].inputNode = filePlayer
-        PlugInCreater.shared.plugInOntruck[1].inputNode = filePlayerTwo
-        PlugInCreater.shared.resetTrackNode(Track: 1)
-        PlugInCreater.shared.resetTrackNode(Track: 2)
-        
+        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
+            PlugInCreater.shared.plugInOntruck[index].inputNode = AKPlayer()
+            mixer.connect(input: PlugInCreater.shared.plugInOntruck[index].inputNode, bus: index + 1)
+        } 
+        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
+            setTrackNode(track: index + 1)
+        }
+
+        try? AudioKit.start()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationSubTitleChange), name: .mixerNotificationSubTitleChange, object: nil)
@@ -138,33 +141,13 @@ class ViewController: UIViewController {
     }
 
     func setTrackNode(track: Int) {
-        switch track {
-        case 1:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: track)
-            let node = PlugInCreater.shared.plugInOntruck[0].node
-            bus1Panner = AKPanner(node, pan: 0)
-            bus1LowEQ = AKEqualizerFilter(bus1Panner, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
-            bus1MidEQ = AKEqualizerFilter(bus1LowEQ, centerFrequency: 2_000, bandwidth: 2_282, gain: 1.0)
-            bus1HighEQ = AKEqualizerFilter(bus1MidEQ, centerFrequency: 12_000, bandwidth: 8_112, gain: 1.0)
-            bus1Booster = AKBooster(bus1HighEQ, gain: 1)
-            //會覆寫
-            mixer.connect(input: bus1Booster, bus: track)
-            try? AudioKit.start()
-        case 2:
-            try? AudioKit.stop()
-            mixer.disconnectInput(bus: track)
-            let node = PlugInCreater.shared.plugInOntruck[1].node
-            bus2Panner = AKPanner(node, pan: 0)
-            bus2LowEQ = AKEqualizerFilter(bus2Panner, centerFrequency: 64, bandwidth: 70.8, gain: 1.0)
-            bus2MidEQ = AKEqualizerFilter(bus2LowEQ, centerFrequency: 2_000, bandwidth: 2_282, gain: 1.0)
-            bus2HighEQ = AKEqualizerFilter(bus2MidEQ, centerFrequency: 12_000, bandwidth: 8_112, gain: 1.0)
-            bus2Booster = AKBooster(bus2HighEQ, gain: 1)
-            mixer.connect(input: bus2Booster, bus: track)
-            try? AudioKit.start()
-        default:
-            print("no such bus")
-        }
+        try? AudioKit.stop()
+        mixer.disconnectInput(bus: track)
+        PlugInCreater.shared.resetTrackNode(Track: track)
+        PlugInCreater.shared.resetTrack(track: track)
+        mixer.connect(input: PlugInCreater.shared.plugInOntruck[track - 1].node, bus: track)
+        try? AudioKit.start()
+
         
     }
     
@@ -545,7 +528,7 @@ extension ViewController: GridViewDelegate {
 extension ViewController: GridViewDataSource {
     
     func numberOfColumns(in gridView: GridView) -> Int {
-        return 2
+        return PlugInCreater.shared.plugInOntruck.count
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -667,72 +650,77 @@ extension ViewController: PlugInGridViewCellDelegate {
 extension ViewController: FaderGridViewCellDelegate {
     func pannerValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        switch cell.indexPath.column {
-        case 0:
-            bus1Panner.pan = value
-            PlugInCreater.shared.plugInOntruck[0].pan = value
-        case 1:
-            bus2Panner.pan = value
-            PlugInCreater.shared.plugInOntruck[1].pan = value
-        default:
-            print("No Such Column")
-        }
+        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busPanner.pan = value
+//        switch cell.indexPath.column {
+//        case 0:
+//            bus1Panner.pan = value
+//            PlugInCreater.shared.plugInOntruck[0].pan = value
+//        case 1:
+//            bus2Panner.pan = value
+//            PlugInCreater.shared.plugInOntruck[1].pan = value
+//        default:
+//            print("No Such Column")
+//        }
     }
     
     func lowEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        switch cell.indexPath.column {
-        case 0:
-            bus1LowEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[0].low = value
-        case 1:
-            bus2LowEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[1].low = value
-        default:
-            print("No Such Column")
-        }
+        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busLowEQ.gain = value
+//        switch cell.indexPath.column {
+//        case 0:
+//            bus1LowEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[0].low = value
+//        case 1:
+//            bus2LowEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[1].low = value
+//        default:
+//            print("No Such Column")
+//        }
     }
     
     func midEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        switch cell.indexPath.column {
-        case 0:
-            bus1MidEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[0].mid = value
-        case 1:
-            bus2MidEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[1].mid = value
-        default:
-            print("No Such Column")
-        }
+        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busMidEQ.gain = value
+//        switch cell.indexPath.column {
+//        case 0:
+//            bus1MidEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[0].mid = value
+//        case 1:
+//            bus2MidEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[1].mid = value
+//        default:
+//            print("No Such Column")
+//        }
     }
     
     func highEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        switch cell.indexPath.column {
-        case 0:
-            bus1HighEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[0].high = value
-        case 1:
-            bus2HighEQ.gain = value
-            PlugInCreater.shared.plugInOntruck[1].high = value
-        default:
-            print("No Such Column")
-        }
+        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busHighEQ.gain = value
+//        switch cell.indexPath.column {
+//        case 0:
+//            bus1HighEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[0].high = value
+//        case 1:
+//            bus2HighEQ.gain = value
+//            PlugInCreater.shared.plugInOntruck[1].high = value
+//        default:
+//            print("No Such Column")
+//        }
     }
     
     func volumeChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        switch cell.indexPath.column {
-        case 0:
-            bus1Booster.gain = value
-            PlugInCreater.shared.plugInOntruck[0].volume = value
-        case 1:
-            bus2Booster.gain = value
-            PlugInCreater.shared.plugInOntruck[1].volume = value
-        default:
-            print("No Such Column")
-        }
+        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busBooster.gain = value
+//        switch cell.indexPath.column {
+//        case 0:
+//            bus1Booster.gain = value
+//            PlugInCreater.shared.plugInOntruck[0].volume = value
+//        case 1:
+//            bus2Booster.gain = value
+//            PlugInCreater.shared.plugInOntruck[1].volume = value
+//        default:
+//            print("No Such Column")
+//        }
     }
     
     
@@ -756,9 +744,9 @@ extension ViewController: IOGridViewCellDelegate {
                 print("InputDeviceAsInputMixerBus1Source:\(currentDevice)")
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
+                
                 PlugInCreater.shared.plugInOntruck[0].inputNode = mic
-                //need adjust for audioFile into plugIn
-                PlugInCreater.shared.resetTrackNode(Track: 1)
+
                 setTrackNode(track: 1)
                 try? AudioKit.start()
                 //switch the track status

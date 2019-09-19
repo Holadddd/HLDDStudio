@@ -12,18 +12,13 @@ import AudioKit
 struct HLDDMixerTrack {
     let name: String
     var plugInArr: [HLDDStudioPlugIn] = []
-    var inputNode: AKNode = AKNode()
-    var node: AKNode = AKNode()
-//    var equlizerAndPanner: FaderEqualizerAndPanner = FaderEqualizerAndPanner(node: AKNode())
-    var bus: Int
-    var pan: Double
-    var low: Double
-    var mid: Double
-    var high: Double
-    var volume: Double
-//    init(name: String) {
-//        self.name = name
-//    }
+    var inputNode: AKNode = AKPlayer()
+    var node: AKNode = AKPlayer()
+    var equlizerAndPanner: FaderEqualizerAndPanner = FaderEqualizerAndPanner(node: AKPlayer())
+
+    init(name: String) {
+        self.name = name
+    }
 }
 
 struct HLDDStudioPlugIn {
@@ -106,17 +101,28 @@ class PlugInCreater {
     
     var showingTrackOnPlugInVC = 0
     
-    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1", plugInArr: [], inputNode: AKNode(), node: AKNode(), bus: 1, pan: 0, low: 0, mid: 0, high: 0, volume: 1),
-                                           HLDDMixerTrack(name: "BUS2", plugInArr: [], inputNode: AKNode(), node: AKNode(), bus: 2, pan: 0, low: 0, mid: 0, high: 0, volume: 1)] {
+    
+    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1"), HLDDMixerTrack(name: "BUS2")] {
         didSet {
-            
-            
+
             NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: IndexPath(row: eventRow, column: eventColumn), userInfo: nil))
 //            NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: self, userInfo: nil))
 //            NotificationCenter.default.post(.init(name: .didRemovePlugIn, object: self, userInfo: nil))
         }
     }
-    
+
+    func resetTrack(track: Int) {
+        try? AudioKit.stop()
+        let oldEqulizerAndPanner = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner
+        let panValue = oldEqulizerAndPanner.busPanner.pan
+        let lowGain = oldEqulizerAndPanner.busLowEQ.gain
+        let midGain = oldEqulizerAndPanner.busMidEQ.gain
+        let highGain = oldEqulizerAndPanner.busHighEQ.gain
+        let volume = oldEqulizerAndPanner.busBooster.gain
+        PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner = FaderEqualizerAndPanner(node: PlugInCreater.shared.plugInOntruck[track - 1].node, pan: panValue, lowGain: lowGain, midGain: midGain, highGain: highGain, volume: volume)
+        PlugInCreater.shared.plugInOntruck[track - 1].node = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner.busBooster
+        try? AudioKit.start()
+    }
 
     
     func providePlugInNode(with HLDD: HLDDStudioPlugIn) -> AKNode {
@@ -142,10 +148,8 @@ class PlugInCreater {
 
         if numberOfPlugIn != 0 {
                         for seq in 0 ..< numberOfPlugIn{
-                            
-                let lastNode = PlugInCreater.shared.plugInOntruck[Track - 1].node
                 
-                PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: lastNode)
+                PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: PlugInCreater.shared.plugInOntruck[Track - 1].node)
                 
                 PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
             }

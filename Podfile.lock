@@ -1,12 +1,12 @@
 PODS:
   - AudioKit/Core (4.8)
-  - G3GridView (0.6.0)
-  - IQKeyboardManager (6.4.0)
+  - G3GridView (0.7.0)
+  - IQKeyboardManager (6.4.2)
   - MarqueeLabel (4.0.0)
-  - SwipeCellKit (2.6.0)
+  - SwipeCellKit (2.7.0)
 
 DEPENDENCIES:
-  - AudioKit/Core
+  - AudioKit/Core (= 4.8)
   - G3GridView
   - IQKeyboardManager
   - MarqueeLabel
@@ -22,11 +22,11 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   AudioKit: 04ecf14d5ca795b16fc92c76fc84e2421ade7df0
-  G3GridView: ccfd08ab64ee380174a4c4cfe40ecc3ce7cc3bd4
-  IQKeyboardManager: fcef267266379c003181fc3592f6bdb8bf4db839
+  G3GridView: 3500ad938744d81f6707929c56ff71e78b37907e
+  IQKeyboardManager: b41e0a4943fbac4c11a239d31a688667675f962e
   MarqueeLabel: b55b26e690b6ad41faedd95cbf5eae6f1d1735b4
-  SwipeCellKit: 935ca28c187ec6e1ffb2b578cf8ddca842bfdcbb
+  SwipeCellKit: cfcdcbfb739734e494c9d3832a7b6e6f9411e1fd
 
-PODFILE CHECKSUM: 3eae347dd77d3b0c04ef148ebf95083f3bd520bf
+PODFILE CHECKSUM: 78338fdf240a040ee05416646f3acc140486a2b8
 
 COCOAPODS: 1.7.5

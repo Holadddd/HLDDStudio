@@ -29,7 +29,7 @@ class PlugInViewController: UIViewController {
         super.viewWillAppear(animated)
     
         plugInView.tableView.reloadData()
-        
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
     
     @objc func backButtonAction() {

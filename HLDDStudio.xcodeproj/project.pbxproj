@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0106320D2333584D00214672 /* UIColor+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106320C2333584D00214672 /* UIColor+Extension.swift */; };
+		0106320F23335B5D00214672 /* DrumMachine.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0106320E23335B5D00214672 /* DrumMachine.storyboard */; };
+		0106321323335C4200214672 /* DrumMachineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106321223335C4200214672 /* DrumMachineViewController.swift */; };
+		0106321523335CC500214672 /* DrumMachineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0106321423335CC500214672 /* DrumMachineView.swift */; };
+		010632172333622800214672 /* UIStoryboard+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010632162333622800214672 /* UIStoryboard+Extension.swift */; };
+		010632192333687F00214672 /* FaderEqualizer+Panner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010632182333687F00214672 /* FaderEqualizer+Panner.swift */; };
 		010D781E231652EA0099D76D /* GestureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D781D231652EA0099D76D /* GestureManager.swift */; };
 		010D7820231681690099D76D /* HLDDFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D781F231681690099D76D /* HLDDFader.swift */; };
 		010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010D7821232B71890099D76D /* UIImage+Gif.swift */; };
@@ -53,6 +59,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0106320C2333584D00214672 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
+		0106320E23335B5D00214672 /* DrumMachine.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DrumMachine.storyboard; sourceTree = "<group>"; };
+		0106321223335C4200214672 /* DrumMachineViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineViewController.swift; sourceTree = "<group>"; };
+		0106321423335CC500214672 /* DrumMachineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineView.swift; sourceTree = "<group>"; };
+		010632162333622800214672 /* UIStoryboard+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIStoryboard+Extension.swift"; sourceTree = "<group>"; };
+		010632182333687F00214672 /* FaderEqualizer+Panner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FaderEqualizer+Panner.swift"; sourceTree = "<group>"; };
 		010D781D231652EA0099D76D /* GestureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureManager.swift; sourceTree = "<group>"; };
 		010D781F231681690099D76D /* HLDDFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDFader.swift; sourceTree = "<group>"; };
 		010D7821232B71890099D76D /* UIImage+Gif.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
@@ -114,6 +126,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0106321023335BFD00214672 /* Mixer */ = {
+			isa = PBXGroup;
+			children = (
+				0171720E232380D900049F3B /* ViewController.swift */,
+				0179403523251236000DCFCB /* PlugInViewController.swift */,
+			);
+			path = Mixer;
+			sourceTree = "<group>";
+		};
+		0106321123335C1200214672 /* DrumMachine */ = {
+			isa = PBXGroup;
+			children = (
+				0106321223335C4200214672 /* DrumMachineViewController.swift */,
+			);
+			path = DrumMachine;
+			sourceTree = "<group>";
+		};
 		010D7825232B722F0099D76D /* GifEffects */ = {
 			isa = PBXGroup;
 			children = (
@@ -130,6 +159,7 @@
 				016F4D24232561B50027D507 /* ReverbSet.swift */,
 				016F4D272325F10A0027D507 /* PlugInManager.swift */,
 				016F4D2923264F0E0027D507 /* MixerManger.swift */,
+				010632182333687F00214672 /* FaderEqualizer+Panner.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -172,8 +202,8 @@
 		017172242323891300049F3B /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0171720E232380D900049F3B /* ViewController.swift */,
-				0179403523251236000DCFCB /* PlugInViewController.swift */,
+				0106321023335BFD00214672 /* Mixer */,
+				0106321123335C1200214672 /* DrumMachine */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -186,6 +216,8 @@
 				0179403723251271000DCFCB /* MixerViewCell */,
 				01794038232512AA000DCFCB /* PlugInView.swift */,
 				0179403A2325368F000DCFCB /* PlugInTableViewcell */,
+				0106321423335CC500214672 /* DrumMachineView.swift */,
+				0106320E23335B5D00214672 /* DrumMachine.storyboard */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -202,6 +234,7 @@
 			isa = PBXGroup;
 			children = (
 				0171723D2323DEA100049F3B /* UIImage+Extension.swift */,
+				010632162333622800214672 /* UIStoryboard+Extension.swift */,
 				010D7821232B71890099D76D /* UIImage+Gif.swift */,
 				01F16620232BCFD700F1C107 /* CustonIcon.swift */,
 				0179404323254797000DCFCB /* UIView+Extension.swift */,
@@ -210,6 +243,7 @@
 				01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */,
 				010D781D231652EA0099D76D /* GestureManager.swift */,
 				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
+				0106320C2333584D00214672 /* UIColor+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -333,6 +367,7 @@
 				016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */,
 				0171722D232390B200049F3B /* IOGridViewCell.xib in Resources */,
 				01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */,
+				0106320F23335B5D00214672 /* DrumMachine.storyboard in Resources */,
 				0171721A232380DB00049F3B /* LaunchScreen.storyboard in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
@@ -391,17 +426,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */,
+				010632172333622800214672 /* UIStoryboard+Extension.swift in Sources */,
 				017172352323993800049F3B /* PlugInTableViewCell.swift in Sources */,
+				010632192333687F00214672 /* FaderEqualizer+Panner.swift in Sources */,
 				016F4D25232561B50027D507 /* ReverbSet.swift in Sources */,
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
+				0106321323335C4200214672 /* DrumMachineViewController.swift in Sources */,
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
 				010D7820231681690099D76D /* HLDDFader.swift in Sources */,
 				01DC76742331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift in Sources */,
+				0106320D2333584D00214672 /* UIColor+Extension.swift in Sources */,
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,
+				0106321523335CC500214672 /* DrumMachineView.swift in Sources */,
 				010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */,
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
 				01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */,

@@ -10,16 +10,20 @@ import Foundation
 import AudioKit
 
 struct HLDDMixerTrack {
-    var name: String
-    var plugInArr: [HLDDStudioPlugIn]
-    var inputNode: AKNode
-    var node: AKNode
+    let name: String
+    var plugInArr: [HLDDStudioPlugIn] = []
+    var inputNode: AKNode = AKNode()
+    var node: AKNode = AKNode()
+//    var equlizerAndPanner: FaderEqualizerAndPanner = FaderEqualizerAndPanner(node: AKNode())
     var bus: Int
     var pan: Double
     var low: Double
     var mid: Double
     var high: Double
     var volume: Double
+//    init(name: String) {
+//        self.name = name
+//    }
 }
 
 struct HLDDStudioPlugIn {
@@ -43,28 +47,27 @@ enum PlugIn {
     mutating func replaceInputNodeInPlugIn(node: AKNode)  {
         switch self {
         case let .reverb(reverb):
+            
             let newReverb = AKReverb(node, dryWetMix: reverb.dryWetMix)
             guard let rawValue = reverbFactory.firstIndex(of: reverb.factory) else { fatalError() }
             guard let set = AVAudioUnitReverbPreset(rawValue: rawValue) else { fatalError() }
             newReverb.loadFactoryPreset(set)
+            newReverb.factory = reverb.factory
             self = .reverb(newReverb)
-            
         case let .guitarProcessor(guitarProcessor):
             
             let newRhinoGuitarProcessor = AKRhinoGuitarProcessor(node, preGain: guitarProcessor.HLDDPreGain, postGain: guitarProcessor.postGain, lowGain: -0.5, midGain: -0.5, highGain: -0.5, distortion: guitarProcessor.distortion)
-            
-            
             self = .guitarProcessor(newRhinoGuitarProcessor)
         case .delay(let delay):
+            
             let newDelay = AKDelay(node, time: delay.time, feedback: delay.feedback, lowPassCutoff: 22_050, dryWetMix: delay.dryWetMix)
             self = .delay(newDelay)
         case .chorus(let chorus):
+            
             let newChorus = AKChorus(node, frequency: chorus.frequency, depth: chorus.depth, feedback: chorus.frequency, dryWetMix: chorus.dryWetMix)
             self = .chorus(newChorus)
         }
     }
-    
-   
 }
 
 enum GuitarProcessorValueType {
@@ -139,6 +142,7 @@ class PlugInCreater {
 
         if numberOfPlugIn != 0 {
                         for seq in 0 ..< numberOfPlugIn{
+                            
                 let lastNode = PlugInCreater.shared.plugInOntruck[Track - 1].node
                 
                 PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: lastNode)
@@ -228,7 +232,6 @@ extension AKReverb {
         set(newValue) {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
             AKReverb._myComputedProperty[tmpAddress] = newValue
-            print("factoryset")
         }
     }
 }
@@ -244,7 +247,6 @@ extension AKRhinoGuitarProcessor {
         set(newValue) {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
             AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] = newValue
-            print("factoryset")
         }
     }
     
@@ -256,7 +258,6 @@ extension AKRhinoGuitarProcessor {
         set(newValue) {
             let tmpAddress = String(format: "%p", unsafeBitCast(self, to: Int.self))
             AKRhinoGuitarProcessor._myComputedProperty[tmpAddress] = newValue
-            print("factoryset")
         }
     }
 }

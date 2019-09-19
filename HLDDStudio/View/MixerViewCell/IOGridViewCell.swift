@@ -129,9 +129,20 @@ extension IOGridViewCell: UIPickerViewDataSource {
         return arr.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let arr = datasource?.inputSource() else { return nil}
-        return arr[row]
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        guard let arr = datasource?.inputSource() else { return nil}
+//        return arr[row]
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = .darkGray
+        guard let arr = datasource?.inputSource() else { fatalError() }
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.backgroundColor = .gray
+        pickerLabel.text = arr[row]
+        return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

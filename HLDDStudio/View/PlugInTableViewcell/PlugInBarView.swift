@@ -122,9 +122,20 @@ extension PlugInBarView: UIPickerViewDataSource {
         return preset?.count ?? 0
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        let preset = datasource?.presetParameter()
+//        return preset?[row] ?? nil
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         let preset = datasource?.presetParameter()
-        return preset?[row] ?? nil
+        pickerView.backgroundColor = .darkGray
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.backgroundColor = .gray
+        pickerLabel.text = preset?[row] ?? nil
+        return pickerLabel
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

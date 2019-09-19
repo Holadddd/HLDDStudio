@@ -86,8 +86,18 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
         return reverbFactory.count
     }
     
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return reverbFactory[row]
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        return reverbFactory[row]
+//    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = .darkGray
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        pickerLabel.backgroundColor = .gray
+        pickerLabel.text = reverbFactory[row]
+        return pickerLabel
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         factoryTextField.text = reverbFactory[row]

@@ -184,6 +184,10 @@ class ViewController: UIViewController {
 
 extension ViewController: MixerDelegate {
     
+    func showDrumVC() {
+        
+    }
+    
     func didSelectInputDevice(_ deviceID: DeviceID) {
         
         guard let inputDeviceArr = AudioKit.inputDevices else { fatalError() }

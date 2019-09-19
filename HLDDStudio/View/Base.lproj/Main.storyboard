@@ -134,7 +134,7 @@
                                                     <constraint firstItem="Fyv-bj-98N" firstAttribute="centerY" secondItem="xrF-Nc-Kct" secondAttribute="centerY" id="wkK-nj-j00"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czf-Uj-HEJ">
+                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalCompressionResistancePriority="749" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="czf-Uj-HEJ">
                                                 <rect key="frame" x="40" y="4" width="32" height="32"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -270,7 +270,6 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="XNt-I5-ryV">
                                                 <rect key="frame" x="34" y="24" width="86" height="30"/>
                                                 <color key="backgroundColor" white="0.35611979170000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
@@ -301,14 +300,12 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-Oy-R7W">
                                                 <rect key="frame" x="330" y="22" width="80" height="18.5"/>
                                                 <color key="backgroundColor" white="0.35611979170000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nNM-Cz-rKi">
                                                 <rect key="frame" x="330" y="44.5" width="80" height="18.5"/>
                                                 <color key="backgroundColor" white="0.35611979170000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
@@ -398,6 +395,10 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kc4-uj-Ff0">
+                                                <rect key="frame" x="5" y="122" width="133" height="30"/>
+                                                <state key="normal" title="Button"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -411,12 +412,15 @@
                                             <constraint firstItem="MEm-BN-jsc" firstAttribute="leading" secondItem="zBP-4s-CRv" secondAttribute="trailing" constant="12" id="Qda-hM-eOW"/>
                                             <constraint firstItem="MEm-BN-jsc" firstAttribute="top" secondItem="50r-VJ-2at" secondAttribute="bottom" constant="16" id="RN4-bN-VdZ"/>
                                             <constraint firstItem="zBP-4s-CRv" firstAttribute="leading" secondItem="6p8-VZ-uS6" secondAttribute="leading" id="YKE-Cq-50w"/>
+                                            <constraint firstItem="Kc4-uj-Ff0" firstAttribute="top" secondItem="MEm-BN-jsc" secondAttribute="bottom" constant="50" id="akv-2M-kjy"/>
                                             <constraint firstItem="zBP-4s-CRv" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="b4i-mh-Fku"/>
+                                            <constraint firstAttribute="trailing" secondItem="Kc4-uj-Ff0" secondAttribute="trailing" id="dt0-Hu-nZi"/>
                                             <constraint firstItem="50r-VJ-2at" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" constant="8" id="hhA-bK-nPx"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="centerY" secondItem="OY0-BU-4DW" secondAttribute="centerY" multiplier="1.725" id="kpv-54-zco"/>
                                             <constraint firstAttribute="bottom" secondItem="zBP-4s-CRv" secondAttribute="bottom" id="pFJ-mx-KEW"/>
                                             <constraint firstAttribute="trailing" secondItem="50r-VJ-2at" secondAttribute="trailing" constant="4" id="sAk-Uz-ATw"/>
                                             <constraint firstItem="nfF-TH-thi" firstAttribute="centerX" secondItem="OY0-BU-4DW" secondAttribute="centerX" id="tZ9-iB-4og"/>
+                                            <constraint firstItem="Kc4-uj-Ff0" firstAttribute="leading" secondItem="zBP-4s-CRv" secondAttribute="trailing" id="uLW-eg-LWx"/>
                                             <constraint firstItem="OY0-BU-4DW" firstAttribute="top" secondItem="6p8-VZ-uS6" secondAttribute="top" id="z4e-a4-Ooa"/>
                                         </constraints>
                                     </view>
@@ -482,6 +486,7 @@
                             <outlet property="notificationTitleLabel" destination="mbb-Pe-cha" id="kpW-uW-SJv"/>
                             <outlet property="playAndResumeButton" destination="b62-zP-vQn" id="beV-rt-mUl"/>
                             <outlet property="recordButton" destination="dY8-lg-rNX" id="GC0-Jn-BFk"/>
+                            <outlet property="showDrumVCButton" destination="Kc4-uj-Ff0" id="1if-kk-idT"/>
                             <outlet property="startRecordTextField" destination="jB8-Oy-R7W" id="gid-Wm-QaH"/>
                             <outlet property="stopButton" destination="Hbe-Ch-yZb" id="Ubs-NR-Dx3"/>
                             <outlet property="stopRecordTextField" destination="nNM-Cz-rKi" id="MtR-nD-gB4"/>
@@ -519,7 +524,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NVh-Bp-UzP" customClass="PlugInView" customModule="HLDDStudio" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="82" width="414" height="780"/>
                                 <subviews>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y4Z-oV-O0U">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="y4Z-oV-O0U">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="780"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableView>

@@ -11,7 +11,7 @@ import UIKit
 private enum STColor: String {
     
     // swiftlint:disable identifier_name
-    case B1
+    case B1 = "0b0d12"
     
     case B2
     
@@ -25,9 +25,9 @@ private enum STColor: String {
     
     case G1
     // swiftlint:enable identifier_name
-    case pickerViewCoponemtBackground 
+    case pickerViewCoponemtBackground
     
-    case pickerViewBackground = "gray"
+    case pickerViewBackground = "darkGray"
 }
 
 extension UIColor {
@@ -46,7 +46,7 @@ extension UIColor {
     
     private static func STColor(_ color: STColor) -> UIColor? {
         
-        return UIColor(named: color.rawValue)
+        return UIColor.hexStringToUIColor(hex: color.rawValue)
     }
     
     static func hexStringToUIColor(hex: String) -> UIColor {

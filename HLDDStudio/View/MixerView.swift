@@ -315,29 +315,16 @@ extension MixerView: UIPickerViewDataSource {
         }
     }
     
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//
-//        switch pickerView{
-//        case inputPicker:
-//            guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
-//            return inputDeviceNameArr[row]
-//        case tempoPicker:
-//            return "\(tempoArr[row])"
-//        case startBarPicker:
-//            return "\(barArr[row])"
-//        case stopBarPicker:
-//            return "\(barArr[row])"
-//        default:
-//            return nil
-//        }
-//    }
-    
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        pickerView.backgroundColor = UIColor.darkGray
+        pickerView.backgroundColor = UIColor.B1
         let pickerLabel = UILabel()
         pickerLabel.textColor = UIColor.white
         pickerLabel.textAlignment = NSTextAlignment.center
-        pickerLabel.backgroundColor = .gray
+        
+        let image = UIImageView.init(image: UIImage.asset(.BarStatusView))
+        
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
         switch pickerView{
         case inputPicker:
             guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
@@ -352,7 +339,8 @@ extension MixerView: UIPickerViewDataSource {
         default:
             break
         }
-        return pickerLabel
+        
+        return image
     }
 
 

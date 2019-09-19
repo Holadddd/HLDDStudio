@@ -50,6 +50,12 @@ enum ImageAsset: String {
     case PlugInBackgroundView8
     
     case PowerSwitchIcon
+    
+    case BarStatusView
+    
+    case PickButton
+    
+    case DownButton
 }
 
 // swiftlint:enable identifier_name

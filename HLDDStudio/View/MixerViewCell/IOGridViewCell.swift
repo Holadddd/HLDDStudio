@@ -135,14 +135,20 @@ extension IOGridViewCell: UIPickerViewDataSource {
 //    }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        pickerView.backgroundColor = .darkGray
-        guard let arr = datasource?.inputSource() else { fatalError() }
+        pickerView.backgroundColor = UIColor.B1
+        
         let pickerLabel = UILabel()
         pickerLabel.textColor = UIColor.white
         pickerLabel.textAlignment = NSTextAlignment.center
-        pickerLabel.backgroundColor = .gray
+        
+        let image = UIImageView.init(image: UIImage.asset(.BarStatusView))
+        image.clipsToBounds = true
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
+        
+        guard let arr = datasource?.inputSource() else { fatalError() }
         pickerLabel.text = arr[row]
-        return pickerLabel
+        return image
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

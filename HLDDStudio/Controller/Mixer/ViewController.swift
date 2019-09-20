@@ -134,12 +134,14 @@ class ViewController: UIViewController {
     
     @objc func notificationTitleChange(_ notification: Notification){
         DispatchQueue.main.async {
+            MixerManger.manger.title(with: .HLDDStudio)
             self.mixerView.notificationTitleLabel.text = MixerManger.manger.titleContent
         }
     }
 
     @objc func notificationSubTitleChange(_ notification: Notification){
         DispatchQueue.main.async {
+            MixerManger.manger.title(with: .HLDDStudio)
             self.mixerView.notificationSubTitleLabel.text = MixerManger.manger.subTitleContent
         }
     }
@@ -161,6 +163,7 @@ extension ViewController: MixerDelegate {
                 switch result {
                 case .success():
                     print("Set \(device.deviceID) As InputDevice")
+                    MixerManger.manger.title(with: .HLDDStudio)
                     MixerManger.manger.subTitleContent = "Selected \(device.deviceID) As Input Device"
                     try? AudioKit.setInputDevice(device)
                 case .failure(let error):

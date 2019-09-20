@@ -79,9 +79,17 @@ class MixerView: UIView {
             
             inputPicker.dataSource = self
             
+            
+            
             inputDeviceTextField.inputView = inputPicker
             
             inputDeviceButton.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
+            
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 28, height: 28))
+            
+            view.isUserInteractionEnabled = false
+            
+            view.addSubview(inputDeviceButton)
             
             inputDeviceButton.setBackgroundImage(
                 UIImage.asset(.DeviceInput4),
@@ -93,14 +101,16 @@ class MixerView: UIView {
             )
             
             inputDeviceButton.isUserInteractionEnabled = false
+            
             inputDeviceButton.tintColor = .blue
             
-            inputDeviceTextField.leftView = inputDeviceButton
+            inputDeviceTextField.leftView = view
             
             inputDeviceTextField.leftViewMode = .always
             
-            inputDeviceTextField.delegate = self
             
+            
+            inputDeviceTextField.delegate = self
         }
         
     }

@@ -35,9 +35,10 @@ class IOGridViewCell: GridViewCell {
     
     let inputSourceButton = UIButton(type: .custom)
     
+    let inputPicker = UIPickerView()
+    
     @IBOutlet weak var inputSourceTextField: UITextField! {
         didSet {
-            let inputPicker = UIPickerView()
             
             inputPicker.delegate = self
             
@@ -45,7 +46,7 @@ class IOGridViewCell: GridViewCell {
             
             inputSourceTextField.inputView = inputPicker
             
-            inputSourceButton.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            inputSourceButton.frame = CGRect(x: 0, y: 0, width: inputSourceTextField.frame.width, height: inputSourceTextField.frame.height)
             
             inputSourceButton.setBackgroundImage(
                 UIImage.asset(.NodeInputIconNormal),
@@ -59,12 +60,18 @@ class IOGridViewCell: GridViewCell {
             
             inputSourceButton.isUserInteractionEnabled = false
             
-            inputSourceTextField.rightView = inputSourceButton
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: inputSourceTextField.frame.width, height: inputSourceTextField.frame.height))
             
-            inputSourceTextField.rightViewMode = .always
+            view.addSubview(inputSourceButton)
+            
+            view.isUserInteractionEnabled = false
+            
+            inputSourceTextField.leftView = view
+            
+            inputSourceTextField.leftViewMode = .always
             
             inputSourceTextField.delegate = self
-            
+            print("touch")
         }
     }
    

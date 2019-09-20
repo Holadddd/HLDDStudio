@@ -7,7 +7,7 @@ target 'HLDDStudio' do
 
   # Pods for HLDDStudio
 
-  pod 'AudioKit/Core', '4.8'
+  pod 'AudioKit/Core'
   pod 'G3GridView'
   pod 'IQKeyboardManager'
   pod 'MarqueeLabel'

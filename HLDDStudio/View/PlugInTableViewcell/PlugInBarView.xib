@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,23 +18,25 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="67"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmQ-jZ-wyX">
-                    <rect key="frame" x="12" y="10" width="103.5" height="30"/>
-                    <nil key="textColor"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="acY-N1-SK0">
+                    <rect key="frame" x="-41.5" y="15.5" width="497" height="80"/>
+                </imageView>
+                <textField hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mmQ-jZ-wyX">
+                    <rect key="frame" x="12" y="16.5" width="103.5" height="34"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uoV-kl-pOK">
-                    <rect key="frame" x="298.5" y="10" width="103.5" height="30"/>
+                    <rect key="frame" x="298.5" y="18.5" width="103.5" height="30"/>
                     <state key="normal" title="Bypass"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pm-w8-xsY">
-                    <rect key="frame" x="124" y="14.5" width="166" height="21"/>
+                    <rect key="frame" x="124" y="23" width="166" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -44,17 +44,24 @@
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="uoV-kl-pOK" secondAttribute="trailing" constant="12" id="8sb-9d-8H4"/>
                 <constraint firstItem="mmQ-jZ-wyX" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="C1U-j3-uSm"/>
+                <constraint firstItem="acY-N1-SK0" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="C6B-SL-zQv"/>
                 <constraint firstItem="3pm-w8-xsY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="IT1-ON-7cl"/>
                 <constraint firstItem="mmQ-jZ-wyX" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.25" id="Kee-X0-6fa"/>
+                <constraint firstItem="acY-N1-SK0" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="1.2" id="Mwk-JZ-90Q"/>
                 <constraint firstItem="uoV-kl-pOK" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Que-mq-9RT"/>
                 <constraint firstItem="3pm-w8-xsY" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.4" id="UBb-38-FyZ"/>
                 <constraint firstItem="uoV-kl-pOK" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.25" id="bBW-Pt-NGM"/>
+                <constraint firstItem="acY-N1-SK0" firstAttribute="height" relation="greaterThanOrEqual" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="1.2" id="c8S-GS-cNd"/>
+                <constraint firstItem="acY-N1-SK0" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="elq-op-NUC"/>
                 <constraint firstItem="3pm-w8-xsY" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="fOg-RJ-L0G"/>
                 <constraint firstItem="mmQ-jZ-wyX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="12" id="yQz-fM-V1C"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="47.826086956521742" y="318.08035714285711"/>
+            <point key="canvasLocation" x="47.826086956521742" y="312.38839285714283"/>
         </view>
     </objects>
+    <resources>
+        <image name="BarStatusView" width="164" height="52"/>
+    </resources>
 </document>

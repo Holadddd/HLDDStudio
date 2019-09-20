@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AudioKit
 
+
 class PlugInView: UIView {
     
     @IBOutlet weak var tableView: UITableView!
@@ -17,8 +18,9 @@ class PlugInView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
-        
+        tableView.register(PlugInGuitarProcessorTableViewCell.nib, forCellReuseIdentifier: "PlugInGuitarProcessorTableViewCell")
+        tableView.register(PlugInDelayTableViewCell.nib, forCellReuseIdentifier: "PlugInDelayTableViewCell")
+        tableView.register(PlugInChorusTableViewCell.nib, forCellReuseIdentifier: "PlugInChorusTableViewCell")
     }
     
-
 }

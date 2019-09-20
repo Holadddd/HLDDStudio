@@ -10,5 +10,7 @@ target 'HLDDStudio' do
   pod 'AudioKit/Core'
   pod 'G3GridView'
   pod 'IQKeyboardManager'
+  pod 'MarqueeLabel'
+  pod 'SwipeCellKit'
   
 end

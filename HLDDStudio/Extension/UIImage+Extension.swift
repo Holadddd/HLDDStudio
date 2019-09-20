@@ -30,11 +30,40 @@ enum ImageAsset: String {
     //Save Star
     case ic_star_border_24px
     case ic_star_filled_24px
+    
+    case JackAudioInput
+    case DeviceInput1
+    case DeviceInput2
+    case DeviceInput3
+    case DeviceInput4
+    
+    case NodeInputIconNormal
+    case NodeInputIconSelected
+    
+    case PlugInBackgroundView1
+    case PlugInBackgroundView2
+    case PlugInBackgroundView3
+    case PlugInBackgroundView4
+    case PlugInBackgroundView5
+    case PlugInBackgroundView6
+    case PlugInBackgroundView7
+    case PlugInBackgroundView8
+    
+    case PowerSwitchIcon
+    
+    case BarStatusView
+    
+    case PickButton
+    
+    case DownButton
+    
+    case StatusBarLayerView
 }
 
 // swiftlint:enable identifier_name
 
 extension UIImage {
+    
     
     static func asset(_ asset: ImageAsset) -> UIImage? {
         

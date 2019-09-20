@@ -79,8 +79,6 @@ class MixerView: UIView {
             
             inputPicker.dataSource = self
             
-            
-            
             inputDeviceTextField.inputView = inputPicker
             
             inputDeviceButton.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
@@ -108,8 +106,6 @@ class MixerView: UIView {
             inputDeviceTextField.leftView = view
             
             inputDeviceTextField.leftViewMode = .always
-            
-            
             
             inputDeviceTextField.delegate = self
         }
@@ -353,8 +349,7 @@ extension MixerView: UIPickerViewDataSource {
         
         return image
     }
-
-
+    
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         switch pickerView{
@@ -485,6 +480,7 @@ extension MixerView {
     @objc func showDrumVCButtonAction(_ sender:Any) {
         delegate?.showDrumVC()
     }
+    
 }
 
 extension MixerView: HLDDRedFaderDelegate {
@@ -496,7 +492,5 @@ extension MixerView: HLDDRedFaderDelegate {
     func redFaderIsTouching(bool: Bool, fader: RedFader) {
         
     }
-    
-    
     
 }

@@ -38,9 +38,11 @@ class PlugInChorusTableViewCell: UITableViewCell, HLDDKnobDelegate {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        
         // Initialization code
         plugInBarView.delegate = self
         plugInBarView.datasource = self
+        
         //set feedbackKnob
         feedbackKnob.delegate = self
         feedbackKnob.maximumValue = 0.95
@@ -64,7 +66,6 @@ class PlugInChorusTableViewCell: UITableViewCell, HLDDKnobDelegate {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

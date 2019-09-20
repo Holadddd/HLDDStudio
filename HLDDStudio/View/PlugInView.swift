@@ -23,5 +23,4 @@ class PlugInView: UIView {
         tableView.register(PlugInChorusTableViewCell.nib, forCellReuseIdentifier: "PlugInChorusTableViewCell")
     }
     
-
 }

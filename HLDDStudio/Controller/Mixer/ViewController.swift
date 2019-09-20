@@ -128,8 +128,6 @@ class ViewController: UIViewController {
         PlugInCreater.shared.resetTrack(track: track)
         mixer.connect(input: PlugInCreater.shared.plugInOntruck[track - 1].node, bus: track)
         try? AudioKit.start()
-
-        
     }
     
     @objc func notificationTitleChange(_ notification: Notification){
@@ -396,7 +394,6 @@ extension ViewController: MixerDelegate {
         
         let recorderStartTimeSec = oneBarTime * start - processTime.toSeconds(hostTime: processTime.hostTime)
         
-
         DispatchQueue.main.async {
             try? self.recorder.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
                 guard let strongSelf = self  else{ fatalError() }
@@ -500,7 +497,7 @@ extension ViewController: MixerDatasource {
 extension ViewController: GridViewStopScrollingWhileUIKitIsTouchingDelegate {
     
     func isInteractWithUser(bool: Bool) {
-        //mixerView.trackGridView.isPagingEnabled = bool
+        
     }
     
 }
@@ -567,8 +564,6 @@ extension ViewController: GridViewDataSource {
 
 extension ViewController: PlugInGridViewCellDelegate {
     
-    
-
     func bypassPlugin(atRow row: Int, Column column: Int) {
         
         try? AudioKit.stop()
@@ -615,7 +610,6 @@ extension ViewController: PlugInGridViewCellDelegate {
         
     }
     
-    
     func perforPlugInVC(forTrack column: Int) {
   
         PlugInCreater.shared.showingTrackOnPlugInVC = column
@@ -635,80 +629,27 @@ extension ViewController: FaderGridViewCellDelegate {
     func pannerValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
         PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busPanner.pan = value
-//        switch cell.indexPath.column {
-//        case 0:
-//            bus1Panner.pan = value
-//            PlugInCreater.shared.plugInOntruck[0].pan = value
-//        case 1:
-//            bus2Panner.pan = value
-//            PlugInCreater.shared.plugInOntruck[1].pan = value
-//        default:
-//            print("No Such Column")
-//        }
     }
     
     func lowEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
         PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busLowEQ.gain = value
-//        switch cell.indexPath.column {
-//        case 0:
-//            bus1LowEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[0].low = value
-//        case 1:
-//            bus2LowEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[1].low = value
-//        default:
-//            print("No Such Column")
-//        }
     }
     
     func midEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
         PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busMidEQ.gain = value
-//        switch cell.indexPath.column {
-//        case 0:
-//            bus1MidEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[0].mid = value
-//        case 1:
-//            bus2MidEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[1].mid = value
-//        default:
-//            print("No Such Column")
-//        }
     }
     
     func highEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
         PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busHighEQ.gain = value
-//        switch cell.indexPath.column {
-//        case 0:
-//            bus1HighEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[0].high = value
-//        case 1:
-//            bus2HighEQ.gain = value
-//            PlugInCreater.shared.plugInOntruck[1].high = value
-//        default:
-//            print("No Such Column")
-//        }
     }
     
     func volumeChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
         PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busBooster.gain = value
-//        switch cell.indexPath.column {
-//        case 0:
-//            bus1Booster.gain = value
-//            PlugInCreater.shared.plugInOntruck[0].volume = value
-//        case 1:
-//            bus2Booster.gain = value
-//            PlugInCreater.shared.plugInOntruck[1].volume = value
-//        default:
-//            print("No Such Column")
-//        }
     }
-    
-    
-    
 }
 
 extension ViewController: IOGridViewCellDelegate {

@@ -368,7 +368,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="747"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodStickView2" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-4s-CRv">
-                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747.00000000000364"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="5" id="o36-aH-z4U"/>
                                                 </constraints>

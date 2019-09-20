@@ -85,11 +85,7 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return reverbFactory.count
     }
-    
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        return reverbFactory[row]
-//    }
-    
+ 
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
         pickerView.backgroundColor = UIColor.B1
         

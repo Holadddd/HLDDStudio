@@ -58,7 +58,6 @@ extension PlugInViewController: UITableViewDataSource{
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
             //defauld factory
-            
             cell.factoryTextField.text = reverb.factory
             cell.dryWetMixLabel.text = String(format: "%.2f", reverb.dryWetMix)
             cell.dryWetMixKnob.value = Float(reverb.dryWetMix)

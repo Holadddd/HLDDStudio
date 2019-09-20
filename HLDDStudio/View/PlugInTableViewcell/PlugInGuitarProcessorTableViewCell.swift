@@ -36,6 +36,7 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
         super.awakeFromNib()
         plugInBarView.delegate = self
         plugInBarView.datasource = self
+        
         //set preGainKnob
         preGainKnob.delegate = self
         preGainKnob.maximumValue = 10
@@ -45,7 +46,6 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
         disKnob.delegate = self
         disKnob.maximumValue = 1
         disKnob.minimumValue = 0
-        
         
         //set outputKnob
         outputKnob.delegate = self
@@ -57,7 +57,6 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
         // Configure the view for the selected state
     }
     

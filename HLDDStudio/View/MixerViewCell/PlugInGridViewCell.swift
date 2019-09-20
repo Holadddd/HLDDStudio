@@ -34,6 +34,7 @@ class PlugInGridViewCell: GridViewCell {
     
     let imageViewOne = UIImageView(image: UIImage.asset(.PlugInBackgroundView1))
     let imageViewTwo = UIImageView(image: UIImage.asset(.PlugInBackgroundView6))
+    
     static var nib: UINib {
         return UINib(nibName: "PlugInGridViewCell", bundle: Bundle(for: self))
     }
@@ -41,8 +42,6 @@ class PlugInGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         tableView.register(PlugInTableViewCell.nib, forCellReuseIdentifier: "PlugInTableViewCell")
-//        tableView.delegate = self
-//        tableView.dataSource = self
         tableView.bounces = false
         tableView.delegate = self
         tableView.dataSource = self
@@ -59,15 +58,11 @@ class PlugInGridViewCell: GridViewCell {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(PlugInGridViewCell.didUpdatePlugIn(_:)),
                                                name: .didUpdatePlugIn, object: nil)
-//        NotificationCenter.default.addObserver(self,
-//                                               selector: #selector(PlugInGridViewCell.didRemovePlugIn(_:)),
-//                                               name: .didRemovePlugIn, object: nil)
     }
     
     override func layoutIfNeeded() {
         super.layoutIfNeeded()
         imageViewTwo.frame = tableView.frame
-        //tableView.layoutIfNeeded()
     }
     
     @objc func didInsertPlugIn(_ notification: Notification){
@@ -83,11 +78,10 @@ class PlugInGridViewCell: GridViewCell {
         DispatchQueue.main.async {
             self.tableView.reloadData()
         }
+        
     }
     @objc func didRemovePlugIn(_ notification: Notification){
         //make animation
-        
-        print("didRemovePlugIn")
     }
 }
 
@@ -120,7 +114,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
         
         return 60
     }
-    //!!!!!!!
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         guard let gridCell = tableView.superview as? PlugInGridViewCell else { fatalError() }

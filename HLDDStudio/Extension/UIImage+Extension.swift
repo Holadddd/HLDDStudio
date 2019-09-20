@@ -56,6 +56,8 @@ enum ImageAsset: String {
     case PickButton
     
     case DownButton
+    
+    case StatusBarLayerView
 }
 
 // swiftlint:enable identifier_name

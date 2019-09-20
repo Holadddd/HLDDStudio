@@ -166,6 +166,7 @@ class PlugInCreater {
         PlugInCreater.shared.plugInOntruck[column].plugInArr.remove(at: seq)
         
         PlugInCreater.shared.resetTrackNode(Track: track)
+        PlugInCreater.shared.resetTrack(track: track)
     }
     
     func plugInBypass(_ track: Int, seq: Int) {

@@ -19,27 +19,7 @@ class ViewController: UIViewController {
     var bufferTime: Double = 2.0
     
     var mic: AKMicrophone!
-    
-    var bus1Panner: AKPanner!
-    
-    var bus1LowEQ: AKEqualizerFilter!
-    
-    var bus1MidEQ: AKEqualizerFilter!
-    
-    var bus1HighEQ: AKEqualizerFilter!
-    
-    var bus1Booster: AKBooster!
-    
-    var bus2Panner: AKPanner!
-    
-    var bus2LowEQ: AKEqualizerFilter!
-    
-    var bus2MidEQ: AKEqualizerFilter!
-    
-    var bus2HighEQ: AKEqualizerFilter!
-    
-    var bus2Booster: AKBooster!
-    
+
     var bar = 0
     
     var beat = 0
@@ -65,7 +45,7 @@ class ViewController: UIViewController {
     
     var recordFile: AKAudioFile!
     
-    var recordFileName: String = "HLDD"
+    var recordFileName: String = ""
     //var recordPlayer: AKPlayer!
 
     @IBOutlet var mixerView: MixerView!
@@ -129,6 +109,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
         
@@ -937,7 +918,6 @@ extension ViewController {
         
         PlugInCreater.shared.resetTrackNode(Track: column + 1)
         setTrackNode(track: column + 1)
-//        try? AudioKit.start()
     }
     
 }

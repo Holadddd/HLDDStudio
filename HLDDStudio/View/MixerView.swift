@@ -321,7 +321,7 @@ extension MixerView: UIPickerViewDataSource {
         pickerLabel.textColor = UIColor.white
         pickerLabel.textAlignment = NSTextAlignment.center
         
-        let image = UIImageView.init(image: UIImage.asset(.BarStatusView))
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
         
         pickerLabel.backgroundColor = .clear
         image.stickSubView(pickerLabel)

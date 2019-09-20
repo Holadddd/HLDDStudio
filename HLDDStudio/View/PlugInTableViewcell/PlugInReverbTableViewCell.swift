@@ -97,7 +97,7 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
         pickerLabel.textColor = UIColor.white
         pickerLabel.textAlignment = NSTextAlignment.center
         
-        let image = UIImageView.init(image: UIImage.asset(.BarStatusView))
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
         image.clipsToBounds = true
         pickerLabel.backgroundColor = .clear
         image.stickSubView(pickerLabel)

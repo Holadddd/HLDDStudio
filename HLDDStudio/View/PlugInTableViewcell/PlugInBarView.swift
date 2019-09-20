@@ -128,13 +128,13 @@ extension PlugInBarView: UIPickerViewDataSource {
 //    }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        pickerView.backgroundColor = UIColor.darkGray
+        pickerView.backgroundColor = UIColor.B1
         
         let pickerLabel = UILabel()
         pickerLabel.textColor = UIColor.white
         pickerLabel.textAlignment = NSTextAlignment.center
         
-        let image = UIImageView.init(image: UIImage.asset(.BarStatusView))
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
         image.clipsToBounds = true
         pickerLabel.backgroundColor = .clear
         image.stickSubView(pickerLabel)

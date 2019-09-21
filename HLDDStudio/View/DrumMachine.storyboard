@@ -21,34 +21,8 @@
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRy-ZV-TBW">
                                         <rect key="frame" x="0.0" y="0.0" width="124" height="66"/>
-                                        <subviews>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x1l-5l-lMN">
-                                                <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OCU-IM-j9p">
-                                                        <rect key="frame" x="0.0" y="0.0" width="21" height="21"/>
-                                                        <state key="normal" image="crop.rotate" catalog="system"/>
-                                                        <connections>
-                                                            <action selector="rotateButton:" destination="SUg-nn-uIE" eventType="touchUpInside" id="5Rt-YQ-QdO"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="OCU-IM-j9p" secondAttribute="bottom" id="05Z-XD-g0T"/>
-                                                    <constraint firstItem="OCU-IM-j9p" firstAttribute="top" secondItem="x1l-5l-lMN" secondAttribute="top" id="BLd-8s-MVb"/>
-                                                    <constraint firstAttribute="height" constant="21" id="FQb-S5-753"/>
-                                                    <constraint firstAttribute="trailing" secondItem="OCU-IM-j9p" secondAttribute="trailing" id="PAj-og-D9n"/>
-                                                    <constraint firstAttribute="width" constant="21" id="bO6-hy-fjT"/>
-                                                    <constraint firstItem="OCU-IM-j9p" firstAttribute="leading" secondItem="x1l-5l-lMN" secondAttribute="leading" id="nIj-QB-Sat"/>
-                                                </constraints>
-                                            </view>
-                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstItem="x1l-5l-lMN" firstAttribute="leading" secondItem="iRy-ZV-TBW" secondAttribute="leading" id="BL6-tg-dKM"/>
-                                            <constraint firstItem="x1l-5l-lMN" firstAttribute="top" secondItem="iRy-ZV-TBW" secondAttribute="top" id="o13-ex-bwL"/>
                                             <constraint firstAttribute="width" secondItem="iRy-ZV-TBW" secondAttribute="height" multiplier="15:8" id="pym-HW-E8Z"/>
                                         </constraints>
                                     </view>
@@ -76,7 +50,4 @@
             <point key="canvasLocation" x="-272.46376811594206" y="-12.053571428571429"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="crop.rotate" catalog="system" width="54" height="64"/>
-    </resources>
 </document>

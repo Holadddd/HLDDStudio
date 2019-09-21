@@ -13,12 +13,18 @@ class DrumMachineViewController: UIViewController {
     @IBAction func rotateButton(_ sender: UIButton) {
         switch sender.isSelected {
         case true:
-            AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight)
+            DispatchQueue.main.async {
+                AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight)
+            }
         case false:
-            AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+            DispatchQueue.main.async {
+                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+            }
         }
         sender.isSelected = !sender.isSelected
     }
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

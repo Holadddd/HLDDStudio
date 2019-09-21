@@ -52,6 +52,7 @@
 		01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */; };
 		01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */; };
 		01DC76792331F94100CA105E /* PlugInDelayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */; };
+		01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E736692335F58900B9582B /* DrumMachineManger.swift */; };
 		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
@@ -106,6 +107,7 @@
 		01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInGuitarProcessorTableViewCell.xib; sourceTree = "<group>"; };
 		01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInDelayTableViewCell.swift; sourceTree = "<group>"; };
 		01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInDelayTableViewCell.xib; sourceTree = "<group>"; };
+		01E736692335F58900B9582B /* DrumMachineManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineManger.swift; sourceTree = "<group>"; };
 		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
 		01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDRedFader.swift; sourceTree = "<group>"; };
 		01F16620232BCFD700F1C107 /* CustonIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustonIcon.swift; sourceTree = "<group>"; };
@@ -159,6 +161,7 @@
 				016F4D24232561B50027D507 /* ReverbSet.swift */,
 				016F4D272325F10A0027D507 /* PlugInManager.swift */,
 				016F4D2923264F0E0027D507 /* MixerManger.swift */,
+				01E736692335F58900B9582B /* DrumMachineManger.swift */,
 				010632182333687F00214672 /* FaderEqualizer+Panner.swift */,
 			);
 			path = Model;
@@ -439,6 +442,7 @@
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
+				01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,
 				0106321523335CC500214672 /* DrumMachineView.swift in Sources */,

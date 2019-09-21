@@ -409,10 +409,13 @@ extension MixerView: UITextFieldDelegate {
         case stopRecordTextField:
             print(stopRecordTextField.text!)
         case fileNameTextField:
+            var fileName = ""
             
-            guard textField.text != nil else{return}
+            if textField.text != nil {
+                guard let recordFileName = fileNameTextField.text else{fatalError()}
+                fileName = recordFileName
+            }
             
-            guard let fileName = fileNameTextField.text else{ fatalError()}
             delegate?.changeRecordFileName(fileName: fileName)
         default:
             return

@@ -17,16 +17,7 @@ import AudioKit
 class ViewController: UIViewController {
     
     var bufferTime: Double = 2.0
-    
-//    var mic: AKMicrophone!
 
-    
-
-    
-    
-    
-    
-    
     var filePlayer = AKPlayer()
     
     var filePlayerTwo = AKPlayer()
@@ -36,11 +27,9 @@ class ViewController: UIViewController {
     var firstTrackStatus = TrackInputStatus.noInput
     
     var secondTrackStatus = TrackInputStatus.noInput
-    
-    
-    
-    var cellTableView: [UITableView]?
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         //try? AudioKit.start()
@@ -377,7 +366,15 @@ extension ViewController: MixerDelegate {
                 guard let strongSelf = self  else{ fatalError() }
                 switch result {
                 case .clip(let clip):
+                    let date = Date()
+                    let dateFormatter = DateFormatter()
                     MixerManger.manger.metronome.stop()
+                    dateFormatter.dateFormat = "MM.dd HH:mm"
+                    
+                    if MixerManger.manger.recordFileName == "" {
+                        let dateString = dateFormatter.string(from: date)
+                        MixerManger.manger.recordFileName = dateString
+                    }
                     
                     do {
                         

@@ -19,23 +19,37 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-Xn-oTg">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iRy-ZV-TBW">
-                                        <rect key="frame" x="0.0" y="0.0" width="124" height="66"/>
-                                        <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qI0-0S-mjl">
+                                        <rect key="frame" x="4" y="4" width="20" height="20"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXM-ng-psd">
+                                                <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <state key="normal" image="crop.rotate" catalog="system"/>
+                                                <connections>
+                                                    <action selector="rotateButton:" destination="SUg-nn-uIE" eventType="touchUpInside" id="Dth-vu-gEB"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" secondItem="iRy-ZV-TBW" secondAttribute="height" multiplier="15:8" id="pym-HW-E8Z"/>
+                                            <constraint firstAttribute="height" constant="20" id="90C-HS-YBB"/>
+                                            <constraint firstAttribute="width" constant="20" id="C7c-OU-9E8"/>
+                                            <constraint firstAttribute="bottom" secondItem="hXM-ng-psd" secondAttribute="bottom" id="DdV-hP-IVH"/>
+                                            <constraint firstItem="hXM-ng-psd" firstAttribute="top" secondItem="qI0-0S-mjl" secondAttribute="top" id="aBm-ZV-wUk"/>
+                                            <constraint firstAttribute="trailing" secondItem="hXM-ng-psd" secondAttribute="trailing" id="eGl-Gu-nTl"/>
+                                            <constraint firstItem="hXM-ng-psd" firstAttribute="leading" secondItem="qI0-0S-mjl" secondAttribute="leading" id="gZ8-vB-wh7"/>
                                         </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="iRy-ZV-TBW" firstAttribute="width" secondItem="dVS-Xn-oTg" secondAttribute="width" multiplier="0.3" id="33a-aq-QNC"/>
-                                    <constraint firstItem="iRy-ZV-TBW" firstAttribute="top" secondItem="dVS-Xn-oTg" secondAttribute="top" id="BbN-kM-blZ"/>
-                                    <constraint firstItem="iRy-ZV-TBW" firstAttribute="leading" secondItem="dVS-Xn-oTg" secondAttribute="leading" id="csb-IT-HrL"/>
+                                    <constraint firstItem="qI0-0S-mjl" firstAttribute="leading" secondItem="dVS-Xn-oTg" secondAttribute="leading" constant="4" id="4fx-G9-OCd"/>
+                                    <constraint firstItem="qI0-0S-mjl" firstAttribute="top" secondItem="dVS-Xn-oTg" secondAttribute="top" constant="4" id="rr0-su-LzQ"/>
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dVS-Xn-oTg" firstAttribute="leading" secondItem="83v-cc-zYJ" secondAttribute="leading" id="4Mo-gV-CJJ"/>
                             <constraint firstItem="83v-cc-zYJ" firstAttribute="trailing" secondItem="dVS-Xn-oTg" secondAttribute="trailing" id="Xho-T9-8nY"/>
@@ -50,4 +64,7 @@
             <point key="canvasLocation" x="-272.46376811594206" y="-12.053571428571429"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="crop.rotate" catalog="system" width="54" height="64"/>
+    </resources>
 </document>

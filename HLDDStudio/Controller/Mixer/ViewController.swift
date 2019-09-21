@@ -369,7 +369,7 @@ extension ViewController: MixerDelegate {
                     let date = Date()
                     let dateFormatter = DateFormatter()
                     MixerManger.manger.metronome.stop()
-                    dateFormatter.dateFormat = "MM.dd HH:mm"
+                    dateFormatter.dateFormat = MixerManger.manger.recordFileDefaultDateNameFormatt
                     
                     if MixerManger.manger.recordFileName == "" {
                         let dateString = dateFormatter.string(from: date)

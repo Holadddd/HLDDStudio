@@ -132,7 +132,6 @@ class MixerManger {
             print("1")
             semaphore.signal()
         }
-        print("metronomeTime:\(DispatchTime.now())")
         DispatchQueue.main.async {
             self.beat += 1
             self.bar = Int(self.beat/4)

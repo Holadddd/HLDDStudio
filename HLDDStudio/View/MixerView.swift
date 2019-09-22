@@ -265,6 +265,7 @@ class MixerView: UIView {
         playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)
         recordButton.addTarget(self, action: #selector(MixerView.recordButtonAction), for: .touchUpInside)
         showDrumVCButton.addTarget(self, action: #selector(MixerView.showDrumVCButtonAction), for: .touchUpInside)
+        
         masterFader.delegate = self
         
         for tempo in 40...240 {

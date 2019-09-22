@@ -9,26 +9,15 @@
 import UIKit
 
 class DrumMachineViewController: UIViewController {
-
-    @IBAction func rotateButton(_ sender: UIButton) {
-        switch sender.isSelected {
-        case true:
-            DispatchQueue.main.async {
-                AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight)
-            }
-        case false:
-            DispatchQueue.main.async {
-                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-            }
-        }
-        sender.isSelected = !sender.isSelected
-    }
+    
+    @IBOutlet var drumMachineView: DrumMachineView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        drumMachineView.delegate = self
+        drumMachineView.datasource = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,5 +28,44 @@ class DrumMachineViewController: UIViewController {
     override func viewWillLayoutSubviews() {
         
     }
+   
+    
+}
+
+extension DrumMachineViewController: DrumMachineDelegate {
+    
+    func rotateDrumMachineView(isLandscapeRight: Bool) {
+        switch isLandscapeRight {
+        case true:
+            DispatchQueue.main.async {
+                AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight)
+            }
+        case false:
+            DispatchQueue.main.async {
+                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+            }
+        }
+    }
+    
+    func popDrumMachineView() {
+        print("popDrumMachineView")
+    }
+    
+    func playDrum() {
+        print("playDrum")
+    }
+    
+    func stopPlayingDrum() {
+        print("stopPlayingDrum")
+    }
+    
+    func savePattern(withName: String) {
+        print("savePattern")
+    }
+    
+    
+}
+
+extension DrumMachineViewController: DrumMachineDatasource {
     
 }

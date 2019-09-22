@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AudioKit
+import G3GridView
 
 protocol DrumMachineDelegate: AnyObject {
     func rotateDrumMachineView(isLandscapeRight: Bool)
@@ -36,6 +38,13 @@ class DrumMachineView: UIView {
     @IBOutlet weak var playAndStopButton: UIButton!
     
     @IBOutlet weak var saveButton: UIButton!
+    
+  
+    @IBOutlet weak var drumEditingGridView: GridView!
+    
+    @IBOutlet weak var barGridView: GridView!
+    
+    @IBOutlet weak var drumPatternGridView: GridView!
     
     weak var delegate: DrumMachineDelegate?
     

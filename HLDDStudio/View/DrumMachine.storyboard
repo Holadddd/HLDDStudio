@@ -129,15 +129,51 @@
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trl-4K-lAH">
                                         <rect key="frame" x="160" y="0.0" width="254" height="80"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rDj-4E-QCC" customClass="GridView" customModule="G3GridView">
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="80"/>
+                                                <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="bottom" secondItem="rDj-4E-QCC" secondAttribute="bottom" id="5fs-WE-Ms9"/>
+                                            <constraint firstAttribute="trailing" secondItem="rDj-4E-QCC" secondAttribute="trailing" id="LTM-9L-kTj"/>
+                                            <constraint firstItem="rDj-4E-QCC" firstAttribute="top" secondItem="trl-4K-lAH" secondAttribute="top" id="VnJ-4u-t18"/>
+                                            <constraint firstItem="rDj-4E-QCC" firstAttribute="leading" secondItem="trl-4K-lAH" secondAttribute="leading" id="W4B-Hs-bvE"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-qy-mq2">
                                         <rect key="frame" x="0.0" y="80" width="160" height="738"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LHG-6c-Eyu" customClass="GridView" customModule="G3GridView">
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="738"/>
+                                                <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803921568627" green="0.33725490196078434" blue="0.83921568627450982" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="LHG-6c-Eyu" firstAttribute="top" secondItem="M6a-qy-mq2" secondAttribute="top" id="DMC-jT-XoV"/>
+                                            <constraint firstAttribute="bottom" secondItem="LHG-6c-Eyu" secondAttribute="bottom" id="hIl-rS-1cJ"/>
+                                            <constraint firstItem="LHG-6c-Eyu" firstAttribute="leading" secondItem="M6a-qy-mq2" secondAttribute="leading" id="rev-Lq-oqK"/>
+                                            <constraint firstAttribute="trailing" secondItem="LHG-6c-Eyu" secondAttribute="trailing" id="tee-5p-mcy"/>
+                                        </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-U0-hOf">
                                         <rect key="frame" x="160" y="80" width="254" height="738"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="97j-w8-XwQ" customClass="GridView" customModule="G3GridView">
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="738"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            </view>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstItem="97j-w8-XwQ" firstAttribute="leading" secondItem="dQX-U0-hOf" secondAttribute="leading" id="AUO-xa-eiQ"/>
+                                            <constraint firstAttribute="trailing" secondItem="97j-w8-XwQ" secondAttribute="trailing" id="OlD-kY-1nZ"/>
+                                            <constraint firstAttribute="bottom" secondItem="97j-w8-XwQ" secondAttribute="bottom" id="VKl-L8-pat"/>
+                                            <constraint firstItem="97j-w8-XwQ" firstAttribute="top" secondItem="dQX-U0-hOf" secondAttribute="top" id="XBJ-2S-h6s"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -170,6 +206,9 @@
                         <viewLayoutGuide key="safeArea" id="83v-cc-zYJ"/>
                         <connections>
                             <outlet property="backButton" destination="08l-LB-qv5" id="Ra3-aq-S0u"/>
+                            <outlet property="barGridView" destination="rDj-4E-QCC" id="xKH-tQ-lmW"/>
+                            <outlet property="drumEditingGridView" destination="LHG-6c-Eyu" id="02i-9h-lkx"/>
+                            <outlet property="drumPatternGridView" destination="97j-w8-XwQ" id="tCx-Ho-V3c"/>
                             <outlet property="patternNameTextField" destination="S64-4u-z93" id="aN3-38-7Q5"/>
                             <outlet property="playAndStopButton" destination="bhT-2P-Y1I" id="a5n-Ey-BUk"/>
                             <outlet property="rotateButton" destination="hXM-ng-psd" id="BXi-YW-jtn"/>

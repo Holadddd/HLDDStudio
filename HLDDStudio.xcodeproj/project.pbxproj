@@ -20,6 +20,13 @@
 		010D7827232B73560099D76D /* GifEffect2.gif in Resources */ = {isa = PBXBuildFile; fileRef = 010D7826232B73560099D76D /* GifEffect2.gif */; };
 		010D7829232B74DA0099D76D /* GifEffect3.gif in Resources */ = {isa = PBXBuildFile; fileRef = 010D7828232B74DA0099D76D /* GifEffect3.gif */; };
 		01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01280F9723289E27004AF13C /* HLDDKnob.swift */; };
+		01371C192337C07900617A9D /* BarGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C182337C07900617A9D /* BarGridViewCell.swift */; };
+		01371C1B2337C13C00617A9D /* BarGirdViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01371C1A2337C13C00617A9D /* BarGirdViewCell.xib */; };
+		01371C1F2337C18300617A9D /* DrumEditingGridViewcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01371C1E2337C18300617A9D /* DrumEditingGridViewcell.xib */; };
+		01371C212337C1A600617A9D /* DrumEditingGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C202337C1A600617A9D /* DrumEditingGridViewCell.swift */; };
+		01371C232337C1D600617A9D /* DrumPatternGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */; };
+		01371C252337C1E600617A9D /* DrumPatternGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */; };
+		01371C272337C32000617A9D /* GridView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C262337C32000617A9D /* GridView+Extension.swift */; };
 		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
 		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
 		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
@@ -73,6 +80,13 @@
 		010D7826232B73560099D76D /* GifEffect2.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GifEffect2.gif; sourceTree = "<group>"; };
 		010D7828232B74DA0099D76D /* GifEffect3.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = GifEffect3.gif; sourceTree = "<group>"; };
 		01280F9723289E27004AF13C /* HLDDKnob.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDKnob.swift; sourceTree = "<group>"; };
+		01371C182337C07900617A9D /* BarGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarGridViewCell.swift; sourceTree = "<group>"; };
+		01371C1A2337C13C00617A9D /* BarGirdViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BarGirdViewCell.xib; sourceTree = "<group>"; };
+		01371C1E2337C18300617A9D /* DrumEditingGridViewcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumEditingGridViewcell.xib; sourceTree = "<group>"; };
+		01371C202337C1A600617A9D /* DrumEditingGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumEditingGridViewCell.swift; sourceTree = "<group>"; };
+		01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternGridViewCell.swift; sourceTree = "<group>"; };
+		01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternGridViewCell.xib; sourceTree = "<group>"; };
+		01371C262337C32000617A9D /* GridView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridView+Extension.swift"; sourceTree = "<group>"; };
 		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
 		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
@@ -155,6 +169,19 @@
 			path = GifEffects;
 			sourceTree = "<group>";
 		};
+		01371C172337BFA100617A9D /* DrumMachineGridViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				01371C202337C1A600617A9D /* DrumEditingGridViewCell.swift */,
+				01371C1E2337C18300617A9D /* DrumEditingGridViewcell.xib */,
+				01371C182337C07900617A9D /* BarGridViewCell.swift */,
+				01371C1A2337C13C00617A9D /* BarGirdViewCell.xib */,
+				01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */,
+				01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */,
+			);
+			path = DrumMachineGridViewCell;
+			sourceTree = "<group>";
+		};
 		016F4D26232561C10027D507 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -221,6 +248,7 @@
 				0179403A2325368F000DCFCB /* PlugInTableViewcell */,
 				0106321423335CC500214672 /* DrumMachineView.swift */,
 				0106320E23335B5D00214672 /* DrumMachine.storyboard */,
+				01371C172337BFA100617A9D /* DrumMachineGridViewCell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -247,6 +275,7 @@
 				010D781D231652EA0099D76D /* GestureManager.swift */,
 				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
 				0106320C2333584D00214672 /* UIColor+Extension.swift */,
+				01371C262337C32000617A9D /* GridView+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -371,7 +400,10 @@
 				0171722D232390B200049F3B /* IOGridViewCell.xib in Resources */,
 				01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */,
 				0106320F23335B5D00214672 /* DrumMachine.storyboard in Resources */,
+				01371C1B2337C13C00617A9D /* BarGirdViewCell.xib in Resources */,
+				01371C252337C1E600617A9D /* DrumPatternGridViewCell.xib in Resources */,
 				0171721A232380DB00049F3B /* LaunchScreen.storyboard in Resources */,
+				01371C1F2337C18300617A9D /* DrumEditingGridViewcell.xib in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
 				01717212232380D900049F3B /* Main.storyboard in Resources */,
@@ -435,6 +467,8 @@
 				016F4D25232561B50027D507 /* ReverbSet.swift in Sources */,
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
 				0106321323335C4200214672 /* DrumMachineViewController.swift in Sources */,
+				01371C232337C1D600617A9D /* DrumPatternGridViewCell.swift in Sources */,
+				01371C192337C07900617A9D /* BarGridViewCell.swift in Sources */,
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
 				010D7820231681690099D76D /* HLDDFader.swift in Sources */,
 				01DC76742331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift in Sources */,
@@ -444,6 +478,8 @@
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
 				01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
+				01371C212337C1A600617A9D /* DrumEditingGridViewCell.swift in Sources */,
+				01371C272337C32000617A9D /* GridView+Extension.swift in Sources */,
 				0171720D232380D900049F3B /* AppDelegate.swift in Sources */,
 				0106321523335CC500214672 /* DrumMachineView.swift in Sources */,
 				010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */,

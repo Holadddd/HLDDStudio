@@ -58,6 +58,7 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GAManager.createNormalScreenEventWith(.Mixer)
+        FirebaseManager.createEventWith(category: .ViewController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         MixerManger.manger.title(with: .HLDDStudio)
@@ -204,6 +205,7 @@ extension ViewController: MixerDelegate {
     func playingAudioPlayer() {
         
         GAManager.createNormalEventWith(category: .ViewController, action: .PlayAudio, label: .UsersEvent, value: .one)
+        FirebaseManager.createEventWith(category: .ViewController, action: .PlayAudio, label: .UsersEvent, value: .one)
         if MixerManger.manger.firstTrackStatus == .noInput && MixerManger.manger.secondTrackStatus == .noInput {
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitle(with: .noFileOrInputSource)
@@ -317,6 +319,8 @@ extension ViewController: MixerDelegate {
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
         GAManager.createNormalEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
+        FirebaseManager.createEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
+        
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         filePlayer.prepare()
         filePlayer.preroll()

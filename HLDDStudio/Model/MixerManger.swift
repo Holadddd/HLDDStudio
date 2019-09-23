@@ -52,6 +52,8 @@ enum MixerMangerSubTilte {
     case checkInputSource
     
     case noFileOrInputSource
+    
+    case barWarning
 }
 
 enum MixerError: Error{
@@ -172,6 +174,8 @@ class MixerManger {
             MixerManger.manger.subTitleContent = "Check Input Source Before Recording."
         case .noFileOrInputSource:
             MixerManger.manger.subTitleContent = "No File Is Playing."
+        case .barWarning:
+            MixerManger.manger.subTitleContent = "Starting Bar Should Less Or Equal Than Ending Bar."
         }
     }
 }

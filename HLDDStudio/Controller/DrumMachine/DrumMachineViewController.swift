@@ -37,6 +37,8 @@ class DrumMachineViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         GAManager.createNormalScreenEventWith(.DrumMachine)
+        FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
+        
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
     
@@ -44,7 +46,6 @@ class DrumMachineViewController: UIViewController {
         
     }
    
-    
 }
 
 extension DrumMachineViewController: DrumMachineDelegate {

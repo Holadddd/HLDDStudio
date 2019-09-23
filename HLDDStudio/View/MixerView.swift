@@ -462,6 +462,11 @@ extension MixerView {
                 guard let start = Int(startString) else { return }
                 guard let stop = Int(stopString) else { return }
                 //if not trigger show in notification
+                if start >= stop {
+                    MixerManger.manger.title(with: .recordWarning)
+                    MixerManger.manger.subTitle(with: .barWarning)
+                    return
+                }
                 self.delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
                 
             case true:

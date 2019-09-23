@@ -13,5 +13,11 @@ target 'HLDDStudio' do
   pod 'MarqueeLabel'
   pod 'SwipeCellKit'
   pod 'GoogleAnalytics'
+  pod 'Firebase/Core'
+  pod 'Firebase/Analytics'
+  pod 'Crashlytics'
   
 end
+
+
+

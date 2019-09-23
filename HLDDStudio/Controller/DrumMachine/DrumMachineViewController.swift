@@ -36,6 +36,7 @@ class DrumMachineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GAManager.createNormalScreenEventWith(.DrumMachine)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
     

@@ -50,6 +50,8 @@ enum MixerMangerSubTilte {
     case metronomeIsOff
     
     case checkInputSource
+    
+    case noFileOrInputSource
 }
 
 enum MixerError: Error{
@@ -80,6 +82,10 @@ class MixerManger {
     var metronomeBooster: AKBooster!
     
     var metronomeStartTime:AVAudioTime = AVAudioTime.now()
+    
+    var firstTrackStatus = TrackInputStatus.noInput
+    
+    var secondTrackStatus = TrackInputStatus.noInput
     
     var mic: AKMicrophone!
 
@@ -163,7 +169,9 @@ class MixerManger {
         case .metronomeIsOff:
             MixerManger.manger.subTitleContent = "Metronome Is Off."
         case .checkInputSource:
-            MixerManger.manger.subTitleContent = "Check Input Source."
+            MixerManger.manger.subTitleContent = "Check Input Source Before Recording."
+        case .noFileOrInputSource:
+            MixerManger.manger.subTitleContent = "No File Is Playing."
         }
     }
 }

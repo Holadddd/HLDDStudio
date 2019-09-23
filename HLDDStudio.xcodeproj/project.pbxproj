@@ -27,6 +27,9 @@
 		01371C232337C1D600617A9D /* DrumPatternGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */; };
 		01371C252337C1E600617A9D /* DrumPatternGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */; };
 		01371C272337C32000617A9D /* GridView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C262337C32000617A9D /* GridView+Extension.swift */; };
+		01371C2C23389AFD00617A9D /* GAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C2B23389AFD00617A9D /* GAManager.swift */; };
+		01371C2E23389D1100617A9D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01371C2D23389D1100617A9D /* GoogleService-Info.plist */; };
+		01371C352338D20700617A9D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C342338D20700617A9D /* FirebaseManager.swift */; };
 		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
 		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
 		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
@@ -87,6 +90,10 @@
 		01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternGridViewCell.swift; sourceTree = "<group>"; };
 		01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternGridViewCell.xib; sourceTree = "<group>"; };
 		01371C262337C32000617A9D /* GridView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridView+Extension.swift"; sourceTree = "<group>"; };
+		01371C2B23389AFD00617A9D /* GAManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAManager.swift; sourceTree = "<group>"; };
+		01371C2D23389D1100617A9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		01371C302338ACE600617A9D /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = HLDDStudio/BridgingHeader.h; sourceTree = "<group>"; };
+		01371C342338D20700617A9D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
 		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
@@ -198,6 +205,7 @@
 			isa = PBXGroup;
 			children = (
 				0171720B232380D900049F3B /* HLDDStudio */,
+				01371C302338ACE600617A9D /* BridgingHeader.h */,
 				0171720A232380D900049F3B /* Products */,
 				E74390EB015D20E17D329B98 /* Pods */,
 				FBC3863B548245343EED54AB /* Frameworks */,
@@ -225,6 +233,7 @@
 				017172262323896000049F3B /* LaunchView */,
 				0171721B232380DB00049F3B /* Info.plist */,
 				01717213232380D900049F3B /* HLDDStudio.xcdatamodeld */,
+				01371C2D23389D1100617A9D /* GoogleService-Info.plist */,
 			);
 			path = HLDDStudio;
 			sourceTree = "<group>";
@@ -276,6 +285,8 @@
 				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
 				0106320C2333584D00214672 /* UIColor+Extension.swift */,
 				01371C262337C32000617A9D /* GridView+Extension.swift */,
+				01371C2B23389AFD00617A9D /* GAManager.swift */,
+				01371C342338D20700617A9D /* FirebaseManager.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -341,6 +352,7 @@
 				01717206232380D900049F3B /* Frameworks */,
 				01717207232380D900049F3B /* Resources */,
 				4ADCC82AF3D2B7384BBA74E8 /* [CP] Embed Pods Frameworks */,
+				01371C322338C9FA00617A9D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -406,6 +418,7 @@
 				01371C1F2337C18300617A9D /* DrumEditingGridViewcell.xib in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
+				01371C2E23389D1100617A9D /* GoogleService-Info.plist in Resources */,
 				01717212232380D900049F3B /* Main.storyboard in Resources */,
 				015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */,
 			);
@@ -414,6 +427,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		01371C322338C9FA00617A9D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\"\n";
+		};
 		4ADCC82AF3D2B7384BBA74E8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -460,6 +490,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				01371C352338D20700617A9D /* FirebaseManager.swift in Sources */,
 				01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */,
 				010632172333622800214672 /* UIStoryboard+Extension.swift in Sources */,
 				017172352323993800049F3B /* PlugInTableViewCell.swift in Sources */,
@@ -491,6 +522,7 @@
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,
+				01371C2C23389AFD00617A9D /* GAManager.swift in Sources */,
 				0179403623251236000DCFCB /* PlugInViewController.swift in Sources */,
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,
@@ -644,6 +676,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
 				INFOPLIST_FILE = HLDDStudio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -653,6 +686,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/wu1221/HLDDStudio/HLDDStudio/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -664,6 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
 				INFOPLIST_FILE = HLDDStudio/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
@@ -673,6 +708,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = /Users/wu1221/HLDDStudio/HLDDStudio/BridgingHeader.h;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

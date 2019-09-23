@@ -438,6 +438,8 @@ extension MixerView {
     }
     
     @objc func playAndResumeButtonAction() {
+        
+        
         playAndResumeButton.isSelected = !playAndResumeButton.isSelected
         switch playAndResumeButton.isSelected {
         case true:
@@ -448,13 +450,8 @@ extension MixerView {
     }
     
     @objc func recordButtonAction() {
-        guard let inputStatus = datasource?.trackInputStatusIsReadyForRecord() else { fatalError()}
-        if !inputStatus {
-            print("Check Input Source.")
-            MixerManger.manger.title(with: .recordWarning)
-            MixerManger.manger.subTitle(with: .checkInputSource)
-            return
-        }
+        
+        guard  datasource?.trackInputStatusIsReadyForRecord() == true else { return }
         
         DispatchQueue.main.async {
             switch self.recordButton.isSelected {

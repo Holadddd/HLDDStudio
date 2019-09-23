@@ -11,8 +11,8 @@ import Foundation
 import G3GridView
 import AVKit
 import AudioKit
-
-
+import Firebase
+import Crashlytics
 
 class ViewController: UIViewController {
     
@@ -23,31 +23,16 @@ class ViewController: UIViewController {
     var filePlayerTwo = AKPlayer()
 
     @IBOutlet var mixerView: MixerView!
-    
-    var firstTrackStatus = TrackInputStatus.noInput
-    
-    var secondTrackStatus = TrackInputStatus.noInput
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        //try? AudioKit.start()
-        // Do any additional setup after loading the view.
+        
         mixerView.delegate = self
         mixerView.datasource = self
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
 
-        //metronomeSetting
-//        MixerManger.manger.metronome.callback = MixerManger.manger.metronomeCallBack
-        
         MixerManger.manger.metronomeBooster.gain = 0
-        
-        //SetRecorderAndGiveItDefaultFile
-//        recorder = AKClipRecorder(node: MixerManger.manger.mixer)
-//        recordFile = try? AKAudioFile()
-        
         //SetAnotherMixerForMetronome PassRecorder
         MixerManger.manger.mixerForMaster.connect(input: MixerManger.manger.mixer, bus: 1)
         
@@ -72,6 +57,8 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        GAManager.createNormalScreenEventWith(.Mixer)
+        
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
@@ -185,7 +172,7 @@ extension ViewController: MixerDelegate {
             self.mixerView.barLabel.text = "0 | 1"
         }
         
-        switch firstTrackStatus {
+        switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
             
             print("firstTracklineIN")
@@ -199,7 +186,7 @@ extension ViewController: MixerDelegate {
             print("firstTrackNoInput")
         }
         
-        switch secondTrackStatus {
+        switch MixerManger.manger.secondTrackStatus {
         case .lineIn:
             
             print("secondTracklineIN")
@@ -216,6 +203,11 @@ extension ViewController: MixerDelegate {
     
     func playingAudioPlayer() {
         
+        GAManager.createNormalEventWith(category: .ViewController, action: .PlayAudio, label: .UsersEvent, value: .one)
+        if MixerManger.manger.firstTrackStatus == .noInput && MixerManger.manger.secondTrackStatus == .noInput {
+            MixerManger.manger.title(with: .HLDDStudio)
+            MixerManger.manger.subTitle(with: .noFileOrInputSource)
+        }
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         print("playingPlayer")
         print(MixerManger.manger.metronome.tempo)
@@ -227,7 +219,7 @@ extension ViewController: MixerDelegate {
        
         let oneBarTime = (60 / MixerManger.manger.metronome.tempo) * 4
         
-        switch firstTrackStatus {
+        switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
             
             print("firstTracklineIN")
@@ -245,7 +237,7 @@ extension ViewController: MixerDelegate {
             print("firstTrackNoInput")
         }
         
-        switch secondTrackStatus {
+        switch MixerManger.manger.secondTrackStatus {
         case .lineIn:
             
             print("secondTracklineIN")
@@ -266,7 +258,7 @@ extension ViewController: MixerDelegate {
     func pauseAudioPlayer() {
         MixerManger.manger.metronome.stop()
         
-        switch firstTrackStatus {
+        switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
             
             print("firstTracklineIN")
@@ -279,7 +271,7 @@ extension ViewController: MixerDelegate {
             print("firstTrackNoInput")
         }
         
-        switch secondTrackStatus {
+        switch MixerManger.manger.secondTrackStatus {
         case .lineIn:
             
             print("secondTracklineIN")
@@ -298,7 +290,7 @@ extension ViewController: MixerDelegate {
         MixerManger.manger.metronome.start()
         //for each player play
         
-        switch firstTrackStatus {
+        switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
             
             print("firstTracklineIN")
@@ -310,7 +302,7 @@ extension ViewController: MixerDelegate {
             print("firstTrackNoInput")
         }
         
-        switch secondTrackStatus {
+        switch MixerManger.manger.secondTrackStatus {
         case .lineIn:
             
             print("secondTracklineIN")
@@ -324,7 +316,7 @@ extension ViewController: MixerDelegate {
     }
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
-        
+        GAManager.createNormalEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         filePlayer.prepare()
         filePlayer.preroll()
@@ -388,10 +380,10 @@ extension ViewController: MixerDelegate {
                 }
             }
             //        play audio
-            if self.firstTrackStatus == .audioFile {
+            if MixerManger.manger.firstTrackStatus == .audioFile {
                 self.filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
-            if self.secondTrackStatus == .audioFile {
+            if MixerManger.manger.secondTrackStatus == .audioFile {
                 self.filePlayerTwo.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
         }
@@ -431,7 +423,7 @@ extension ViewController: MixerDelegate {
 }
 
 extension ViewController: MixerDatasource {
-    
+
     func currentInputDevice() -> DeviceID {
         
         guard let inputDeviceID = AudioKit.inputDevice?.deviceID else {return "NO INPUT"}
@@ -453,13 +445,17 @@ extension ViewController: MixerDatasource {
     
     func trackInputStatusIsReadyForRecord() -> Bool {
         
-        if firstTrackStatus != .noInput || secondTrackStatus != .noInput {
+        if MixerManger.manger.firstTrackStatus != .noInput || MixerManger.manger.secondTrackStatus != .noInput {
             return true
         } else {
+            print("Check Input Source.")
+            MixerManger.manger.title(with: .recordWarning)
+            MixerManger.manger.subTitle(with: .checkInputSource)
             return false
         }
         
     }
+    
 }
 extension ViewController: GridViewStopScrollingWhileUIKitIsTouchingDelegate {
     
@@ -643,7 +639,7 @@ extension ViewController: IOGridViewCellDelegate {
                 
                 try? AudioKit.start()
                 //switch the track status
-                firstTrackStatus = .lineIn
+                MixerManger.manger.firstTrackStatus = .lineIn
                 
                 return
                 
@@ -669,7 +665,7 @@ extension ViewController: IOGridViewCellDelegate {
                             MixerManger.manger.title(with: .HLDDStudio)
                             MixerManger.manger.subTitleContent = "Selected \(fileName) As Trackone Input File."
                             //switch the track status
-                            firstTrackStatus = .audioFile
+                            MixerManger.manger.firstTrackStatus = .audioFile
                             
                         case .failure(let error):
                             print(error)
@@ -696,7 +692,7 @@ extension ViewController: IOGridViewCellDelegate {
                 setTrackNode(track: 2)
                 try? AudioKit.start()
                 //switch the track status
-                secondTrackStatus = .lineIn
+                MixerManger.manger.secondTrackStatus = .lineIn
                 
                 return
                 
@@ -721,7 +717,7 @@ extension ViewController: IOGridViewCellDelegate {
                             MixerManger.manger.title(with: .HLDDStudio)
                             MixerManger.manger.subTitleContent = "Selected \(fileName) As Tracktwo Input File."
                             //switch the track status
-                            secondTrackStatus = .audioFile
+                            MixerManger.manger.secondTrackStatus = .audioFile
                             
                         case .failure(let error):
                             print(error)
@@ -764,11 +760,11 @@ extension ViewController: IOGridViewCellDelegate {
         switch indexPath.column {
         case 0:
             
-            firstTrackStatus = .noInput
+            MixerManger.manger.firstTrackStatus = .noInput
             MixerManger.manger.mixer.disconnectInput(bus: 1)
             MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
-            secondTrackStatus = .noInput
+            MixerManger.manger.secondTrackStatus = .noInput
             MixerManger.manger.subTitleContent = "Disconnect Tracktwo."
             print("Need Disconnect bus2 track")
         default:

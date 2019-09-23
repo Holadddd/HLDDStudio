@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import UIKit
 
 enum GridViewCategory {
 
@@ -16,4 +16,18 @@ enum GridViewCategory {
     case BarGridView
     
     case DrumPatternGridView
+}
+
+
+
+//enum DrumPatternFrame: CGFloat {
+//
+//    case Width = 50
+//
+//    case Heigh = 50.1
+//}
+
+class DrumPatternFrame {
+    static let Width:CGFloat = 50
+    static let Heigh:CGFloat = 50
 }

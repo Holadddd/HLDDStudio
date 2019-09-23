@@ -77,7 +77,6 @@ extension DrumMachineViewController: DrumMachineDelegate {
         print("savePattern")
     }
     
-    
 }
 
 extension DrumMachineViewController: DrumMachineDatasource {
@@ -99,6 +98,36 @@ extension DrumMachineViewController: GridViewDataSource {
             return 0
         case drumMachineView.drumPatternGridView:
             return 0
+        default:
+            return 0
+        }
+    }
+    
+    func gridView(_ gridView: GridView, widthForColumn column: Int) -> CGFloat {
+        
+        switch gridView {
+        case drumMachineView.drumEditingGridView:
+            let w = drumMachineView.drumEditingGridView.frame.width
+            return w
+        case drumMachineView.barGridView:
+            return DrumPatternFrame.Width
+        case drumMachineView.drumPatternGridView:
+            return DrumPatternFrame.Width
+        default:
+            return 0
+        }
+        
+    }
+    
+    func gridView(_ gridView: GridView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch gridView {
+        case drumMachineView.drumEditingGridView:
+            return DrumPatternFrame.Heigh
+        case drumMachineView.barGridView:
+            let h = drumMachineView.barGridView.frame.height
+            return h
+        case drumMachineView.drumPatternGridView:
+            return DrumPatternFrame.Heigh
         default:
             return 0
         }

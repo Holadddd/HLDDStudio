@@ -196,8 +196,10 @@ extension PlugInGridViewCell: UITableViewDataSource {
         let seq = indexPath.row
         //this method need trigger by editingStyle
         if editingStyle == .delete {
-            PlugInCreater.shared.deletePlugInOnTrack(track, seq: seq)
-            delegate?.resetTrackOn(Track: track)
+            DispatchQueue.main.async {
+                PlugInCreater.shared.deletePlugInOnTrack(track, seq: seq)
+                self.delegate?.resetTrackOn(Track: track)
+            }
         }
         
         if editingStyle == .insert{

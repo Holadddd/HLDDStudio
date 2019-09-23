@@ -12,5 +12,6 @@ target 'HLDDStudio' do
   pod 'IQKeyboardManager'
   pod 'MarqueeLabel'
   pod 'SwipeCellKit'
+  pod 'GoogleAnalytics'
   
 end

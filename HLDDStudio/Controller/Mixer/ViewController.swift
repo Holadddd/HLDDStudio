@@ -155,8 +155,6 @@ extension ViewController: MixerDelegate {
         }
     }
     
-    
-    
     func metronomeSwitch(isOn: Bool) {
         
         switch isOn {
@@ -223,12 +221,6 @@ extension ViewController: MixerDelegate {
         print(MixerManger.manger.metronome.tempo)
         filePlayer.prepare()
         filePlayerTwo.prepare()
-        
-        DispatchQueue.main.async {
-//            MixerManger.manger.bar = 0
-//            MixerManger.manger.beat = 0
-//            self.mixerView.barLabel.text = "1 | 1"
-        }
         
         MixerManger.manger.metronome.start()
         MixerManger.manger.semaphore.wait()
@@ -814,7 +806,6 @@ extension ViewController: IOGridViewCellDatasource {
 }
 
 extension ViewController {
-    
     //Here
     func plugInProvide(row: Int, column: Int, plugIn: PlugIn) {
         try? AudioKit.stop()

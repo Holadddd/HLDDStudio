@@ -101,7 +101,7 @@ class PlugInCreater {
     
     var showingTrackOnPlugInVC = 0
     
-    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "BUS1"), HLDDMixerTrack(name: "BUS2")] {
+    var plugInOntruck: [HLDDMixerTrack] = [HLDDMixerTrack(name: "Track1"), HLDDMixerTrack(name: "Track2")] {
         didSet {
 
             NotificationCenter.default.post(.init(name: .didUpdatePlugIn, object: IndexPath(row: eventRow, column: eventColumn), userInfo: nil))
@@ -160,7 +160,6 @@ class PlugInCreater {
         }
         
         try? AudioKit.start()
-//        plugInOntruck[column].node = providePlugInNode(with: plugInOntruck[column].plugInArr[numberOfPlugIn - 1])
     }
     
     func deletePlugInOnTrack(_ track: Int, seq: Int) {
@@ -220,7 +219,6 @@ class PlugInCreater {
         }
         try? AudioKit.start()
     }
-    
     
 }
 //extensionAKReverbFactoryProperty

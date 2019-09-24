@@ -10,21 +10,7 @@ import Foundation
 import UIKit
 import AudioKit
 
-protocol PlugInReverbTableViewCellDelegate: AnyObject {
-    
-    func plugInReverbBypassSwitch(_ isBypass: Bool, cell: PlugInReverbTableViewCell)
-    
-    func plugInReverbFactorySelect(_ factory:String)
-    
-    func dryWetMixValueChange(_ sender: UISlider)
-}
-
-protocol PlugInReverbTableViewCellDatasource: AnyObject {
-    
-    func plugInReverbPresetParameter() -> [String]?
-}
-
-class PlugInReverbTableViewCell: UITableViewCell {
+class PlugInReverbTableViewCell: UITableViewCell, HLDDKnobDelegate {
     
     @IBOutlet weak var plugInBarView: PlugInBarView!
     
@@ -55,11 +41,11 @@ class PlugInReverbTableViewCell: UITableViewCell {
     
     @IBOutlet weak var dryWetMixLabel: UILabel!
     
-    @IBOutlet weak var dryWetMixSlider: UISlider!
+    @IBOutlet weak var dryWetMixKnob: Knob!
     
-    weak var delegate: PlugInReverbTableViewCellDelegate?
+    weak var delegate: PlugInControlDelegate?
     
-    weak var datasource: PlugInReverbTableViewCellDatasource?
+    weak var datasource: PlugInControlDatasource?
     
     static var nib: UINib {
         return UINib(nibName: "PlugInReverbTableViewCell", bundle: Bundle(for: self))
@@ -70,15 +56,21 @@ class PlugInReverbTableViewCell: UITableViewCell {
         
         plugInBarView.delegate = self
         plugInBarView.datasource = self
+        dryWetMixKnob.delegate = self
+        dryWetMixKnob.minimumValue = 0.0
+        dryWetMixKnob.maximumValue = 1.0
+    
+    }
+    
+    func knobValueDidChange(knobValue value: Float, knob: Knob) {
+        dryWetMixLabel.text = String(format: "%.2f", value)
+        delegate?.dryWetMixValueChange(value, cell: self)
         
-        dryWetMixSlider.addTarget(self, action: #selector(PlugInReverbTableViewCell.sliderValueChange), for: UIControl.Event.valueChanged)
     }
     
-    @objc func sliderValueChange(_ sender: UISlider) {
-        dryWetMixLabel.text = String(format: "%.2f", sender.value)
-        delegate?.dryWetMixValueChange(sender)
+    func knobIsTouching(bool: Bool, knob: Knob) {
+        
     }
-    
 }
 
 extension PlugInReverbTableViewCell: UIPickerViewDelegate {
@@ -93,9 +85,22 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return reverbFactory.count
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return reverbFactory[row]
+ 
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = UIColor.B1
+        
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
+        image.clipsToBounds = true
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
+        
+        
+        pickerLabel.text = reverbFactory[row]
+        return image
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         factoryTextField.text = reverbFactory[row]
@@ -103,9 +108,12 @@ extension PlugInReverbTableViewCell: UIPickerViewDataSource {
 }
 
 extension PlugInReverbTableViewCell: UITextFieldDelegate {
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let factory = textField.text else { return }
-        delegate?.plugInReverbFactorySelect(factory)
+        guard let numberInFactory = reverbFactory.firstIndex(of: factory) else { fatalError()}
+        delegate?.plugInReverbFactorySelect(numberInFactory, cell: self)
+        
     }
 }
 
@@ -116,7 +124,11 @@ extension PlugInReverbTableViewCell: PlugInBarViewDelegate {
     }
     
     func isBypass(_ bool: Bool) {
-        delegate?.plugInReverbBypassSwitch(bool, cell: self)
+        delegate?.plugInBypassSwitch(bool, cell: self)
+        
+        factoryTextField.isEnabled = !plugInBarView.bypassButton.isSelected
+        dryWetMixKnob.isEnabled = !plugInBarView.bypassButton.isSelected
+        
     }
 
 }
@@ -125,7 +137,7 @@ extension PlugInReverbTableViewCell: PlugInBarViewDatasource {
     
     func presetParameter() -> [String]? {
         
-        return datasource?.plugInReverbPresetParameter()
+        return datasource?.plugInReverbPresetParameter(cell: self)
         
     }
     

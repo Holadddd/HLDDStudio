@@ -21,6 +21,26 @@ protocol PlugInBarViewDelegate: AnyObject {
     func plugInPresetSelect(_ parameter: String)
 }
 
+protocol PlugInControlDelegate: AnyObject {
+    
+    func plugInBypassSwitch(_ isBypass: Bool, cell: UITableViewCell)
+    
+    func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell)
+    
+    func dryWetMixValueChange(_ value: Float, cell: UITableViewCell)
+    
+    func guitarProcessorValueChange(_ value: Float, type: GuitarProcessorValueType, cell: UITableViewCell)
+    
+    func delayValueChange(_ value: Float, type: DelayValueType, cell: UITableViewCell)
+    
+    func chorusValueChange(_ value: Float, type: ChorusValueType, cell: UITableViewCell)
+}
+
+protocol PlugInControlDatasource: AnyObject {
+    
+    func plugInReverbPresetParameter(cell: PlugInReverbTableViewCell) -> [String]?
+    
+}
 class PlugInBarView: UIView {
     
     @IBOutlet var contentView: UIView!
@@ -82,6 +102,7 @@ class PlugInBarView: UIView {
     @objc func bypassButtonAction() {
         bypassButton.isSelected = !bypassButton.isSelected
         delegate?.isBypass(bypassButton.isSelected)
+        
     }
     
 }
@@ -100,10 +121,23 @@ extension PlugInBarView: UIPickerViewDataSource {
         let preset = datasource?.presetParameter()
         return preset?.count ?? 0
     }
-    
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = UIColor.B1
+        
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
+        image.clipsToBounds = true
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
+        
         let preset = datasource?.presetParameter()
-        return preset?[row] ?? nil
+        
+        pickerLabel.text = preset?[row] ?? nil
+        return image
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {

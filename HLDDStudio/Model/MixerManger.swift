@@ -142,7 +142,8 @@ class MixerManger {
             print("1")
             semaphore.signal()
         }
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.beat += 1
             self.bar = Int(self.beat/4)
         }

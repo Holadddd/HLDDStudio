@@ -27,8 +27,6 @@
 		01371C232337C1D600617A9D /* DrumPatternGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */; };
 		01371C252337C1E600617A9D /* DrumPatternGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */; };
 		01371C272337C32000617A9D /* GridView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C262337C32000617A9D /* GridView+Extension.swift */; };
-		01371C2C23389AFD00617A9D /* GAManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C2B23389AFD00617A9D /* GAManager.swift */; };
-		01371C2E23389D1100617A9D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 01371C2D23389D1100617A9D /* GoogleService-Info.plist */; };
 		01371C352338D20700617A9D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C342338D20700617A9D /* FirebaseManager.swift */; };
 		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
 		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
@@ -67,6 +65,8 @@
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
 		248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */; };
+		DB4A5020233A301800A9DCEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */; };
+		DB4A5023233A352A00A9DCEB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -90,9 +90,6 @@
 		01371C222337C1D600617A9D /* DrumPatternGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternGridViewCell.swift; sourceTree = "<group>"; };
 		01371C242337C1E600617A9D /* DrumPatternGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternGridViewCell.xib; sourceTree = "<group>"; };
 		01371C262337C32000617A9D /* GridView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridView+Extension.swift"; sourceTree = "<group>"; };
-		01371C2B23389AFD00617A9D /* GAManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GAManager.swift; sourceTree = "<group>"; };
-		01371C2D23389D1100617A9D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		01371C302338ACE600617A9D /* BridgingHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BridgingHeader.h; path = HLDDStudio/BridgingHeader.h; sourceTree = "<group>"; };
 		01371C342338D20700617A9D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
 		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
@@ -135,6 +132,9 @@
 		2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLDDStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.release.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.release.xcconfig"; sourceTree = "<group>"; };
 		A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.debug.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.debug.xcconfig"; sourceTree = "<group>"; };
+		DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		DB4A5021233A352A00A9DCEB /* HLDDStudio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLDDStudio.entitlements; sourceTree = "<group>"; };
+		DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +143,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */,
+				DB4A5023233A352A00A9DCEB /* AudioToolbox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -205,7 +206,6 @@
 			isa = PBXGroup;
 			children = (
 				0171720B232380D900049F3B /* HLDDStudio */,
-				01371C302338ACE600617A9D /* BridgingHeader.h */,
 				0171720A232380D900049F3B /* Products */,
 				E74390EB015D20E17D329B98 /* Pods */,
 				FBC3863B548245343EED54AB /* Frameworks */,
@@ -223,6 +223,7 @@
 		0171720B232380D900049F3B /* HLDDStudio */ = {
 			isa = PBXGroup;
 			children = (
+				DB4A5021233A352A00A9DCEB /* HLDDStudio.entitlements */,
 				0171720C232380D900049F3B /* AppDelegate.swift */,
 				0171723C2323DE8800049F3B /* Extension */,
 				016F4D26232561C10027D507 /* Model */,
@@ -233,7 +234,7 @@
 				017172262323896000049F3B /* LaunchView */,
 				0171721B232380DB00049F3B /* Info.plist */,
 				01717213232380D900049F3B /* HLDDStudio.xcdatamodeld */,
-				01371C2D23389D1100617A9D /* GoogleService-Info.plist */,
+				DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */,
 			);
 			path = HLDDStudio;
 			sourceTree = "<group>";
@@ -285,7 +286,6 @@
 				01F1661A232BA63F00F1C107 /* Notification+extension.swift */,
 				0106320C2333584D00214672 /* UIColor+Extension.swift */,
 				01371C262337C32000617A9D /* GridView+Extension.swift */,
-				01371C2B23389AFD00617A9D /* GAManager.swift */,
 				01371C342338D20700617A9D /* FirebaseManager.swift */,
 			);
 			path = Extension;
@@ -335,6 +335,7 @@
 		FBC3863B548245343EED54AB /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */,
 				2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */,
 			);
 			name = Frameworks;
@@ -418,7 +419,7 @@
 				01E3BEF62339F5D800F9011E /* PlugInReverbTableViewCell.xib in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
-				01371C2E23389D1100617A9D /* GoogleService-Info.plist in Resources */,
+				DB4A5020233A301800A9DCEB /* GoogleService-Info.plist in Resources */,
 				01717212232380D900049F3B /* Main.storyboard in Resources */,
 				015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */,
 			);
@@ -522,7 +523,6 @@
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,
-				01371C2C23389AFD00617A9D /* GAManager.swift in Sources */,
 				0179403623251236000DCFCB /* PlugInViewController.swift in Sources */,
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,
@@ -675,6 +675,7 @@
 			baseConfigurationReference = A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HLDDStudio/HLDDStudio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
@@ -686,7 +687,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/wu1221/HLDDStudio/HLDDStudio/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -697,6 +698,7 @@
 			baseConfigurationReference = 68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = HLDDStudio/HLDDStudio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
@@ -708,7 +710,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = /Users/wu1221/HLDDStudio/HLDDStudio/BridgingHeader.h;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

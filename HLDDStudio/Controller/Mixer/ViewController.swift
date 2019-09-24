@@ -57,7 +57,7 @@ class ViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        GAManager.createNormalScreenEventWith(.Mixer)
+        
         FirebaseManager.createEventWith(category: .ViewController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
@@ -82,21 +82,24 @@ class ViewController: UIViewController {
     }
     
     @objc func notificationTitleChange(_ notification: Notification){
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             MixerManger.manger.title(with: .HLDDStudio)
             self.mixerView.notificationTitleLabel.text = MixerManger.manger.titleContent
         }
     }
 
     @objc func notificationSubTitleChange(_ notification: Notification){
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             MixerManger.manger.title(with: .HLDDStudio)
             self.mixerView.notificationSubTitleLabel.text = MixerManger.manger.subTitleContent
         }
     }
     
     @objc func notificationBarTitleChange(_ notification: Notification) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.mixerView.barLabel.text = "\(MixerManger.manger.bar) | \((MixerManger.manger.beat % 4) + 1 )"
         }
         
@@ -167,7 +170,8 @@ extension ViewController: MixerDelegate {
         MixerManger.manger.metronome.restart()
         MixerManger.manger.metronome.stop()
         MixerManger.manger.mixerStatus = .stopRecordingAndPlaying
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0
             self.mixerView.barLabel.text = "0 | 1"
@@ -204,7 +208,6 @@ extension ViewController: MixerDelegate {
     
     func playingAudioPlayer() {
         
-        GAManager.createNormalEventWith(category: .ViewController, action: .PlayAudio, label: .UsersEvent, value: .one)
         FirebaseManager.createEventWith(category: .ViewController, action: .PlayAudio, label: .UsersEvent, value: .one)
         if MixerManger.manger.firstTrackStatus == .noInput && MixerManger.manger.secondTrackStatus == .noInput {
             MixerManger.manger.title(with: .HLDDStudio)
@@ -318,7 +321,7 @@ extension ViewController: MixerDelegate {
     }
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
-        GAManager.createNormalEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
+        
         FirebaseManager.createEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
@@ -333,7 +336,8 @@ extension ViewController: MixerDelegate {
         //needStartRecorder
         MixerManger.manger.recorder.start()
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             print("start")
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0
@@ -349,7 +353,7 @@ extension ViewController: MixerDelegate {
         
         let recorderStartTimeSec = oneBarTime * start - processTime.toSeconds(hostTime: processTime.hostTime)
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
             try? MixerManger.manger.recorder.recordClip(time:  recorderStartTimeSec, duration: Double(durationTime).rounded(), tap: nil) {[weak self] result in
                 guard let strongSelf = self  else{ fatalError() }
                 switch result {
@@ -385,9 +389,11 @@ extension ViewController: MixerDelegate {
             }
             //        play audio
             if MixerManger.manger.firstTrackStatus == .audioFile {
+                guard let self = self else{return}
                 self.filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
             if MixerManger.manger.secondTrackStatus == .audioFile {
+                guard let self = self else{return}
                 self.filePlayerTwo.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
         }
@@ -404,7 +410,8 @@ extension ViewController: MixerDelegate {
         mixerView.fileNameTextField.text = nil
         mixerView.fileNameTextField.placeholder = "FileName"
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             print("metronomReset")
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0
@@ -580,7 +587,8 @@ extension ViewController: PlugInGridViewCellDelegate {
     func perforPlugInVC(forTrack column: Int) {
   
         PlugInCreater.shared.showingTrackOnPlugInVC = column
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
         }
 
@@ -644,7 +652,7 @@ extension ViewController: IOGridViewCellDelegate {
                 try? AudioKit.start()
                 //switch the track status
                 MixerManger.manger.firstTrackStatus = .lineIn
-                
+                FirebaseManager.createEventWith(category: .ViewController, action: .SwitchInputDevice, label: .UsersEvent, value: .one)
                 return
                 
             } else {
@@ -676,6 +684,7 @@ extension ViewController: IOGridViewCellDelegate {
                         }
                         
                         try? AudioKit.start()
+                        FirebaseManager.createEventWith(category: .ViewController, action: .SwitchAudioFile, label: .UsersEvent, value: .one)
                         return
                     }
                 }
@@ -829,6 +838,4 @@ extension ViewController {
         PlugInCreater.shared.resetTrackNode(Track: column + 1)
         setTrackNode(track: column + 1)
     }
-    
 }
-

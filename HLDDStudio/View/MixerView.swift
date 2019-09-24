@@ -453,7 +453,8 @@ extension MixerView {
         
         guard  datasource?.trackInputStatusIsReadyForRecord() == true else { return }
         
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             switch self.recordButton.isSelected {
             case false:
                 //playAndResumeButtonAction()

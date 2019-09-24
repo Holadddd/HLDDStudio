@@ -100,7 +100,8 @@ class Knob: UIControl {
         let percentageOfValue = (value - averangeValue) / valueABSRange + 0.5
         
         let newAngle = CGFloat(-Double.pi * (5/6)) +  (CGFloat(Double.pi * (5/3)) * CGFloat(percentageOfValue))
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.knobView.transform = CGAffineTransform.init(rotationAngle: newAngle)
         }
         

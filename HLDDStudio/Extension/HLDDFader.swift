@@ -124,7 +124,8 @@ class Fader: UIControl {
         if value < maximumValue && value > minimumValue {
             let absRange = abs(maxY - minY)
             let percntageOfFaderOffsetY = abs((value - minimumValue)/valueRange)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
                 self.faderKnobView.frame.origin.y = CGFloat(maxY - CGFloat(percntageOfFaderOffsetY) * absRange)
             }
         } else {

@@ -29,6 +29,10 @@ enum FBAAction: String {
     case PlayAudio = "PlayAudio"
     
     case Record = "Record"
+    
+    case SwitchInputDevice = "SwitchInputDevice"
+    
+    case SwitchAudioFile = "SwitchAudioFile"
 }
 
 enum FBALabel: String {

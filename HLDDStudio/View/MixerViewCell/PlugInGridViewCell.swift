@@ -67,7 +67,8 @@ class PlugInGridViewCell: GridViewCell {
     
     @objc func didInsertPlugIn(_ notification: Notification){
         //make animation
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.tableView.reloadData()
         }
         
@@ -75,7 +76,8 @@ class PlugInGridViewCell: GridViewCell {
     
     @objc func didUpdatePlugIn(_ notification: Notification){
 
-        DispatchQueue.main.async {
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             self.tableView.reloadData()
         }
         
@@ -196,7 +198,8 @@ extension PlugInGridViewCell: UITableViewDataSource {
         let seq = indexPath.row
         //this method need trigger by editingStyle
         if editingStyle == .delete {
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
                 PlugInCreater.shared.deletePlugInOnTrack(track, seq: seq)
                 self.delegate?.resetTrackOn(Track: track)
             }

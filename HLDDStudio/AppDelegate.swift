@@ -31,12 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self]);
         Fabric.sharedSDK().debug = true;
-        guard let gai = GAI.sharedInstance() else {
-        assert(false, "Google Analytics not configured correctly")
-        }
-        gai.tracker(withTrackingId: AppDelegate.trackId)
-        gai.trackUncaughtExceptions = true
-        gai.logger.logLevel = .verbose;
+        
         return true
     }
 

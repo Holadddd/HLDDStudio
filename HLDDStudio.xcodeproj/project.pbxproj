@@ -32,7 +32,6 @@
 		01371C352338D20700617A9D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C342338D20700617A9D /* FirebaseManager.swift */; };
 		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
 		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
-		016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */; };
 		016F4D25232561B50027D507 /* ReverbSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D24232561B50027D507 /* ReverbSet.swift */; };
 		016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D272325F10A0027D507 /* PlugInManager.swift */; };
 		016F4D2A23264F0E0027D507 /* MixerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D2923264F0E0027D507 /* MixerManger.swift */; };
@@ -62,6 +61,7 @@
 		01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */; };
 		01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */; };
 		01DC76792331F94100CA105E /* PlugInDelayTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */; };
+		01E3BEF62339F5D800F9011E /* PlugInReverbTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 01E3BEF52339F5D800F9011E /* PlugInReverbTableViewCell.xib */; };
 		01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01E736692335F58900B9582B /* DrumMachineManger.swift */; };
 		01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661A232BA63F00F1C107 /* Notification+extension.swift */; };
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
@@ -96,7 +96,6 @@
 		01371C342338D20700617A9D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
 		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
-		016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PlugInReverbTableViewCell.xib; path = ../../../../.Trash/PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
 		016F4D24232561B50027D507 /* ReverbSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbSet.swift; sourceTree = "<group>"; };
 		016F4D272325F10A0027D507 /* PlugInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInManager.swift; sourceTree = "<group>"; };
 		016F4D2923264F0E0027D507 /* MixerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerManger.swift; sourceTree = "<group>"; };
@@ -128,6 +127,7 @@
 		01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInGuitarProcessorTableViewCell.xib; sourceTree = "<group>"; };
 		01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInDelayTableViewCell.swift; sourceTree = "<group>"; };
 		01DC76772331F94100CA105E /* PlugInDelayTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInDelayTableViewCell.xib; sourceTree = "<group>"; };
+		01E3BEF52339F5D800F9011E /* PlugInReverbTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PlugInReverbTableViewCell.xib; sourceTree = "<group>"; };
 		01E736692335F58900B9582B /* DrumMachineManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineManger.swift; sourceTree = "<group>"; };
 		01F1661A232BA63F00F1C107 /* Notification+extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+extension.swift"; sourceTree = "<group>"; };
 		01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDRedFader.swift; sourceTree = "<group>"; };
@@ -312,7 +312,7 @@
 				0179403F23253A94000DCFCB /* PlugInBarView.swift */,
 				0179404123253B2E000DCFCB /* PlugInBarView.xib */,
 				0179403B232536C1000DCFCB /* PlugInReverbTableViewCell.swift */,
-				016F4D2223255E960027D507 /* PlugInReverbTableViewCell.xib */,
+				01E3BEF52339F5D800F9011E /* PlugInReverbTableViewCell.xib */,
 				01DC76722331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift */,
 				01DC76732331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib */,
 				01DC76762331F94100CA105E /* PlugInDelayTableViewCell.swift */,
@@ -408,7 +408,6 @@
 				010D7829232B74DA0099D76D /* GifEffect3.gif in Resources */,
 				017172392323997000049F3B /* FaderGridViewCell.xib in Resources */,
 				01DC76792331F94100CA105E /* PlugInDelayTableViewCell.xib in Resources */,
-				016F4D2323255E960027D507 /* PlugInReverbTableViewCell.xib in Resources */,
 				0171722D232390B200049F3B /* IOGridViewCell.xib in Resources */,
 				01DC76752331F87600CA105E /* PlugInGuitarProcessorTableViewCell.xib in Resources */,
 				0106320F23335B5D00214672 /* DrumMachine.storyboard in Resources */,
@@ -416,6 +415,7 @@
 				01371C252337C1E600617A9D /* DrumPatternGridViewCell.xib in Resources */,
 				0171721A232380DB00049F3B /* LaunchScreen.storyboard in Resources */,
 				01371C1F2337C18300617A9D /* DrumEditingGridViewcell.xib in Resources */,
+				01E3BEF62339F5D800F9011E /* PlugInReverbTableViewCell.xib in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
 				01717217232380DB00049F3B /* Assets.xcassets in Resources */,
 				01371C2E23389D1100617A9D /* GoogleService-Info.plist in Resources */,

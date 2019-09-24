@@ -744,6 +744,7 @@ extension ViewController: IOGridViewCellDelegate {
             
         default:
             print("ERROR OF SETTING INPUT")
+            MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "ERROR OF SETTING INPUT"
         }
         // do error handle
@@ -775,9 +776,11 @@ extension ViewController: IOGridViewCellDelegate {
             
             MixerManger.manger.firstTrackStatus = .noInput
             MixerManger.manger.mixer.disconnectInput(bus: 1)
+            MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
             MixerManger.manger.secondTrackStatus = .noInput
+            MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Tracktwo."
             print("Need Disconnect bus2 track")
         default:

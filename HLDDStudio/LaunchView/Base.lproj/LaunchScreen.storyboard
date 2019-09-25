@@ -1,7 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -11,9 +13,89 @@
             <objects>
                 <viewController id="01J-lp-oVM" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainBGImgaeViewV" translatesAutoresizingMaskIntoConstraints="NO" id="JMV-TX-JTy">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JNE-5i-fiE">
+                                <rect key="frame" x="103.5" y="344.5" width="207" height="207"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="H" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pte-82-joN">
+                                        <rect key="frame" x="20.5" y="10.5" width="83" height="82.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vcq-MV-qMd">
+                                        <rect key="frame" x="20.5" y="93" width="83" height="83"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Vcq-MV-qMd" secondAttribute="height" multiplier="1:1" id="n1P-2s-CNc"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="L" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8sn-77-I1a">
+                                        <rect key="frame" x="103.5" y="10.5" width="83" height="82.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="8sn-77-I1a" secondAttribute="height" multiplier="1:1" id="13G-8x-LXf"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="D" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAL-Dl-hf2">
+                                        <rect key="frame" x="103.5" y="93" width="83" height="83"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="dAL-Dl-hf2" secondAttribute="height" multiplier="1:1" id="3pF-Cy-Rq2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="60"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Studio" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eca-7n-oiE">
+                                        <rect key="frame" x="0.0" y="166.5" width="207" height="40.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="Vcq-MV-qMd" firstAttribute="centerY" secondItem="JNE-5i-fiE" secondAttribute="centerY" multiplier="1.3" id="0bd-8U-SWE"/>
+                                    <constraint firstItem="Vcq-MV-qMd" firstAttribute="width" secondItem="JNE-5i-fiE" secondAttribute="width" multiplier="0.4" id="A4r-Db-8W3"/>
+                                    <constraint firstItem="Eca-7n-oiE" firstAttribute="top" secondItem="dAL-Dl-hf2" secondAttribute="bottom" multiplier="0.9" constant="8" symbolic="YES" id="DA5-us-w5k"/>
+                                    <constraint firstItem="8sn-77-I1a" firstAttribute="centerX" secondItem="JNE-5i-fiE" secondAttribute="centerX" multiplier="1.4" id="Fmw-7A-NKH"/>
+                                    <constraint firstAttribute="bottom" secondItem="Eca-7n-oiE" secondAttribute="bottom" id="Fyf-v1-YL7"/>
+                                    <constraint firstItem="pte-82-joN" firstAttribute="centerY" secondItem="JNE-5i-fiE" secondAttribute="centerY" multiplier="0.5" id="GCA-3l-Pbv"/>
+                                    <constraint firstItem="dAL-Dl-hf2" firstAttribute="width" secondItem="JNE-5i-fiE" secondAttribute="width" multiplier="0.4" id="MFF-TM-ycc"/>
+                                    <constraint firstAttribute="trailing" secondItem="Eca-7n-oiE" secondAttribute="trailing" id="Muw-T4-2Ri"/>
+                                    <constraint firstAttribute="width" secondItem="JNE-5i-fiE" secondAttribute="height" id="PLt-qf-peY"/>
+                                    <constraint firstItem="8sn-77-I1a" firstAttribute="width" secondItem="JNE-5i-fiE" secondAttribute="width" multiplier="0.4" id="Pjs-jq-jbt"/>
+                                    <constraint firstItem="pte-82-joN" firstAttribute="width" secondItem="JNE-5i-fiE" secondAttribute="width" multiplier="0.4" id="TaH-bE-R7N"/>
+                                    <constraint firstItem="dAL-Dl-hf2" firstAttribute="width" secondItem="dAL-Dl-hf2" secondAttribute="height" multiplier="1:1" id="UTL-6J-LjD"/>
+                                    <constraint firstItem="pte-82-joN" firstAttribute="height" secondItem="JNE-5i-fiE" secondAttribute="height" multiplier="0.4" id="Xfy-kr-oKU"/>
+                                    <constraint firstItem="Vcq-MV-qMd" firstAttribute="centerX" secondItem="JNE-5i-fiE" secondAttribute="centerX" multiplier="0.6" id="dN2-l3-dVx"/>
+                                    <constraint firstItem="dAL-Dl-hf2" firstAttribute="centerY" secondItem="JNE-5i-fiE" secondAttribute="centerY" multiplier="1.3" id="fcn-cS-mKV"/>
+                                    <constraint firstItem="dAL-Dl-hf2" firstAttribute="centerX" secondItem="JNE-5i-fiE" secondAttribute="centerX" multiplier="1.4" id="iAf-zP-DBf"/>
+                                    <constraint firstItem="8sn-77-I1a" firstAttribute="centerY" secondItem="JNE-5i-fiE" secondAttribute="centerY" multiplier="0.5" id="nfR-RC-g7y"/>
+                                    <constraint firstItem="pte-82-joN" firstAttribute="centerX" secondItem="JNE-5i-fiE" secondAttribute="centerX" multiplier="0.6" id="sP2-ST-bfd"/>
+                                    <constraint firstItem="Eca-7n-oiE" firstAttribute="leading" secondItem="JNE-5i-fiE" secondAttribute="leading" id="vDK-0l-6Mt"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="JMV-TX-JTy" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6RH-mh-Vkc"/>
+                            <constraint firstItem="JMV-TX-JTy" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="VAr-tP-qMF"/>
+                            <constraint firstAttribute="bottom" secondItem="JMV-TX-JTy" secondAttribute="bottom" id="WuB-bz-UQ0"/>
+                            <constraint firstItem="JNE-5i-fiE" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="b0m-g0-bIG"/>
+                            <constraint firstItem="JNE-5i-fiE" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="dGq-bq-e46"/>
+                            <constraint firstItem="JNE-5i-fiE" firstAttribute="width" secondItem="JMV-TX-JTy" secondAttribute="width" multiplier="0.5" id="nlR-9m-njJ"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="JMV-TX-JTy" secondAttribute="trailing" id="qxV-Lx-LZ5"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -22,4 +104,7 @@
             <point key="canvasLocation" x="53" y="375"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MainBGImgaeViewV" width="150" height="200"/>
+    </resources>
 </document>

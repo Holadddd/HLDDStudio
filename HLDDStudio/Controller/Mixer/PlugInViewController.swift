@@ -22,6 +22,7 @@ class PlugInViewController: UIViewController {
         plugInView.tableView.delegate = self
         plugInView.tableView.dataSource = self
         plugInView.tableView.register(PlugInReverbTableViewCell.nib, forCellReuseIdentifier: "PlugInReverbTableViewCell")
+        plugInView.tableView.bounces = false
         
     }
     

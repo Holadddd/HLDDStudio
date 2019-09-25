@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 import IQKeyboardManager
+import Firebase
+import Fabric
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
 
     var orientationLock = UIInterfaceOrientationMask.all
+    
+    static let trackId = "210572351"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -23,6 +27,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().toolbarBarTintColor = .black
         IQKeyboardManager.shared().toolbarTintColor = .white
+        //GA
+        FirebaseApp.configure()
+        Fabric.with([Crashlytics.self]);
+        Fabric.sharedSDK().debug = true;
+        
         return true
     }
 

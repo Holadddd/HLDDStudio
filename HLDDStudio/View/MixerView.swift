@@ -265,6 +265,7 @@ class MixerView: UIView {
         playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)
         recordButton.addTarget(self, action: #selector(MixerView.recordButtonAction), for: .touchUpInside)
         showDrumVCButton.addTarget(self, action: #selector(MixerView.showDrumVCButtonAction), for: .touchUpInside)
+        
         masterFader.delegate = self
         
         for tempo in 40...240 {
@@ -274,6 +275,7 @@ class MixerView: UIView {
         for bar in 1...40 {
             barArr.append(bar)
         }
+        
     }
     
     override func layoutSubviews() {
@@ -283,7 +285,7 @@ class MixerView: UIView {
         routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
         
     }
-    
+
 }
 //IOStatusBar
 extension MixerView {
@@ -408,10 +410,13 @@ extension MixerView: UITextFieldDelegate {
         case stopRecordTextField:
             print(stopRecordTextField.text!)
         case fileNameTextField:
+            var fileName = ""
             
-            guard textField.text != nil else{return}
+            if textField.text != nil {
+                guard let recordFileName = fileNameTextField.text else{fatalError()}
+                fileName = recordFileName
+            }
             
-            guard let fileName = fileNameTextField.text else{ fatalError()}
             delegate?.changeRecordFileName(fileName: fileName)
         default:
             return
@@ -433,6 +438,8 @@ extension MixerView {
     }
     
     @objc func playAndResumeButtonAction() {
+        
+        
         playAndResumeButton.isSelected = !playAndResumeButton.isSelected
         switch playAndResumeButton.isSelected {
         case true:
@@ -443,15 +450,11 @@ extension MixerView {
     }
     
     @objc func recordButtonAction() {
-        guard let inputStatus = datasource?.trackInputStatusIsReadyForRecord() else { fatalError()}
-        if !inputStatus {
-            print("Check Input Source.")
-            MixerManger.manger.title(with: .recordWarning)
-            MixerManger.manger.subTitle(with: .checkInputSource)
-            return
-        }
         
-        DispatchQueue.main.async {
+        guard  datasource?.trackInputStatusIsReadyForRecord() == true else { return }
+        
+        DispatchQueue.main.async {[weak self] in
+            guard let self = self else{return}
             switch self.recordButton.isSelected {
             case false:
                 //playAndResumeButtonAction()
@@ -460,6 +463,11 @@ extension MixerView {
                 guard let start = Int(startString) else { return }
                 guard let stop = Int(stopString) else { return }
                 //if not trigger show in notification
+                if start >= stop {
+                    MixerManger.manger.title(with: .recordWarning)
+                    MixerManger.manger.subTitle(with: .barWarning)
+                    return
+                }
                 self.delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
                 
             case true:
@@ -479,6 +487,7 @@ extension MixerView {
     
     @objc func showDrumVCButtonAction(_ sender:Any) {
         delegate?.showDrumVC()
+        print("touch")
     }
     
 }

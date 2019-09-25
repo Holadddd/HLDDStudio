@@ -17,6 +17,8 @@ extension Notification.Name {
     static let mixerNotificationTitleChange = Notification.Name("mixerNotificationTitleChange")
     
     static let mixerNotificationSubTitleChange = Notification.Name("mixerNotificationSubTitleChange")
+    
+    static let mixerBarTitleChange = Notification.Name("mixerBarTitleChange")
 }
 
 

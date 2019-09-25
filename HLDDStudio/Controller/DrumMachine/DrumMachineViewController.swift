@@ -23,15 +23,13 @@ class DrumMachineViewController: UIViewController {
         //DrumEditingGridView
         drumMachineView.drumEditingGridView.delegate = self
         drumMachineView.drumEditingGridView.dataSource = self
-        drumMachineView.drumEditingGridView.register(DrumEditingGridViewCell.nib, forCellWithReuseIdentifier: "DrumEditingGridViewCell")
-        //BarGridView
+        
         drumMachineView.barGridView.delegate = self
         drumMachineView.barGridView.dataSource = self
-        drumMachineView.barGridView.register(BarGridViewCell.nib, forCellWithReuseIdentifier: "BarGridViewCell")
         
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
-        drumMachineView.drumPatternGridView.register(DrumPatternGridViewCell.nib, forCellWithReuseIdentifier: "DrumPatternGridViewCell")
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -97,7 +95,20 @@ extension DrumMachineViewController: GridViewDataSource {
         case drumMachineView.drumEditingGridView:
             return 0
         case drumMachineView.barGridView:
+            return 1
+        case drumMachineView.drumPatternGridView:
             return 0
+        default:
+            return 0
+        }
+    }
+    
+    func numberOfColumns(in gridView: GridView) -> Int {
+        switch gridView {
+        case drumMachineView.drumEditingGridView:
+            return 0
+        case drumMachineView.barGridView:
+            return 1
         case drumMachineView.drumPatternGridView:
             return 0
         default:
@@ -112,8 +123,10 @@ extension DrumMachineViewController: GridViewDataSource {
             let w = drumMachineView.drumEditingGridView.frame.width
             return w
         case drumMachineView.barGridView:
+            
             return DrumPatternFrame.Width
         case drumMachineView.drumPatternGridView:
+            print(DrumPatternFrame.Width)
             return DrumPatternFrame.Width
         default:
             return 0
@@ -136,40 +149,19 @@ extension DrumMachineViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
-        
-        switch gridView {
-        case drumMachineView.drumEditingGridView:
-            
-            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCe;;", for: indexPath) as? DrumEditingGridViewCell else { fatalError()}
-            
-            cell.delegate = self
-            return cell
-        case drumMachineView.barGridView:
-            
-            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "BarGridViewCell", for: indexPath) as? BarGridViewCell else { fatalError()}
-            
-            cell.delegate = self
-            return cell
-        case drumMachineView.drumPatternGridView:
-            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as? DrumPatternGridViewCell else { fatalError()}
-            
-            cell.delegate = self
-            return cell
-        default:
-            return GridViewCell()
-        }
+        return GridViewCell()
     }
     
 }
 
-extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
-    
-}
-
-extension DrumMachineViewController: BarGridViewCellDelegate {
-    
-}
-
-extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
-    
-}
+//extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
+//
+//}
+//
+//extension DrumMachineViewController: DrumBarGridViewCellDelegate {
+//
+//}
+//
+//extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
+//
+//}

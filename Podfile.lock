@@ -35,7 +35,6 @@ PODS:
     - GoogleUtilities/Environment (~> 6.0)
     - GoogleUtilities/UserDefaults (~> 6.0)
   - G3GridView (0.7.0)
-  - GoogleAnalytics (3.17.0)
   - GoogleAppMeasurement (6.1.1):
     - GoogleUtilities/AppDelegateSwizzler (~> 6.0)
     - GoogleUtilities/MethodSwizzler (~> 6.0)
@@ -79,7 +78,6 @@ DEPENDENCIES:
   - Firebase/Analytics
   - Firebase/Core
   - G3GridView
-  - GoogleAnalytics
   - IQKeyboardManager
   - MarqueeLabel
   - SwipeCellKit
@@ -96,7 +94,6 @@ SPEC REPOS:
     - FirebaseCoreDiagnosticsInterop
     - FirebaseInstanceID
     - G3GridView
-    - GoogleAnalytics
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleDataTransportCCTSupport
@@ -117,7 +114,6 @@ SPEC CHECKSUMS:
   FirebaseCoreDiagnosticsInterop: 6829da2b8d1fc795ff1bd99df751d3788035d2cb
   FirebaseInstanceID: 550df9be1f99f751d8fcde3ac342a1e21a0e6c42
   G3GridView: 3500ad938744d81f6707929c56ff71e78b37907e
-  GoogleAnalytics: f42cc53a87a51fe94334821868d9c8481ff47a7b
   GoogleAppMeasurement: 86a82f0e1f20b8eedf8e20326530138fd71409de
   GoogleDataTransport: 8f9897b8e073687f24ca8d3c3a8013dec7d2d1cc
   GoogleDataTransportCCTSupport: 7455d07b98851aa63e4c05a34dad356ca588479e
@@ -127,6 +123,6 @@ SPEC CHECKSUMS:
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   SwipeCellKit: cfcdcbfb739734e494c9d3832a7b6e6f9411e1fd
 
-PODFILE CHECKSUM: 060ef6f5fb367060cb7ac5fd96480b42ccb9086a
+PODFILE CHECKSUM: 6352429d9306a19b0b82fd043af0d6766201a1fb
 
 COCOAPODS: 1.8.0

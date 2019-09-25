@@ -517,7 +517,6 @@ extension ViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        print("reloadGridViewHiegh")
         switch indexPath.row {
         case 0:
             return 50

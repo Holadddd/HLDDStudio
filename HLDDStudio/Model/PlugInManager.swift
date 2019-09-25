@@ -148,7 +148,6 @@ class PlugInCreater {
 
         if numberOfPlugIn != 0 {
             
-            print("outside")
             for seq in 0 ..< numberOfPlugIn {
                 print("resetTrackNode: \(PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn)\(Track - 1)\(seq)")
                             

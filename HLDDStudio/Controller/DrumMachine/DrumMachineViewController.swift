@@ -24,8 +24,8 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumEditingGridView.delegate = self
         drumMachineView.drumEditingGridView.dataSource = self
         
-        drumMachineView.barGridView.delegate = self
-        drumMachineView.barGridView.dataSource = self
+        drumMachineView.drumBarGridView.delegate = self
+        drumMachineView.drumBarGridView.dataSource = self
         
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
@@ -93,11 +93,11 @@ extension DrumMachineViewController: GridViewDataSource {
         
         switch gridView {
         case drumMachineView.drumEditingGridView:
-            return 0
-        case drumMachineView.barGridView:
             return 1
+        case drumMachineView.drumBarGridView:
+            return 2
         case drumMachineView.drumPatternGridView:
-            return 0
+            return 3
         default:
             return 0
         }
@@ -106,11 +106,11 @@ extension DrumMachineViewController: GridViewDataSource {
     func numberOfColumns(in gridView: GridView) -> Int {
         switch gridView {
         case drumMachineView.drumEditingGridView:
-            return 0
-        case drumMachineView.barGridView:
             return 1
+        case drumMachineView.drumBarGridView:
+            return 3
         case drumMachineView.drumPatternGridView:
-            return 0
+            return 2
         default:
             return 0
         }
@@ -122,7 +122,7 @@ extension DrumMachineViewController: GridViewDataSource {
         case drumMachineView.drumEditingGridView:
             let w = drumMachineView.drumEditingGridView.frame.width
             return w
-        case drumMachineView.barGridView:
+        case drumMachineView.drumBarGridView:
             
             return DrumPatternFrame.Width
         case drumMachineView.drumPatternGridView:
@@ -138,8 +138,8 @@ extension DrumMachineViewController: GridViewDataSource {
         switch gridView {
         case drumMachineView.drumEditingGridView:
             return DrumPatternFrame.Heigh
-        case drumMachineView.barGridView:
-            let h = drumMachineView.barGridView.frame.height
+        case drumMachineView.drumBarGridView:
+            let h = drumMachineView.drumBarGridView.frame.height
             return h
         case drumMachineView.drumPatternGridView:
             return DrumPatternFrame.Heigh
@@ -149,19 +149,38 @@ extension DrumMachineViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
-        return GridViewCell()
+        switch gridView {
+        case drumMachineView.drumEditingGridView:
+            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
+            
+            cell.delegate = self
+            return cell
+        case drumMachineView.drumBarGridView:
+            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
+            
+            cell.delegate = self
+            return cell
+        case drumMachineView.drumPatternGridView:
+            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
+            
+            cell.delegate = self
+            return cell
+        default:
+            return GridViewCell()
+        }
+        
     }
     
 }
 
-//extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
-//
-//}
-//
-//extension DrumMachineViewController: DrumBarGridViewCellDelegate {
-//
-//}
-//
-//extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
-//
-//}
+extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
+
+}
+
+extension DrumMachineViewController: DrumBarGridViewCellDelegate {
+
+}
+
+extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
+
+}

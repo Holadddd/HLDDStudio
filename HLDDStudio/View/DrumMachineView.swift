@@ -42,7 +42,7 @@ class DrumMachineView: UIView {
   
     @IBOutlet weak var drumEditingGridView: GridView!
     
-    @IBOutlet weak var barGridView: GridView!
+    @IBOutlet weak var drumBarGridView: GridView!
     
     @IBOutlet weak var drumPatternGridView: GridView!
     
@@ -52,7 +52,9 @@ class DrumMachineView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        drumEditingGridView.register(DrumEditingGridViewCell.nib, forCellWithReuseIdentifier: "DrumEditingGridViewCell")
+        drumBarGridView.register(DrumBarGridViewCell.nib, forCellWithReuseIdentifier: "DrumBarGridViewCell")
+        drumPatternGridView.register(DrumPatternGridViewCell.nib, forCellWithReuseIdentifier: "DrumPatternGridViewCell")
         
         rotateButton.addTarget(self, action: #selector(DrumMachineView.rotateButtonAction(_:)), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(DrumMachineView.backButtonAction(_:)), for: .touchUpInside)

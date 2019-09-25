@@ -203,7 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="83v-cc-zYJ"/>
                         <connections>
                             <outlet property="backButton" destination="08l-LB-qv5" id="Ra3-aq-S0u"/>
-                            <outlet property="barGridView" destination="Zo4-5X-ibk" id="Xnj-bK-oKF"/>
+                            <outlet property="drumBarGridView" destination="Zo4-5X-ibk" id="L5a-tH-Din"/>
                             <outlet property="drumEditingGridView" destination="GfG-ue-P23" id="9Re-Dv-0Lc"/>
                             <outlet property="drumPatternGridView" destination="Hdo-ec-7jZ" id="7DS-NP-69D"/>
                             <outlet property="patternNameTextField" destination="S64-4u-z93" id="aN3-38-7Q5"/>

@@ -123,7 +123,7 @@ extension DrumMachineViewController: GridViewDelegate{
     }
     
     func gridView(_ gridView: GridView, didSelectRowAt indexPath: IndexPath) {
-        print("didSelectRowAt")
+        print(indexPath)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -269,5 +269,8 @@ extension DrumMachineViewController: DrumBarGridViewCellDelegate {
 }
 
 extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
+    func patternSelecte(cell: DrumPatternGridViewCell, isSelected: Bool) {
+        print("\(cell.indexPath), \(isSelected)")
+    }
 
 }

@@ -100,7 +100,7 @@ class DrumMachineView: UIView {
         
         //scroll
         drumEditingGridView.superview?.isUserInteractionEnabled = true
-        drumBarGridView.superview?.isUserInteractionEnabled = false
+        drumBarGridView.superview?.isUserInteractionEnabled = true
         drumPatternGridView.superview?.isUserInteractionEnabled = true
         
         //in
@@ -148,9 +148,15 @@ class DrumMachineView: UIView {
         case true:
             delegate?.playDrum()
             rotateButton.isEnabled = false
+            drumEditingGridView.superview?.isUserInteractionEnabled = false
+            drumBarGridView.superview?.isUserInteractionEnabled = false
+            drumPatternGridView.superview?.isUserInteractionEnabled = false
         case false:
             delegate?.stopPlayingDrum()
             rotateButton.isEnabled = true
+            drumEditingGridView.superview?.isUserInteractionEnabled = true
+            drumBarGridView.superview?.isUserInteractionEnabled = true
+            drumPatternGridView.superview?.isUserInteractionEnabled = true
         }
     }
     

@@ -11,31 +11,56 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="DrumPatternGridViewCell" id="mjC-mJ-clT" customClass="DrumPatternGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
+            <rect key="frame" x="0.0" y="0.0" width="35" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuX-rj-p2l">
-                    <rect key="frame" x="0.0" y="0.0" width="50" height="21"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainBGImgaeViewV" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
+                    <rect key="frame" x="0.0" y="0.0" width="35" height="121"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuX-rj-p2l">
+                    <rect key="frame" x="0.0" y="0.0" width="35" height="21"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="21" id="nTO-UH-keF"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="2QI-zG-vaf"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-y1-68m">
+                    <rect key="frame" x="0.0" y="41" width="35" height="80"/>
+                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="0jj-me-MfF"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                    </state>
+                </button>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="FuX-rj-p2l" secondAttribute="trailing" id="0md-jQ-tGh"/>
+                <constraint firstItem="X6n-59-RJL" firstAttribute="trailing" secondItem="mjC-mJ-clT" secondAttribute="trailing" id="1ji-dV-mdA"/>
+                <constraint firstItem="bm9-y1-68m" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="3Ek-eQ-0iv"/>
+                <constraint firstItem="X6n-59-RJL" firstAttribute="bottom" secondItem="mjC-mJ-clT" secondAttribute="bottom" id="7SR-Ej-llk"/>
+                <constraint firstAttribute="leading" secondItem="X6n-59-RJL" secondAttribute="leading" id="8ph-dJ-b17"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="top" secondItem="mjC-mJ-clT" secondAttribute="top" id="IVp-pl-xe2"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="e4T-i0-qVJ"/>
+                <constraint firstAttribute="top" secondItem="X6n-59-RJL" secondAttribute="top" id="mor-6x-7Xs"/>
+                <constraint firstItem="bm9-y1-68m" firstAttribute="centerX" secondItem="mjC-mJ-clT" secondAttribute="centerX" id="rfc-Ut-lYG"/>
+                <constraint firstItem="RDh-sY-P7Q" firstAttribute="trailing" secondItem="bm9-y1-68m" secondAttribute="trailing" id="uhw-bi-FWx"/>
+                <constraint firstItem="RDh-sY-P7Q" firstAttribute="bottom" secondItem="bm9-y1-68m" secondAttribute="bottom" id="vjN-BK-EEM"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="RDh-sY-P7Q"/>
             <connections>
                 <outlet property="drumLabel" destination="FuX-rj-p2l" id="9fI-Pm-gfe"/>
+                <outlet property="selectButton" destination="bm9-y1-68m" id="5Tm-aC-b76"/>
             </connections>
-            <point key="canvasLocation" x="-81" y="151"/>
+            <point key="canvasLocation" x="-92.028985507246389" y="164.39732142857142"/>
         </view>
     </objects>
+    <resources>
+        <image name="MainBGImgaeViewV" width="150" height="200"/>
+    </resources>
 </document>

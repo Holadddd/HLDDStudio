@@ -12,10 +12,21 @@ import UIKit
 
 protocol DrumPatternGridViewCellDelegate: AnyObject {
     
+    func patternSelecte(cell: DrumPatternGridViewCell, isSelected: Bool)
+    
 }
 class DrumPatternGridViewCell: GridViewCell {
     
     @IBOutlet weak var drumLabel: UILabel!
+    
+//    @IBAction func selectButton(_ sender: UIButton) {
+//        sender.isSelected = !sender.isSelected
+//        delegate?.patternSelecte(cell: self, isSelected: sender.isSelected)
+//        sender.backgroundColor = .yellow
+//    }
+    
+    @IBOutlet weak var selectButton: UIButton!
+    
     weak var delegate: DrumPatternGridViewCellDelegate?
     
     static var nib: UINib {
@@ -24,6 +35,10 @@ class DrumPatternGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        self.backgroundColor = .green
+        selectButton.addTarget(self, action: #selector(DrumPatternGridViewCell.selectButtonAction(_:)), for: .touchUpInside)
+    }
+    @objc func selectButtonAction(_ sender: Any?) {
+        selectButton.isSelected = !selectButton.isSelected
+        delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
     }
 }

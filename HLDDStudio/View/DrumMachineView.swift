@@ -12,7 +12,7 @@ import AudioKit
 import G3GridView
 
 protocol DrumMachineDelegate: AnyObject {
-    func rotateDrumMachineView(isLandscapeRight: Bool)
+    func rotateDrumMachineView(isLandscapeRight: Bool, completion:@escaping ()->Void )
     
     func popDrumMachineView()
     
@@ -29,6 +29,8 @@ protocol DrumMachineDatasource: AnyObject {
 
 class DrumMachineView: UIView {
     
+    @IBOutlet weak var controlView: UIView!
+    
     @IBOutlet weak var rotateButton: UIButton!
     
     @IBOutlet weak var patternNameTextField: UITextField!
@@ -38,7 +40,6 @@ class DrumMachineView: UIView {
     @IBOutlet weak var playAndStopButton: UIButton!
     
     @IBOutlet weak var saveButton: UIButton!
-    
   
     @IBOutlet weak var drumEditingGridView: GridView!
     
@@ -50,11 +51,70 @@ class DrumMachineView: UIView {
     
     weak var datasource: DrumMachineDatasource?
     
+    //parameter
+    let infinitable = false
+    
+    let minScale = Scale(x: 1, y: 1)
+    
+    let maxScale = Scale(x: 1, y: 1)
+    
+    
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+        //registCell
         drumEditingGridView.register(DrumEditingGridViewCell.nib, forCellWithReuseIdentifier: "DrumEditingGridViewCell")
         drumBarGridView.register(DrumBarGridViewCell.nib, forCellWithReuseIdentifier: "DrumBarGridViewCell")
         drumPatternGridView.register(DrumPatternGridViewCell.nib, forCellWithReuseIdentifier: "DrumPatternGridViewCell")
+        //clipBounds
+        drumEditingGridView.clipsToBounds = true
+        drumBarGridView.clipsToBounds = true
+        drumPatternGridView.clipsToBounds = true
+        //bouncesZoom
+        drumEditingGridView.bounces = false
+        drumBarGridView.bounces = false
+        drumPatternGridView.bounces = false
+        
+        drumEditingGridView.minimumZoomScale = 1
+        drumBarGridView.minimumZoomScale = 1
+        drumPatternGridView.minimumZoomScale = 1
+        
+        //loop(false)
+        drumEditingGridView.isInfinitable = infinitable
+        drumBarGridView.isInfinitable = infinitable
+        drumPatternGridView.isInfinitable = infinitable
+        //drumPatternGridViewScale
+        drumPatternGridView.minimumScale = minScale
+        drumPatternGridView.maximumScale = maxScale
+        //drumEditingGridViewScale
+        drumEditingGridView.minimumScale.y = drumPatternGridView.minimumScale.y
+        drumEditingGridView.maximumScale.y = drumPatternGridView.maximumScale.y
+        //drumBarGridViewScale
+        drumBarGridView.minimumScale.x = drumPatternGridView.minimumScale.x
+        drumBarGridView.maximumScale.x = drumPatternGridView.maximumScale.x
+        
+        //contentInset
+        drumPatternGridView.contentInset.top = 0
+        
+        drumPatternGridView.scrollIndicatorInsets.top = 0
+        drumPatternGridView.scrollIndicatorInsets.left = drumEditingGridView.bounds.width
+        
+        drumEditingGridView.contentInset.top = 0
+        
+        //scroll
+        drumEditingGridView.superview?.isUserInteractionEnabled = true
+        drumBarGridView.superview?.isUserInteractionEnabled = false
+        drumPatternGridView.superview?.isUserInteractionEnabled = true
+        
+        //in
+        drumEditingGridView.layoutWithoutFillForCell = true
+        drumBarGridView.layoutWithoutFillForCell = true
+        drumPatternGridView.layoutWithoutFillForCell = true
+        
+        //offset
+        drumEditingGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+        drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         
         rotateButton.addTarget(self, action: #selector(DrumMachineView.rotateButtonAction(_:)), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(DrumMachineView.backButtonAction(_:)), for: .touchUpInside)
@@ -62,9 +122,28 @@ class DrumMachineView: UIView {
         saveButton.addTarget(self, action: #selector(DrumMachineView.saveButtonAction(_:)), for: .touchUpInside)
     }
     
+    override func layoutSubviews() {
+        drumEditingGridView.frame.origin = CGPoint(x: 0, y: 0)
+        
+    }
+    
+    func setAllOffsetToOrigin(animated: Bool) {
+        drumEditingGridView.reloadData()
+        drumBarGridView.reloadData()
+        drumPatternGridView.reloadData()
+    }
+    
     @objc func rotateButtonAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
-        delegate?.rotateDrumMachineView(isLandscapeRight: sender.isSelected)
+        delegate?.rotateDrumMachineView(isLandscapeRight: sender.isSelected, completion: {[weak self] in
+            guard let strongSelf = self else{fatalError()}
+            DispatchQueue.main.async {
+                strongSelf.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                strongSelf.drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                strongSelf.drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
+                print("reload gridview.")
+            }
+        })
     }
     
     @objc func backButtonAction(_ sender:UIButton){

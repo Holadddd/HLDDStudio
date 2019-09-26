@@ -16,6 +16,8 @@ protocol DrumEditingGridViewCellDelegate: AnyObject {
 
 class DrumEditingGridViewCell: GridViewCell {
     
+    @IBOutlet weak var drumTypeLabel: UILabel!
+    
     weak var delegate: DrumEditingGridViewCellDelegate?
     
     static var nib: UINib {
@@ -24,6 +26,10 @@ class DrumEditingGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        self.backgroundColor = .red
+        
+    }
+    
+    deinit {
+        print("DrumEditingGridViewCellDeinit\(self.indexPath)")
     }
 }

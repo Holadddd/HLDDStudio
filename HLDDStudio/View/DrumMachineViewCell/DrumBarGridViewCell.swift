@@ -15,6 +15,8 @@ protocol DrumBarGridViewCellDelegate: AnyObject {
 }
 class DrumBarGridViewCell: GridViewCell {
     
+    @IBOutlet weak var barLabel: UILabel!
+    
     weak var delegate: DrumBarGridViewCellDelegate?
     
     static var nib: UINib {

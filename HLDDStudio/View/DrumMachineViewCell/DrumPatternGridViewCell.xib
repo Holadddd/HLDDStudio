@@ -11,10 +11,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="DrumPatternGridViewCell" id="mjC-mJ-clT" customClass="DrumPatternGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuX-rj-p2l">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="nTO-UH-keF"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="FuX-rj-p2l" secondAttribute="trailing" id="0md-jQ-tGh"/>
+                <constraint firstItem="FuX-rj-p2l" firstAttribute="top" secondItem="mjC-mJ-clT" secondAttribute="top" id="IVp-pl-xe2"/>
+                <constraint firstItem="FuX-rj-p2l" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="e4T-i0-qVJ"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="RDh-sY-P7Q"/>
+            <connections>
+                <outlet property="drumLabel" destination="FuX-rj-p2l" id="9fI-Pm-gfe"/>
+            </connections>
             <point key="canvasLocation" x="-81" y="151"/>
         </view>
     </objects>

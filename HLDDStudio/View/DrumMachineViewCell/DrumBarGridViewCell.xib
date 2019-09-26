@@ -11,10 +11,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="DrumBarGridViewCell" id="7Yw-fz-qyT" customClass="DrumBarGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j2H-f9-YZu">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="Kiu-sV-0qR"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+            <constraints>
+                <constraint firstItem="j2H-f9-YZu" firstAttribute="top" secondItem="7Yw-fz-qyT" secondAttribute="top" id="8s3-b9-Yq7"/>
+                <constraint firstItem="tw4-cJ-jE5" firstAttribute="trailing" secondItem="j2H-f9-YZu" secondAttribute="trailing" id="VuO-Zj-32v"/>
+                <constraint firstItem="j2H-f9-YZu" firstAttribute="leading" secondItem="tw4-cJ-jE5" secondAttribute="leading" id="wG4-Sf-Q2y"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="tw4-cJ-jE5"/>
+            <connections>
+                <outlet property="barLabel" destination="j2H-f9-YZu" id="YAY-dT-HlC"/>
+            </connections>
             <point key="canvasLocation" x="1" y="136"/>
         </view>
     </objects>

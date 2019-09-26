@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var orientationLock = UIInterfaceOrientationMask.all
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
         return true
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
@@ -123,8 +123,10 @@ struct AppUtility {
         }
     }
     
-    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation) {
+    static func lockOrientation(_ orientation: UIInterfaceOrientationMask, andRotateTo rotateOrientation:UIInterfaceOrientation, complete:(()-> Void)? ){
         self.lockOrientation(orientation)
         UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
+        guard let handle = complete else { return }
+        handle()
     }
 }

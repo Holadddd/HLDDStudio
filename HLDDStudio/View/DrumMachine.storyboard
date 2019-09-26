@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -134,7 +134,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="80"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Zo4-5X-ibk" firstAttribute="leading" secondItem="trl-4K-lAH" secondAttribute="leading" id="E87-tN-dd0"/>
                                             <constraint firstAttribute="bottom" secondItem="Zo4-5X-ibk" secondAttribute="bottom" id="NMq-Jp-VYr"/>
@@ -145,11 +145,11 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-qy-mq2">
                                         <rect key="frame" x="0.0" y="80" width="160" height="738"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
+                                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="738"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="GfG-ue-P23" firstAttribute="top" secondItem="M6a-qy-mq2" secondAttribute="top" id="GfV-f3-hTP"/>
                                             <constraint firstAttribute="bottom" secondItem="GfG-ue-P23" secondAttribute="bottom" id="QQR-2r-DAu"/>
@@ -164,7 +164,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="738"/>
                                             </scrollView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="Hdo-ec-7jZ" firstAttribute="leading" secondItem="dQX-U0-hOf" secondAttribute="leading" id="1KG-5b-3kv"/>
                                             <constraint firstItem="Hdo-ec-7jZ" firstAttribute="top" secondItem="dQX-U0-hOf" secondAttribute="top" id="MRe-1I-Hdf"/>
@@ -203,6 +203,7 @@
                         <viewLayoutGuide key="safeArea" id="83v-cc-zYJ"/>
                         <connections>
                             <outlet property="backButton" destination="08l-LB-qv5" id="Ra3-aq-S0u"/>
+                            <outlet property="controlView" destination="i1d-WA-2yz" id="tta-fW-1p2"/>
                             <outlet property="drumBarGridView" destination="Zo4-5X-ibk" id="L5a-tH-Din"/>
                             <outlet property="drumEditingGridView" destination="GfG-ue-P23" id="9Re-Dv-0Lc"/>
                             <outlet property="drumPatternGridView" destination="Hdo-ec-7jZ" id="7DS-NP-69D"/>

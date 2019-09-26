@@ -16,9 +16,53 @@ protocol DrumEditingGridViewCellDelegate: AnyObject {
 
 class DrumEditingGridViewCell: GridViewCell {
     
-    @IBOutlet weak var labelView: UIView!
+    @IBOutlet weak var samplePlayButton: UIButton!
     
-    @IBOutlet weak var drumTypeLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    
+    var drumType = DrumType.classic
+    
+    let inputSourceButton = UIButton(type: .custom)
+    
+    let inputPicker = UIPickerView()
+    
+    @IBOutlet weak var samplePickTextField: UITextField! {
+        didSet {
+            inputPicker.delegate = self
+            
+            inputPicker.dataSource = self
+            
+            samplePickTextField.inputView = inputPicker
+            
+            let button = UIButton(type: .custom)
+            
+            button.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+            
+            button.setBackgroundImage(
+                UIImage.asset(.Icons_24px_DropDown),
+                for: .normal
+            )
+            
+            let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 16, height: 16)))
+            
+            view.addSubview(button)
+            
+            view.isUserInteractionEnabled = false
+            
+            button.isUserInteractionEnabled = false
+            
+            samplePickTextField.rightView = view
+            
+            samplePickTextField.rightViewMode = .never
+            
+            samplePickTextField.delegate = self
+        }
+        
+    }
+    
+    @IBOutlet weak var panKnob: Knob!
+    
+    @IBOutlet weak var volKnob: Knob!
     
     weak var delegate: DrumEditingGridViewCellDelegate?
     
@@ -34,4 +78,57 @@ class DrumEditingGridViewCell: GridViewCell {
     deinit {
         print("DrumEditingGridViewCellDeinit\(self.indexPath)")
     }
+}
+
+extension DrumEditingGridViewCell: UIPickerViewDelegate {
+    
+}
+
+extension DrumEditingGridViewCell: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch drumType {
+        case .classic:
+            return DrumMachineManger.manger.classicFileName.count
+        case .hihats:
+            return DrumMachineManger.manger.hihatsFileName.count
+        case .kicks:
+            return DrumMachineManger.manger.kicksFileName.count
+        case .percussion:
+            return DrumMachineManger.manger.percussionFileName.count
+        case .snares:
+            return DrumMachineManger.manger.snaresFileName.count
+            
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        pickerView.backgroundColor = UIColor.B1
+        
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
+        image.clipsToBounds = true
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
+        
+        
+        pickerLabel.text = ""
+        return image
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+        samplePickTextField.text = ""
+        
+    }
+}
+
+extension DrumEditingGridViewCell: UITextFieldDelegate{
+    
 }

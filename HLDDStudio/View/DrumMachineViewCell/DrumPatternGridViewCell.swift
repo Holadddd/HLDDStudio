@@ -30,10 +30,12 @@ class DrumPatternGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        selectButton.addTarget(self, action: #selector(DrumPatternGridViewCell.selectButtonAction(_:)), for: .touchUpInside)
+        selectButton.addTarget(self, action: #selector(selectButtonAction), for: .touchUpInside)
     }
-    @objc func selectButtonAction(_ sender: Any?) {
+    
+    @objc func selectButtonAction() {
         selectButton.isSelected = !selectButton.isSelected
         delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
     }
+    
 }

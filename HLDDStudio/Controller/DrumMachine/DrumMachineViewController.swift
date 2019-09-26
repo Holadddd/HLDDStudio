@@ -31,6 +31,13 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
         
+        DrumMachineManger.manger.creatPattern(withType: .kicks, fileName: "808-Kicks01.wav")
+        DrumMachineManger.manger.creatPattern(withType: .snares, fileName: "808-Snare01.wav")
+        DrumMachineManger.manger.creatPattern(withType: .hihats, fileName: "808-HiHats01.wav")
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom1.wav")
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom2.wav")
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom3.wav")
+        kickSampleGet()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -155,14 +162,14 @@ extension DrumMachineViewController: GridViewDelegate{
 extension DrumMachineViewController: GridViewDataSource {
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
-        
+        let patternCount = DrumMachineManger.manger.pattern.count
         switch gridView {
         case drumMachineView.drumEditingGridView:
-            return 10
+            return patternCount
         case drumMachineView.drumBarGridView:
             return 1
         case drumMachineView.drumPatternGridView:
-            return 10
+            return patternCount
         default:
             return 0
         }
@@ -236,12 +243,36 @@ extension DrumMachineViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
+        let patterInfo = DrumMachineManger.manger.pattern[indexPath.row]
         switch gridView {
         case drumMachineView.drumEditingGridView:
             var cell = GridViewCell()
             if UIDevice.current.orientation.isPortrait {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
-                vCell.drumTypeLabel.text = "\(indexPath)"
+                
+                switch patterInfo.drumType {
+                case .classic:
+                    vCell.drumType = .classic
+                    vCell.typeLabel.text = "Classic"
+                    vCell.samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
+                case .hihats:
+                    vCell.drumType = .hihats
+                    vCell.typeLabel.text = "Hi-Hats"
+                    vCell.samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
+                case .kicks:
+                    vCell.drumType = .kicks
+                    vCell.typeLabel.text = "Kicks"
+                    vCell.samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
+                case .percussion:
+                    vCell.drumType = .kicks
+                    vCell.typeLabel.text = "Percussion"
+                    vCell.samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
+                case .snares:
+                    vCell.drumType = .snares
+                    vCell.typeLabel.text = "Snares"
+                    vCell.samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
+                }
+                vCell.samplePickTextField.text = patterInfo.fileName
                 vCell.delegate = self
                 cell = vCell
             } else {
@@ -254,27 +285,28 @@ extension DrumMachineViewController: GridViewDataSource {
             return cell
         case drumMachineView.drumBarGridView:
             guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
+            let numberOfBeat = cell.indexPath.column + 1
             switch cell.indexPath.column % 4 {
             case 0:
-                cell.firstLabel.text = "\(cell.indexPath.column)"
+                cell.firstLabel.text = "\(numberOfBeat)"
                 cell.secondLabel.text = ""
                 cell.thirdLabel.text = ""
                 cell.fourthLabel.text = ""
             case 1:
                 cell.firstLabel.text = ""
-                cell.secondLabel.text = "\(cell.indexPath.column)"
+                cell.secondLabel.text = "\(numberOfBeat)"
                 cell.thirdLabel.text = ""
                 cell.fourthLabel.text = ""
             case 2:
                 cell.firstLabel.text = ""
                 cell.secondLabel.text = ""
-                cell.thirdLabel.text = "\(cell.indexPath.column)"
+                cell.thirdLabel.text = "\(numberOfBeat)"
                 cell.fourthLabel.text = ""
             case 3:
                 cell.firstLabel.text = ""
                 cell.secondLabel.text = ""
                 cell.thirdLabel.text = ""
-                cell.fourthLabel.text = "\(cell.indexPath.column)"
+                cell.fourthLabel.text = "\(numberOfBeat)"
             default:
                 print("pass")
             }
@@ -329,4 +361,45 @@ extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
         print("\(cell.indexPath), \(isSelected)")
     }
 
+}
+
+extension DrumMachineViewController{
+    
+    func kickSampleGet() {
+        if let path = Bundle.main.resourcePath {
+
+            let kicksPath = path + "/808_drum_kit/kicks"
+            let url = URL(fileURLWithPath: kicksPath)
+            let fileManager = FileManager.default
+
+            let properties = [URLResourceKey.localizedNameKey,
+                              URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
+            
+            var kickFileNameArr: [String] = []
+            do {
+                let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+
+                for (index, element) in kicksURLs.enumerated(){
+                    let firstKickFileURL = element
+                    let result = Result{try AKAudioFile(forReading: firstKickFileURL)}
+                    switch result {
+                    case .success(let file):
+                        guard let fileName = file.fileNamePlusExtension as? String else { fatalError() }
+                        kickFileNameArr.append(fileName)
+                        print(index)
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                }
+                
+            } catch let error1 as NSError {
+                print(error1.description)
+            }
+            print(kickFileNameArr)
+            DrumMachineManger.manger.kicksFileName = kickFileNameArr.sorted{ $0 < $1 }
+            print(DrumMachineManger.manger.kicksFileName)
+        }
+        
+    }
 }

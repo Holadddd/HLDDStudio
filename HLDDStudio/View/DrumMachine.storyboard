@@ -32,7 +32,7 @@
                                                         <state key="normal" image="rotateIcon"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="90C-HS-YBB"/>
                                                     <constraint firstAttribute="bottom" secondItem="hXM-ng-psd" secondAttribute="bottom" id="DdV-hP-IVH"/>
@@ -43,11 +43,6 @@
                                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="zmc-U7-3NE"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Pattern Name" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="S64-4u-z93">
-                                                <rect key="frame" x="44" y="4" width="112" height="32"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                <textInputTraits key="textInputTraits"/>
-                                            </textField>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fld-J8-39A">
                                                 <rect key="frame" x="60" y="40" width="40" height="40"/>
                                                 <subviews>
@@ -102,29 +97,54 @@
                                                     <constraint firstAttribute="bottom" secondItem="08l-LB-qv5" secondAttribute="bottom" id="kub-mR-m9w"/>
                                                 </constraints>
                                             </view>
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-LK-fK8">
+                                                <rect key="frame" x="52" y="4" width="56" height="25"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="15"/>
+                                                <textInputTraits key="textInputTraits"/>
+                                            </textField>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wp4-1M-NgY">
+                                                <rect key="frame" x="123.66666666666669" y="4" width="25" height="25"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NH0-WX-0aQ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
+                                                        <state key="normal" image="AddPlugInButton2"/>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <constraints>
+                                                    <constraint firstItem="NH0-WX-0aQ" firstAttribute="top" secondItem="Wp4-1M-NgY" secondAttribute="top" id="5Bk-iJ-hAv"/>
+                                                    <constraint firstAttribute="trailing" secondItem="NH0-WX-0aQ" secondAttribute="trailing" id="Ijv-04-gGg"/>
+                                                    <constraint firstAttribute="bottom" secondItem="NH0-WX-0aQ" secondAttribute="bottom" id="y8n-24-v5X"/>
+                                                    <constraint firstItem="NH0-WX-0aQ" firstAttribute="leading" secondItem="Wp4-1M-NgY" secondAttribute="leading" id="zsP-vl-FDQ"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" id="6Lt-YI-9d2"/>
                                             <constraint firstItem="e1C-F0-Mmv" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" multiplier="1.7" id="BUX-TT-K5J"/>
-                                            <constraint firstItem="S64-4u-z93" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="top" constant="4" id="BYH-km-aEv"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" multiplier="0.3" id="EFc-uM-CDN"/>
                                             <constraint firstItem="qI0-0S-mjl" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="top" constant="4" id="Fp8-ml-LsY"/>
-                                            <constraint firstItem="S64-4u-z93" firstAttribute="width" secondItem="i1d-WA-2yz" secondAttribute="width" multiplier="0.7" id="R6W-1p-o4G"/>
+                                            <constraint firstItem="nTq-LK-fK8" firstAttribute="centerY" secondItem="hXM-ng-psd" secondAttribute="centerY" id="HrI-Y2-3W1"/>
+                                            <constraint firstItem="Wp4-1M-NgY" firstAttribute="width" secondItem="hXM-ng-psd" secondAttribute="width" id="LUc-HT-wSY"/>
                                             <constraint firstItem="e1C-F0-Mmv" firstAttribute="centerY" secondItem="fld-J8-39A" secondAttribute="centerY" id="RIT-sI-BkW"/>
+                                            <constraint firstItem="nTq-LK-fK8" firstAttribute="centerX" secondItem="bhT-2P-Y1I" secondAttribute="centerX" id="TJc-nR-esh"/>
                                             <constraint firstItem="qI0-0S-mjl" firstAttribute="leading" secondItem="i1d-WA-2yz" secondAttribute="leading" constant="4" id="XZG-be-VqY"/>
                                             <constraint firstAttribute="width" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="2" id="Xk5-ey-eph"/>
+                                            <constraint firstItem="Wp4-1M-NgY" firstAttribute="centerY" secondItem="hXM-ng-psd" secondAttribute="centerY" id="YTM-Rn-u0B"/>
                                             <constraint firstItem="e1C-F0-Mmv" firstAttribute="width" secondItem="e1C-F0-Mmv" secondAttribute="height" multiplier="1:1" id="Zgf-ZW-eKv"/>
                                             <constraint firstItem="e1C-F0-Mmv" firstAttribute="width" secondItem="fld-J8-39A" secondAttribute="width" id="g4a-Lz-dh0"/>
-                                            <constraint firstItem="S64-4u-z93" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="0.4" id="gqE-s2-bEj"/>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="centerY" secondItem="i1d-WA-2yz" secondAttribute="centerY" multiplier="1.5" id="jkr-mI-dmk"/>
-                                            <constraint firstAttribute="trailing" secondItem="S64-4u-z93" secondAttribute="trailing" constant="4" id="mvl-Av-9fR"/>
+                                            <constraint firstItem="Wp4-1M-NgY" firstAttribute="centerX" secondItem="xMv-ep-fR0" secondAttribute="centerX" id="kWp-bx-7AV"/>
+                                            <constraint firstItem="nTq-LK-fK8" firstAttribute="height" secondItem="hXM-ng-psd" secondAttribute="height" id="pKK-24-TIt"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="centerY" secondItem="fld-J8-39A" secondAttribute="centerY" id="pU2-9l-Rr7"/>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="0.5" id="sKX-Ki-Eek"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="sap-QB-oeY"/>
+                                            <constraint firstItem="Wp4-1M-NgY" firstAttribute="height" secondItem="hXM-ng-psd" secondAttribute="height" id="tvu-Tk-iek"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="fld-J8-39A" secondAttribute="width" id="vXw-uG-M3f"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="e5L-je-rkf" secondAttribute="height" multiplier="1:1" id="vwF-d2-Xj5"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="e5L-je-rkf" secondAttribute="height" multiplier="1:1" id="xAS-Xf-mQ1"/>
+                                            <constraint firstItem="nTq-LK-fK8" firstAttribute="width" secondItem="bhT-2P-Y1I" secondAttribute="width" multiplier="1.4" id="yzg-Sz-NGy"/>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trl-4K-lAH">
@@ -202,15 +222,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="83v-cc-zYJ"/>
                         <connections>
+                            <outlet property="addButton" destination="NH0-WX-0aQ" id="dho-lG-8Cc"/>
                             <outlet property="backButton" destination="08l-LB-qv5" id="Ra3-aq-S0u"/>
                             <outlet property="controlView" destination="i1d-WA-2yz" id="tta-fW-1p2"/>
                             <outlet property="drumBarGridView" destination="Zo4-5X-ibk" id="L5a-tH-Din"/>
                             <outlet property="drumEditingGridView" destination="GfG-ue-P23" id="9Re-Dv-0Lc"/>
                             <outlet property="drumPatternGridView" destination="Hdo-ec-7jZ" id="7DS-NP-69D"/>
-                            <outlet property="patternNameTextField" destination="S64-4u-z93" id="aN3-38-7Q5"/>
                             <outlet property="playAndStopButton" destination="bhT-2P-Y1I" id="a5n-Ey-BUk"/>
                             <outlet property="rotateButton" destination="hXM-ng-psd" id="BXi-YW-jtn"/>
                             <outlet property="saveButton" destination="xMv-ep-fR0" id="tfB-wm-C4x"/>
+                            <outlet property="tempoTextField" destination="nTq-LK-fK8" id="R4N-Xx-dDx"/>
                         </connections>
                     </view>
                     <connections>
@@ -221,8 +242,39 @@
             </objects>
             <point key="canvasLocation" x="-272.46376811594206" y="-12.053571428571429"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="dA6-Iw-K4C">
+            <objects>
+                <viewController id="Akm-rv-CcT" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="oQr-PM-ShA">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="lWr-EQ-gEw"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="pEL-5W-d4T" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="684" y="523"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Gz9-r8-4Fy">
+            <objects>
+                <viewController id="tgQ-ap-wnA" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="gmC-3g-ig7">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="MtK-SG-ImI"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mSr-4q-MT5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="675" y="-215"/>
+        </scene>
     </scenes>
     <resources>
+        <image name="AddPlugInButton2" width="200" height="200"/>
         <image name="rotateIcon" width="980" height="980"/>
     </resources>
 </document>

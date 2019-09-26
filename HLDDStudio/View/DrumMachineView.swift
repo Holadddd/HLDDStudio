@@ -33,7 +33,47 @@ class DrumMachineView: UIView {
     
     @IBOutlet weak var rotateButton: UIButton!
     
-    @IBOutlet weak var patternNameTextField: UITextField!
+    var tempoArr: [Int] = []
+    
+    let tempoPicker = UIPickerView()
+    
+    @IBOutlet weak var tempoTextField: UITextField! {
+        didSet {
+
+            tempoPicker.delegate = self
+            
+            tempoPicker.dataSource = self
+            
+            tempoTextField.inputView = tempoPicker
+            
+            let button = UIButton(type: .custom)
+            
+            button.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+            
+            button.setBackgroundImage(
+                UIImage.asset(.Icons_24px_DropDown),
+                for: .normal
+            )
+            
+            let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 16, height: 16)))
+            
+            view.addSubview(button)
+            
+            view.isUserInteractionEnabled = false
+            
+            button.isUserInteractionEnabled = false
+            
+            //tempoTextField.rightView = view
+            
+            tempoTextField.rightViewMode = .never
+            
+            tempoTextField.text = "60"
+            
+            tempoTextField.delegate = self
+        }
+    }
+    
+    @IBOutlet weak var addButton: UIButton!
     
     @IBOutlet weak var backButton: UIButton!
     
@@ -119,6 +159,10 @@ class DrumMachineView: UIView {
         backButton.addTarget(self, action: #selector(DrumMachineView.backButtonAction(_:)), for: .touchUpInside)
         playAndStopButton.addTarget(self, action: #selector(DrumMachineView.playAndStopButtonAction(_:)), for: .touchUpInside)
         saveButton.addTarget(self, action: #selector(DrumMachineView.saveButtonAction(_:)), for: .touchUpInside)
+        
+        for tempo in 40...240 {
+            tempoArr.append(tempo)
+        }
     }
     
     override func layoutSubviews() {
@@ -163,10 +207,48 @@ class DrumMachineView: UIView {
     }
     
     @objc func saveButtonAction(_ sender: UIButton) {
-        guard let fileName = patternNameTextField.text else{ return }
-        guard fileName != "" else{ return }
-        //Save and clean
-        delegate?.savePattern(withName: fileName)
-        patternNameTextField.text = nil
+        
+    }
+}
+
+extension DrumMachineView: UITextFieldDelegate {
+    
+}
+
+extension DrumMachineView: UIPickerViewDelegate {
+    
+}
+
+extension DrumMachineView: UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return 0
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        
+        pickerView.backgroundColor = UIColor.B1
+        let pickerLabel = UILabel()
+        pickerLabel.textColor = UIColor.white
+        pickerLabel.textAlignment = NSTextAlignment.center
+        
+        let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
+        
+        pickerLabel.backgroundColor = .clear
+        image.stickSubView(pickerLabel)
+        
+        pickerLabel.text = "\(tempoArr[row])"
+        
+        
+        return image
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+
+        tempoTextField.text = "\(tempoArr[row])"
+        
     }
 }

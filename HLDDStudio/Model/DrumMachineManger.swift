@@ -71,14 +71,15 @@ class DrumMachinePattern {
         
         self.fileName = fileName
         
-        let fileResult = Result{try AKAudioFile(readFileName: fileName)}
-        switch fileResult {
-        case .success(let file):
-            self.file = file
-        case .failure(let error):
-            print(error)
-            print(DrumMachineError.noSuchFile)
-        }
+//        let fileResult = Result{try AKAudioFile(readFileName: fileName)}
+//        switch fileResult {
+//        case .success(let file):
+//            self.file = file
+//        case .failure(let error):
+//            print(error)
+//            print(DrumMachineError.noSuchFile)
+//        }
+        self.file = try? AKAudioFile(readFileName: fileName)
         
         self.filePlayer = AKPlayer(audioFile: self.file)
         
@@ -119,6 +120,26 @@ class DrumMachineManger {
     
     static let manger = DrumMachineManger()
     
-    var pattern: DrumBeatPattern = DrumBeatPattern()
+    var pattern: [DrumMachinePattern] = []
     
+    var kicksFileName: [String] = []
+    
+    var snaresFileName: [String] = []
+    
+    var percussionFileName: [String] = []
+    
+    var hihatsFileName: [String] = []
+    
+    var classicFileName: [String] = []
+    func creatPattern(withType: DrumType, fileName: String){
+        pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileName: fileName))
+    }
+    
+    func changeDrumSample(atRow: Int,withFile fileName: String) {
+        
+    }
+    
+    func removeDrumPattern(atRow: Int) {
+        
+    }
 }

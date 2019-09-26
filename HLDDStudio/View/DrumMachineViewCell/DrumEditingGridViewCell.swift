@@ -16,6 +16,8 @@ protocol DrumEditingGridViewCellDelegate: AnyObject {
 
 class DrumEditingGridViewCell: GridViewCell {
     
+    @IBOutlet weak var labelView: UIView!
+    
     @IBOutlet weak var drumTypeLabel: UILabel!
     
     weak var delegate: DrumEditingGridViewCellDelegate?

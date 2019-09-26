@@ -19,11 +19,6 @@ class DrumPatternGridViewCell: GridViewCell {
     
     @IBOutlet weak var drumLabel: UILabel!
     
-//    @IBAction func selectButton(_ sender: UIButton) {
-//        sender.isSelected = !sender.isSelected
-//        delegate?.patternSelecte(cell: self, isSelected: sender.isSelected)
-//        sender.backgroundColor = .yellow
-//    }
     
     @IBOutlet weak var selectButton: UIButton!
     

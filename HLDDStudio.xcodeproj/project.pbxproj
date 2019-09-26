@@ -66,6 +66,10 @@
 		DB744F35233B546200AA8AFC /* DrumBarGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F34233B546200AA8AFC /* DrumBarGridViewCell.xib */; };
 		DB744F37233B549200AA8AFC /* DrumPatternGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F36233B549200AA8AFC /* DrumPatternGridViewCell.swift */; };
 		DB744F39233B54AE00AA8AFC /* DrumPatternGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F38233B54AE00AA8AFC /* DrumPatternGridViewCell.xib */; };
+		DB744F3C233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F3B233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift */; };
+		DB744F3E233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F3D233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib */; };
+		DB744F44233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F43233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift */; };
+		DB744F46233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */; };
 		DBCB3700233B3E2100DFBF83 /* IOGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBCB3702233B3E2100DFBF83 /* IOGridViewCell.xib */; };
 		DBFDE101233B0B4A005E5589 /* 808_drum_kit in Resources */ = {isa = PBXBuildFile; fileRef = DBFDE100233B0B4A005E5589 /* 808_drum_kit */; };
 /* End PBXBuildFile section */
@@ -135,6 +139,10 @@
 		DB744F34233B546200AA8AFC /* DrumBarGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumBarGridViewCell.xib; sourceTree = "<group>"; };
 		DB744F36233B549200AA8AFC /* DrumPatternGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternGridViewCell.swift; sourceTree = "<group>"; };
 		DB744F38233B54AE00AA8AFC /* DrumPatternGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternGridViewCell.xib; sourceTree = "<group>"; };
+		DB744F3B233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumEditingHorizontalGridViewCell.swift; sourceTree = "<group>"; };
+		DB744F3D233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumEditingHorizontalGridViewCell.xib; sourceTree = "<group>"; };
+		DB744F43233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternHorizontalGridViewCell.swift; sourceTree = "<group>"; };
+		DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternHorizontalGridViewCell.xib; sourceTree = "<group>"; };
 		DBCB3701233B3E2100DFBF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IOGridViewCell.xib; sourceTree = "<group>"; };
 		DBFDE100233B0B4A005E5589 /* 808_drum_kit */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = 808_drum_kit; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
@@ -318,10 +326,14 @@
 			children = (
 				DB744F30233B50E400AA8AFC /* DrumEditingGridViewCell.swift */,
 				DB744F2E233B50C600AA8AFC /* DrumEditingGridViewCell.xib */,
+				DB744F3B233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift */,
+				DB744F3D233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib */,
 				DB744F32233B544000AA8AFC /* DrumBarGridViewCell.swift */,
 				DB744F34233B546200AA8AFC /* DrumBarGridViewCell.xib */,
 				DB744F36233B549200AA8AFC /* DrumPatternGridViewCell.swift */,
 				DB744F38233B54AE00AA8AFC /* DrumPatternGridViewCell.xib */,
+				DB744F43233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift */,
+				DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */,
 			);
 			path = DrumMachineViewCell;
 			sourceTree = "<group>";
@@ -418,6 +430,7 @@
 				0106320F23335B5D00214672 /* DrumMachine.storyboard in Resources */,
 				DB744F2F233B50C600AA8AFC /* DrumEditingGridViewCell.xib in Resources */,
 				0171721A232380DB00049F3B /* LaunchScreen.storyboard in Resources */,
+				DB744F3E233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib in Resources */,
 				DBFDE101233B0B4A005E5589 /* 808_drum_kit in Resources */,
 				01E3BEF62339F5D800F9011E /* PlugInReverbTableViewCell.xib in Resources */,
 				010D7827232B73560099D76D /* GifEffect2.gif in Resources */,
@@ -426,6 +439,7 @@
 				01717212232380D900049F3B /* Main.storyboard in Resources */,
 				DB744F35233B546200AA8AFC /* DrumBarGridViewCell.xib in Resources */,
 				015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */,
+				DB744F46233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -503,6 +517,7 @@
 				016F4D25232561B50027D507 /* ReverbSet.swift in Sources */,
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
 				0106321323335C4200214672 /* DrumMachineViewController.swift in Sources */,
+				DB744F3C233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift in Sources */,
 				DB744F33233B544000AA8AFC /* DrumBarGridViewCell.swift in Sources */,
 				DB744F37233B549200AA8AFC /* DrumPatternGridViewCell.swift in Sources */,
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
@@ -513,6 +528,7 @@
 				DB744F31233B50E400AA8AFC /* DrumEditingGridViewCell.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
+				DB744F44233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift in Sources */,
 				01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				01371C272337C32000617A9D /* GridView+Extension.swift in Sources */,

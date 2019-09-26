@@ -217,6 +217,7 @@ extension DrumMachineViewController: GridViewDataSource {
             if UIDevice.current.orientation.isPortrait {
                 height = (mainH - controlH)/3
             } else {
+                
                 height = (mainW - controlH)/6
             }
         case drumMachineView.drumBarGridView:
@@ -237,9 +238,19 @@ extension DrumMachineViewController: GridViewDataSource {
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
         switch gridView {
         case drumMachineView.drumEditingGridView:
-            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
-            cell.drumTypeLabel.text = "\(indexPath)"
-            cell.delegate = self
+            var cell = GridViewCell()
+            if UIDevice.current.orientation.isPortrait {
+                guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
+                vCell.drumTypeLabel.text = "\(indexPath)"
+                vCell.delegate = self
+                cell = vCell
+            } else {
+                guard let hCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingHorizontalGridViewCell", for: indexPath) as? DrumEditingHorizontalGridViewCell else { fatalError() }
+                
+                hCell.delegate = self
+                cell = hCell
+            }
+            
             return cell
         case drumMachineView.drumBarGridView:
             guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
@@ -247,10 +258,21 @@ extension DrumMachineViewController: GridViewDataSource {
             cell.delegate = self
             return cell
         case drumMachineView.drumPatternGridView:
-            guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
-            cell.drumLabel.text = "\(indexPath)"
-            cell.delegate = self
+            var cell = GridViewCell()
+            if UIDevice.current.orientation.isPortrait {
+                guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
+                vCell.drumLabel.text = "\(indexPath)"
+                vCell.delegate = self
+                cell = vCell
+            } else {
+                guard let hCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternHorizontalGridViewCell", for: indexPath) as? DrumPatternHorizontalGridViewCell else { fatalError() }
+                
+                hCell.delegate = self
+                cell = hCell
+            }
+            
             return cell
+
         default:
             return GridViewCell()
         }

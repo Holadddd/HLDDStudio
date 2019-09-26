@@ -61,8 +61,10 @@ class DrumMachineView: UIView {
         super.awakeFromNib()
         //registCell
         drumEditingGridView.register(DrumEditingGridViewCell.nib, forCellWithReuseIdentifier: "DrumEditingGridViewCell")
+        drumEditingGridView.register(DrumEditingHorizontalGridViewCell.nib, forCellWithReuseIdentifier: "DrumEditingHorizontalGridViewCell")
         drumBarGridView.register(DrumBarGridViewCell.nib, forCellWithReuseIdentifier: "DrumBarGridViewCell")
         drumPatternGridView.register(DrumPatternGridViewCell.nib, forCellWithReuseIdentifier: "DrumPatternGridViewCell")
+        drumPatternGridView.register(DrumPatternHorizontalGridViewCell.nib, forCellWithReuseIdentifier: "DrumPatternHorizontalGridViewCell")
         //clipBounds
         drumEditingGridView.clipsToBounds = true
         drumBarGridView.clipsToBounds = true

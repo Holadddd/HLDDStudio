@@ -37,18 +37,19 @@ class DrumMachineViewController: UIViewController {
         super.viewWillAppear(animated)
         
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
-        
-        //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+    }
     override func viewWillLayoutSubviews() {
         print("viewWillLayoutSubviews")
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        drumMachineView.reloadInputViews()
-        drumMachineView.drumEditingGridView.reloadInputViews()
         drumMachineView.drumEditingGridView.reloadData()
         drumMachineView.drumBarGridView.reloadData()
         drumMachineView.drumPatternGridView.reloadData()
@@ -76,11 +77,10 @@ extension DrumMachineViewController: DrumMachineDelegate {
   
     func popDrumMachineView() {
         print("popDrumMachineView")
+        dismiss(animated: true, completion: nil)
     }
     
     func playDrum() {
-        
-        drumMachineView.layoutSubviews()
         print("playDrum")
     }
     

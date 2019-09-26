@@ -60,19 +60,22 @@ class ViewController: UIViewController {
         
         FirebaseManager.createEventWith(category: .ViewController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         
-        //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
         
+        print("viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-    
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
+        print("viewDidAppear")
     }
 
+    override func viewWillLayoutSubviews() {
+        mixerView.masterFader.layoutSubviews()
+    }
     func setTrackNode(track: Int) {
         try? AudioKit.stop()
         MixerManger.manger.mixer.disconnectInput(bus: track)

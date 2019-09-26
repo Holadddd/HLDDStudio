@@ -50,15 +50,12 @@ class DrumMachineView: UIView {
     weak var delegate: DrumMachineDelegate?
     
     weak var datasource: DrumMachineDatasource?
-    
     //parameter
     let infinitable = false
     
     let minScale = Scale(x: 1, y: 1)
     
     let maxScale = Scale(x: 1, y: 1)
-    
-    
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -127,21 +124,16 @@ class DrumMachineView: UIView {
         
     }
     
-    func setAllOffsetToOrigin(animated: Bool) {
-        drumEditingGridView.reloadData()
-        drumBarGridView.reloadData()
-        drumPatternGridView.reloadData()
-    }
-    
     @objc func rotateButtonAction(_ sender: UIButton) {
         sender.isSelected = !sender.isSelected
         delegate?.rotateDrumMachineView(isLandscapeRight: sender.isSelected, completion: {[weak self] in
             guard let strongSelf = self else{fatalError()}
             DispatchQueue.main.async {
-                strongSelf.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                strongSelf.drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                strongSelf.drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
-                print("reload gridview.")
+                strongSelf.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                strongSelf.drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                strongSelf.drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
+                //SetReloadData At VC viewWillTransition
+                print("setContentOffset gridview.")
             }
         })
     }
@@ -160,7 +152,6 @@ class DrumMachineView: UIView {
             delegate?.stopPlayingDrum()
             rotateButton.isEnabled = true
         }
-        
     }
     
     @objc func saveButtonAction(_ sender: UIButton) {

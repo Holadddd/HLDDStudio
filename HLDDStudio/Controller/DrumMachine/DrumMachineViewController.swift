@@ -384,8 +384,7 @@ extension DrumMachineViewController{
                     let result = Result{try AKAudioFile(forReading: firstKickFileURL)}
                     switch result {
                     case .success(let file):
-                        guard let fileName = file.fileNamePlusExtension as? String else { fatalError() }
-                        kickFileNameArr.append(fileName)
+                        kickFileNameArr.append(file.fileNamePlusExtension)
                         print(index)
                     case .failure(let error):
                         print(error)

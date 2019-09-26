@@ -90,22 +90,40 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        var fileNameArr: [String] = []
         switch drumType {
         case .classic:
-            return DrumMachineManger.manger.classicFileName.count
+            fileNameArr = DrumMachineManger.manger.classicFileName
         case .hihats:
-            return DrumMachineManger.manger.hihatsFileName.count
+            fileNameArr = DrumMachineManger.manger.hihatsFileName
         case .kicks:
-            return DrumMachineManger.manger.kicksFileName.count
+            fileNameArr = DrumMachineManger.manger.kicksFileName
         case .percussion:
-            return DrumMachineManger.manger.percussionFileName.count
+            fileNameArr = DrumMachineManger.manger.percussionFileName
         case .snares:
-            return DrumMachineManger.manger.snaresFileName.count
+            fileNameArr = DrumMachineManger.manger.snaresFileName
             
         }
+        return fileNameArr.count
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var fileNameArr: [String] = []
+        switch drumType {
+        case .classic:
+            fileNameArr = DrumMachineManger.manger.classicFileName
+        case .hihats:
+            fileNameArr = DrumMachineManger.manger.hihatsFileName
+        case .kicks:
+            fileNameArr = DrumMachineManger.manger.kicksFileName
+        case .percussion:
+            fileNameArr = DrumMachineManger.manger.percussionFileName
+        case .snares:
+            fileNameArr = DrumMachineManger.manger.snaresFileName
+        }
+        
+        let fileName = fileNameArr[row]
+        
         pickerView.backgroundColor = UIColor.B1
         
         let pickerLabel = UILabel()
@@ -118,13 +136,27 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         image.stickSubView(pickerLabel)
         
         
-        pickerLabel.text = ""
+        pickerLabel.text = fileName
         return image
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
-        samplePickTextField.text = ""
+        var fileNameArr: [String] = []
+        switch drumType {
+        case .classic:
+            fileNameArr = DrumMachineManger.manger.classicFileName
+        case .hihats:
+            fileNameArr = DrumMachineManger.manger.hihatsFileName
+        case .kicks:
+            fileNameArr = DrumMachineManger.manger.kicksFileName
+        case .percussion:
+            fileNameArr = DrumMachineManger.manger.percussionFileName
+        case .snares:
+            fileNameArr = DrumMachineManger.manger.snaresFileName
+        }
+        if fileNameArr.count != 0 {
+            samplePickTextField.text = fileNameArr[row]
+        }
         
     }
 }

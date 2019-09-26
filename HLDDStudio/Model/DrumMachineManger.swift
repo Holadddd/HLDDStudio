@@ -37,6 +37,18 @@ enum DrumMachineError: Error {
     case playerError
 }
 
+enum DrumMachinePatternBackgroundColor: String {
+    
+    case firstSec = "AD5151"
+    
+    case secondSec = "D1893C"
+    
+    case thirdSec = "D1BF3C"
+    
+    case fourthSec = "CFC998"
+    
+}
+
 class DrumMachinePattern {
     
     var fileName: String
@@ -105,5 +117,8 @@ class DrumBeatPattern {
 
 class DrumMachineManger {
     
+    static let manger = DrumMachineManger()
+    
+    var pattern: DrumBeatPattern = DrumBeatPattern()
     
 }

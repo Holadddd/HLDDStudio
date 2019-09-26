@@ -15,7 +15,13 @@ protocol DrumBarGridViewCellDelegate: AnyObject {
 }
 class DrumBarGridViewCell: GridViewCell {
     
-    @IBOutlet weak var barLabel: UILabel!
+    @IBOutlet weak var firstLabel: UILabel!
+    
+    @IBOutlet weak var secondLabel: UILabel!
+    
+    @IBOutlet weak var thirdLabel: UILabel!
+    
+    @IBOutlet weak var fourthLabel: UILabel!
     
     weak var delegate: DrumBarGridViewCellDelegate?
     
@@ -25,6 +31,6 @@ class DrumBarGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        self.backgroundColor = .yellow
+        
     }
 }

@@ -254,7 +254,42 @@ extension DrumMachineViewController: GridViewDataSource {
             return cell
         case drumMachineView.drumBarGridView:
             guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
-            cell.barLabel.text = "\(indexPath)"
+            switch cell.indexPath.column % 4 {
+            case 0:
+                cell.firstLabel.text = "\(cell.indexPath.column)"
+                cell.secondLabel.text = ""
+                cell.thirdLabel.text = ""
+                cell.fourthLabel.text = ""
+            case 1:
+                cell.firstLabel.text = ""
+                cell.secondLabel.text = "\(cell.indexPath.column)"
+                cell.thirdLabel.text = ""
+                cell.fourthLabel.text = ""
+            case 2:
+                cell.firstLabel.text = ""
+                cell.secondLabel.text = ""
+                cell.thirdLabel.text = "\(cell.indexPath.column)"
+                cell.fourthLabel.text = ""
+            case 3:
+                cell.firstLabel.text = ""
+                cell.secondLabel.text = ""
+                cell.thirdLabel.text = ""
+                cell.fourthLabel.text = "\(cell.indexPath.column)"
+            default:
+                print("pass")
+            }
+            switch Int(indexPath.column/4) {
+            case 0:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
+            case 1:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
+            case 2:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
+            case 3:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
+            default:
+                cell.backgroundColor = .blue
+            }
             cell.delegate = self
             return cell
         case drumMachineView.drumPatternGridView:
@@ -278,7 +313,6 @@ extension DrumMachineViewController: GridViewDataSource {
         }
         
     }
-    
     
 }
 

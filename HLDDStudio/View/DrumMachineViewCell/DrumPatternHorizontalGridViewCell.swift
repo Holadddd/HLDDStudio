@@ -31,13 +31,6 @@ class DrumPatternHorizontalGridViewCell: GridViewCell {
     @objc func selectButtonAction(_ sender: Any?) {
         selectButton.isSelected = !selectButton.isSelected
         
-        switch selectButton.isSelected {
-        case true:
-            animateView.backgroundColor = .blue
-        case false:
-            animateView.backgroundColor = .white
-        }
-        
         delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
     }
    
@@ -49,13 +42,11 @@ class DrumPatternHorizontalGridViewCell: GridViewCell {
             let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
             
             let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-                self.animateView.backgroundColor = .blue
-                //self.selectButton.backgroundColor = .blue
+                self.animateView.backgroundColor = .clear
             }
             
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                //self.selectButton.backgroundColor = .yellow
-                self.animateView.backgroundColor = .yellow
+                self.animateView.backgroundColor = .white
                 animate.startAnimation()
             }
         }

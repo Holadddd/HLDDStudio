@@ -18,6 +18,7 @@ class DrumMachineViewController: UIViewController {
     let mainH = UIScreen.main.bounds.height
     
     var controlH: CGFloat?
+    var controlW: CGFloat?
     //20 is time heigh same at every iphone.
     let adjustValue = UIApplication.shared.statusBarFrame.height - 20
     
@@ -36,6 +37,7 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.dataSource = self
         
         controlH = drumMachineView.controlView.bounds.height
+        controlW = drumMachineView.controlView.bounds.width
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -208,7 +210,7 @@ extension DrumMachineViewController: GridViewDataSource {
     
     func gridView(_ gridView: GridView, widthForColumn column: Int) -> CGFloat {
         var witdth: CGFloat = 0
-        let controlW = drumMachineView.controlView.bounds.width
+        guard let controlW = self.controlW else { fatalError() }
         
         switch gridView {
         case drumMachineView.drumEditingGridView:
@@ -331,6 +333,18 @@ extension DrumMachineViewController: GridViewDataSource {
         case drumMachineView.drumBarGridView:
             guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
             let numberOfBeat = cell.indexPath.column + 1
+            switch Int(indexPath.column/4) {
+            case 0:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
+            case 1:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
+            case 2:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
+            case 3:
+                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
+            default:
+                break
+            }
             cell.barLabel.text = "\(numberOfBeat)"
             cell.delegate = self
             return cell
@@ -357,25 +371,25 @@ extension DrumMachineViewController: GridViewDataSource {
                 
                 hCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
                 
-                switch  hCell.selectButton.isSelected {
-                case true:
-                    hCell.animateView.backgroundColor = .blue
-                case false:
-                    hCell.animateView.backgroundColor = .white
-                }
+//                switch  hCell.selectButton.isSelected {
+//                case true:
+//                    hCell.animateView.backgroundColor = .blue
+//                case false:
+//                    hCell.animateView.backgroundColor = .white
+//                }
                 
-                switch Int(indexPath.column/4) {
-                case 0:
-                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
-                case 1:
-                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
-                case 2:
-                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
-                case 3:
-                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
-                default:
-                    break
-                }
+//                switch Int(indexPath.column/4) {
+//                case 0:
+//                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
+//                case 1:
+//                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
+//                case 2:
+//                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
+//                case 3:
+//                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
+//                default:
+//                    break
+//                }
                 
                 hCell.delegate = self
                 cell = hCell

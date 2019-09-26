@@ -15,13 +15,7 @@ protocol DrumBarGridViewCellDelegate: AnyObject {
 }
 class DrumBarGridViewCell: GridViewCell {
     
-    @IBOutlet weak var firstLabel: UILabel!
-    
-    @IBOutlet weak var secondLabel: UILabel!
-    
-    @IBOutlet weak var thirdLabel: UILabel!
-    
-    @IBOutlet weak var fourthLabel: UILabel!
+    @IBOutlet weak var barLabel: UILabel!
     
     weak var delegate: DrumBarGridViewCellDelegate?
     

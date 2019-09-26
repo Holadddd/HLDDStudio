@@ -16,6 +16,8 @@ class DrumMachineViewController: UIViewController {
     
     let mainW = UIScreen.main.bounds.width
     let mainH = UIScreen.main.bounds.height
+    
+    var controlH: CGFloat?
     //20 is time heigh same at every iphone.
     let adjustValue = UIApplication.shared.statusBarFrame.height - 20
     
@@ -33,6 +35,7 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
         
+        controlH = drumMachineView.controlView.bounds.height
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,6 +44,10 @@ class DrumMachineViewController: UIViewController {
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
         drumMachineView.tempoTextField.isEnabled = true
+        
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         
     }
     
@@ -60,6 +67,7 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumEditingGridView.reloadData()
         drumMachineView.drumBarGridView.reloadData()
         drumMachineView.drumPatternGridView.reloadData()
+        
     }
     
     override func viewSafeAreaInsetsDidChange() {
@@ -74,13 +82,17 @@ extension DrumMachineViewController: DrumMachineDelegate {
         case true:
             DispatchQueue.main.async {
                 
-                AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight, complete: completion)
+                AppUtility.lockOrientation(.landscapeRight, andRotateTo: .landscapeRight) {
+                    
+                }
                 
             }
         case false:
             DispatchQueue.main.async {
                 
-                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: completion)
+                AppUtility.lockOrientation(.portrait, andRotateTo: .portrait) {
+                    
+                }
             }
         }
     }
@@ -186,9 +198,9 @@ extension DrumMachineViewController: GridViewDataSource {
         case drumMachineView.drumEditingGridView:
             return 1
         case drumMachineView.drumBarGridView:
-            return 16
+            return DrumMachineScrollSettingInfo.numberOfBeatsInLandScapePage.rawValue
         case drumMachineView.drumPatternGridView:
-            return 16
+            return DrumMachineScrollSettingInfo.numberOfBeatsInLandScapePage.rawValue
         default:
             return 0
         }
@@ -204,16 +216,16 @@ extension DrumMachineViewController: GridViewDataSource {
             return w
         case drumMachineView.drumBarGridView:
             if UIDevice.current.orientation.isPortrait {
-                witdth = (mainW - controlW)/4
+                witdth = (mainW - controlW)/CGFloat(DrumMachineScrollSettingInfo.numberOfBeatsInOneBar.rawValue)
             } else {
-                witdth = (mainH - controlW)/16.1
+                witdth = (mainH - controlW)/CGFloat(DrumMachineScrollSettingInfo.numberOfBeatsInLandScapePage.rawValue)
             }
             
         case drumMachineView.drumPatternGridView:
             if UIDevice.current.orientation.isPortrait {
-                witdth = (mainW - controlW)/4
+                witdth = (mainW - controlW)/CGFloat(DrumMachineScrollSettingInfo.numberOfBeatsInOneBar.rawValue)
             } else {
-                witdth = (mainH - controlW)/16.1
+                witdth = (mainH - controlW)/CGFloat(DrumMachineScrollSettingInfo.numberOfBeatsInLandScapePage.rawValue)
             }
         default:
             return 0
@@ -223,12 +235,11 @@ extension DrumMachineViewController: GridViewDataSource {
     
     func gridView(_ gridView: GridView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         var height: CGFloat = 0
-        let controlH = drumMachineView.controlView.bounds.height
-        
+        guard let controlH = self.controlH else { fatalError()}
         switch gridView {
         case drumMachineView.drumEditingGridView:
             if UIDevice.current.orientation.isPortrait {
-                height = (mainH - controlH)/3
+                height = (mainH - controlH)/4
             } else {
                 
                 height = (mainW - controlH)/6
@@ -238,7 +249,7 @@ extension DrumMachineViewController: GridViewDataSource {
             return h
         case drumMachineView.drumPatternGridView:
             if UIDevice.current.orientation.isPortrait {
-                height = (mainH - controlH)/3
+                height = (mainH - controlH)/4
             } else {
                 height = (mainW - controlH)/6
             }
@@ -320,42 +331,7 @@ extension DrumMachineViewController: GridViewDataSource {
         case drumMachineView.drumBarGridView:
             guard let cell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumBarGridViewCell", for: indexPath) as? DrumBarGridViewCell else { fatalError() }
             let numberOfBeat = cell.indexPath.column + 1
-            switch cell.indexPath.column % 4 {
-            case 0:
-                cell.firstLabel.text = "\(numberOfBeat)"
-                cell.secondLabel.text = ""
-                cell.thirdLabel.text = ""
-                cell.fourthLabel.text = ""
-            case 1:
-                cell.firstLabel.text = ""
-                cell.secondLabel.text = "\(numberOfBeat)"
-                cell.thirdLabel.text = ""
-                cell.fourthLabel.text = ""
-            case 2:
-                cell.firstLabel.text = ""
-                cell.secondLabel.text = ""
-                cell.thirdLabel.text = "\(numberOfBeat)"
-                cell.fourthLabel.text = ""
-            case 3:
-                cell.firstLabel.text = ""
-                cell.secondLabel.text = ""
-                cell.thirdLabel.text = ""
-                cell.fourthLabel.text = "\(numberOfBeat)"
-            default:
-                break
-            }
-            switch Int(indexPath.column/4) {
-            case 0:
-                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
-            case 1:
-                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
-            case 2:
-                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
-            case 3:
-                cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
-            default:
-                break
-            }
+            cell.barLabel.text = "\(numberOfBeat)"
             cell.delegate = self
             return cell
         case drumMachineView.drumPatternGridView:

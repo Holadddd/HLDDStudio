@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_5" orientation="landscape" appearance="light"/>
+    <device id="retina6_5" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
@@ -13,20 +13,14 @@
             <objects>
                 <viewController storyboardIdentifier="DrumMachineViewController" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="SUg-nn-uIE" customClass="DrumMachineViewController" customModule="HLDDStudio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" id="U1o-jn-SXQ" customClass="DrumMachineView" customModule="HLDDStudio" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-Xn-oTg">
-                                <rect key="frame" x="0.0" y="0.0" width="896" height="414"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="A27-7J-x7l">
-                                        <rect key="frame" x="-44.666666666666686" y="-189" width="985.33333333333348" height="197"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="A27-7J-x7l" secondAttribute="height" multiplier="5:1" id="kJm-4P-dkA"/>
-                                        </constraints>
-                                    </imageView>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1d-WA-2yz">
-                                        <rect key="frame" x="0.0" y="8" width="160" height="80"/>
+                                        <rect key="frame" x="0.0" y="44" width="160" height="80"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-yQ-h2t">
                                                 <rect key="frame" x="-8" y="-4" width="176" height="88"/>
@@ -124,10 +118,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="trl-4K-lAH">
-                                        <rect key="frame" x="160" y="8" width="736" height="80"/>
+                                        <rect key="frame" x="160" y="84" width="254" height="40"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Zo4-5X-ibk" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="736" height="80"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
@@ -140,10 +134,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-qy-mq2">
-                                        <rect key="frame" x="0.0" y="88" width="160" height="326"/>
+                                        <rect key="frame" x="0.0" y="124" width="160" height="772"/>
                                         <subviews>
                                             <scrollView verifyAmbiguity="off" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="326"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="772"/>
                                                 <color key="backgroundColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </scrollView>
                                         </subviews>
@@ -155,11 +149,11 @@
                                             <constraint firstAttribute="trailing" secondItem="GfG-ue-P23" secondAttribute="trailing" id="wRU-N6-WQP"/>
                                         </constraints>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-U0-hOf">
-                                        <rect key="frame" x="160" y="88" width="736" height="326"/>
+                                    <view autoresizesSubviews="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-U0-hOf">
+                                        <rect key="frame" x="160" y="124" width="254" height="772"/>
                                         <subviews>
-                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Hdo-ec-7jZ" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="736" height="326"/>
+                                            <scrollView autoresizesSubviews="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" contentInsetAdjustmentBehavior="never" translatesAutoresizingMaskIntoConstraints="NO" id="Hdo-ec-7jZ" customClass="GridView" customModule="G3GridView">
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="772"/>
                                                 <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
@@ -171,25 +165,29 @@
                                             <constraint firstAttribute="trailing" secondItem="Hdo-ec-7jZ" secondAttribute="trailing" id="q0z-iW-Tx3"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X2b-HK-Yzp">
+                                        <rect key="frame" x="160" y="44" width="254" height="40"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="dQX-U0-hOf" secondAttribute="trailing" id="Cyu-nN-vvB"/>
+                                    <constraint firstItem="X2b-HK-Yzp" firstAttribute="leading" secondItem="i1d-WA-2yz" secondAttribute="trailing" id="3TY-A1-3Vz"/>
+                                    <constraint firstAttribute="trailing" secondItem="X2b-HK-Yzp" secondAttribute="trailing" id="5kA-wN-FlS"/>
+                                    <constraint firstItem="dQX-U0-hOf" firstAttribute="trailing" secondItem="dVS-Xn-oTg" secondAttribute="trailing" id="Cyu-nN-vvB"/>
                                     <constraint firstItem="dQX-U0-hOf" firstAttribute="leading" secondItem="M6a-qy-mq2" secondAttribute="trailing" id="Fhr-Wf-1vp"/>
                                     <constraint firstItem="i1d-WA-2yz" firstAttribute="leading" secondItem="dVS-Xn-oTg" secondAttribute="leading" id="Hqf-x4-dfl"/>
                                     <constraint firstItem="M6a-qy-mq2" firstAttribute="leading" secondItem="dVS-Xn-oTg" secondAttribute="leading" id="Kig-Gd-fVs"/>
                                     <constraint firstAttribute="trailing" secondItem="trl-4K-lAH" secondAttribute="trailing" id="NTS-7j-Thj"/>
-                                    <constraint firstItem="trl-4K-lAH" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" id="OA8-HT-KqP"/>
+                                    <constraint firstItem="trl-4K-lAH" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="0.5" id="OA8-HT-KqP"/>
                                     <constraint firstItem="dQX-U0-hOf" firstAttribute="top" secondItem="trl-4K-lAH" secondAttribute="bottom" id="Pea-n4-HNE"/>
-                                    <constraint firstItem="A27-7J-x7l" firstAttribute="width" secondItem="dVS-Xn-oTg" secondAttribute="width" multiplier="1.1" id="Tb7-aF-FkI"/>
+                                    <constraint firstItem="trl-4K-lAH" firstAttribute="top" secondItem="X2b-HK-Yzp" secondAttribute="bottom" id="SRA-sU-wjk"/>
                                     <constraint firstItem="i1d-WA-2yz" firstAttribute="width" secondItem="dVS-Xn-oTg" secondAttribute="width" multiplier="0.4" priority="995" id="XR7-7p-qhG"/>
-                                    <constraint firstItem="i1d-WA-2yz" firstAttribute="top" secondItem="dVS-Xn-oTg" secondAttribute="topMargin" id="YgZ-Gt-sP8"/>
+                                    <constraint firstItem="X2b-HK-Yzp" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="top" id="XTV-aZ-clh"/>
                                     <constraint firstAttribute="bottom" secondItem="dQX-U0-hOf" secondAttribute="bottom" id="bOf-4y-tyZ"/>
                                     <constraint firstAttribute="bottom" secondItem="M6a-qy-mq2" secondAttribute="bottom" id="dkQ-sR-v9j"/>
                                     <constraint firstItem="trl-4K-lAH" firstAttribute="leading" secondItem="i1d-WA-2yz" secondAttribute="trailing" id="kUj-nX-e6o"/>
-                                    <constraint firstItem="trl-4K-lAH" firstAttribute="top" secondItem="dVS-Xn-oTg" secondAttribute="topMargin" id="kZD-16-isS"/>
-                                    <constraint firstAttribute="topMargin" secondItem="A27-7J-x7l" secondAttribute="bottom" id="oek-y4-vR6"/>
-                                    <constraint firstItem="A27-7J-x7l" firstAttribute="centerX" secondItem="dVS-Xn-oTg" secondAttribute="centerX" id="pwG-WI-oJX"/>
+                                    <constraint firstItem="trl-4K-lAH" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="centerY" id="kZD-16-isS"/>
                                     <constraint firstItem="M6a-qy-mq2" firstAttribute="width" secondItem="i1d-WA-2yz" secondAttribute="width" id="xUI-U3-m1h"/>
                                     <constraint firstItem="M6a-qy-mq2" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="bottom" id="xmj-tN-aa5"/>
                                 </constraints>
@@ -198,6 +196,7 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="dVS-Xn-oTg" firstAttribute="leading" secondItem="U1o-jn-SXQ" secondAttribute="leading" id="4Mo-gV-CJJ"/>
+                            <constraint firstItem="i1d-WA-2yz" firstAttribute="top" secondItem="83v-cc-zYJ" secondAttribute="top" id="7iW-tm-Vd4"/>
                             <constraint firstAttribute="trailing" secondItem="dVS-Xn-oTg" secondAttribute="trailing" id="Xho-T9-8nY"/>
                             <constraint firstAttribute="bottom" secondItem="dVS-Xn-oTg" secondAttribute="bottom" id="tWz-Up-NiW"/>
                             <constraint firstItem="dVS-Xn-oTg" firstAttribute="top" secondItem="U1o-jn-SXQ" secondAttribute="top" id="xnG-w1-sTE"/>

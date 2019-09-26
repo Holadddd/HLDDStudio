@@ -353,3 +353,12 @@ extension DrumMachineManger {
         StorageManager.sharedManager.fetchedOrderList.append(newPattern)
     }
 }
+
+
+enum DrumMachineScrollSettingInfo: Int {
+    case numberOfBeatsInLandScapePage = 16
+    
+    case numberOfBeatsInOneBar = 4
+    
+    case numberOfPageInScrollView = 1
+}

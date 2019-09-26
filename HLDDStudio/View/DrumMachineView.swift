@@ -163,6 +163,12 @@ class DrumMachineView: UIView {
         drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: false)
         
+        //inSet
+        let insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        drumEditingGridView.contentInset = insets
+        drumBarGridView.contentInset = insets
+        drumPatternGridView.contentInset = insets
+        
         rotateButton.addTarget(self, action: #selector(DrumMachineView.rotateButtonAction(_:)), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(DrumMachineView.backButtonAction(_:)), for: .touchUpInside)
         playAndStopButton.addTarget(self, action: #selector(DrumMachineView.playAndStopButtonAction(_:)), for: .touchUpInside)

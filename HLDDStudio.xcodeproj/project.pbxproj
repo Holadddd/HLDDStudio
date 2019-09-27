@@ -58,6 +58,7 @@
 		01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F1661E232BC9E800F1C107 /* HLDDRedFader.swift */; };
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
 		248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */; };
+		DB07BE9C233E0DDB00EC1789 /* UserManualView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB07BE9B233E0DDB00EC1789 /* UserManualView.swift */; };
 		DB0CDC31233DAE4800D8583C /* 808_drum_kit in Resources */ = {isa = PBXBuildFile; fileRef = DB0CDC2E233DAD6600D8583C /* 808_drum_kit */; };
 		DB0CDC37233FBED200D8583C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0CDC36233FBED200D8583C /* StorageManager.swift */; };
 		DB4A5020233A301800A9DCEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */; };
@@ -86,6 +87,7 @@
 		DB8D0E462345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E452345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift */; };
 		DB8D0E482345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E472345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift */; };
 		DB8D0E4A2345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */; };
+		DBB3B9DB2348456500415E99 /* UserManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB3B9DA2348456500415E99 /* UserManualViewController.swift */; };
 		DBCB3700233B3E2100DFBF83 /* IOGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBCB3702233B3E2100DFBF83 /* IOGridViewCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -145,6 +147,7 @@
 		2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_HLDDStudio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.release.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.release.xcconfig"; sourceTree = "<group>"; };
 		A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.debug.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.debug.xcconfig"; sourceTree = "<group>"; };
+		DB07BE9B233E0DDB00EC1789 /* UserManualView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManualView.swift; sourceTree = "<group>"; };
 		DB0CDC2E233DAD6600D8583C /* 808_drum_kit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 808_drum_kit; path = ../../Downloads/808_drum_kit/808_drum_kit; sourceTree = "<group>"; };
 		DB0CDC36233FBED200D8583C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -174,6 +177,7 @@
 		DB8D0E452345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewDatasource.swift; sourceTree = "<group>"; };
 		DB8D0E472345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewCellDelegate.swift; sourceTree = "<group>"; };
 		DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewCellDatasource.swift; sourceTree = "<group>"; };
+		DBB3B9DA2348456500415E99 /* UserManualViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UserManualViewController.swift; path = HLDDStudio/Controller/Mixer/UserManualViewController/UserManualViewController.swift; sourceTree = SOURCE_ROOT; };
 		DBCB3701233B3E2100DFBF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IOGridViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -196,6 +200,7 @@
 				0171720E232380D900049F3B /* ViewController.swift */,
 				DB8D0E2D2345D7DB00FA9595 /* MixerController */,
 				DB8D0E2E2345D7F600FA9595 /* PlugInController */,
+				DBB3B9DC2348457B00415E99 /* UserManualViewController */,
 			);
 			path = Mixer;
 			sourceTree = "<group>";
@@ -285,6 +290,7 @@
 				0171722823238F8600049F3B /* MixerView.swift */,
 				0179403723251271000DCFCB /* MixerViewCell */,
 				01794038232512AA000DCFCB /* PlugInView.swift */,
+				DB07BE9B233E0DDB00EC1789 /* UserManualView.swift */,
 				0179403A2325368F000DCFCB /* PlugInTableViewcell */,
 				0106321423335CC500214672 /* DrumMachineView.swift */,
 				0106320E23335B5D00214672 /* DrumMachine.storyboard */,
@@ -405,6 +411,14 @@
 				DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */,
 			);
 			path = DrumMachineController;
+			sourceTree = "<group>";
+		};
+		DBB3B9DC2348457B00415E99 /* UserManualViewController */ = {
+			isa = PBXGroup;
+			children = (
+				DBB3B9DA2348456500415E99 /* UserManualViewController.swift */,
+			);
+			path = UserManualViewController;
 			sourceTree = "<group>";
 		};
 		E74390EB015D20E17D329B98 /* Pods */ = {
@@ -603,6 +617,7 @@
 				0106320D2333584D00214672 /* UIColor+Extension.swift in Sources */,
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
 				DB744F31233B50E400AA8AFC /* DrumEditingGridViewCell.swift in Sources */,
+				DB07BE9C233E0DDB00EC1789 /* UserManualView.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
 				DB744F44233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift in Sources */,
@@ -615,6 +630,7 @@
 				010D7822232B71890099D76D /* UIImage+Gif.swift in Sources */,
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
 				01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */,
+				DBB3B9DB2348456500415E99 /* UserManualViewController.swift in Sources */,
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
 				DB8D0E482345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift in Sources */,
 				015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */,

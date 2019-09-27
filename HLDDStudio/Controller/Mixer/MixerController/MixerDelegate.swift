@@ -15,6 +15,16 @@ import Crashlytics
 
 extension ViewController: MixerDelegate {
     
+    func showUserManualVC() {
+        
+        DispatchQueue.main.async { [weak self] in
+            
+            guard let strongSelf = self else { fatalError() }
+            
+            strongSelf.performSegue(withIdentifier: "UserManualViewSegue", sender: nil)
+        }
+    }
+    
     func showDrumVC() {
         
         var vc: UIViewController = UIViewController()
@@ -389,7 +399,9 @@ extension ViewController: MixerDelegate {
     }
     
     func stopRecord() {
+        
         if MixerManger.manger.mixerStatus == .finishingRecording {
+            
             MixerManger.manger.title(with: .finishingRecording)
             
             MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."

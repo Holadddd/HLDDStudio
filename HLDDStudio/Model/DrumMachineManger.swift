@@ -139,7 +139,7 @@ class DrumMachineManger {
     func creatPattern(withType: DrumType, fileIndex: Int){
         pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileIndex: fileIndex))
         let patternCount = pattern.count
-        drumMixer.connect(input: pattern[patternCount - 1].filePlayer, bus: patternCount - 1)
+        drumMixer.connect(input: pattern[patternCount - 1].node, bus: patternCount - 1)
     }
     
     func changeDrumSample(atRow: Int, withType: DrumType, fileIndex: Int) {

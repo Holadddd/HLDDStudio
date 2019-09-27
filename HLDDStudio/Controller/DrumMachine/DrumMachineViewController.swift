@@ -254,6 +254,7 @@ extension DrumMachineViewController: GridViewDataSource {
         let patterInfo = DrumMachineManger.manger.pattern[indexPath.row]
         switch gridView {
         case drumMachineView.drumEditingGridView:
+            
             var cell = GridViewCell()
             if UIDevice.current.orientation.isPortrait {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
@@ -272,7 +273,7 @@ extension DrumMachineViewController: GridViewDataSource {
                     vCell.typeLabel.text = "Kicks"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
                 case .percussion:
-                    vCell.drumType = .kicks
+                    vCell.drumType = .percussion
                     vCell.typeLabel.text = "Percussion"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
                 case .snares:
@@ -280,6 +281,10 @@ extension DrumMachineViewController: GridViewDataSource {
                     vCell.typeLabel.text = "Snares"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
                 }
+                
+                vCell.panKnob.value = Float(patterInfo.equlizerAndPanner.busPanner.pan)
+                vCell.volKnob.value = Float(patterInfo.equlizerAndPanner.busBooster.gain)
+                
                 vCell.samplePickTextField.text = patterInfo.fileName
                 vCell.delegate = self
                 cell = vCell
@@ -358,11 +363,27 @@ extension DrumMachineViewController: GridViewDataSource {
 
 extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
     
+    func panValueChange(cell: DrumEditingGridViewCell, value: Float) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.pattern[row].equlizerAndPanner.busPanner.pan = Double(value)
+        print(DrumMachineManger.manger.pattern[row].equlizerAndPanner.busPanner.pan)
+    }
+    
+    func volumeValueChange(cell: DrumEditingGridViewCell, value: Float) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.pattern[row].equlizerAndPanner.busBooster.gain = Double(value)
+    }
+    
+    
     func playSample(cell: DrumEditingGridViewCell) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.pattern[row].filePlayer.play()
     }
 
+    func changeDrumSample(cell: DrumEditingGridViewCell, drumType: DrumType, sampleIndex: Int) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.changeDrumSample(atRow: row, withType: drumType, fileIndex: sampleIndex)
+    }
 }
 
 extension DrumMachineViewController: DrumBarGridViewCellDelegate {

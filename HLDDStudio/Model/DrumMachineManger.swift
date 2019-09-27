@@ -53,8 +53,6 @@ class DrumMachinePattern {
     
     var fileName: String
     
-    var file: AKAudioFile!
-    
     var filePlayer: AKPlayer!
     
     var drumType: DrumType
@@ -71,21 +69,21 @@ class DrumMachinePattern {
         
         switch drumType {
         case .classic:
-            self.file = DrumMachineManger.manger.classicFileArr[fileIndex]
+            self.fileName = DrumMachineManger.manger.classicFileArr[fileIndex].fileNamePlusExtension
+            self.filePlayer = AKPlayer(audioFile:DrumMachineManger.manger.classicFileArr[fileIndex])
         case .hihats:
-            self.file = DrumMachineManger.manger.hihatsFileArr[fileIndex]
+            self.fileName = DrumMachineManger.manger.hihatsFileArr[fileIndex].fileNamePlusExtension
+            self.filePlayer = AKPlayer(audioFile:DrumMachineManger.manger.hihatsFileArr[fileIndex])
         case .kicks:
-            self.file = DrumMachineManger.manger.kicksFileArr[fileIndex]
+            self.fileName = DrumMachineManger.manger.kicksFileArr[fileIndex].fileNamePlusExtension
+            self.filePlayer = AKPlayer(audioFile: DrumMachineManger.manger.kicksFileArr[fileIndex])
         case .percussion:
-            self.file = DrumMachineManger.manger.percussionFileArr[fileIndex]
+            self.fileName = DrumMachineManger.manger.percussionFileArr[fileIndex].fileNamePlusExtension
+            self.filePlayer = AKPlayer(audioFile:DrumMachineManger.manger.percussionFileArr[fileIndex])
         case .snares:
-            self.file = DrumMachineManger.manger.snaresFileArr[fileIndex]
-        
+            self.fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
+            self.filePlayer = AKPlayer(audioFile:DrumMachineManger.manger.snaresFileArr[fileIndex])
         }
-        
-        self.fileName = file.fileNamePlusExtension
-    
-        self.filePlayer = AKPlayer(audioFile: file)
         
         self.equlizerAndPanner = FaderEqualizerAndPanner(node: filePlayer)
         
@@ -144,8 +142,20 @@ class DrumMachineManger {
         drumMixer.connect(input: pattern[patternCount - 1].filePlayer, bus: patternCount - 1)
     }
     
-    func changeDrumSample(atRow: Int,withFile fileName: String) {
+    func changeDrumSample(atRow: Int, withType: DrumType, fileIndex: Int) {
         
+        switch withType {
+        case .classic:
+            pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.classicFileArr[fileIndex])
+        case .hihats:
+            pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.hihatsFileArr[fileIndex])
+        case .kicks:
+            pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.kicksFileArr[fileIndex])
+        case .percussion:
+            pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.percussionFileArr[fileIndex])
+        case .snares:
+            pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.snaresFileArr[fileIndex])
+        }
     }
     
     func removeDrumPattern(atRow: Int) {

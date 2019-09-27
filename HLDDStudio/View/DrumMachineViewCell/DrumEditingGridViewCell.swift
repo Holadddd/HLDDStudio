@@ -14,6 +14,12 @@ import AudioKit
 protocol DrumEditingGridViewCellDelegate: AnyObject {
     
     func playSample(cell: DrumEditingGridViewCell)
+    
+    func changeDrumSample(cell: DrumEditingGridViewCell, drumType: DrumType, sampleIndex: Int)
+    
+    func panValueChange(cell: DrumEditingGridViewCell, value: Float)
+    
+    func volumeValueChange(cell: DrumEditingGridViewCell, value: Float)
 }
 
 class DrumEditingGridViewCell: GridViewCell {
@@ -75,6 +81,14 @@ class DrumEditingGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         samplePlayButton.addTarget(self, action: #selector(samplePlay), for: .touchUpInside)
+        
+        panKnob.minimumValue = -1.0
+        panKnob.maximumValue = 1.0
+        panKnob.delegate = self
+        
+        volKnob.minimumValue = 0.0
+        volKnob.maximumValue = 2.0
+        volKnob.delegate = self
     }
     
     deinit {
@@ -84,6 +98,26 @@ class DrumEditingGridViewCell: GridViewCell {
     @objc func samplePlay(_ sender: Any) {
         delegate?.playSample(cell: self)
     }
+}
+
+extension DrumEditingGridViewCell: HLDDKnobDelegate {
+    
+    func knobValueDidChange(knobValue value: Float, knob: Knob) {
+        switch knob {
+        case panKnob:
+            delegate?.panValueChange(cell: self, value: value)
+        case volKnob:
+            delegate?.volumeValueChange(cell: self, value: value)
+        default:
+            return
+        }
+        print(value)
+    }
+    
+    func knobIsTouching(bool: Bool, knob: Knob) {
+        
+    }
+    
 }
 
 extension DrumEditingGridViewCell: UIPickerViewDelegate {
@@ -149,6 +183,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        
         var fileArr: [AKAudioFile] = []
         switch drumType {
         case .classic:
@@ -165,6 +200,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         }
         if fileArr.count != 0 {
             samplePickTextField.text = fileArr[row].fileNamePlusExtension
+            delegate?.changeDrumSample(cell: self, drumType: drumType, sampleIndex: row)
         }
         
     }

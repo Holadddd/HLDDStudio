@@ -146,14 +146,19 @@ class DrumMachineManger {
         
         switch withType {
         case .classic:
+            pattern[atRow].fileName = DrumMachineManger.manger.classicFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.classicFileArr[fileIndex])
         case .hihats:
+            pattern[atRow].fileName = DrumMachineManger.manger.hihatsFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.hihatsFileArr[fileIndex])
         case .kicks:
+            pattern[atRow].fileName = DrumMachineManger.manger.kicksFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.kicksFileArr[fileIndex])
         case .percussion:
+            pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.percussionFileArr[fileIndex])
         case .snares:
+            pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.snaresFileArr[fileIndex])
         }
     }

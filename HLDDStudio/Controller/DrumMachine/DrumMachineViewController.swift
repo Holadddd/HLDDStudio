@@ -291,6 +291,25 @@ extension DrumMachineViewController: GridViewDataSource {
             } else {
                 guard let hCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingHorizontalGridViewCell", for: indexPath) as? DrumEditingHorizontalGridViewCell else { fatalError() }
                 
+                switch patterInfo.drumType {
+                case .classic:
+                    hCell.drumType = .classic
+                    hCell.samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
+                case .hihats:
+                    hCell.drumType = .hihats
+                    hCell.samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
+                case .kicks:
+                    hCell.drumType = .kicks
+                    hCell.samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
+                case .percussion:
+                    hCell.drumType = .percussion
+                    hCell.samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
+                case .snares:
+                    hCell.drumType = .snares
+                    hCell.samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
+                }
+                
+                hCell.samplePickTextField.text = patterInfo.fileName
                 hCell.delegate = self
                 cell = hCell
             }
@@ -363,24 +382,24 @@ extension DrumMachineViewController: GridViewDataSource {
 
 extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
     
-    func panValueChange(cell: DrumEditingGridViewCell, value: Float) {
+    func panValueChange(cell: GridViewCell, value: Float) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.pattern[row].equlizerAndPanner.busPanner.pan = Double(value)
         print(DrumMachineManger.manger.pattern[row].equlizerAndPanner.busPanner.pan)
     }
     
-    func volumeValueChange(cell: DrumEditingGridViewCell, value: Float) {
+    func volumeValueChange(cell: GridViewCell, value: Float) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.pattern[row].equlizerAndPanner.busBooster.gain = Double(value)
     }
     
     
-    func playSample(cell: DrumEditingGridViewCell) {
+    func playSample(cell: GridViewCell) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.pattern[row].filePlayer.play()
     }
 
-    func changeDrumSample(cell: DrumEditingGridViewCell, drumType: DrumType, sampleIndex: Int) {
+    func changeDrumSample(cell: GridViewCell, drumType: DrumType, sampleIndex: Int) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.changeDrumSample(atRow: row, withType: drumType, fileIndex: sampleIndex)
     }

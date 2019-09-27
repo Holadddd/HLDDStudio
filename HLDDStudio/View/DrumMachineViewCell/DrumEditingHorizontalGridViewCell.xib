@@ -11,12 +11,49 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" restorationIdentifier="DrumEditingHorizontalGridViewCell" id="Nsz-e4-TLA" customClass="DrumEditingHorizontalGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pl2-Df-Dtl">
+                    <rect key="frame" x="50" y="0.0" width="81" height="50"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits"/>
+                </textField>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-CS-OOA">
+                    <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXU-aq-IRS">
+                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="zXU-aq-IRS" secondAttribute="trailing" id="GbQ-6x-NCd"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="top" secondItem="zEU-CS-OOA" secondAttribute="top" id="Z27-de-u8i"/>
+                        <constraint firstAttribute="bottom" secondItem="zXU-aq-IRS" secondAttribute="bottom" id="cX8-sD-SwI"/>
+                        <constraint firstAttribute="width" secondItem="zEU-CS-OOA" secondAttribute="height" id="cxt-nt-Mmu"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="leading" secondItem="zEU-CS-OOA" secondAttribute="leading" id="gHd-sf-7c8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemBlueColor" red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="jgH-oc-ka6" firstAttribute="bottom" secondItem="zEU-CS-OOA" secondAttribute="bottom" id="7Tx-L7-R72"/>
+                <constraint firstItem="zEU-CS-OOA" firstAttribute="top" secondItem="Nsz-e4-TLA" secondAttribute="top" id="QLw-c0-uSx"/>
+                <constraint firstItem="jgH-oc-ka6" firstAttribute="bottom" secondItem="pl2-Df-Dtl" secondAttribute="bottom" id="awq-aF-zWQ"/>
+                <constraint firstAttribute="trailing" secondItem="pl2-Df-Dtl" secondAttribute="trailing" id="b9Y-gx-ddI"/>
+                <constraint firstItem="zEU-CS-OOA" firstAttribute="leading" secondItem="Nsz-e4-TLA" secondAttribute="leading" id="gtG-2L-XpS"/>
+                <constraint firstItem="pl2-Df-Dtl" firstAttribute="leading" secondItem="zEU-CS-OOA" secondAttribute="trailing" id="thW-ee-aFu"/>
+                <constraint firstItem="pl2-Df-Dtl" firstAttribute="top" secondItem="Nsz-e4-TLA" secondAttribute="top" id="v0t-Sr-DeX"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="jgH-oc-ka6"/>
-            <point key="canvasLocation" x="110" y="-61"/>
+            <connections>
+                <outlet property="samplePickTextField" destination="pl2-Df-Dtl" id="kWc-6S-ytm"/>
+                <outlet property="samplePlayButton" destination="zXU-aq-IRS" id="jj4-VS-aXn"/>
+            </connections>
+            <point key="canvasLocation" x="50.000000000000007" y="-61.607142857142854"/>
         </view>
     </objects>
 </document>

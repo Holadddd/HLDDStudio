@@ -13,13 +13,13 @@ import AudioKit
 
 protocol DrumEditingGridViewCellDelegate: AnyObject {
     
-    func playSample(cell: DrumEditingGridViewCell)
+    func playSample(cell: GridViewCell)
     
-    func changeDrumSample(cell: DrumEditingGridViewCell, drumType: DrumType, sampleIndex: Int)
+    func changeDrumSample(cell: GridViewCell, drumType: DrumType, sampleIndex: Int)
     
-    func panValueChange(cell: DrumEditingGridViewCell, value: Float)
+    func panValueChange(cell: GridViewCell, value: Float)
     
-    func volumeValueChange(cell: DrumEditingGridViewCell, value: Float)
+    func volumeValueChange(cell: GridViewCell, value: Float)
 }
 
 class DrumEditingGridViewCell: GridViewCell {

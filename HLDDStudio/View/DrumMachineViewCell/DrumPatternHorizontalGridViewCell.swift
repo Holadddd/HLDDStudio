@@ -13,9 +13,6 @@ import UIKit
 
 class DrumPatternHorizontalGridViewCell: GridViewCell {
     
-    @IBOutlet weak var drumLabel: UILabel!
-    
-    
     @IBOutlet weak var selectButton: UIButton!
     
     weak var delegate: DrumPatternGridViewCellDelegate?
@@ -26,10 +23,10 @@ class DrumPatternHorizontalGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-//        selectButton.addTarget(self, action: #selector(DrumPatternHorizontalGridViewCell.selectButtonAction(_:)), for: .touchUpInside)
+        selectButton.addTarget(self, action: #selector(DrumPatternHorizontalGridViewCell.selectButtonAction(_:)), for: .touchUpInside)
     }
     @objc func selectButtonAction(_ sender: Any?) {
-//        selectButton.isSelected = !selectButton.isSelected
-//        delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
+        selectButton.isSelected = !selectButton.isSelected
+        delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
     }
 }

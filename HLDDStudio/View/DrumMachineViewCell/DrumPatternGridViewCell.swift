@@ -12,7 +12,7 @@ import UIKit
 
 protocol DrumPatternGridViewCellDelegate: AnyObject {
     
-    func patternSelecte(cell: DrumPatternGridViewCell, isSelected: Bool)
+    func patternSelecte(cell: GridViewCell, isSelected: Bool)
     
 }
 class DrumPatternGridViewCell: GridViewCell {

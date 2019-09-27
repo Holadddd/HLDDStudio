@@ -360,12 +360,15 @@ extension DrumMachineViewController: GridViewDataSource {
             var cell = GridViewCell()
             if UIDevice.current.orientation.isPortrait {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
+                
+                vCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
                 vCell.drumLabel.text = "\(indexPath)"
                 vCell.delegate = self
                 cell = vCell
             } else {
                 guard let hCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternHorizontalGridViewCell", for: indexPath) as? DrumPatternHorizontalGridViewCell else { fatalError() }
                 
+                hCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
                 hCell.delegate = self
                 cell = hCell
             }
@@ -410,8 +413,11 @@ extension DrumMachineViewController: DrumBarGridViewCellDelegate {
 }
 
 extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
-    func patternSelecte(cell: DrumPatternGridViewCell, isSelected: Bool) {
-        print("\(cell.indexPath), \(isSelected)")
+    
+    func patternSelecte(cell: GridViewCell, isSelected: Bool) {
+        let indexPath = cell.indexPath
+        
+        DrumMachineManger.manger.pattern[indexPath.row].drumBeatPattern.beatPattern[indexPath.column] = isSelected
     }
 
 }

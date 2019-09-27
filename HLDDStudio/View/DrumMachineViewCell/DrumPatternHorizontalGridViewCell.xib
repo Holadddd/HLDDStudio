@@ -13,9 +13,46 @@
         <view contentMode="scaleToFill" restorationIdentifier="DrumPatternHorizontalGridViewCell" id="u4p-bD-cak" customClass="DrumPatternHorizontalGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Br6-NT-4DZ">
+                    <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-Ez-eXy">
+                            <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-PT-dWX">
+                            <rect key="frame" x="34" y="53" width="270" height="270"/>
+                            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="height" id="LGY-FQ-nZY"/>
+                            </constraints>
+                            <state key="normal" title="Button"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="width" secondItem="dSq-Ez-eXy" secondAttribute="width" multiplier="0.8" id="6jT-52-7LF"/>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="centerX" secondItem="dSq-Ez-eXy" secondAttribute="centerX" id="EbU-U8-aNj"/>
+                        <constraint firstAttribute="trailing" secondItem="dSq-Ez-eXy" secondAttribute="trailing" id="FKG-Ei-8fX"/>
+                        <constraint firstAttribute="bottom" secondItem="dSq-Ez-eXy" secondAttribute="bottom" id="Kq4-A0-v1i"/>
+                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="leading" secondItem="Br6-NT-4DZ" secondAttribute="leading" id="MmZ-Qw-k6J"/>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="centerY" secondItem="dSq-Ez-eXy" secondAttribute="centerY" id="O28-2T-Wgn"/>
+                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="top" secondItem="Br6-NT-4DZ" secondAttribute="top" id="OY5-aB-gbb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Br6-NT-4DZ" secondAttribute="bottom" id="Bqr-YV-bp0"/>
+                <constraint firstItem="Br6-NT-4DZ" firstAttribute="leading" secondItem="u4p-bD-cak" secondAttribute="leading" id="NR2-aB-gIj"/>
+                <constraint firstAttribute="trailing" secondItem="Br6-NT-4DZ" secondAttribute="trailing" id="Q4d-U0-NyU"/>
+                <constraint firstItem="Br6-NT-4DZ" firstAttribute="top" secondItem="u4p-bD-cak" secondAttribute="top" id="ofR-dY-wUR"/>
+            </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="LGh-ov-HWH"/>
+            <connections>
+                <outlet property="selectButton" destination="Adf-PT-dWX" id="0Rj-Tu-Rlh"/>
+            </connections>
             <point key="canvasLocation" x="198.55072463768118" y="-419.19642857142856"/>
         </view>
     </objects>

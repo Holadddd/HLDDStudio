@@ -67,7 +67,7 @@ class DrumMachineView: UIView {
             
             tempoTextField.rightViewMode = .never
             
-            tempoTextField.text = "60"
+            tempoTextField.text = "\(DrumMachineManger.manger.bpm)"
             
             tempoTextField.delegate = self
         }
@@ -251,6 +251,7 @@ extension DrumMachineView: UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
 
         tempoTextField.text = "\(tempoArr[row])"
-        
+        let bpm = Int(tempoArr[row])
+        DrumMachineManger.manger.bpm = bpm
     }
 }

@@ -49,6 +49,14 @@ enum DrumMachinePatternBackgroundColor: String {
     
 }
 
+struct DrumMachinePatternAnimationInfo {
+    
+    var indexPath: IndexPath
+    
+    var startTime: AVAudioTime
+
+}
+
 class DrumMachinePattern {
     
     var fileName: String
@@ -122,7 +130,15 @@ class DrumMachineManger {
     
     static let manger = DrumMachineManger()
     
+    var needDefaultPattern = true
+    
     var drumMixer = AKMixer()
+    
+    var timer = Timer()
+    
+    var bpm = 60
+    
+    var numberOfBeats = 0
     
     var pattern: [DrumMachinePattern] = []
     
@@ -166,4 +182,43 @@ class DrumMachineManger {
     func removeDrumPattern(atRow: Int) {
         
     }
+    
+    func playDrumMachine() {
+        
+        timer = Timer.scheduledTimer(timeInterval: (60 * 4 / 8)/bpm, target: self, selector: #selector(drumMachineSetAndPlay), userInfo: nil, repeats: true)
+    }
+    
+    @objc func drumMachineSetAndPlay() {
+        
+        let start = AVAudioTime.now() + 0.25
+        
+        //each pattern
+        for (index, drumPatterm) in pattern.enumerated() {
+            let beats = numberOfBeats % 16
+            
+            DispatchQueue.main.async {
+                if drumPatterm.drumBeatPattern.beatPattern[beats]{
+                    let indexPath = IndexPath(row: index, column: beats)
+                    NotificationCenter.default.post(name: .drumMachinePatternAnimation, object: DrumMachinePatternAnimationInfo(indexPath: indexPath, startTime: start))
+                    drumPatterm.filePlayer.play(at: start)
+                }
+            }
+        }
+        
+        numberOfBeats += 1
+    }
+    
+    func stopPlayingDrumMachine() {
+        DispatchQueue.main.async {[weak self] in
+            guard let strongSelf = self else { fatalError() }
+            strongSelf.numberOfBeats = 0
+            strongSelf.timer.invalidate()
+            for drumPatterm in strongSelf.pattern {
+                drumPatterm.filePlayer.stop()
+            }
+        }
+        
+    }
+    
 }
+

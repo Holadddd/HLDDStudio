@@ -37,30 +37,34 @@ class DrumMachineViewController: UIViewController {
         sampleGet(drumType: .percussion)
         sampleGet(drumType: .snares)
         
-        DrumMachineManger.manger.creatPattern(withType: .kicks, fileIndex: 0)
-        DrumMachineManger.manger.creatPattern(withType: .snares, fileIndex: 22)
-        DrumMachineManger.manger.creatPattern(withType: .hihats, fileIndex: 0)
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 19)
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 20)
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 21)
+        if DrumMachineManger.manger.needDefaultPattern {
+            DrumMachineManger.manger.creatPattern(withType: .kicks, fileIndex: 0)
+            DrumMachineManger.manger.creatPattern(withType: .snares, fileIndex: 22)
+            DrumMachineManger.manger.creatPattern(withType: .hihats, fileIndex: 0)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 19)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 20)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 21)
+            //only connect in firstTime
+            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
+            DrumMachineManger.manger.needDefaultPattern = false
+        }
         
-        MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
-    
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        try? AudioKit.stop()
-        MixerManger.manger.mixerForMaster.disconnectInput(bus: 3)
-        try? AudioKit.start()
+        //need to stop drumMachine
+        DrumMachineManger.manger.stopPlayingDrumMachine()
+//        try? AudioKit.stop()
+//        MixerManger.manger.mixerForMaster.disconnectInput(bus: 3)
+//        try? AudioKit.start()
     }
     override func viewWillLayoutSubviews() {
         print("viewWillLayoutSubviews")
@@ -98,11 +102,12 @@ extension DrumMachineViewController: DrumMachineDelegate {
     }
     
     func playDrum(bpm: Int) {
-        print(bpm)
+        DrumMachineManger.manger.bpm = bpm
+        DrumMachineManger.manger.playDrumMachine()
     }
     
     func stopPlayingDrum() {
-        print("stopPlayingDrum")
+        DrumMachineManger.manger.stopPlayingDrumMachine()
     }
     
     func savePattern(withName: String) {

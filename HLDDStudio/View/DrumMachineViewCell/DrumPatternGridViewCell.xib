@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="35" height="121"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainBGImgaeViewV" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MainBGImgaeViewV" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
                     <rect key="frame" x="0.0" y="0.0" width="35" height="121"/>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FuX-rj-p2l">
@@ -28,7 +28,7 @@
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-y1-68m">
                     <rect key="frame" x="0.0" y="41" width="35" height="80"/>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="0jj-me-MfF"/>
                     </constraints>
@@ -36,6 +36,10 @@
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                     </state>
                 </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1E-Hg-DcY">
+                    <rect key="frame" x="0.0" y="21" width="35" height="20"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
@@ -44,8 +48,12 @@
                 <constraint firstItem="bm9-y1-68m" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="3Ek-eQ-0iv"/>
                 <constraint firstItem="X6n-59-RJL" firstAttribute="bottom" secondItem="mjC-mJ-clT" secondAttribute="bottom" id="7SR-Ej-llk"/>
                 <constraint firstAttribute="leading" secondItem="X6n-59-RJL" secondAttribute="leading" id="8ph-dJ-b17"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="top" secondItem="FuX-rj-p2l" secondAttribute="bottom" id="BqF-Mb-8oB"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="top" secondItem="mjC-mJ-clT" secondAttribute="top" id="IVp-pl-xe2"/>
+                <constraint firstItem="bm9-y1-68m" firstAttribute="top" secondItem="w1E-Hg-DcY" secondAttribute="bottom" id="Vrw-eP-zz9"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="leading" secondItem="mjC-mJ-clT" secondAttribute="leading" id="aqq-b5-wml"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="e4T-i0-qVJ"/>
+                <constraint firstAttribute="trailing" secondItem="w1E-Hg-DcY" secondAttribute="trailing" id="g28-9I-A0S"/>
                 <constraint firstAttribute="top" secondItem="X6n-59-RJL" secondAttribute="top" id="mor-6x-7Xs"/>
                 <constraint firstItem="bm9-y1-68m" firstAttribute="centerX" secondItem="mjC-mJ-clT" secondAttribute="centerX" id="rfc-Ut-lYG"/>
                 <constraint firstItem="RDh-sY-P7Q" firstAttribute="trailing" secondItem="bm9-y1-68m" secondAttribute="trailing" id="uhw-bi-FWx"/>
@@ -54,6 +62,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="RDh-sY-P7Q"/>
             <connections>
+                <outlet property="animateView" destination="w1E-Hg-DcY" id="g14-Ln-v6Z"/>
                 <outlet property="drumLabel" destination="FuX-rj-p2l" id="9fI-Pm-gfe"/>
                 <outlet property="selectButton" destination="bm9-y1-68m" id="5Tm-aC-b76"/>
             </connections>

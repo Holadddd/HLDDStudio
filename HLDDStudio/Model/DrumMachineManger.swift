@@ -65,23 +65,29 @@ class DrumMachinePattern {
     
     var node: AKBooster
     
-    init(DrumBeatPattern: DrumBeatPattern, drumType: DrumType, fileName: String) {
+    init(DrumBeatPattern: DrumBeatPattern, drumType: DrumType, fileIndex: Int) {
         self.drumType = drumType
         self.drumBeatPattern = DrumBeatPattern
         
-        self.fileName = fileName
         
-//        let fileResult = Result{try AKAudioFile(readFileName: fileName)}
-//        switch fileResult {
-//        case .success(let file):
-//            self.file = file
-//        case .failure(let error):
-//            print(error)
-//            print(DrumMachineError.noSuchFile)
-//        }
-        self.file = try? AKAudioFile(readFileName: fileName)
         
-        self.filePlayer = AKPlayer(audioFile: self.file)
+        switch drumType {
+        case .classic:
+            self.file = DrumMachineManger.manger.classicFileArr[fileIndex]
+        case .hihats:
+            self.file = DrumMachineManger.manger.hihatsFileArr[fileIndex]
+        case .kicks:
+            self.file = DrumMachineManger.manger.kicksFileArr[fileIndex]
+        case .percussion:
+            self.file = DrumMachineManger.manger.percussionFileArr[fileIndex]
+        case .snares:
+            self.file = DrumMachineManger.manger.snaresFileArr[fileIndex]
+        
+        }
+        
+        self.fileName = file.fileNamePlusExtension
+    
+        self.filePlayer = AKPlayer(audioFile: file)
         
         self.equlizerAndPanner = FaderEqualizerAndPanner(node: filePlayer)
         
@@ -122,17 +128,18 @@ class DrumMachineManger {
     
     var pattern: [DrumMachinePattern] = []
     
-    var kicksFileName: [String] = []
+    var kicksFileArr: [AKAudioFile] = []
     
-    var snaresFileName: [String] = []
+    var snaresFileArr: [AKAudioFile] = []
     
-    var percussionFileName: [String] = []
+    var percussionFileArr: [AKAudioFile] = []
     
-    var hihatsFileName: [String] = []
+    var hihatsFileArr: [AKAudioFile] = []
     
-    var classicFileName: [String] = []
-    func creatPattern(withType: DrumType, fileName: String){
-        pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileName: fileName))
+    var classicFileArr: [AKAudioFile] = []
+    
+    func creatPattern(withType: DrumType, fileIndex: Int){
+        pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileIndex: fileIndex))
     }
     
     func changeDrumSample(atRow: Int,withFile fileName: String) {

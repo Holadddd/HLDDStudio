@@ -31,13 +31,20 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
         
-        DrumMachineManger.manger.creatPattern(withType: .kicks, fileName: "808-Kicks01.wav")
-        DrumMachineManger.manger.creatPattern(withType: .snares, fileName: "808-Snare01.wav")
-        DrumMachineManger.manger.creatPattern(withType: .hihats, fileName: "808-HiHats01.wav")
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom1.wav")
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom2.wav")
-        DrumMachineManger.manger.creatPattern(withType: .percussion, fileName: "808-Tom3.wav")
-        kickSampleGet()
+        sampleGet(drumType: .classic)
+        sampleGet(drumType: .hihats)
+        sampleGet(drumType: .kicks)
+        sampleGet(drumType: .percussion)
+        sampleGet(drumType: .snares)
+        
+        DrumMachineManger.manger.creatPattern(withType: .kicks, fileIndex: 0)
+        DrumMachineManger.manger.creatPattern(withType: .snares, fileIndex: 22)
+        DrumMachineManger.manger.creatPattern(withType: .hihats, fileIndex: 0)
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 19)
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 20)
+        DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 21)
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -365,26 +372,27 @@ extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
 
 extension DrumMachineViewController{
     
-    func kickSampleGet() {
+    func sampleGet(drumType: DrumType) {
         if let path = Bundle.main.resourcePath {
 
-            let kicksPath = path + "/808_drum_kit/kicks"
-            let url = URL(fileURLWithPath: kicksPath)
+            let samplePath = path + "/808_drum_kit/\(drumType)"
+            let url = URL(fileURLWithPath: samplePath)
             let fileManager = FileManager.default
 
             let properties = [URLResourceKey.localizedNameKey,
                               URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
             
-            var kickFileNameArr: [String] = []
+            var samplePathFileArr: [AKAudioFile] = []
             do {
                 let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
 
                 for (index, element) in kicksURLs.enumerated(){
-                    let firstKickFileURL = element
-                    let result = Result{try AKAudioFile(forReading: firstKickFileURL)}
+                    let sampleFileURL = element
+                    
+                    let result = Result{try AKAudioFile(forReading: sampleFileURL)}
                     switch result {
                     case .success(let file):
-                        kickFileNameArr.append(file.fileNamePlusExtension)
+                        samplePathFileArr.append(file)
                         print(index)
                     case .failure(let error):
                         print(error)
@@ -395,9 +403,19 @@ extension DrumMachineViewController{
             } catch let error1 as NSError {
                 print(error1.description)
             }
-            print(kickFileNameArr)
-            DrumMachineManger.manger.kicksFileName = kickFileNameArr.sorted{ $0 < $1 }
-            print(DrumMachineManger.manger.kicksFileName)
+            
+            switch drumType {
+            case .classic:
+                DrumMachineManger.manger.classicFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .hihats:
+                DrumMachineManger.manger.hihatsFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .kicks:
+                DrumMachineManger.manger.kicksFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .percussion:
+                DrumMachineManger.manger.percussionFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .snares:
+                DrumMachineManger.manger.snaresFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            }
         }
         
     }

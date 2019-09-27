@@ -9,6 +9,7 @@
 import Foundation
 import G3GridView
 import UIKit
+import AudioKit
 
 protocol DrumEditingGridViewCellDelegate: AnyObject {
     
@@ -90,39 +91,41 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var fileNameArr: [String] = []
+        var fileArr: [AKAudioFile] = []
         switch drumType {
         case .classic:
-            fileNameArr = DrumMachineManger.manger.classicFileName
+            fileArr = DrumMachineManger.manger.classicFileArr
         case .hihats:
-            fileNameArr = DrumMachineManger.manger.hihatsFileName
+            fileArr = DrumMachineManger.manger.hihatsFileArr
         case .kicks:
-            fileNameArr = DrumMachineManger.manger.kicksFileName
+            fileArr = DrumMachineManger.manger.kicksFileArr
         case .percussion:
-            fileNameArr = DrumMachineManger.manger.percussionFileName
+            fileArr = DrumMachineManger.manger.percussionFileArr
         case .snares:
-            fileNameArr = DrumMachineManger.manger.snaresFileName
+            fileArr = DrumMachineManger.manger.snaresFileArr
             
         }
-        return fileNameArr.count
+        return fileArr.count
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
-        var fileNameArr: [String] = []
-        switch drumType {
-        case .classic:
-            fileNameArr = DrumMachineManger.manger.classicFileName
-        case .hihats:
-            fileNameArr = DrumMachineManger.manger.hihatsFileName
-        case .kicks:
-            fileNameArr = DrumMachineManger.manger.kicksFileName
-        case .percussion:
-            fileNameArr = DrumMachineManger.manger.percussionFileName
-        case .snares:
-            fileNameArr = DrumMachineManger.manger.snaresFileName
-        }
         
-        let fileName = fileNameArr[row]
+        var fileArr: [AKAudioFile] = []
+           switch drumType {
+           case .classic:
+               fileArr = DrumMachineManger.manger.classicFileArr
+           case .hihats:
+               fileArr = DrumMachineManger.manger.hihatsFileArr
+           case .kicks:
+               fileArr = DrumMachineManger.manger.kicksFileArr
+           case .percussion:
+               fileArr = DrumMachineManger.manger.percussionFileArr
+           case .snares:
+               fileArr = DrumMachineManger.manger.snaresFileArr
+               
+           }
+        
+        let fileName = fileArr[row]
         
         pickerView.backgroundColor = UIColor.B1
         
@@ -136,26 +139,27 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         image.stickSubView(pickerLabel)
         
         
-        pickerLabel.text = fileName
+        pickerLabel.text = fileName.fileNamePlusExtension
         return image
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        var fileNameArr: [String] = []
+        var fileArr: [AKAudioFile] = []
         switch drumType {
         case .classic:
-            fileNameArr = DrumMachineManger.manger.classicFileName
+            fileArr = DrumMachineManger.manger.classicFileArr
         case .hihats:
-            fileNameArr = DrumMachineManger.manger.hihatsFileName
+            fileArr = DrumMachineManger.manger.hihatsFileArr
         case .kicks:
-            fileNameArr = DrumMachineManger.manger.kicksFileName
+            fileArr = DrumMachineManger.manger.kicksFileArr
         case .percussion:
-            fileNameArr = DrumMachineManger.manger.percussionFileName
+            fileArr = DrumMachineManger.manger.percussionFileArr
         case .snares:
-            fileNameArr = DrumMachineManger.manger.snaresFileName
+            fileArr = DrumMachineManger.manger.snaresFileArr
+            
         }
-        if fileNameArr.count != 0 {
-            samplePickTextField.text = fileNameArr[row]
+        if fileArr.count != 0 {
+            samplePickTextField.text = fileArr[row].fileNamePlusExtension
         }
         
     }

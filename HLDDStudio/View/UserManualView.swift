@@ -65,11 +65,11 @@ class UserManualView: UIView {
         sender.isSelected = !sender.isSelected
         
         if sender.isSelected {
+            
             delegate?.animation()
         } else {
+            
             delegate?.recoverAnimate()
-//            self.translatesAutoresizingMaskIntoConstraints = false
-//            self.translatesAutoresizingMaskIntoConstraints = true
         }
     }
     
@@ -78,25 +78,41 @@ class UserManualView: UIView {
     override func awakeFromNib() {
         
         super.awakeFromNib()
+        
         imageArr.append(DeviceInputPickerImage)
+        
         imageArr.append(RoutePickerImage)
+        
         imageArr.append(MetronomeImage)
+        
         imageArr.append(StopButtonImage)
+        
         imageArr.append(PlayAndPauseButtonImage)
+        
         imageArr.append(RecordButtonImage)
+        
         imageArr.append(RecordRegionSelectorImage)
+        
         imageArr.append(TempoDigitalDisplayImage)
+        
         imageArr.append(InformationDigitalDisplayImage)
         
         labelViewArr.append(DeviceInputPickerLabelView)
-        labelViewArr.append(RoutePickerLabelView)
-        labelViewArr.append(MetronomeLabelView)
-        labelViewArr.append(StopButtonLabelView)
-        labelViewArr.append(PlayAndPauseButtonLabelView)
-        labelViewArr.append(RecordButtonLabelView)
-        labelViewArr.append(RecordRegionSelectorLabelView)
-        labelViewArr.append(TempoDigitalDisplayLabelView)
-        labelViewArr.append(InformationDigitalDisplayLabelView)
         
+        labelViewArr.append(RoutePickerLabelView)
+        
+        labelViewArr.append(MetronomeLabelView)
+        
+        labelViewArr.append(StopButtonLabelView)
+        
+        labelViewArr.append(PlayAndPauseButtonLabelView)
+        
+        labelViewArr.append(RecordButtonLabelView)
+        
+        labelViewArr.append(RecordRegionSelectorLabelView)
+        
+        labelViewArr.append(TempoDigitalDisplayLabelView)
+        
+        labelViewArr.append(InformationDigitalDisplayLabelView)
     }
 }

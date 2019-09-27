@@ -31,6 +31,7 @@ class UserManualViewController: UIViewController {
 extension UserManualViewController: UserManualViewDelegate{
     
     func recoverAnimate() {
+        
         DispatchQueue.main.async { [ weak self ] in
             
             guard let strongSelf = self
@@ -68,7 +69,6 @@ extension UserManualViewController: UserManualViewDelegate{
                     
                     strongSelf.userManualView.labelViewArr[index].frame.origin = CGPoint(x: 0, y: element.frame.maxY + 8)
                 }
-                
             }
             
             guard let strongSelf = self
@@ -76,13 +76,10 @@ extension UserManualViewController: UserManualViewDelegate{
             
             animate.startAnimation()
             
-            strongSelf.manualScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 3, height: strongSelf.userManualView.InformationDigitalDisplayLabelView.frame.maxY)
+            strongSelf.manualScrollView.contentSize = CGSize(width: UIScreen.main.bounds.width * 1, height: strongSelf.userManualView.InformationDigitalDisplayLabelView.frame.maxY)
             
             strongSelf.manualScrollView.layoutSubviews()
         }
         
     }
-    
-    
-    
 }

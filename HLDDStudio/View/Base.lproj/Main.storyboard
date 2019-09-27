@@ -615,57 +615,72 @@
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRc-Nd-pdx">
-                                                                <rect key="frame" x="356" y="-187.5" width="46" height="419"/>
-                                                                <state key="normal" title="Button"/>
-                                                                <connections>
-                                                                    <action selector="animationButton:" destination="IdM-yN-ueG" eventType="touchUpInside" id="bMx-o3-wxH"/>
-                                                                    <action selector="animationButton:" destination="i4g-5g-1tf" eventType="touchUpInside" id="nve-OO-epO"/>
-                                                                </connections>
-                                                            </button>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U2m-oN-kiO">
+                                                                <rect key="frame" x="382" y="12" width="20" height="20"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PRc-Nd-pdx">
+                                                                        <rect key="frame" x="0.0" y="0.0" width="20" height="20"/>
+                                                                        <color key="backgroundColor" red="1" green="0.43038121979999999" blue="0.26524430090000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                                        <state key="normal" image="list"/>
+                                                                        <state key="selected" image="list"/>
+                                                                        <connections>
+                                                                            <action selector="animationButton:" destination="IdM-yN-ueG" eventType="touchUpInside" id="bMx-o3-wxH"/>
+                                                                            <action selector="animationButton:" destination="i4g-5g-1tf" eventType="touchUpInside" id="nve-OO-epO"/>
+                                                                        </connections>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="trailing" secondItem="PRc-Nd-pdx" secondAttribute="trailing" id="28P-dz-LDh"/>
+                                                                    <constraint firstAttribute="width" secondItem="U2m-oN-kiO" secondAttribute="height" id="GgQ-jc-5dN"/>
+                                                                    <constraint firstItem="PRc-Nd-pdx" firstAttribute="top" secondItem="U2m-oN-kiO" secondAttribute="top" id="Rzo-ee-HUE"/>
+                                                                    <constraint firstAttribute="bottom" secondItem="PRc-Nd-pdx" secondAttribute="bottom" id="aG3-At-VVN"/>
+                                                                    <constraint firstItem="PRc-Nd-pdx" firstAttribute="leading" secondItem="U2m-oN-kiO" secondAttribute="leading" id="mVt-5n-JFx"/>
+                                                                </constraints>
+                                                            </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W5q-V8-K81" userLabel="UpConstaintView">
-                                                                <rect key="frame" x="0.0" y="231.5" width="414" height="42.5"/>
+                                                                <rect key="frame" x="0.0" y="40" width="414" height="43"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="W5q-V8-K81" secondAttribute="height" multiplier="9.65625" id="pdW-lY-don"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iHQ-IQ-u4z" userLabel="DownConstraintView">
-                                                                <rect key="frame" x="0.0" y="274" width="414" height="64.5"/>
+                                                                <rect key="frame" x="0.0" y="83" width="414" height="64"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="iHQ-IQ-u4z" secondAttribute="height" multiplier="6.4375" id="CsH-m4-Aia"/>
                                                                 </constraints>
                                                             </view>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_DeviceInputPickerImage" translatesAutoresizingMaskIntoConstraints="NO" id="CGJ-Gr-3iZ">
-                                                                <rect key="frame" x="0.0" y="231.5" width="76" height="42.5"/>
+                                                                <rect key="frame" x="0.0" y="40" width="76" height="43"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_TempoDigitalDisplayImage" translatesAutoresizingMaskIntoConstraints="NO" id="T9I-Aj-2eJ">
-                                                                <rect key="frame" x="76" y="231.5" width="70.5" height="42.5"/>
+                                                                <rect key="frame" x="76" y="40" width="70.5" height="43"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_InformationDigitalDisplayImage" translatesAutoresizingMaskIntoConstraints="NO" id="KQP-3j-OEs">
-                                                                <rect key="frame" x="146.5" y="231.5" width="197" height="42.5"/>
+                                                                <rect key="frame" x="146.5" y="40" width="197" height="43"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_RoutePickerImage" translatesAutoresizingMaskIntoConstraints="NO" id="Jwl-rW-ozv">
-                                                                <rect key="frame" x="343.5" y="231.5" width="70.5" height="42.5"/>
+                                                                <rect key="frame" x="343.5" y="40" width="70.5" height="43"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_MetronomeImage" translatesAutoresizingMaskIntoConstraints="NO" id="bXH-N8-CXu">
-                                                                <rect key="frame" x="0.0" y="274" width="129" height="64.5"/>
+                                                                <rect key="frame" x="0.0" y="83" width="129" height="64"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_StopButtonImage" translatesAutoresizingMaskIntoConstraints="NO" id="bul-NQ-vBQ">
-                                                                <rect key="frame" x="129" y="274" width="48" height="64.5"/>
+                                                                <rect key="frame" x="129" y="83" width="48" height="64"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_PlayAndPauseButtonImage" translatesAutoresizingMaskIntoConstraints="NO" id="xo7-UW-ZmL">
-                                                                <rect key="frame" x="177" y="274" width="58.5" height="64.5"/>
+                                                                <rect key="frame" x="177" y="83" width="58.5" height="64"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_RecordButtonImage" translatesAutoresizingMaskIntoConstraints="NO" id="elh-4k-vaf">
-                                                                <rect key="frame" x="235.5" y="274" width="53" height="64.5"/>
+                                                                <rect key="frame" x="235.5" y="83" width="53" height="64"/>
                                                             </imageView>
                                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UM_RecordRegionSelectorImage" translatesAutoresizingMaskIntoConstraints="NO" id="FgW-42-G8a">
-                                                                <rect key="frame" x="288.5" y="274" width="125.5" height="64.5"/>
+                                                                <rect key="frame" x="288.5" y="83" width="125.5" height="64"/>
                                                             </imageView>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wCB-em-TqR">
-                                                                <rect key="frame" x="0.0" y="346.5" width="414" height="80"/>
+                                                                <rect key="frame" x="0.0" y="155" width="414" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Device input picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qdb-Pc-LVt">
                                                                         <rect key="frame" x="12" y="0.0" width="167" height="23"/>
@@ -691,7 +706,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGp-yA-oNB">
-                                                                <rect key="frame" x="0.0" y="434.5" width="414" height="80"/>
+                                                                <rect key="frame" x="0.0" y="243" width="414" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-m0-cnb">
                                                                         <rect key="frame" x="12" y="0.0" width="109.5" height="23"/>
@@ -717,7 +732,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9za-N6-Yks">
-                                                                <rect key="frame" x="0.0" y="522.5" width="414" height="120.5"/>
+                                                                <rect key="frame" x="0.0" y="331" width="414" height="120.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Metronome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-bx-vxe">
                                                                         <rect key="frame" x="12" y="0.0" width="100.5" height="23"/>
@@ -745,7 +760,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLV-6u-ih2">
-                                                                <rect key="frame" x="0.0" y="651" width="414" height="67.5"/>
+                                                                <rect key="frame" x="0.0" y="459.5" width="414" height="67.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Button" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-nz-PPX">
                                                                         <rect key="frame" x="12" y="8" width="104.5" height="23"/>
@@ -771,7 +786,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DlW-rN-NEN">
-                                                                <rect key="frame" x="0.0" y="726.5" width="414" height="100"/>
+                                                                <rect key="frame" x="0.0" y="535" width="414" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play And Pause Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-b1-fUg">
                                                                         <rect key="frame" x="12" y="0.0" width="197.5" height="23"/>
@@ -797,7 +812,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-fD-Urr">
-                                                                <rect key="frame" x="0.0" y="834.5" width="414" height="100"/>
+                                                                <rect key="frame" x="0.0" y="643" width="414" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Button" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1C-5L-C4f">
                                                                         <rect key="frame" x="12" y="0.0" width="125.5" height="23"/>
@@ -823,7 +838,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYq-9Y-KsV">
-                                                                <rect key="frame" x="0.0" y="942.5" width="414" height="80"/>
+                                                                <rect key="frame" x="0.0" y="751" width="414" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Region Selector" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwV-1l-Bw1">
                                                                         <rect key="frame" x="12" y="0.0" width="205" height="23"/>
@@ -849,7 +864,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVO-W4-97K">
-                                                                <rect key="frame" x="0.0" y="1030.5" width="414" height="59.5"/>
+                                                                <rect key="frame" x="0.0" y="839" width="414" height="59.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo Digital Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vly-G2-nre">
                                                                         <rect key="frame" x="12" y="0.0" width="188" height="23"/>
@@ -875,7 +890,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gt-Ra-RAG">
-                                                                <rect key="frame" x="0.0" y="1098" width="414" height="72"/>
+                                                                <rect key="frame" x="0.0" y="906.5" width="414" height="263.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information Digital Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sL-eg-0hf">
                                                                         <rect key="frame" x="12" y="0.0" width="229" height="23"/>
@@ -884,7 +899,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display the change of mixer status and information user needed." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duq-gG-vX7">
-                                                                        <rect key="frame" x="12" y="31" width="390" height="41"/>
+                                                                        <rect key="frame" x="12" y="31" width="390" height="232.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -908,7 +923,6 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                             <constraint firstAttribute="trailing" secondItem="FLV-6u-ih2" secondAttribute="trailing" id="2L6-xo-yLz"/>
                                                             <constraint firstAttribute="trailing" secondItem="IYq-9Y-KsV" secondAttribute="trailing" id="2V2-PE-fwN"/>
                                                             <constraint firstItem="DlW-rN-NEN" firstAttribute="top" secondItem="FLV-6u-ih2" secondAttribute="bottom" constant="8" id="4WQ-jV-sV4"/>
-                                                            <constraint firstAttribute="trailing" secondItem="PRc-Nd-pdx" secondAttribute="trailing" constant="12" id="68F-Fz-HSZ"/>
                                                             <constraint firstItem="bXH-N8-CXu" firstAttribute="width" secondItem="iHQ-IQ-u4z" secondAttribute="width" multiplier="482/1545" id="6fP-eX-Shc"/>
                                                             <constraint firstItem="xo7-UW-ZmL" firstAttribute="width" secondItem="iHQ-IQ-u4z" secondAttribute="width" multiplier="218/1545" id="6sl-AT-rJK"/>
                                                             <constraint firstAttribute="trailing" secondItem="e1x-fD-Urr" secondAttribute="trailing" id="7PY-h9-CIn"/>
@@ -922,8 +936,10 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                             <constraint firstItem="bul-NQ-vBQ" firstAttribute="leading" secondItem="bXH-N8-CXu" secondAttribute="trailing" id="CcD-YN-HFo"/>
                                                             <constraint firstItem="wNa-ea-4vm" firstAttribute="leading" secondItem="IdM-yN-ueG" secondAttribute="leading" constant="12" id="D5H-NT-2Yy"/>
                                                             <constraint firstItem="KQP-3j-OEs" firstAttribute="width" secondItem="W5q-V8-K81" secondAttribute="width" multiplier="736/1545" id="DNd-KF-mNU"/>
+                                                            <constraint firstAttribute="trailing" secondItem="U2m-oN-kiO" secondAttribute="trailing" constant="12" id="Do7-wL-OiT"/>
                                                             <constraint firstItem="FLV-6u-ih2" firstAttribute="leading" secondItem="IdM-yN-ueG" secondAttribute="leading" id="EIc-cS-BFu"/>
                                                             <constraint firstItem="FgW-42-G8a" firstAttribute="height" secondItem="elh-4k-vaf" secondAttribute="height" id="FUT-wf-olW"/>
+                                                            <constraint firstItem="U2m-oN-kiO" firstAttribute="centerY" secondItem="wNa-ea-4vm" secondAttribute="centerY" id="Fcj-7V-tnJ"/>
                                                             <constraint firstItem="iHQ-IQ-u4z" firstAttribute="width" secondItem="W5q-V8-K81" secondAttribute="width" id="HEv-fC-6gf"/>
                                                             <constraint firstItem="DlW-rN-NEN" firstAttribute="leading" secondItem="IdM-yN-ueG" secondAttribute="leading" id="Hf6-Iq-9Vc"/>
                                                             <constraint firstItem="IYq-9Y-KsV" firstAttribute="leading" secondItem="IdM-yN-ueG" secondAttribute="leading" id="ITI-Wf-nb8"/>
@@ -936,10 +952,10 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                             <constraint firstItem="xo7-UW-ZmL" firstAttribute="leading" secondItem="bul-NQ-vBQ" secondAttribute="trailing" id="PAq-g1-znv"/>
                                                             <constraint firstItem="bul-NQ-vBQ" firstAttribute="centerY" secondItem="bXH-N8-CXu" secondAttribute="centerY" id="PmA-2m-U9J"/>
                                                             <constraint firstAttribute="trailing" secondItem="YGp-yA-oNB" secondAttribute="trailing" id="PtJ-fR-DOG"/>
+                                                            <constraint firstItem="W5q-V8-K81" firstAttribute="top" secondItem="wNa-ea-4vm" secondAttribute="bottom" constant="8" id="QYw-EU-MiY"/>
                                                             <constraint firstItem="Jwl-rW-ozv" firstAttribute="trailing" secondItem="W5q-V8-K81" secondAttribute="trailing" id="Rfn-sI-mf1"/>
                                                             <constraint firstItem="CGJ-Gr-3iZ" firstAttribute="centerY" secondItem="W5q-V8-K81" secondAttribute="centerY" id="RxP-Y2-aQq"/>
                                                             <constraint firstItem="elh-4k-vaf" firstAttribute="leading" secondItem="xo7-UW-ZmL" secondAttribute="trailing" id="TtT-9N-fs3"/>
-                                                            <constraint firstItem="PRc-Nd-pdx" firstAttribute="centerY" secondItem="wNa-ea-4vm" secondAttribute="centerY" id="a5C-p3-CPH"/>
                                                             <constraint firstItem="FgW-42-G8a" firstAttribute="leading" secondItem="elh-4k-vaf" secondAttribute="trailing" id="aM1-td-ls4"/>
                                                             <constraint firstItem="CGJ-Gr-3iZ" firstAttribute="width" secondItem="W5q-V8-K81" secondAttribute="width" multiplier="284/1545" id="an8-xi-cA5"/>
                                                             <constraint firstItem="Jwl-rW-ozv" firstAttribute="centerY" secondItem="KQP-3j-OEs" secondAttribute="centerY" id="bsg-r1-BgM"/>
@@ -967,6 +983,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                             <constraint firstItem="bXH-N8-CXu" firstAttribute="leading" secondItem="iHQ-IQ-u4z" secondAttribute="leading" id="pr1-vc-G0A"/>
                                                             <constraint firstItem="T9I-Aj-2eJ" firstAttribute="centerY" secondItem="CGJ-Gr-3iZ" secondAttribute="centerY" id="puf-cv-D3i"/>
                                                             <constraint firstItem="CGJ-Gr-3iZ" firstAttribute="bottom" secondItem="W5q-V8-K81" secondAttribute="bottom" id="qjl-R1-UYY"/>
+                                                            <constraint firstItem="U2m-oN-kiO" firstAttribute="height" secondItem="wNa-ea-4vm" secondAttribute="height" id="rgc-is-znU"/>
                                                             <constraint firstAttribute="trailing" secondItem="QVO-W4-97K" secondAttribute="trailing" id="tk4-5f-gez"/>
                                                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wNa-ea-4vm" secondAttribute="trailing" constant="20" symbolic="YES" id="u2Z-8t-E1u"/>
                                                             <constraint firstAttribute="trailing" secondItem="W5q-V8-K81" secondAttribute="trailing" id="uAH-dh-z7O"/>
@@ -976,7 +993,6 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                             <constraint firstItem="xo7-UW-ZmL" firstAttribute="height" secondItem="bul-NQ-vBQ" secondAttribute="height" id="wrO-0v-vbg"/>
                                                             <constraint firstItem="elh-4k-vaf" firstAttribute="width" secondItem="iHQ-IQ-u4z" secondAttribute="width" multiplier="198/1545" id="wux-OA-pg1"/>
                                                             <constraint firstItem="QVO-W4-97K" firstAttribute="leading" secondItem="IdM-yN-ueG" secondAttribute="leading" id="xgu-Hu-TwB"/>
-                                                            <constraint firstItem="W5q-V8-K81" firstAttribute="top" secondItem="PRc-Nd-pdx" secondAttribute="bottom" id="xoR-ga-nqr"/>
                                                             <constraint firstItem="FLV-6u-ih2" firstAttribute="top" secondItem="9za-N6-Yks" secondAttribute="bottom" constant="8" id="yW3-tP-vla"/>
                                                             <constraint firstItem="Jwl-rW-ozv" firstAttribute="leading" secondItem="KQP-3j-OEs" secondAttribute="trailing" id="yYQ-WC-9Ua"/>
                                                         </constraints>
@@ -1206,5 +1222,6 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
         <image name="UM_StopButtonImage" width="500" height="685"/>
         <image name="UM_TempoDigitalDisplayImage" width="500" height="298"/>
         <image name="WoodStickView2" width="500" height="16231"/>
+        <image name="list" width="225" height="225"/>
     </resources>
 </document>

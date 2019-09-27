@@ -44,6 +44,7 @@ class DrumMachineViewController: UIViewController {
         DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 20)
         DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 21)
         
+        MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
 
     }
     
@@ -356,6 +357,11 @@ extension DrumMachineViewController: GridViewDataSource {
 }
 
 extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
+    
+    func playSample(cell: DrumEditingGridViewCell) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.pattern[row].filePlayer.play()
+    }
 
 }
 
@@ -393,7 +399,7 @@ extension DrumMachineViewController{
                     switch result {
                     case .success(let file):
                         samplePathFileArr.append(file)
-                        print(index)
+                        
                     case .failure(let error):
                         print(error)
                     }
@@ -420,3 +426,4 @@ extension DrumMachineViewController{
         
     }
 }
+

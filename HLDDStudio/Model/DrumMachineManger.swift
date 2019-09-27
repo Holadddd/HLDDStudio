@@ -69,8 +69,6 @@ class DrumMachinePattern {
         self.drumType = drumType
         self.drumBeatPattern = DrumBeatPattern
         
-        
-        
         switch drumType {
         case .classic:
             self.file = DrumMachineManger.manger.classicFileArr[fileIndex]
@@ -126,6 +124,8 @@ class DrumMachineManger {
     
     static let manger = DrumMachineManger()
     
+    var drumMixer = AKMixer()
+    
     var pattern: [DrumMachinePattern] = []
     
     var kicksFileArr: [AKAudioFile] = []
@@ -140,6 +140,8 @@ class DrumMachineManger {
     
     func creatPattern(withType: DrumType, fileIndex: Int){
         pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileIndex: fileIndex))
+        let patternCount = pattern.count
+        drumMixer.connect(input: pattern[patternCount - 1].filePlayer, bus: patternCount - 1)
     }
     
     func changeDrumSample(atRow: Int,withFile fileName: String) {

@@ -13,6 +13,7 @@ import AudioKit
 
 protocol DrumEditingGridViewCellDelegate: AnyObject {
     
+    func playSample(cell: DrumEditingGridViewCell)
 }
 
 class DrumEditingGridViewCell: GridViewCell {
@@ -73,11 +74,15 @@ class DrumEditingGridViewCell: GridViewCell {
     
     override func awakeFromNib() {
         super .awakeFromNib()
-        
+        samplePlayButton.addTarget(self, action: #selector(samplePlay), for: .touchUpInside)
     }
     
     deinit {
         print("DrumEditingGridViewCellDeinit\(self.indexPath)")
+    }
+    
+    @objc func samplePlay(_ sender: Any) {
+        delegate?.playSample(cell: self)
     }
 }
 

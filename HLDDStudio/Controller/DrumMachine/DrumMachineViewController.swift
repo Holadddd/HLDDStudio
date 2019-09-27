@@ -58,7 +58,9 @@ class DrumMachineViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
+        try? AudioKit.stop()
+        MixerManger.manger.mixerForMaster.disconnectInput(bus: 3)
+        try? AudioKit.start()
     }
     override func viewWillLayoutSubviews() {
         print("viewWillLayoutSubviews")
@@ -95,8 +97,8 @@ extension DrumMachineViewController: DrumMachineDelegate {
         dismiss(animated: true, completion: nil)
     }
     
-    func playDrum() {
-        print("playDrum")
+    func playDrum(bpm: Int) {
+        print(bpm)
     }
     
     func stopPlayingDrum() {

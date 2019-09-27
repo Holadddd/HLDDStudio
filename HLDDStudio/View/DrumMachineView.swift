@@ -16,7 +16,7 @@ protocol DrumMachineDelegate: AnyObject {
     
     func popDrumMachineView()
     
-    func playDrum()
+    func playDrum(bpm: Int)
     
     func stopPlayingDrum()
     
@@ -192,7 +192,9 @@ class DrumMachineView: UIView {
         sender.isSelected = !sender.isSelected
         switch sender.isSelected {
         case true:
-            delegate?.playDrum()
+            let bpmString = tempoTextField.text ?? "60"
+            let bpm = Int(bpmString)
+            delegate?.playDrum(bpm: bpm ?? 60)
             rotateButton.isEnabled = false
             drumEditingGridView.superview?.isUserInteractionEnabled = false
             drumBarGridView.superview?.isUserInteractionEnabled = false
@@ -225,7 +227,7 @@ extension DrumMachineView: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return 0
+        return tempoArr.count
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {

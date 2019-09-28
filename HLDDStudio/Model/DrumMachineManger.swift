@@ -18,17 +18,18 @@ enum DrumMachineStatus {
     }
 }
 
-enum DrumType {
+enum DrumType: Int {
     
-    case kicks
+    case classic = 0
     
-    case snares
+    case hihats = 1
     
-    case hihats
+    case kicks = 2
+
+    case percussion = 3
     
-    case percussion
+    case snares = 4
     
-    case classic
 }
 
 enum DrumMachineError: Error {

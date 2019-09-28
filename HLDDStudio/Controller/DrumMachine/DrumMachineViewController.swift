@@ -31,11 +31,6 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
         
-        sampleGet(drumType: .classic)
-        sampleGet(drumType: .hihats)
-        sampleGet(drumType: .kicks)
-        sampleGet(drumType: .percussion)
-        sampleGet(drumType: .snares)
         
         if DrumMachineManger.manger.needDefaultPattern {
             DrumMachineManger.manger.creatPattern(withType: .kicks, fileIndex: 0)
@@ -431,52 +426,6 @@ extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
 
 extension DrumMachineViewController{
     
-    func sampleGet(drumType: DrumType) {
-        if let path = Bundle.main.resourcePath {
-
-            let samplePath = path + "/808_drum_kit/\(drumType)"
-            let url = URL(fileURLWithPath: samplePath)
-            let fileManager = FileManager.default
-
-            let properties = [URLResourceKey.localizedNameKey,
-                              URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
-            
-            var samplePathFileArr: [AKAudioFile] = []
-            do {
-                let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
-
-                for (index, element) in kicksURLs.enumerated(){
-                    let sampleFileURL = element
-                    
-                    let result = Result{try AKAudioFile(forReading: sampleFileURL)}
-                    switch result {
-                    case .success(let file):
-                        samplePathFileArr.append(file)
-                        
-                    case .failure(let error):
-                        print(error)
-                    }
-                    
-                }
-                
-            } catch let error1 as NSError {
-                print(error1.description)
-            }
-            
-            switch drumType {
-            case .classic:
-                DrumMachineManger.manger.classicFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
-            case .hihats:
-                DrumMachineManger.manger.hihatsFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
-            case .kicks:
-                DrumMachineManger.manger.kicksFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
-            case .percussion:
-                DrumMachineManger.manger.percussionFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
-            case .snares:
-                DrumMachineManger.manger.snaresFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
-            }
-        }
-        
-    }
+    
 }
 

@@ -11,6 +11,7 @@ import CoreData
 import IQKeyboardManager
 import Firebase
 import Fabric
+import AudioKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -33,6 +34,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         Fabric.with([Crashlytics.self]);
         Fabric.sharedSDK().debug = true;
+        
+        for raw in 0...4{
+            guard let drumType = DrumType(rawValue: raw) else { fatalError() }
+            sampleGet(drumType: drumType)
+        }
         
         return true
     }
@@ -113,6 +119,56 @@ extension AppDelegate {
         return self.orientationLock
     }
     
+}
+
+extension AppDelegate {
+    
+    func sampleGet(drumType: DrumType) {
+        if let path = Bundle.main.resourcePath {
+
+            let samplePath = path + "/808_drum_kit/\(drumType)"
+            let url = URL(fileURLWithPath: samplePath)
+            let fileManager = FileManager.default
+
+            let properties = [URLResourceKey.localizedNameKey,
+                              URLResourceKey.creationDateKey, URLResourceKey.localizedTypeDescriptionKey]
+            
+            var samplePathFileArr: [AKAudioFile] = []
+            do {
+                let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+
+                for (index, element) in kicksURLs.enumerated(){
+                    let sampleFileURL = element
+                    
+                    let result = Result{try AKAudioFile(forReading: sampleFileURL)}
+                    switch result {
+                    case .success(let file):
+                        samplePathFileArr.append(file)
+                        
+                    case .failure(let error):
+                        print(error)
+                    }
+                    
+                }
+                
+            } catch let error1 as NSError {
+                print(error1.description)
+            }
+            
+            switch drumType {
+            case .classic:
+                DrumMachineManger.manger.classicFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .hihats:
+                DrumMachineManger.manger.hihatsFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .kicks:
+                DrumMachineManger.manger.kicksFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .percussion:
+                DrumMachineManger.manger.percussionFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            case .snares:
+                DrumMachineManger.manger.snaresFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
+            }
+        }
+    }
 }
 //lock orientation event
 struct AppUtility {

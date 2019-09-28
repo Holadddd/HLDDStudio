@@ -15,10 +15,13 @@ import AudioKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     var window: UIWindow?
 
     var orientationLock = UIInterfaceOrientationMask.all
+    
+    let userDefault = UserDefaults()
+    
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
         return true
@@ -39,6 +42,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let drumType = DrumType(rawValue: raw) else { fatalError() }
             sampleGet(drumType: drumType)
         }
+        //need adjust
+        if userDefault.object(forKey: "NeedDefaultPattern") != nil {
+            userDefault.setValue(true, forKey: "NeedDefaultPattern")
+        }
+        
+        guard let neededDefault = userDefault.object(forKey: "NeedDefaultPattern") as? Bool else { fatalError() }
+        
+        needDefaultDrumPattern(bool: neededDefault )
         
         return true
     }
@@ -167,6 +178,59 @@ extension AppDelegate {
             case .snares:
                 DrumMachineManger.manger.snaresFileArr = samplePathFileArr.sorted{ $0.fileNamePlusExtension < $1.fileNamePlusExtension }
             }
+        }
+    }
+    
+    func needDefaultDrumPattern(bool: Bool) {
+        if bool {
+            let kickPattern = DrumBeatPattern(true, false, false, true,
+                                              false, false, true, false,
+                                              true, true, false, false,
+                                              false, true, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .kicks, drumBeatPattern: kickPattern, fileIndex: 30)
+            
+            let snarePattern = DrumBeatPattern(false, false, false, false,
+                                               true, false, false, true,
+                                               false, false, false, false,
+                                               true, false, false, true)
+            DrumMachineManger.manger.creatPattern(withType: .snares, drumBeatPattern: snarePattern, fileIndex: 22)
+            
+            let hihatsPattern = DrumBeatPattern(true, false, true, false,
+                                                true, false, true, true,
+                                                true, true, true, false,
+                                                true, false, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: hihatsPattern, fileIndex: 1)
+            
+            let openHihatsPattern = DrumBeatPattern(false, true, false, false,
+                                                false, true, false, false,
+                                                false, false, false, true,
+                                                false, true, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: openHihatsPattern, fileIndex: 26)
+            
+           
+            
+            let hiTomPattern = DrumBeatPattern(true, false, true, false,
+                                                false, true, false, false,
+                                                false, true, false, false,
+                                                true, false, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: hiTomPattern, fileIndex: 19)
+            
+            let lowTomPattern = DrumBeatPattern(false, false, false, false,
+                                                 true, false, false, true,
+                                                 false, false, true, false,
+                                                 false, true, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: lowTomPattern, fileIndex: 23)
+            
+            let classicPattern = DrumBeatPattern(false, false, false, false,
+                                                 false, false, false, false,
+                                                 false, false, false, false,
+                                                 true, false, false, false)
+            DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: 4)
+            //only connect in firstTime
+            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
+            userDefault.setValue(false, forKey: "NeedDefaultPattern")
+        } else {
+            //get data from core data ~~~
         }
     }
 }

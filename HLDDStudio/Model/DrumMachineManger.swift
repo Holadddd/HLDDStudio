@@ -130,9 +130,7 @@ class DrumBeatPattern {
 class DrumMachineManger {
     
     static let manger = DrumMachineManger()
-    
-    var needDefaultPattern = true
-    
+ 
     var drumMixer = AKMixer()
     
     var timer = Timer()
@@ -155,8 +153,8 @@ class DrumMachineManger {
     
     let drumTypeStringArr = ["Classic", "Hihats", "Kicks", "Percussion", "Snares"]
     
-    func creatPattern(withType: DrumType, fileIndex: Int){
-        pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileIndex: fileIndex))
+    func creatPattern(withType: DrumType, drumBeatPattern: DrumBeatPattern, fileIndex: Int){
+        pattern.append(DrumMachinePattern(DrumBeatPattern: drumBeatPattern, drumType: withType, fileIndex: fileIndex))
         let patternCount = pattern.count
         drumMixer.connect(input: pattern[patternCount - 1].node, bus: patternCount - 1)
     }

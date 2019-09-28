@@ -31,19 +31,6 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.delegate = self
         drumMachineView.drumPatternGridView.dataSource = self
         
-        
-        if DrumMachineManger.manger.needDefaultPattern {
-            DrumMachineManger.manger.creatPattern(withType: .kicks, fileIndex: 0)
-            DrumMachineManger.manger.creatPattern(withType: .snares, fileIndex: 22)
-            DrumMachineManger.manger.creatPattern(withType: .hihats, fileIndex: 0)
-            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 19)
-            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 20)
-            DrumMachineManger.manger.creatPattern(withType: .percussion, fileIndex: 21)
-            //only connect in firstTime
-            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
-            DrumMachineManger.manger.needDefaultPattern = false
-        }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -253,10 +240,10 @@ extension DrumMachineViewController: GridViewDataSource {
     }
     
     func gridView(_ gridView: GridView, cellForRowAt indexPath: IndexPath) -> GridViewCell {
-        let patterInfo = DrumMachineManger.manger.pattern[indexPath.row]
+        
         switch gridView {
         case drumMachineView.drumEditingGridView:
-            
+            let patterInfo = DrumMachineManger.manger.pattern[indexPath.row]
             var cell = GridViewCell()
             if UIDevice.current.orientation.isPortrait {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumEditingGridViewCell", for: indexPath) as? DrumEditingGridViewCell else { fatalError() }
@@ -360,6 +347,7 @@ extension DrumMachineViewController: GridViewDataSource {
             return cell
         case drumMachineView.drumPatternGridView:
             var cell = GridViewCell()
+            let patterInfo = DrumMachineManger.manger.pattern[indexPath.row]
             if UIDevice.current.orientation.isPortrait {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
                 

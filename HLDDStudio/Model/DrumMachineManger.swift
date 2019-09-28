@@ -153,6 +153,8 @@ class DrumMachineManger {
     
     var classicFileArr: [AKAudioFile] = []
     
+    let drumTypeStringArr = ["Classic", "Hihats", "Kicks", "Percussion", "Snares"]
+    
     func creatPattern(withType: DrumType, fileIndex: Int){
         pattern.append(DrumMachinePattern(DrumBeatPattern: DrumBeatPattern(), drumType: withType, fileIndex: fileIndex))
         let patternCount = pattern.count

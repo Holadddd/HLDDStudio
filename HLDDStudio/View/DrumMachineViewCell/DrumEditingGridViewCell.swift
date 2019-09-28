@@ -20,27 +20,66 @@ protocol DrumEditingGridViewCellDelegate: AnyObject {
     func panValueChange(cell: GridViewCell, value: Float)
     
     func volumeValueChange(cell: GridViewCell, value: Float)
+    
+    func deletDrumPattern(cell: GridViewCell)
+    
+    func changDrumType(cell: GridViewCell, drumType: DrumType)
 }
 
 class DrumEditingGridViewCell: GridViewCell {
     
     @IBOutlet weak var samplePlayButton: UIButton!
     
-    @IBOutlet weak var typeLabel: UILabel!
+    let drumTypePicker = UIPickerView()
+    
+    @IBOutlet weak var typeTextField: UITextField! {
+        didSet {
+            drumTypePicker.delegate = self
+            
+            drumTypePicker.dataSource = self
+            
+            typeTextField.inputView = drumTypePicker
+            
+            let button = UIButton(type: .custom)
+            
+            button.frame = CGRect(x: 0, y: 0, width: 20, height: 20)
+            
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
+            
+            view.isUserInteractionEnabled = false
+            
+            view.addSubview(button)
+            
+            button.setBackgroundImage(
+                UIImage.asset(.Icons_24px_DropDown),
+                for: .normal
+            )
+         
+            button.isUserInteractionEnabled = false
+            
+            button.tintColor = .blue
+            
+            typeTextField.rightView = view
+            
+            typeTextField.rightViewMode = .unlessEditing
+            
+            typeTextField.delegate = self
+            
+            
+        }
+    }
     
     var drumType = DrumType.classic
     
-    let inputSourceButton = UIButton(type: .custom)
-    
-    let inputPicker = UIPickerView()
+    let samplePicker = UIPickerView()
     
     @IBOutlet weak var samplePickTextField: UITextField! {
         didSet {
-            inputPicker.delegate = self
+            samplePicker.delegate = self
             
-            inputPicker.dataSource = self
+            samplePicker.dataSource = self
             
-            samplePickTextField.inputView = inputPicker
+            samplePickTextField.inputView = samplePicker
             
             let button = UIButton(type: .custom)
             
@@ -126,45 +165,68 @@ extension DrumEditingGridViewCell: UIPickerViewDelegate {
 
 extension DrumEditingGridViewCell: UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        var fileArr: [AKAudioFile] = []
-        switch drumType {
-        case .classic:
-            fileArr = DrumMachineManger.manger.classicFileArr
-        case .hihats:
-            fileArr = DrumMachineManger.manger.hihatsFileArr
-        case .kicks:
-            fileArr = DrumMachineManger.manger.kicksFileArr
-        case .percussion:
-            fileArr = DrumMachineManger.manger.percussionFileArr
-        case .snares:
-            fileArr = DrumMachineManger.manger.snaresFileArr
+        var numberOfRow = 0
+        switch pickerView {
+        case drumTypePicker:
+            numberOfRow = DrumMachineManger.manger.drumTypeStringArr.count
+        case samplePicker:
+            var fileArr: [AKAudioFile] = []
+               switch drumType {
+               case .classic:
+                   fileArr = DrumMachineManger.manger.classicFileArr
+               case .hihats:
+                   fileArr = DrumMachineManger.manger.hihatsFileArr
+               case .kicks:
+                   fileArr = DrumMachineManger.manger.kicksFileArr
+               case .percussion:
+                   fileArr = DrumMachineManger.manger.percussionFileArr
+               case .snares:
+                   fileArr = DrumMachineManger.manger.snaresFileArr
+                   
+               }
             
+            numberOfRow = fileArr.count
+        default:
+            print("noSuchPicker")
         }
-        return fileArr.count
+        
+        return numberOfRow
     }
     
     func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+        var stringNeedStick = ""
         
-        var fileArr: [AKAudioFile] = []
-           switch drumType {
-           case .classic:
-               fileArr = DrumMachineManger.manger.classicFileArr
-           case .hihats:
-               fileArr = DrumMachineManger.manger.hihatsFileArr
-           case .kicks:
-               fileArr = DrumMachineManger.manger.kicksFileArr
-           case .percussion:
-               fileArr = DrumMachineManger.manger.percussionFileArr
-           case .snares:
-               fileArr = DrumMachineManger.manger.snaresFileArr
-               
-           }
+        switch pickerView {
+        case drumTypePicker:
+            var drumTypeArrWithRemove = DrumMachineManger.manger.drumTypeStringArr
+            drumTypeArrWithRemove.append("Remove")
+            stringNeedStick = drumTypeArrWithRemove[row]
+        case samplePicker:
+            var fileArr: [AKAudioFile] = []
+               switch drumType {
+               case .classic:
+                   fileArr = DrumMachineManger.manger.classicFileArr
+               case .hihats:
+                   fileArr = DrumMachineManger.manger.hihatsFileArr
+               case .kicks:
+                   fileArr = DrumMachineManger.manger.kicksFileArr
+               case .percussion:
+                   fileArr = DrumMachineManger.manger.percussionFileArr
+               case .snares:
+                   fileArr = DrumMachineManger.manger.snaresFileArr
+                   
+               }
+            
+            stringNeedStick = fileArr[row].fileNamePlusExtension
+        default:
+            print("noSuchPicker")
+        }
         
-        let fileName = fileArr[row]
         
         pickerView.backgroundColor = UIColor.B1
         
@@ -178,32 +240,65 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         image.stickSubView(pickerLabel)
         
         
-        pickerLabel.text = fileName.fileNamePlusExtension
+        pickerLabel.text = stringNeedStick
         return image
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
-        var fileArr: [AKAudioFile] = []
-        switch drumType {
-        case .classic:
-            fileArr = DrumMachineManger.manger.classicFileArr
-        case .hihats:
-            fileArr = DrumMachineManger.manger.hihatsFileArr
-        case .kicks:
-            fileArr = DrumMachineManger.manger.kicksFileArr
-        case .percussion:
-            fileArr = DrumMachineManger.manger.percussionFileArr
-        case .snares:
-            fileArr = DrumMachineManger.manger.snaresFileArr
+        switch pickerView {
+        case drumTypePicker:
             
+            if row > DrumMachineManger.manger.drumTypeStringArr.count {
+                //call drumMachineManager to remove
+                delegate?.deletDrumPattern(cell: self)
+                return
+            }
+            
+            guard let drumType = DrumType(rawValue: row) else { fatalError() }
+            typeTextField.text = DrumMachineManger.manger.drumTypeStringArr[row]
+            
+            switch drumType {
+            case .classic:
+                
+                samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
+            case .hihats:
+                
+                samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
+            case .kicks:
+                
+                samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
+            case .percussion:
+                
+                samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
+            case .snares:
+                
+                samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
+            }
+            delegate?.changDrumType(cell: self, drumType: drumType)
+        case samplePicker:
+            var fileArr: [AKAudioFile] = []
+            switch drumType {
+            case .classic:
+                fileArr = DrumMachineManger.manger.classicFileArr
+            case .hihats:
+                fileArr = DrumMachineManger.manger.hihatsFileArr
+            case .kicks:
+                fileArr = DrumMachineManger.manger.kicksFileArr
+            case .percussion:
+                fileArr = DrumMachineManger.manger.percussionFileArr
+            case .snares:
+                fileArr = DrumMachineManger.manger.snaresFileArr
+            }
+            
+            if fileArr.count != 0 {
+                samplePickTextField.text = fileArr[row].fileNamePlusExtension
+                delegate?.changeDrumSample(cell: self, drumType: drumType, sampleIndex: row)
+            }
+        default:
+            print("noSuchPicker")
         }
-        if fileArr.count != 0 {
-            samplePickTextField.text = fileArr[row].fileNamePlusExtension
-            delegate?.changeDrumSample(cell: self, drumType: drumType, sampleIndex: row)
-        }
-        
     }
+    
 }
 
 extension DrumEditingGridViewCell: UITextFieldDelegate{

@@ -17,25 +17,25 @@
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-dO-fI9">
                     <rect key="frame" x="0.0" y="0.0" width="106" height="51"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OA3-RS-0g4">
-                            <rect key="frame" x="53" y="0.0" width="53" height="51"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <nil key="textColor"/>
-                            <nil key="highlightedColor"/>
-                        </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-d2-WRO">
                             <rect key="frame" x="0.0" y="0.0" width="53" height="51"/>
                             <state key="normal" image="drumClassic"/>
                         </button>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="oMY-I0-Szt">
+                            <rect key="frame" x="53" y="0.0" width="53" height="51"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <textInputTraits key="textInputTraits" smartInsertDeleteType="no"/>
+                        </textField>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="OA3-RS-0g4" firstAttribute="width" secondItem="lbH-dO-fI9" secondAttribute="width" multiplier="0.5" id="2Cp-wU-7Te"/>
-                        <constraint firstItem="OA3-RS-0g4" firstAttribute="centerY" secondItem="lbH-dO-fI9" secondAttribute="centerY" id="OXk-x7-L5d"/>
+                        <constraint firstAttribute="trailing" secondItem="oMY-I0-Szt" secondAttribute="trailing" id="EJy-04-qBr"/>
+                        <constraint firstItem="oMY-I0-Szt" firstAttribute="top" secondItem="lbH-dO-fI9" secondAttribute="top" id="JHx-l6-Fdg"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="height" secondItem="lbH-dO-fI9" secondAttribute="height" id="W6r-xD-jcv"/>
-                        <constraint firstItem="OA3-RS-0g4" firstAttribute="centerX" secondItem="lbH-dO-fI9" secondAttribute="centerX" multiplier="1.5" id="ZUh-CP-sf7"/>
-                        <constraint firstItem="OA3-RS-0g4" firstAttribute="height" secondItem="lbH-dO-fI9" secondAttribute="height" id="ac5-jz-IZT"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="width" secondItem="lbH-dO-fI9" secondAttribute="width" multiplier="0.5" id="cMd-1Z-Lh0"/>
+                        <constraint firstItem="oMY-I0-Szt" firstAttribute="leading" secondItem="qAU-d2-WRO" secondAttribute="trailing" id="eI0-Cd-bx5"/>
+                        <constraint firstAttribute="bottom" secondItem="oMY-I0-Szt" secondAttribute="bottom" id="f4G-iC-LVN"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="centerX" secondItem="lbH-dO-fI9" secondAttribute="centerX" multiplier="0.5" id="fer-1Y-hvb"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="centerY" secondItem="lbH-dO-fI9" secondAttribute="centerY" id="gIm-jR-0b5"/>
                     </constraints>
@@ -128,7 +128,7 @@
                 <outlet property="panKnob" destination="FdY-YR-3rL" id="Ls1-O8-zMr"/>
                 <outlet property="samplePickTextField" destination="NXt-0j-i4h" id="MmB-qw-J6Q"/>
                 <outlet property="samplePlayButton" destination="qAU-d2-WRO" id="t7I-SK-JNw"/>
-                <outlet property="typeLabel" destination="OA3-RS-0g4" id="86F-Zv-gsG"/>
+                <outlet property="typeTextField" destination="oMY-I0-Szt" id="VS7-FF-9Qe"/>
                 <outlet property="volKnob" destination="JLy-nj-sCq" id="PEu-4w-GM6"/>
             </connections>
             <point key="canvasLocation" x="76.811594202898561" y="109.15178571428571"/>

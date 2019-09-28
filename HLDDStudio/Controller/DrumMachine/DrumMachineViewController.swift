@@ -264,23 +264,23 @@ extension DrumMachineViewController: GridViewDataSource {
                 switch patterInfo.drumType {
                 case .classic:
                     vCell.drumType = .classic
-                    vCell.typeLabel.text = "Classic"
+                    vCell.typeTextField.text = "Classic"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
                 case .hihats:
                     vCell.drumType = .hihats
-                    vCell.typeLabel.text = "Hi-Hats"
+                    vCell.typeTextField.text = "Hi-Hats"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
                 case .kicks:
                     vCell.drumType = .kicks
-                    vCell.typeLabel.text = "Kicks"
+                    vCell.typeTextField.text = "Kicks"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
                 case .percussion:
                     vCell.drumType = .percussion
-                    vCell.typeLabel.text = "Percussion"
+                    vCell.typeTextField.text = "Percussion"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
                 case .snares:
                     vCell.drumType = .snares
-                    vCell.typeLabel.text = "Snares"
+                    vCell.typeTextField.text = "Snares"
                     vCell.samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
                 }
                 
@@ -386,6 +386,18 @@ extension DrumMachineViewController: GridViewDataSource {
 }
 
 extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
+    func changDrumType(cell: GridViewCell, drumType: DrumType) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.pattern[row].drumType = drumType
+       
+    }
+    
+    func deletDrumPattern(cell: GridViewCell) {
+        let row = cell.indexPath.row
+        DrumMachineManger.manger.removeDrumPattern(atRow: row)
+        
+    }
+    
     
     func panValueChange(cell: GridViewCell, value: Float) {
         let row = cell.indexPath.row

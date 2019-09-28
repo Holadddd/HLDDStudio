@@ -59,6 +59,7 @@
 		01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01F16620232BCFD700F1C107 /* CustonIcon.swift */; };
 		248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2DE316FE45FA8389A36DD117 /* Pods_HLDDStudio.framework */; };
 		DB0CDC31233DAE4800D8583C /* 808_drum_kit in Resources */ = {isa = PBXBuildFile; fileRef = DB0CDC2E233DAD6600D8583C /* 808_drum_kit */; };
+		DB0CDC37233FBED200D8583C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0CDC36233FBED200D8583C /* StorageManager.swift */; };
 		DB4A5020233A301800A9DCEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */; };
 		DB4A5023233A352A00A9DCEB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */; };
 		DB744F2F233B50C600AA8AFC /* DrumEditingGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F2E233B50C600AA8AFC /* DrumEditingGridViewCell.xib */; };
@@ -131,6 +132,7 @@
 		68BF78A37B611FB3DDC8ACCA /* Pods-HLDDStudio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.release.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.release.xcconfig"; sourceTree = "<group>"; };
 		A6DDEAE353C1BA4038BFA2BC /* Pods-HLDDStudio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-HLDDStudio.debug.xcconfig"; path = "Target Support Files/Pods-HLDDStudio/Pods-HLDDStudio.debug.xcconfig"; sourceTree = "<group>"; };
 		DB0CDC2E233DAD6600D8583C /* 808_drum_kit */ = {isa = PBXFileReference; lastKnownFileType = folder; name = 808_drum_kit; path = ../../Downloads/808_drum_kit/808_drum_kit; sourceTree = "<group>"; };
+		DB0CDC36233FBED200D8583C /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
 		DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DB4A5021233A352A00A9DCEB /* HLDDStudio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLDDStudio.entitlements; sourceTree = "<group>"; };
 		DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -191,6 +193,7 @@
 			isa = PBXGroup;
 			children = (
 				016F4D24232561B50027D507 /* ReverbSet.swift */,
+				DB0CDC36233FBED200D8583C /* StorageManager.swift */,
 				016F4D272325F10A0027D507 /* PlugInManager.swift */,
 				016F4D2923264F0E0027D507 /* MixerManger.swift */,
 				01E736692335F58900B9582B /* DrumMachineManger.swift */,
@@ -540,6 +543,7 @@
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
 				015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */,
 				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
+				DB0CDC37233FBED200D8583C /* StorageManager.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,

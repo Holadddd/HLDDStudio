@@ -28,7 +28,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-    
+        let moc = StorageManager.sharedManager.persistentContainer.viewContext
+        let drumFetchRequest = NSFetchRequest<DrumMachinePatternCoreData>(entityName: "DrumMachinePatternCoreData")
+        let result = Result{try moc.fetch(drumFetchRequest)}
+        switch result {
+        case .success(let data):
+            let sortedData =  data.sorted{ $0.seq < $1.seq }
+            StorageManager.sharedManager.fetchedOrderList = sortedData
+        case .failure(let error):
+            print(error)
+        }
         
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().toolbarBarTintColor = .black
@@ -42,12 +51,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             guard let drumType = DrumType(rawValue: raw) else { fatalError() }
             sampleGet(drumType: drumType)
         }
-        //need adjust
-        if userDefault.object(forKey: "NeedDefaultPattern") != nil {
+        
+        if userDefault.object(forKey: "NeedDefaultPattern") == nil {
             userDefault.setValue(true, forKey: "NeedDefaultPattern")
         }
         
         guard let neededDefault = userDefault.object(forKey: "NeedDefaultPattern") as? Bool else { fatalError() }
+        
         
         needDefaultDrumPattern(bool: neededDefault )
         
@@ -62,6 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
         // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+        savePattern()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -124,6 +135,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
+
 extension AppDelegate {
     
     func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
@@ -183,6 +195,7 @@ extension AppDelegate {
     
     func needDefaultDrumPattern(bool: Bool) {
         if bool {
+            
             let kickPattern = DrumBeatPattern(true, false, false, true,
                                               false, false, true, false,
                                               true, true, false, false,
@@ -230,8 +243,65 @@ extension AppDelegate {
             MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
             userDefault.setValue(false, forKey: "NeedDefaultPattern")
         } else {
-            //get data from core data ~~~
+            for (index, drumPattern) in StorageManager.sharedManager.fetchedOrderList.enumerated() {
+                let pattern = DrumBeatPattern(drumPattern.barOneBeatOne, drumPattern.barOneBeatTwo, drumPattern.barOneBeatThree, drumPattern.barOneBeatFour, drumPattern.barTwoBeatOne, drumPattern.barTwoBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barTwoBeatFour, drumPattern.barThreeBeatOne, drumPattern.barThreeBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barThreeBeatFour, drumPattern.barFourBeatOne, drumPattern.barFourBeatTwo, drumPattern.barFourBeatThree, drumPattern.barFourBeatFour)
+                guard let drumType = DrumType(rawValue: Int(drumPattern.drumTypeRawValue)) else { fatalError()}
+                DrumMachineManger.manger.creatPattern(withType: drumType, drumBeatPattern: pattern, fileIndex: Int(drumPattern.sampleFileIndex))
+                DrumMachineManger.manger.pattern[index].equlizerAndPanner.busBooster.gain = drumPattern.vol
+                DrumMachineManger.manger.pattern[index].equlizerAndPanner.busPanner.pan = drumPattern.pan
+            }
+            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
         }
+    }
+    
+    func savePattern() {
+        for (inxex, element) in DrumMachineManger.manger.pattern.enumerated() {
+            StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileName = element.fileName
+            StorageManager.sharedManager.fetchedOrderList[inxex].drumTypeRawValue = Int32(element.drumType.rawValue)
+            switch element.drumType {
+            case .classic:
+                let classicFileNameArr = DrumMachineManger.manger.classicFileArr.map { $0.fileNamePlusExtension }
+                guard let fileIndex = classicFileNameArr.firstIndex(of: element.fileName) else { fatalError() }
+                StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileIndex = Int32(fileIndex)
+            case .hihats:
+                let hihatsFileNameArr = DrumMachineManger.manger.hihatsFileArr.map { $0.fileNamePlusExtension }
+                guard let fileIndex = hihatsFileNameArr.firstIndex(of: element.fileName) else { fatalError() }
+                StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileIndex = Int32(fileIndex)
+            case .kicks:
+                let kicksFileNameArr = DrumMachineManger.manger.kicksFileArr.map { $0.fileNamePlusExtension }
+                guard let fileIndex = kicksFileNameArr.firstIndex(of: element.fileName) else { fatalError() }
+                StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileIndex = Int32(fileIndex)
+            case .percussion:
+                let percussionFileNameArr = DrumMachineManger.manger.percussionFileArr.map { $0.fileNamePlusExtension }
+                guard let fileIndex = percussionFileNameArr.firstIndex(of: element.fileName) else { fatalError() }
+                StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileIndex = Int32(fileIndex)
+            case .snares:
+                let snaresFileNameArr = DrumMachineManger.manger.snaresFileArr.map { $0.fileNamePlusExtension }
+                guard let fileIndex = snaresFileNameArr.firstIndex(of: element.fileName) else { fatalError() }
+                StorageManager.sharedManager.fetchedOrderList[inxex].sampleFileIndex = Int32(fileIndex)
+            }
+
+            StorageManager.sharedManager.fetchedOrderList[inxex].drumTypeRawValue = Int32(element.drumType.rawValue)
+            StorageManager.sharedManager.fetchedOrderList[inxex].vol = element.equlizerAndPanner.busBooster.gain
+            StorageManager.sharedManager.fetchedOrderList[inxex].pan = element.equlizerAndPanner.busPanner.pan
+            StorageManager.sharedManager.fetchedOrderList[inxex].barOneBeatOne = element.drumBeatPattern.beatPattern[0]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barOneBeatTwo = element.drumBeatPattern.beatPattern[1]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barOneBeatThree = element.drumBeatPattern.beatPattern[2]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barOneBeatFour = element.drumBeatPattern.beatPattern[3]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barTwoBeatOne = element.drumBeatPattern.beatPattern[4]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barTwoBeatTwo = element.drumBeatPattern.beatPattern[5]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barTwoBeatThree = element.drumBeatPattern.beatPattern[6]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barTwoBeatFour = element.drumBeatPattern.beatPattern[7]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barThreeBeatOne = element.drumBeatPattern.beatPattern[8]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barThreeBeatTwo = element.drumBeatPattern.beatPattern[9]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barThreeBeatThree = element.drumBeatPattern.beatPattern[10]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barThreeBeatFour = element.drumBeatPattern.beatPattern[11]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barFourBeatOne = element.drumBeatPattern.beatPattern[12]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barFourBeatTwo = element.drumBeatPattern.beatPattern[13]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barFourBeatThree = element.drumBeatPattern.beatPattern[14]
+            StorageManager.sharedManager.fetchedOrderList[inxex].barFourBeatFour = element.drumBeatPattern.beatPattern[15]
+        }
+        StorageManager.sharedManager.saveContext()
     }
 }
 //lock orientation event

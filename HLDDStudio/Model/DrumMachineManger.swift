@@ -8,6 +8,7 @@
 
 import Foundation
 import AudioKit
+import CoreData
 
 enum DrumMachineStatus {
     
@@ -130,7 +131,7 @@ class DrumBeatPattern {
 class DrumMachineManger {
     
     static let manger = DrumMachineManger()
- 
+    
     var drumMixer = AKMixer()
     
     var timer = Timer()
@@ -155,29 +156,34 @@ class DrumMachineManger {
     
     func creatPattern(withType: DrumType, drumBeatPattern: DrumBeatPattern, fileIndex: Int){
         pattern.append(DrumMachinePattern(DrumBeatPattern: drumBeatPattern, drumType: withType, fileIndex: fileIndex))
-        let patternCount = pattern.count
-        drumMixer.connect(input: pattern[patternCount - 1].node, bus: patternCount - 1)
+        let patternIndex = pattern.count - 1
+        drumMixer.connect(input: pattern[patternIndex].node, bus: patternIndex)
+        creatCoreData(withType: withType, drumBeatPattern: drumBeatPattern, fileIndex: fileIndex)
     }
     
     func changeDrumSample(atRow: Int, withType: DrumType, fileIndex: Int) {
         
-        switch withType {
-        case .classic:
+        
+        switch withType.rawValue {
+        case 0:
             pattern[atRow].fileName = DrumMachineManger.manger.classicFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.classicFileArr[fileIndex])
-        case .hihats:
+        case 1:
             pattern[atRow].fileName = DrumMachineManger.manger.hihatsFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.hihatsFileArr[fileIndex])
-        case .kicks:
+        case 2:
             pattern[atRow].fileName = DrumMachineManger.manger.kicksFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.kicksFileArr[fileIndex])
-        case .percussion:
+        case 3:
             pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.percussionFileArr[fileIndex])
-        case .snares:
+        case 4:
             pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.snaresFileArr[fileIndex])
+        default:
+            print("")
         }
+        
     }
     
     func changeDrumType(atRow: Int, drumType: DrumType) {
@@ -239,3 +245,56 @@ class DrumMachineManger {
     
 }
 
+extension DrumMachineManger {
+    
+    func creatCoreData(withType: DrumType, drumBeatPattern: DrumBeatPattern, fileIndex: Int) {
+        let patternIndex = pattern.count - 1
+        let moc = StorageManager.sharedManager.persistentContainer.viewContext
+        let newPattern = DrumMachinePatternCoreData(context: moc)
+        newPattern.seq = Int32(patternIndex)
+        newPattern.sampleFileName = pattern[patternIndex].fileName
+        newPattern.drumTypeRawValue = Int32(withType.rawValue)
+        switch withType {
+        case .classic:
+            let classicFileNameArr = classicFileArr.map { $0.fileNamePlusExtension }
+            guard let fileIndex = classicFileNameArr.firstIndex(of: pattern[patternIndex].fileName) else { fatalError() }
+            newPattern.sampleFileIndex = Int32(fileIndex)
+        case .hihats:
+            let hihatsFileNameArr = hihatsFileArr.map { $0.fileNamePlusExtension }
+            guard let fileIndex = hihatsFileNameArr.firstIndex(of: pattern[patternIndex].fileName) else { fatalError() }
+            newPattern.sampleFileIndex = Int32(fileIndex)
+        case .kicks:
+            let kicksFileNameArr = kicksFileArr.map { $0.fileNamePlusExtension }
+            guard let fileIndex = kicksFileNameArr.firstIndex(of: pattern[patternIndex].fileName) else { fatalError() }
+            newPattern.sampleFileIndex = Int32(fileIndex)
+        case .percussion:
+            let percussionFileNameArr = percussionFileArr.map { $0.fileNamePlusExtension }
+            guard let fileIndex = percussionFileNameArr.firstIndex(of: pattern[patternIndex].fileName) else { fatalError() }
+            newPattern.sampleFileIndex = Int32(fileIndex)
+        case .snares:
+            let snaresFileNameArr = snaresFileArr.map { $0.fileNamePlusExtension }
+            guard let fileIndex = snaresFileNameArr.firstIndex(of: pattern[patternIndex].fileName) else { fatalError() }
+            newPattern.sampleFileIndex = Int32(fileIndex)
+        }
+        newPattern.drumTypeRawValue = Int32(withType.rawValue)
+        newPattern.vol = pattern[patternIndex].equlizerAndPanner.busBooster.gain
+        newPattern.pan = pattern[patternIndex].equlizerAndPanner.busPanner.pan
+        newPattern.barOneBeatOne = pattern[patternIndex].drumBeatPattern.beatPattern[0]
+        newPattern.barOneBeatTwo = pattern[patternIndex].drumBeatPattern.beatPattern[1]
+        newPattern.barOneBeatThree = pattern[patternIndex].drumBeatPattern.beatPattern[2]
+        newPattern.barOneBeatFour = pattern[patternIndex].drumBeatPattern.beatPattern[3]
+        newPattern.barTwoBeatOne = pattern[patternIndex].drumBeatPattern.beatPattern[4]
+        newPattern.barTwoBeatTwo = pattern[patternIndex].drumBeatPattern.beatPattern[5]
+        newPattern.barTwoBeatThree = pattern[patternIndex].drumBeatPattern.beatPattern[6]
+        newPattern.barTwoBeatFour = pattern[patternIndex].drumBeatPattern.beatPattern[7]
+        newPattern.barThreeBeatOne = pattern[patternIndex].drumBeatPattern.beatPattern[8]
+        newPattern.barThreeBeatTwo = pattern[patternIndex].drumBeatPattern.beatPattern[9]
+        newPattern.barThreeBeatThree = pattern[patternIndex].drumBeatPattern.beatPattern[10]
+        newPattern.barThreeBeatFour = pattern[patternIndex].drumBeatPattern.beatPattern[11]
+        newPattern.barFourBeatOne = pattern[patternIndex].drumBeatPattern.beatPattern[12]
+        newPattern.barFourBeatTwo = pattern[patternIndex].drumBeatPattern.beatPattern[13]
+        newPattern.barFourBeatThree = pattern[patternIndex].drumBeatPattern.beatPattern[14]
+        newPattern.barFourBeatFour = pattern[patternIndex].drumBeatPattern.beatPattern[15]
+        StorageManager.sharedManager.fetchedOrderList.append(newPattern)
+    }
+}

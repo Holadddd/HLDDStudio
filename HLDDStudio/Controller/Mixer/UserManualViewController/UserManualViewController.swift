@@ -37,7 +37,11 @@ extension UserManualViewController: UserManualViewDelegate{
             guard let strongSelf = self
             else { fatalError() }
             
+            strongSelf.userManualView.alpha = 0
+            
             let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
+                
+                strongSelf.userManualView.alpha = 1
                 
                 strongSelf.userManualView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -61,7 +65,7 @@ extension UserManualViewController: UserManualViewDelegate{
                 for (index, element) in strongSelf.userManualView.imageArr.enumerated() {
                     
                     if index == 0 {
-                        element.frame.origin = CGPoint(x: 0, y: strongSelf.userManualView.TitelLabel.frame.maxY + 8)
+                        element.frame.origin = CGPoint(x: 0, y: 0)
                     } else {
                         let lastView = strongSelf.userManualView.labelViewArr[index - 1]
                         element.frame.origin = CGPoint(x: 0, y: lastView.frame.maxY + 8)

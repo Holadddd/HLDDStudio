@@ -256,22 +256,22 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
             
             guard let drumType = DrumType(rawValue: row) else { fatalError() }
             typeTextField.text = DrumMachineManger.manger.drumTypeStringArr[row]
-            
+            self.drumType = drumType
             switch drumType {
             case .classic:
-                
+                samplePickTextField.text = "Sci Fi Hit.wav"
                 samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
             case .hihats:
-                
+                samplePickTextField.text = "808-HiHats01.wav"
                 samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
             case .kicks:
-                
+                samplePickTextField.text = "808-Kicks01.wav"
                 samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
             case .percussion:
-                
+                samplePickTextField.text = "808-Tom1.wav"
                 samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
             case .snares:
-                
+                samplePickTextField.text = "808-Snare01.wav"
                 samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
             }
             delegate?.changDrumType(cell: self, drumType: drumType)

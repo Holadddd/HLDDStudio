@@ -182,6 +182,22 @@ class DrumMachineManger {
         }
     }
     
+    func changeDrumType(atRow: Int, drumType: DrumType) {
+        pattern[atRow].drumType = drumType
+        switch drumType {
+        case .classic:
+            changeDrumSample(atRow: atRow, withType: .classic, fileIndex: 21)
+        case .hihats:
+            changeDrumSample(atRow: atRow, withType: .hihats, fileIndex: 0)
+        case .kicks:
+            changeDrumSample(atRow: atRow, withType: .kicks, fileIndex: 0)
+        case .percussion:
+            changeDrumSample(atRow: atRow, withType: .percussion, fileIndex: 19)
+        case .snares:
+            changeDrumSample(atRow: atRow, withType: .snares, fileIndex: 23)
+        }
+    }
+    
     func removeDrumPattern(atRow: Int) {
         
     }

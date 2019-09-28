@@ -388,8 +388,7 @@ extension DrumMachineViewController: GridViewDataSource {
 extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
     func changDrumType(cell: GridViewCell, drumType: DrumType) {
         let row = cell.indexPath.row
-        DrumMachineManger.manger.pattern[row].drumType = drumType
-       
+        DrumMachineManger.manger.changeDrumType(atRow: row, drumType: drumType)
     }
     
     func deletDrumPattern(cell: GridViewCell) {

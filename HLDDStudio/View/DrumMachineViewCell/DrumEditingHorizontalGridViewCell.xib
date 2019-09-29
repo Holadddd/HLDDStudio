@@ -24,6 +24,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXU-aq-IRS">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <state key="normal" title="Button"/>
                         </button>
                     </subviews>

@@ -26,34 +26,34 @@
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-y1-68m">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1E-Hg-DcY">
                     <rect key="frame" x="0.0" y="41" width="35" height="80"/>
-                    <color key="backgroundColor" systemColor="systemGroupedBackgroundColor" red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-y1-68m">
+                    <rect key="frame" x="0.0" y="41" width="35" height="80"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="80" id="0jj-me-MfF"/>
                     </constraints>
-                    <state key="normal" title="Button">
+                    <state key="normal">
                         <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                     </state>
                 </button>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1E-Hg-DcY">
-                    <rect key="frame" x="0.0" y="21" width="35" height="20"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                </view>
             </subviews>
             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="FuX-rj-p2l" secondAttribute="trailing" id="0md-jQ-tGh"/>
                 <constraint firstItem="X6n-59-RJL" firstAttribute="trailing" secondItem="mjC-mJ-clT" secondAttribute="trailing" id="1ji-dV-mdA"/>
                 <constraint firstItem="bm9-y1-68m" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="3Ek-eQ-0iv"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="height" secondItem="bm9-y1-68m" secondAttribute="height" id="6xu-Te-7C5"/>
                 <constraint firstItem="X6n-59-RJL" firstAttribute="bottom" secondItem="mjC-mJ-clT" secondAttribute="bottom" id="7SR-Ej-llk"/>
                 <constraint firstAttribute="leading" secondItem="X6n-59-RJL" secondAttribute="leading" id="8ph-dJ-b17"/>
-                <constraint firstItem="w1E-Hg-DcY" firstAttribute="top" secondItem="FuX-rj-p2l" secondAttribute="bottom" id="BqF-Mb-8oB"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="top" secondItem="mjC-mJ-clT" secondAttribute="top" id="IVp-pl-xe2"/>
-                <constraint firstItem="bm9-y1-68m" firstAttribute="top" secondItem="w1E-Hg-DcY" secondAttribute="bottom" id="Vrw-eP-zz9"/>
-                <constraint firstItem="w1E-Hg-DcY" firstAttribute="leading" secondItem="mjC-mJ-clT" secondAttribute="leading" id="aqq-b5-wml"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="centerY" secondItem="bm9-y1-68m" secondAttribute="centerY" id="VvY-sQ-KdK"/>
                 <constraint firstItem="FuX-rj-p2l" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="e4T-i0-qVJ"/>
-                <constraint firstAttribute="trailing" secondItem="w1E-Hg-DcY" secondAttribute="trailing" id="g28-9I-A0S"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="width" secondItem="bm9-y1-68m" secondAttribute="width" id="fmg-wO-Fzc"/>
+                <constraint firstItem="w1E-Hg-DcY" firstAttribute="centerX" secondItem="bm9-y1-68m" secondAttribute="centerX" id="gFT-Gr-wfi"/>
                 <constraint firstAttribute="top" secondItem="X6n-59-RJL" secondAttribute="top" id="mor-6x-7Xs"/>
                 <constraint firstItem="bm9-y1-68m" firstAttribute="centerX" secondItem="mjC-mJ-clT" secondAttribute="centerX" id="rfc-Ut-lYG"/>
                 <constraint firstItem="RDh-sY-P7Q" firstAttribute="trailing" secondItem="bm9-y1-68m" secondAttribute="trailing" id="uhw-bi-FWx"/>

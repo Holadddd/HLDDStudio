@@ -19,6 +19,7 @@
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-d2-WRO">
                             <rect key="frame" x="0.0" y="0.0" width="53" height="51"/>
+                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
                             <state key="normal" image="drumClassic"/>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="oMY-I0-Szt">

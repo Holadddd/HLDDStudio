@@ -352,6 +352,14 @@ extension DrumMachineViewController: GridViewDataSource {
                 guard let vCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternGridViewCell", for: indexPath) as?   DrumPatternGridViewCell else { fatalError() }
                 
                 vCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
+                
+                switch  vCell.selectButton.isSelected {
+                case true:
+                    vCell.animateView.backgroundColor = .blue
+                case false:
+                    vCell.animateView.backgroundColor = .white
+                }
+                
                 vCell.drumLabel.text = "\(indexPath)"
                 vCell.delegate = self
                 cell = vCell

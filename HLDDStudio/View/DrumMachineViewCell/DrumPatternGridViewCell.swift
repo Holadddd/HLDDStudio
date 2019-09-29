@@ -34,10 +34,23 @@ class DrumPatternGridViewCell: GridViewCell {
         super .awakeFromNib()
         selectButton.addTarget(self, action: #selector(selectButtonAction), for: .touchUpInside)
         NotificationCenter.default.addObserver(self, selector: #selector(drumPatternAnimation), name:.drumMachinePatternAnimation, object: nil)
+        
+        switch selectButton.isSelected {
+        case true:
+            animateView.backgroundColor = .blue
+        case false:
+            animateView.backgroundColor = .white
+        }
     }
     
     @objc func selectButtonAction() {
         selectButton.isSelected = !selectButton.isSelected
+        switch selectButton.isSelected {
+        case true:
+            animateView.backgroundColor = .blue
+        case false:
+            animateView.backgroundColor = .white
+        }
         delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
     }
     
@@ -49,11 +62,12 @@ class DrumPatternGridViewCell: GridViewCell {
             let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
             
             let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-                self.animateView.backgroundColor = .white
+                self.animateView.backgroundColor = .blue
+                //self.selectButton.backgroundColor = .blue
             }
             
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-                
+                //self.selectButton.backgroundColor = .yellow
                 self.animateView.backgroundColor = .yellow
                 animate.startAnimation()
             }

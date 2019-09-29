@@ -158,7 +158,14 @@ class DrumMachineManger {
         pattern.append(DrumMachinePattern(DrumBeatPattern: drumBeatPattern, drumType: withType, fileIndex: fileIndex))
         let patternIndex = pattern.count - 1
         drumMixer.connect(input: pattern[patternIndex].node, bus: patternIndex)
+        
         creatCoreData(withType: withType, drumBeatPattern: drumBeatPattern, fileIndex: fileIndex)
+    }
+    
+    func copyPatternFromCore(withType: DrumType, drumBeatPattern: DrumBeatPattern, fileIndex: Int){
+        pattern.append(DrumMachinePattern(DrumBeatPattern: drumBeatPattern, drumType: withType, fileIndex: fileIndex))
+        let patternIndex = pattern.count - 1
+        drumMixer.connect(input: pattern[patternIndex].node, bus: patternIndex)
     }
     
     func changeDrumSample(atRow: Int, withType: DrumType, fileIndex: Int) {
@@ -175,7 +182,7 @@ class DrumMachineManger {
             pattern[atRow].fileName = DrumMachineManger.manger.kicksFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.kicksFileArr[fileIndex])
         case 3:
-            pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension
+            pattern[atRow].fileName = DrumMachineManger.manger.percussionFileArr[fileIndex].fileNamePlusExtension
             pattern[atRow].filePlayer.load(audioFile: DrumMachineManger.manger.percussionFileArr[fileIndex])
         case 4:
             pattern[atRow].fileName = DrumMachineManger.manger.snaresFileArr[fileIndex].fileNamePlusExtension

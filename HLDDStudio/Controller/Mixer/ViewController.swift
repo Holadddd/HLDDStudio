@@ -194,6 +194,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.stopPlayingDrumMachine()
             print("Firsttrack stop drummachine")
         }
         
@@ -210,6 +211,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.stopPlayingDrumMachine()
             print("Secondtrack stop drummachine")
         }
     }
@@ -249,6 +251,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.mixerPlayDrumMachine()
             print("firstTrack pause drumMachine")
         }
         
@@ -268,6 +271,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.mixerPlayDrumMachine()
             print("secondTrack pause drumMachine")
         }
     }
@@ -287,6 +291,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.pauseDrumMachine()
             print("firstTrack pause drumMachine")
         }
         
@@ -302,6 +307,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.pauseDrumMachine()
             print("second pause drumMachine")
         }
     }
@@ -322,6 +328,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.pauseDrumMachine()
             print("firstTrack pause drumMachine")
         }
         
@@ -336,6 +343,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
+            DrumMachineManger.manger.pauseDrumMachine()
             print("second pause drumMachine")
         }
     }
@@ -829,7 +837,7 @@ extension ViewController: IOGridViewCellDatasource {
     
     func inputSource() -> [String] {
         var fileInDeviceNameArr = getFileFromDevice()
-        fileInDeviceNameArr.insert("DrumMachine", at: 0)
+        fileInDeviceNameArr.insert("DrumMachine(\(DrumMachineManger.manger.bpm))", at: 0)
         guard let currentInputDevice = AudioKit.inputDevice?.deviceID else { fatalError() }
         fileInDeviceNameArr.insert(currentInputDevice, at: 0)
         fileInDeviceNameArr.insert("No Input", at: 0)

@@ -231,6 +231,31 @@ class DrumMachineManger {
         numberOfBeats += 1
     }
     
+    func mixerPlayDrumMachine() {
+        let mixerBpm = MixerManger.manger.metronome.tempo
+        timer = Timer.scheduledTimer(timeInterval: (60 * 4 / 8)/mixerBpm, target: self, selector: #selector(drumMachineSetAndPlayAtMixer), userInfo: nil, repeats: true)
+    }
+    
+    @objc func drumMachineSetAndPlayAtMixer() {
+        
+        let start = AVAudioTime.now() + 0.25
+        
+        //each pattern
+        for (index, drumPatterm) in pattern.enumerated() {
+            let beats = numberOfBeats % 16
+            
+            DispatchQueue.main.async {
+                if drumPatterm.drumBeatPattern.beatPattern[beats]{
+                    let indexPath = IndexPath(row: index, column: beats)
+                    NotificationCenter.default.post(name: .drumMachinePatternAnimation, object: DrumMachinePatternAnimationInfo(indexPath: indexPath, startTime: start))
+                    drumPatterm.filePlayer.play(at: start)
+                }
+            }
+        }
+        
+        numberOfBeats += 1
+    }
+    
     func stopPlayingDrumMachine() {
         DispatchQueue.main.async {[weak self] in
             guard let strongSelf = self else { fatalError() }
@@ -241,6 +266,18 @@ class DrumMachineManger {
             }
         }
         
+    }
+    
+    func pauseDrumMachine() {
+        
+        DispatchQueue.main.async {[weak self] in
+            guard let strongSelf = self else { fatalError() }
+            //strongSelf.numberOfBeats = 0
+            strongSelf.timer.invalidate()
+            for drumPatterm in strongSelf.pattern {
+                drumPatterm.filePlayer.pause()
+            }
+        }
     }
     
 }

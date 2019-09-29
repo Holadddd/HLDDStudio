@@ -173,7 +173,7 @@ extension IOGridViewCell: UITextFieldDelegate {
             return
         }
         
-        if inputSource == "DrumMachine" {
+        if inputSource == "DrumMachine(\(DrumMachineManger.manger.bpm))" {
             if self.indexPath.column == 0 {
                 if MixerManger.manger.secondTrackStatus == .drumMachine {
                     print("Dont select again.")

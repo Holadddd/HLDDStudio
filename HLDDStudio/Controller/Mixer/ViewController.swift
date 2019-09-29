@@ -424,6 +424,15 @@ extension ViewController: MixerDelegate {
                 guard let self = self else{return}
                 self.filePlayerTwo.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
+            // play drumMachine
+            if MixerManger.manger.firstTrackStatus == .drumMachine {
+                
+                DrumMachineManger.manger.mixerPlayDrumMachine()
+            }
+            if MixerManger.manger.secondTrackStatus == .drumMachine {
+                
+                DrumMachineManger.manger.mixerPlayDrumMachine()
+            }
         }
         MixerManger.manger.title(with: .recording)
         MixerManger.manger.subTitleContent = "Device Is Recording From Bar \(start) to \(stop). Duration: \(String(format: "%.2f", durationTime)) seconds."
@@ -440,6 +449,7 @@ extension ViewController: MixerDelegate {
         
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
+            DrumMachineManger.manger.stopPlayingDrumMachine()
             print("metronomReset")
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0

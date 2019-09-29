@@ -139,6 +139,8 @@ class MixerManger {
     func metronomeCallBack() {
         print("\(self.bar) | \((self.beat % 4) + 1 )")
         NotificationCenter.default.post(.init(name: .mixerBarTitleChange))
+        drumMachineStartTime = AVAudioTime.now()
+        
         if mixerStatus  == .prepareToRecordAndPlay {
             metronomeStartTime = AVAudioTime.now()
             mixerStatus = .recordingAndPlaying
@@ -146,7 +148,7 @@ class MixerManger {
             print("1")
             semaphore.signal()
         }
-        drumMachineStartTime = AVAudioTime.now()
+        
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             self.beat += 1

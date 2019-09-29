@@ -240,7 +240,7 @@ extension AppDelegate {
                                                  true, false, false, false)
             DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: 4)
             //only connect in firstTime
-            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
+            MixerManger.manger.mixer.connect(input: DrumMachineManger.manger.drumMixer, bus: 5)
             userDefault.setValue(false, forKey: "NeedDefaultPattern")
         } else {
             for (index, drumPattern) in StorageManager.sharedManager.fetchedOrderList.enumerated() {
@@ -250,7 +250,7 @@ extension AppDelegate {
                 DrumMachineManger.manger.pattern[index].equlizerAndPanner.busBooster.gain = drumPattern.vol
                 DrumMachineManger.manger.pattern[index].equlizerAndPanner.busPanner.pan = drumPattern.pan
             }
-            MixerManger.manger.mixerForMaster.connect(input: DrumMachineManger.manger.drumMixer, bus: 3)
+            MixerManger.manger.mixer.connect(input: DrumMachineManger.manger.drumMixer, bus: 5)
         }
     }
     

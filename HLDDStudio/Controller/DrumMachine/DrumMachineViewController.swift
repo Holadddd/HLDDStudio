@@ -367,6 +367,27 @@ extension DrumMachineViewController: GridViewDataSource {
                 guard let hCell = gridView.dequeueReusableCell(withReuseIdentifier: "DrumPatternHorizontalGridViewCell", for: indexPath) as? DrumPatternHorizontalGridViewCell else { fatalError() }
                 
                 hCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
+                
+                switch  hCell.selectButton.isSelected {
+                case true:
+                    hCell.animateView.backgroundColor = .blue
+                case false:
+                    hCell.animateView.backgroundColor = .white
+                }
+                
+                switch Int(indexPath.column/4) {
+                case 0:
+                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.firstSec.rawValue)
+                case 1:
+                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.secondSec.rawValue)
+                case 2:
+                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.thirdSec.rawValue)
+                case 3:
+                    hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
+                default:
+                    hCell.backgroundColor = .blue
+                }
+                
                 hCell.delegate = self
                 cell = hCell
             }

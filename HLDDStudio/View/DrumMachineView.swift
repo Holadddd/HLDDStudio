@@ -48,14 +48,14 @@ class DrumMachineView: UIView {
             
             let button = UIButton(type: .custom)
             
-            button.frame = CGRect(x: 0, y: 0, width: 16, height: 16)
+            button.frame = CGRect(x: 0, y: 0, width: 28, height: 28)
             
             button.setBackgroundImage(
                 UIImage.asset(.Icons_24px_DropDown),
                 for: .normal
             )
             
-            let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 16, height: 16)))
+            let view = UIView(frame: CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: 28, height: 28)))
             
             view.addSubview(button)
             
@@ -63,9 +63,9 @@ class DrumMachineView: UIView {
             
             button.isUserInteractionEnabled = false
             
-            //tempoTextField.rightView = view
+            tempoTextField.rightView = view
             
-            tempoTextField.rightViewMode = .never
+            tempoTextField.rightViewMode = .always
             
             tempoTextField.text = "\(DrumMachineManger.manger.bpm)"
             
@@ -73,14 +73,11 @@ class DrumMachineView: UIView {
         }
     }
     
-    @IBOutlet weak var addButton: UIButton!
-    
+   
     @IBOutlet weak var backButton: UIButton!
     
     @IBOutlet weak var playAndStopButton: UIButton!
     
-    @IBOutlet weak var saveButton: UIButton!
-  
     @IBOutlet weak var drumEditingGridView: GridView!
     
     @IBOutlet weak var drumBarGridView: GridView!
@@ -113,6 +110,11 @@ class DrumMachineView: UIView {
         drumEditingGridView.bounces = false
         drumBarGridView.bounces = false
         drumPatternGridView.bounces = false
+        //ScrollIndicator
+        drumEditingGridView.showsVerticalScrollIndicator = false
+        drumBarGridView.showsHorizontalScrollIndicator = false
+        drumPatternGridView.showsHorizontalScrollIndicator = false
+        drumPatternGridView.showsVerticalScrollIndicator = false
         
         drumEditingGridView.minimumZoomScale = 1
         drumBarGridView.minimumZoomScale = 1
@@ -158,7 +160,7 @@ class DrumMachineView: UIView {
         rotateButton.addTarget(self, action: #selector(DrumMachineView.rotateButtonAction(_:)), for: .touchUpInside)
         backButton.addTarget(self, action: #selector(DrumMachineView.backButtonAction(_:)), for: .touchUpInside)
         playAndStopButton.addTarget(self, action: #selector(DrumMachineView.playAndStopButtonAction(_:)), for: .touchUpInside)
-        saveButton.addTarget(self, action: #selector(DrumMachineView.saveButtonAction(_:)), for: .touchUpInside)
+        
         
         for tempo in 40...240 {
             tempoArr.append(tempo)

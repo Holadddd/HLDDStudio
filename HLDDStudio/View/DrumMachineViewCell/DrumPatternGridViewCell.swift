@@ -35,12 +35,7 @@ class DrumPatternGridViewCell: GridViewCell {
         selectButton.addTarget(self, action: #selector(selectButtonAction), for: .touchUpInside)
         NotificationCenter.default.addObserver(self, selector: #selector(drumPatternAnimation), name:.drumMachinePatternAnimation, object: nil)
         
-        switch selectButton.isSelected {
-        case true:
-            animateView.backgroundColor = .blue
-        case false:
-            animateView.backgroundColor = .white
-        }
+        
     }
     
     @objc func selectButtonAction() {

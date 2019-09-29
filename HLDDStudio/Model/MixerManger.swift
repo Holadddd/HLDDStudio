@@ -87,6 +87,8 @@ class MixerManger {
     
     var metronomeStartTime:AVAudioTime = AVAudioTime.now()
     
+    var drumMachineStartTime: AVAudioTime = AVAudioTime.now()
+    
     var firstTrackStatus = TrackInputStatus.noInput
     
     var secondTrackStatus = TrackInputStatus.noInput
@@ -144,6 +146,7 @@ class MixerManger {
             print("1")
             semaphore.signal()
         }
+        drumMachineStartTime = AVAudioTime.now()
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             self.beat += 1

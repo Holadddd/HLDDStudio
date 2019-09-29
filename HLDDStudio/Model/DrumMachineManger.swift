@@ -236,9 +236,11 @@ class DrumMachineManger {
         timer = Timer.scheduledTimer(timeInterval: (60 * 4 / 8)/mixerBpm, target: self, selector: #selector(drumMachineSetAndPlayAtMixer), userInfo: nil, repeats: true)
     }
     
-    @objc func drumMachineSetAndPlayAtMixer() {
+    @objc func drumMachineSetAndPlayAtMixer(at: AVAudioTime) {
+        let oneBarTime = (60 / MixerManger.manger.metronome.tempo) * 4
+        let start = MixerManger.manger.drumMachineStartTime + oneBarTime
         
-        let start = AVAudioTime.now() + 0.25
+        //let start = AVAudioTime.now() + oneBarTime
         
         //each pattern
         for (index, drumPatterm) in pattern.enumerated() {

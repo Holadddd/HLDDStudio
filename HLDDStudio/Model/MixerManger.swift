@@ -143,6 +143,7 @@ class MixerManger {
         
         if mixerStatus  == .prepareToRecordAndPlay {
             metronomeStartTime = AVAudioTime.now()
+            
             mixerStatus = .recordingAndPlaying
             print("metronomeFirstCallBackTime:\(DispatchTime.now())")
             print("1")

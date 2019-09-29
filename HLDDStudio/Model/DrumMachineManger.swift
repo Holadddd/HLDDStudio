@@ -237,10 +237,9 @@ class DrumMachineManger {
     }
     
     @objc func drumMachineSetAndPlayAtMixer() {
+        let oneBeatTime = (60 / MixerManger.manger.metronome.tempo)
         let oneBarTime = (60 / MixerManger.manger.metronome.tempo) * 4
-        let start = MixerManger.manger.drumMachineStartTime + oneBarTime
-        
-        //let start = AVAudioTime.now() + oneBarTime
+        let start = MixerManger.manger.metronomeStartTime + oneBarTime + (oneBeatTime * numberOfBeats)/2
         
         //each pattern
         for (index, drumPatterm) in pattern.enumerated() {

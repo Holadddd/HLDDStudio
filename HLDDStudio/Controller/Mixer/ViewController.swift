@@ -193,6 +193,8 @@ extension ViewController: MixerDelegate {
             print("firstTrackPlayerSelectFile")
         case .noInput:
             print("firstTrackNoInput")
+        case .drumMachine:
+            print("Firsttrack stop drummachine")
         }
         
         switch MixerManger.manger.secondTrackStatus {
@@ -207,6 +209,8 @@ extension ViewController: MixerDelegate {
             print("secondTrackPlaySelectFile")
         case .noInput:
             print("secondTrackNoInput")
+        case .drumMachine:
+            print("Secondtrack stop drummachine")
         }
     }
     
@@ -244,6 +248,8 @@ extension ViewController: MixerDelegate {
         
         case .noInput:
             print("firstTrackNoInput")
+        case .drumMachine:
+            print("firstTrack pause drumMachine")
         }
         
         switch MixerManger.manger.secondTrackStatus {
@@ -261,6 +267,8 @@ extension ViewController: MixerDelegate {
             print("secondTrackPlaySelectFile")
         case .noInput:
             print("secondTrackNoInput")
+        case .drumMachine:
+            print("secondTrack pause drumMachine")
         }
     }
     
@@ -278,6 +286,8 @@ extension ViewController: MixerDelegate {
             print("firstTrackPlaySelectFile")
         case .noInput:
             print("firstTrackNoInput")
+        case .drumMachine:
+            print("firstTrack pause drumMachine")
         }
         
         switch MixerManger.manger.secondTrackStatus {
@@ -291,6 +301,8 @@ extension ViewController: MixerDelegate {
             print("secondTrackPlaySelectFile")
         case .noInput:
             print("secondTrackNoInput")
+        case .drumMachine:
+            print("second pause drumMachine")
         }
     }
     
@@ -309,6 +321,8 @@ extension ViewController: MixerDelegate {
             print("firstTrackPlaySelectFile")
         case .noInput:
             print("firstTrackNoInput")
+        case .drumMachine:
+            print("firstTrack pause drumMachine")
         }
         
         switch MixerManger.manger.secondTrackStatus {
@@ -321,6 +335,8 @@ extension ViewController: MixerDelegate {
             print("secondTrackPlaySelectFile")
         case .noInput:
             print("secondTrackNoInput")
+        case .drumMachine:
+            print("second pause drumMachine")
         }
     }
     
@@ -632,6 +648,20 @@ extension ViewController: FaderGridViewCellDelegate {
 
 extension ViewController: IOGridViewCellDelegate {
     
+    func didSelectDrumMachine(cell: IOGridViewCell) {
+        switch cell.indexPath.column {
+        case 0:
+            print("TrackOne select drummachine")
+            MixerManger.manger.firstTrackStatus = .drumMachine
+        case 1:
+            print("TrackTwo select drummachine")
+            MixerManger.manger.secondTrackStatus = .drumMachine
+        default:
+            print("error")
+        }
+    }
+    
+    
     func didSelectInputSource(inputSource: String, cell: IOGridViewCell) {
         
         switch cell.indexPath.column {
@@ -799,6 +829,7 @@ extension ViewController: IOGridViewCellDatasource {
     
     func inputSource() -> [String] {
         var fileInDeviceNameArr = getFileFromDevice()
+        fileInDeviceNameArr.insert("DrumMachine", at: 0)
         guard let currentInputDevice = AudioKit.inputDevice?.deviceID else { fatalError() }
         fileInDeviceNameArr.insert(currentInputDevice, at: 0)
         fileInDeviceNameArr.insert("No Input", at: 0)

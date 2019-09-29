@@ -18,6 +18,8 @@ protocol IOGridViewCellDelegate: AnyObject {
     func didSelectInputSource(inputSource: String, cell: IOGridViewCell)
     
     func addPlugIn(with plugIn: PlugIn, row: Int, column: Int, cell: IOGridViewCell)
+    
+    func didSelectDrumMachine(cell: IOGridViewCell)
 
 }
 
@@ -168,6 +170,27 @@ extension IOGridViewCell: UITextFieldDelegate {
         if inputSource == "No Input" {
             inputSourceButton.isSelected = false
             delegate?.noInputSource(cell: self)
+            return
+        }
+        
+        if inputSource == "DrumMachine" {
+            if self.indexPath.column == 0 {
+                if MixerManger.manger.secondTrackStatus == .drumMachine {
+                    print("Dont select again.")
+                    inputSourceButton.isSelected = false
+                    delegate?.noInputSource(cell: self)
+                    return
+                }
+            } else {
+                if MixerManger.manger.firstTrackStatus == .drumMachine {
+                    print("Dont select again.")
+                    inputSourceButton.isSelected = false
+                    delegate?.noInputSource(cell: self)
+                    return
+                }
+            }
+            inputSourceButton.isSelected = true
+            delegate?.didSelectDrumMachine(cell: self)
             return
         }
         

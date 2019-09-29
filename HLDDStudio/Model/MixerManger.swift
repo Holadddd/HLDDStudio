@@ -18,6 +18,8 @@ enum TrackInputStatus {
     case lineIn
     
     case audioFile
+    
+    case drumMachine
 }
 
 enum MixerStatus {

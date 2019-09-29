@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="DrumPatternHorizontalGridViewCell" id="u4p-bD-cak" customClass="DrumPatternHorizontalGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrumPatternHorizontalGridViewCell" id="u4p-bD-cak" customClass="DrumPatternHorizontalGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>

@@ -10,30 +10,39 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" restorationIdentifier="DrumEditingGridViewCell" id="Fzg-1I-ZZm" customClass="DrumEditingGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
+        <view clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrumEditingGridViewCell" id="Fzg-1I-ZZm" customClass="DrumEditingGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="106" height="136"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="lbH-dO-fI9">
                     <rect key="frame" x="0.0" y="0.0" width="106" height="51"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-d2-WRO">
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodBG" translatesAutoresizingMaskIntoConstraints="NO" id="hgY-Gu-jqc">
                             <rect key="frame" x="0.0" y="0.0" width="53" height="51"/>
-                            <color key="tintColor" cocoaTouchSystemColor="darkTextColor"/>
-                            <state key="normal" image="drumClassic"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-d2-WRO">
+                            <rect key="frame" x="0.0" y="0.0" width="53" height="51"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="tintColor" red="1" green="0.91559791639999999" blue="0.71185123260000005" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <state key="normal" title="B"/>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" adjustsFontForContentSizeCategory="YES" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="oMY-I0-Szt">
                             <rect key="frame" x="53" y="0.0" width="53" height="51"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" smartInsertDeleteType="no"/>
                         </textField>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBrownColor" red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstItem="hgY-Gu-jqc" firstAttribute="centerY" secondItem="qAU-d2-WRO" secondAttribute="centerY" id="4NU-pq-Iqz"/>
+                        <constraint firstItem="hgY-Gu-jqc" firstAttribute="centerX" secondItem="qAU-d2-WRO" secondAttribute="centerX" id="Aob-JU-4Bd"/>
+                        <constraint firstItem="hgY-Gu-jqc" firstAttribute="height" secondItem="qAU-d2-WRO" secondAttribute="height" id="BzO-JQ-Ftk"/>
                         <constraint firstAttribute="trailing" secondItem="oMY-I0-Szt" secondAttribute="trailing" id="EJy-04-qBr"/>
                         <constraint firstItem="oMY-I0-Szt" firstAttribute="top" secondItem="lbH-dO-fI9" secondAttribute="top" id="JHx-l6-Fdg"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="height" secondItem="lbH-dO-fI9" secondAttribute="height" id="W6r-xD-jcv"/>
+                        <constraint firstItem="hgY-Gu-jqc" firstAttribute="width" secondItem="qAU-d2-WRO" secondAttribute="width" id="XWL-j1-1kL"/>
                         <constraint firstItem="qAU-d2-WRO" firstAttribute="width" secondItem="lbH-dO-fI9" secondAttribute="width" multiplier="0.5" id="cMd-1Z-Lh0"/>
                         <constraint firstItem="oMY-I0-Szt" firstAttribute="leading" secondItem="qAU-d2-WRO" secondAttribute="trailing" id="eI0-Cd-bx5"/>
                         <constraint firstAttribute="bottom" secondItem="oMY-I0-Szt" secondAttribute="bottom" id="f4G-iC-LVN"/>
@@ -62,6 +71,9 @@
                 <view contentMode="scaleToFill" verticalCompressionResistancePriority="748" translatesAutoresizingMaskIntoConstraints="NO" id="TgV-wS-FDH">
                     <rect key="frame" x="0.0" y="85" width="106" height="51"/>
                     <subviews>
+                        <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="9Cf-uy-dQa">
+                            <rect key="frame" x="-5.5" y="-2.5" width="117" height="56"/>
+                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FdY-YR-3rL" customClass="Knob" customModule="HLDDStudio" customModuleProvider="target">
                             <rect key="frame" x="10.5" y="2" width="32" height="32"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -104,7 +116,11 @@
                         <constraint firstItem="JLy-nj-sCq" firstAttribute="centerY" secondItem="TgV-wS-FDH" secondAttribute="centerY" multiplier="0.7" id="a1x-On-bwQ"/>
                         <constraint firstItem="FdY-YR-3rL" firstAttribute="width" secondItem="TgV-wS-FDH" secondAttribute="width" multiplier="0.3" id="cpS-6q-gSA"/>
                         <constraint firstItem="JLy-nj-sCq" firstAttribute="centerX" secondItem="TgV-wS-FDH" secondAttribute="centerX" multiplier="1.5" id="djq-CH-VBZ"/>
+                        <constraint firstItem="9Cf-uy-dQa" firstAttribute="centerY" secondItem="TgV-wS-FDH" secondAttribute="centerY" id="f4I-sX-lxr"/>
                         <constraint firstItem="MjT-04-tLa" firstAttribute="top" secondItem="FdY-YR-3rL" secondAttribute="bottom" id="ilj-eG-4bp"/>
+                        <constraint firstItem="9Cf-uy-dQa" firstAttribute="width" secondItem="TgV-wS-FDH" secondAttribute="width" multiplier="1.1" id="sDq-5c-HFV"/>
+                        <constraint firstItem="9Cf-uy-dQa" firstAttribute="height" secondItem="TgV-wS-FDH" secondAttribute="height" multiplier="1.1" id="vBH-mC-IVZ"/>
+                        <constraint firstItem="9Cf-uy-dQa" firstAttribute="centerX" secondItem="TgV-wS-FDH" secondAttribute="centerX" id="zte-2p-hXn"/>
                     </constraints>
                 </view>
             </subviews>
@@ -137,6 +153,7 @@
         </view>
     </objects>
     <resources>
-        <image name="drumClassic" width="512" height="512"/>
+        <image name="BarStatusView" width="164" height="52"/>
+        <image name="WoodBG" width="500" height="1688"/>
     </resources>
 </document>

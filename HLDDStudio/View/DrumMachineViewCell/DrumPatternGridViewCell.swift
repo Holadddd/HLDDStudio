@@ -21,6 +21,8 @@ class DrumPatternGridViewCell: GridViewCell {
     
     @IBOutlet weak var animateView: UIView!
     
+    @IBOutlet weak var midAnimateView: UIView!
+    
     @IBOutlet weak var selectButton: UIButton!
     
     weak var delegate: DrumPatternGridViewCellDelegate?
@@ -51,14 +53,25 @@ class DrumPatternGridViewCell: GridViewCell {
     
     @objc func drumPatternAnimation(_ notification: Notification){
         guard let info = notification.object as? DrumMachinePatternAnimationInfo else{ fatalError() }
+        let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
+        
+        self.midAnimateView.frame.origin = CGPoint(x: 0, y: 0)
+        
+        let midAnimate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
+            self.midAnimateView.frame = self.midAnimateView.frame.offsetBy(dx: 50, dy: 50)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
+            //midAnimate.startAnimation()
+        }
         
         if info.indexPath == self.indexPath{
             
-            let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
+            
             
             let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
                 self.animateView.backgroundColor = .blue
-                //self.selectButton.backgroundColor = .blue
+                self.midAnimateView.frame = self.midAnimateView.frame.offsetBy(dx: 50, dy: 50)
             }
             
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {

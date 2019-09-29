@@ -19,20 +19,25 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-Xn-oTg">
                                 <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1d-WA-2yz">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1d-WA-2yz">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="80"/>
                                         <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="eWg-yQ-h2t">
+                                                <rect key="frame" x="-8" y="-4" width="176" height="88"/>
+                                            </imageView>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qI0-0S-mjl">
-                                                <rect key="frame" x="4" y="4" width="25" height="25"/>
+                                                <rect key="frame" x="11.666666666666664" y="4" width="25" height="25"/>
                                                 <subviews>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hXM-ng-psd">
                                                         <rect key="frame" x="0.0" y="0.0" width="25" height="25"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                        <state key="normal" image="rotateIcon"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <state key="normal" image="rotate-1">
+                                                            <color key="titleColor" systemColor="systemYellowColor" red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        </state>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="90C-HS-YBB"/>
                                                     <constraint firstAttribute="bottom" secondItem="hXM-ng-psd" secondAttribute="bottom" id="DdV-hP-IVH"/>
@@ -46,13 +51,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fld-J8-39A">
                                                 <rect key="frame" x="84" y="40" width="40" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhT-2P-Y1I">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bhT-2P-Y1I">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                        <state key="normal" title="Play"/>
-                                                        <state key="selected" title="Stop"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Play" image="Pause"/>
+                                                        <state key="selected" title="Stop" image="Play"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="bhT-2P-Y1I" firstAttribute="leading" secondItem="fld-J8-39A" secondAttribute="leading" id="Ftf-4v-Lfe"/>
                                                     <constraint firstItem="bhT-2P-Y1I" firstAttribute="top" secondItem="fld-J8-39A" secondAttribute="top" id="IV2-Nm-BRV"/>
@@ -62,15 +69,15 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e5L-je-rkf">
-                                                <rect key="frame" x="20" y="40" width="40" height="40"/>
+                                                <rect key="frame" x="4" y="40" width="40" height="40"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08l-LB-qv5">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="08l-LB-qv5">
                                                         <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
-                                                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                                        <state key="normal" title="Mixer"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                        <state key="normal" title="Mixer" image="back"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="08l-LB-qv5" firstAttribute="leading" secondItem="e5L-je-rkf" secondAttribute="leading" id="23h-7y-ayi"/>
                                                     <constraint firstAttribute="width" secondItem="e5L-je-rkf" secondAttribute="height" multiplier="1:1" id="Yfw-ga-FXw"/>
@@ -86,21 +93,25 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" multiplier="1.3" id="6Lt-YI-9d2"/>
-                                            <constraint firstItem="e5L-je-rkf" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" multiplier="0.5" id="EFc-uM-CDN"/>
+                                            <constraint firstItem="eWg-yQ-h2t" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="1.1" id="8OM-Dm-h8W"/>
+                                            <constraint firstItem="e5L-je-rkf" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" multiplier="0.3" id="EFc-uM-CDN"/>
                                             <constraint firstItem="qI0-0S-mjl" firstAttribute="top" secondItem="i1d-WA-2yz" secondAttribute="top" constant="4" id="Fp8-ml-LsY"/>
                                             <constraint firstItem="nTq-LK-fK8" firstAttribute="centerY" secondItem="hXM-ng-psd" secondAttribute="centerY" id="HrI-Y2-3W1"/>
+                                            <constraint firstItem="qI0-0S-mjl" firstAttribute="centerX" secondItem="08l-LB-qv5" secondAttribute="centerX" id="Nyn-BN-6on"/>
                                             <constraint firstItem="nTq-LK-fK8" firstAttribute="centerX" secondItem="bhT-2P-Y1I" secondAttribute="centerX" id="TJc-nR-esh"/>
-                                            <constraint firstItem="qI0-0S-mjl" firstAttribute="leading" secondItem="i1d-WA-2yz" secondAttribute="leading" constant="4" id="XZG-be-VqY"/>
+                                            <constraint firstItem="eWg-yQ-h2t" firstAttribute="centerY" secondItem="i1d-WA-2yz" secondAttribute="centerY" id="TkI-if-5Vy"/>
                                             <constraint firstAttribute="width" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="2" id="Xk5-ey-eph"/>
+                                            <constraint firstItem="eWg-yQ-h2t" firstAttribute="width" secondItem="i1d-WA-2yz" secondAttribute="width" multiplier="1.1" id="cdK-X6-NGx"/>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="centerY" secondItem="i1d-WA-2yz" secondAttribute="centerY" multiplier="1.5" id="jkr-mI-dmk"/>
                                             <constraint firstItem="nTq-LK-fK8" firstAttribute="height" secondItem="hXM-ng-psd" secondAttribute="height" id="pKK-24-TIt"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="centerY" secondItem="fld-J8-39A" secondAttribute="centerY" id="pU2-9l-Rr7"/>
                                             <constraint firstItem="fld-J8-39A" firstAttribute="height" secondItem="i1d-WA-2yz" secondAttribute="height" multiplier="0.5" id="sKX-Ki-Eek"/>
                                             <constraint firstAttribute="width" relation="lessThanOrEqual" constant="160" id="sap-QB-oeY"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="fld-J8-39A" secondAttribute="width" id="vXw-uG-M3f"/>
+                                            <constraint firstItem="eWg-yQ-h2t" firstAttribute="centerX" secondItem="i1d-WA-2yz" secondAttribute="centerX" id="vdv-nn-cJD"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="e5L-je-rkf" secondAttribute="height" multiplier="1:1" id="vwF-d2-Xj5"/>
                                             <constraint firstItem="e5L-je-rkf" firstAttribute="width" secondItem="e5L-je-rkf" secondAttribute="height" multiplier="1:1" id="xAS-Xf-mQ1"/>
                                             <constraint firstItem="nTq-LK-fK8" firstAttribute="width" secondItem="bhT-2P-Y1I" secondAttribute="width" multiplier="2" id="yzg-Sz-NGy"/>
@@ -234,6 +245,10 @@
         </scene>
     </scenes>
     <resources>
-        <image name="rotateIcon" width="980" height="980"/>
+        <image name="BarStatusView" width="164" height="52"/>
+        <image name="Pause" width="241" height="200"/>
+        <image name="Play" width="77" height="64"/>
+        <image name="back" width="512" height="512"/>
+        <image name="rotate-1" width="192" height="192"/>
     </resources>
 </document>

@@ -170,8 +170,6 @@ extension PlugInViewController: PlugInControlDelegate {
     func plugInReverbFactorySelect(_ factoryRawValue: Int, cell: PlugInReverbTableViewCell) {
         guard let indexPath = plugInView.tableView.indexPath(for: cell) else { fatalError() }
         let track = PlugInCreater.shared.showingTrackOnPlugInVC
-        print("track:\(track)")
-        print("indexPath:\(indexPath)")
         switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let set = AVAudioUnitReverbPreset(rawValue: factoryRawValue) else{ fatalError()}

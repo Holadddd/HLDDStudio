@@ -64,14 +64,12 @@ class ViewController: UIViewController {
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
         
-        
-        print("viewWillAppear")
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
-        print("viewDidAppear")
+      
     }
 
     override func viewWillLayoutSubviews() {
@@ -155,7 +153,6 @@ extension ViewController: MixerDelegate {
         drumVC.modalPresentationStyle = .fullScreen
         present(drumVC, animated: true) {
             self.mixerView.stopButtonAction()
-            print("save parameter")
         }
         
     }
@@ -168,7 +165,6 @@ extension ViewController: MixerDelegate {
                 let result = Result{try AudioKit.setInputDevice(device)}
                 switch result {
                 case .success():
-                    print("Set \(device.deviceID) As InputDevice")
                     MixerManger.manger.title(with: .HLDDStudio)
                     MixerManger.manger.subTitleContent = "Selected \(device.deviceID) As Input Device"
                     try? AudioKit.setInputDevice(device)
@@ -204,7 +200,6 @@ extension ViewController: MixerDelegate {
         mixerView.playAndResumeButton.isEnabled = true
         mixerView.recordButton.isEnabled = true
         
-        print("StopPlayer")
         MixerManger.manger.metronome.restart()
         MixerManger.manger.metronome.stop()
         MixerManger.manger.mixerStatus = .stopRecordingAndPlaying
@@ -224,7 +219,6 @@ extension ViewController: MixerDelegate {
             
             filePlayer.stop()
             filePlayer.preroll()
-            print("firstTrackPlayerSelectFile")
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
@@ -258,8 +252,7 @@ extension ViewController: MixerDelegate {
             MixerManger.manger.subTitle(with: .noFileOrInputSource)
         }
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
-        print("playingPlayer")
-        print(MixerManger.manger.metronome.tempo)
+    
         filePlayer.prepare()
         filePlayerTwo.prepare()
         
@@ -408,7 +401,6 @@ extension ViewController: MixerDelegate {
         
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
-            print("start")
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0
             self.mixerView.barLabel.text = "0 | 1"
@@ -495,7 +487,6 @@ extension ViewController: MixerDelegate {
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             DrumMachineManger.manger.stopPlayingDrumMachine()
-            print("metronomReset")
             MixerManger.manger.bar = 0
             MixerManger.manger.beat = 0
             self.mixerView.barLabel.text = "0 | 1"
@@ -542,7 +533,6 @@ extension ViewController: MixerDatasource {
         if MixerManger.manger.firstTrackStatus != .noInput || MixerManger.manger.secondTrackStatus != .noInput {
             return true
         } else {
-            print("Check Input Source.")
             MixerManger.manger.title(with: .recordWarning)
             MixerManger.manger.subTitle(with: .checkInputSource)
             return false
@@ -787,14 +777,11 @@ extension ViewController: IOGridViewCellDelegate {
                     }
                 }
             }
-        case 1:  //Bus2
-            print("BUS2")
+        case 1:
             let currentDevice = currentInputDevice()
             let fileInDeviceArr = getFileFromDevice()
             if inputSource == currentDevice {
                 try? AudioKit.stop()
-                
-                print("InputDeviceAsInputMixerBus2Source:\(currentDevice)")
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Tracktwo Input Source."
                 PlugInCreater.shared.plugInOntruck[1].inputNode = MixerManger.manger.mic
@@ -823,8 +810,6 @@ extension ViewController: IOGridViewCellDelegate {
                             //need adjust for audioFile into plugIn
                             PlugInCreater.shared.resetTrackNode(Track: 2)
                             setTrackNode(track: 2)
-                            
-                            print("FirstTrackFileSelectIn:\(fileName)")
                             MixerManger.manger.title(with: .HLDDStudio)
                             MixerManger.manger.subTitleContent = "Selected \(fileName) As Tracktwo Input File."
                             //switch the track status
@@ -841,13 +826,9 @@ extension ViewController: IOGridViewCellDelegate {
             }
             
         default:
-            print("ERROR OF SETTING INPUT")
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "ERROR OF SETTING INPUT"
         }
-        // do error handle
-        print(inputSource)
-        print("dont use")
     }
     
     func addPlugIn(with plugIn: PlugIn, row: Int, column: Int, cell: IOGridViewCell) {
@@ -871,7 +852,6 @@ extension ViewController: IOGridViewCellDelegate {
         let indexPath = cell.indexPath
         switch indexPath.column {
         case 0:
-            
             MixerManger.manger.firstTrackStatus = .noInput
             MixerManger.manger.mixer.disconnectInput(bus: 1)
             MixerManger.manger.title(with: .HLDDStudio)
@@ -881,11 +861,10 @@ extension ViewController: IOGridViewCellDelegate {
             MixerManger.manger.mixer.disconnectInput(bus: 2)
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Tracktwo."
-            print("Need Disconnect bus2 track")
         default:
             print("No Need For Disconnect")
         }
-        print("HandelNoInputSource")
+        
         try? AudioKit.start()
     }
 
@@ -895,10 +874,10 @@ extension ViewController: IOGridViewCellDatasource {
     
     func inputSource() -> [String] {
         var fileInDeviceNameArr = getFileFromDevice()
-        fileInDeviceNameArr.insert("DrumMachine(\(DrumMachineManger.manger.bpm))", at: 0)
+        fileInDeviceNameArr.insert("\(InputSourceCase.drumMachine.rawValue)(\(DrumMachineManger.manger.bpm))", at: 0)
         guard let currentInputDevice = AudioKit.inputDevice?.deviceID else { fatalError() }
         fileInDeviceNameArr.insert(currentInputDevice, at: 0)
-        fileInDeviceNameArr.insert("No Input", at: 0)
+        fileInDeviceNameArr.insert(InputSourceCase.noInput.rawValue, at: 0)
         return fileInDeviceNameArr
     }
     

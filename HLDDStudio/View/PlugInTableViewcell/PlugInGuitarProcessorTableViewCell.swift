@@ -84,7 +84,7 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
 extension PlugInGuitarProcessorTableViewCell: PlugInBarViewDelegate {
     
     func plugInPresetSelect(_ parameter: String) {
-        print("Set parameter as:\(parameter)")
+        
     }
     
     func isBypass(_ bool: Bool) {

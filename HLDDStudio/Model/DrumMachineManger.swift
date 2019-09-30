@@ -144,13 +144,23 @@ class DrumMachineManger {
     
     var kicksFileArr: [AKAudioFile] = []
     
+    let defaultKickFileIndex = 9
+    
     var snaresFileArr: [AKAudioFile] = []
+    
+    let defaultSnareFileIndex = 56
     
     var percussionFileArr: [AKAudioFile] = []
     
+    let defaultPercussionFileIndex = 19
+    
     var hihatsFileArr: [AKAudioFile] = []
     
+    let defaultHihatsFileIndex = 26
+    
     var classicFileArr: [AKAudioFile] = []
+    
+    let defaultClassicFileIndex = 0
     
     let drumTypeStringArr = ["Classic", "Hihats", "Kicks", "Percussion", "Snares"]
     

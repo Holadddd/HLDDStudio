@@ -148,9 +148,8 @@ extension DrumEditingGridViewCell: HLDDKnobDelegate {
         case volKnob:
             delegate?.volumeValueChange(cell: self, value: value)
         default:
-            return
+            break
         }
-        print(value)
     }
     
     func knobIsTouching(bool: Bool, knob: Knob) {
@@ -192,7 +191,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
             
             numberOfRow = fileArr.count
         default:
-            print("noSuchPicker")
+            break
         }
         
         return numberOfRow
@@ -203,9 +202,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         
         switch pickerView {
         case drumTypePicker:
-            var drumTypeArrWithRemove = DrumMachineManger.manger.drumTypeStringArr
-            drumTypeArrWithRemove.append("Remove")
-            stringNeedStick = drumTypeArrWithRemove[row]
+            stringNeedStick = DrumMachineManger.manger.drumTypeStringArr[row]
         case samplePicker:
             var fileArr: [AKAudioFile] = []
                switch drumType {
@@ -224,7 +221,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
             
             stringNeedStick = fileArr[row].fileNamePlusExtension
         default:
-            print("noSuchPicker")
+            break
         }
         
         
@@ -239,7 +236,6 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         pickerLabel.backgroundColor = .clear
         image.stickSubView(pickerLabel)
         
-        
         pickerLabel.text = stringNeedStick
         return image
     }
@@ -249,7 +245,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
         case drumTypePicker:
             
             if row > DrumMachineManger.manger.drumTypeStringArr.count {
-                //call drumMachineManager to remove
+               
                 delegate?.deletDrumPattern(cell: self)
                 return
             }
@@ -259,19 +255,19 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
             self.drumType = drumType
             switch drumType {
             case .classic:
-                samplePickTextField.text = "Sci Fi Hit.wav"
+                samplePickTextField.text = DrumMachineManger.manger.classicFileArr[DrumMachineManger.manger.defaultClassicFileIndex].fileNamePlusExtension
                 samplePlayButton.setImage(UIImage.asset(.drumClassic), for: .normal)
             case .hihats:
-                samplePickTextField.text = "808-HiHats01.wav"
+                samplePickTextField.text = DrumMachineManger.manger.hihatsFileArr[DrumMachineManger.manger.defaultHihatsFileIndex].fileNamePlusExtension
                 samplePlayButton.setImage(UIImage.asset(.drumHihats), for: .normal)
             case .kicks:
-                samplePickTextField.text = "808-Kicks01.wav"
+                samplePickTextField.text = DrumMachineManger.manger.kicksFileArr[DrumMachineManger.manger.defaultKickFileIndex].fileNamePlusExtension
                 samplePlayButton.setImage(UIImage.asset(.drumKicks), for: .normal)
             case .percussion:
-                samplePickTextField.text = "808-Tom1.wav"
+                samplePickTextField.text = DrumMachineManger.manger.percussionFileArr[DrumMachineManger.manger.defaultPercussionFileIndex].fileNamePlusExtension
                 samplePlayButton.setImage(UIImage.asset(.drumPercussion), for: .normal)
             case .snares:
-                samplePickTextField.text = "808-Snare01.wav"
+                samplePickTextField.text = DrumMachineManger.manger.snaresFileArr[DrumMachineManger.manger.defaultSnareFileIndex].fileNamePlusExtension
                 samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
             }
             delegate?.changDrumType(cell: self, drumType: drumType)
@@ -295,7 +291,7 @@ extension DrumEditingGridViewCell: UIPickerViewDataSource {
                 delegate?.changeDrumSample(cell: self, drumType: drumType, sampleIndex: row)
             }
         default:
-            print("noSuchPicker")
+            break
         }
     }
     

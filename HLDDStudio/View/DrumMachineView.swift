@@ -180,8 +180,6 @@ class DrumMachineView: UIView {
                 strongSelf.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 strongSelf.drumBarGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
                 strongSelf.drumPatternGridView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-                //SetReloadData At VC viewWillTransition
-                print("setContentOffset gridview.")
             }
         })
     }

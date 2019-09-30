@@ -61,6 +61,7 @@ class DrumEditingHorizontalGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         samplePlayButton.addTarget(self, action: #selector(samplePlay), for: .touchUpInside)
+        samplePickTextField.isEnabled = false
     }
     
     deinit {

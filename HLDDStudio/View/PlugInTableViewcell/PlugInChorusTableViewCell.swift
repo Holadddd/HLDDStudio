@@ -74,7 +74,6 @@ class PlugInChorusTableViewCell: UITableViewCell, HLDDKnobDelegate {
         case feedbackKnob:
             feedbackLabel.text = String(format: "%.2f", value)
             delegate?.chorusValueChange(value, type: .feedback, cell: self)
-            print(value)
         case depthKnob:
             depthLabel.text = String(format: "%.2f", value)
             delegate?.chorusValueChange(value, type: .depth, cell: self)
@@ -85,7 +84,7 @@ class PlugInChorusTableViewCell: UITableViewCell, HLDDKnobDelegate {
             frequencyLabel.text = String(format: "%.2f Hz", value)
             delegate?.chorusValueChange(value, type: .frequency, cell: self)
         default:
-            return
+            break
         }
     }
     

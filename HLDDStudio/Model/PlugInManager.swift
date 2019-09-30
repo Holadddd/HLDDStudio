@@ -29,6 +29,16 @@ struct HLDDStudioPlugIn {
 
 //exist plugIn
 let existPlugInArr = ["Reverb", "GuitarProcessor" , "Delay", "Chorus"]
+enum PlugInDescription: String {
+    case reverb = "Reverb"
+    
+    case guitarProcessor = "GuitarProcessor"
+    
+    case delay = "Delay"
+    
+    case chorus = "Chorus"
+}
+
 enum PlugIn {
     
     case reverb(AKReverb)
@@ -149,8 +159,7 @@ class PlugInCreater {
         if numberOfPlugIn != 0 {
             
             for seq in 0 ..< numberOfPlugIn {
-                print("resetTrackNode: \(PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn)\(Track - 1)\(seq)")
-                            
+                
                 PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: PlugInCreater.shared.plugInOntruck[Track - 1].node)
                 
                             PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])

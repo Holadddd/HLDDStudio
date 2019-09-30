@@ -115,16 +115,16 @@ class IOGridViewCell: GridViewCell {
         let column = self.indexPath.column
         //再加上多種 plugin
         switch plugInSelectLabel.text {
-        case "Reverb":
+        case PlugInDescription.reverb.rawValue:
             delegate?.addPlugIn(with: .reverb(AKReverb()), row: row, column: column, cell: self)
-        case "GuitarProcessor":
+        case PlugInDescription.guitarProcessor.rawValue:
             delegate?.addPlugIn(with: .guitarProcessor(AKRhinoGuitarProcessor()), row: row, column: column, cell: self)
-        case "Delay":
+        case PlugInDescription.delay.rawValue:
             delegate?.addPlugIn(with: .delay(AKDelay()), row: row, column: column, cell: self)
-        case "Chorus":
+        case PlugInDescription.chorus.rawValue:
             delegate?.addPlugIn(with: .chorus(AKChorus()), row: row, column: column, cell: self)
         default:
-            print("error of selected plugIn.")
+            break
         }
         
         plugInSelectLabel.text = ""
@@ -184,23 +184,21 @@ extension IOGridViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         guard let inputSource = inputSourceTextField.text else {return}
         
-        if inputSource == "No Input" {
+        if inputSource == InputSourceCase.noInput.rawValue {
             inputSourceButton.isSelected = false
             delegate?.noInputSource(cell: self)
             return
         }
         
-        if inputSource == "DrumMachine(\(DrumMachineManger.manger.bpm))" {
+        if inputSource == "\(InputSourceCase.drumMachine.rawValue)(\(DrumMachineManger.manger.bpm))" {
             if self.indexPath.column == 0 {
                 if MixerManger.manger.secondTrackStatus == .drumMachine {
-                    print("Dont select again.")
                     inputSourceButton.isSelected = false
                     delegate?.noInputSource(cell: self)
                     return
                 }
             } else {
                 if MixerManger.manger.firstTrackStatus == .drumMachine {
-                    print("Dont select again.")
                     inputSourceButton.isSelected = false
                     delegate?.noInputSource(cell: self)
                     return

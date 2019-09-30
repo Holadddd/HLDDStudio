@@ -58,6 +58,12 @@ enum MixerMangerSubTilte {
     case barWarning
 }
 
+enum InputSourceCase: String {
+    case noInput = "No Input"
+    
+    case drumMachine = "DrumMachine"
+}
+
 enum MixerError: Error{
     
     case recordFileError
@@ -139,7 +145,7 @@ class MixerManger {
     }
     
     func metronomeCallBack() {
-        print("\(self.bar) | \((self.beat % 4) + 1 )")
+        
         NotificationCenter.default.post(.init(name: .mixerBarTitleChange))
         drumMachineStartTime = AVAudioTime.now()
         
@@ -147,8 +153,6 @@ class MixerManger {
             metronomeStartTime = AVAudioTime.now()
             
             mixerStatus = .recordingAndPlaying
-            print("metronomeFirstCallBackTime:\(DispatchTime.now())")
-            print("1")
             semaphore.signal()
         }
         

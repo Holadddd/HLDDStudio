@@ -201,19 +201,20 @@ extension AppDelegate {
                                               true, false, false, false,
                                               true, false, false, false,
                                               true, false, false, false)
-            DrumMachineManger.manger.creatPattern(withType: .kicks, drumBeatPattern: kickPattern, fileIndex: 9)
+            DrumMachineManger.manger.creatPattern(withType: .kicks, drumBeatPattern: kickPattern, fileIndex: DrumMachineManger.manger.defaultKickFileIndex
+            )
             
             let snarePattern = DrumBeatPattern(false, false, true, false,
                                                false, false, true, false,
                                                false, false, true, false,
                                                false, false, true, false)
-            DrumMachineManger.manger.creatPattern(withType: .snares, drumBeatPattern: snarePattern, fileIndex: 56)
+            DrumMachineManger.manger.creatPattern(withType: .snares, drumBeatPattern: snarePattern, fileIndex: DrumMachineManger.manger.defaultSnareFileIndex)
             
             let hihatsPattern = DrumBeatPattern(true, false, true, false,
                                                 true, false, true, false,
                                                 true, false, true, false,
                                                 true, false, true, false)
-            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: hihatsPattern, fileIndex: 9)
+            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: hihatsPattern, fileIndex: DrumMachineManger.manger.defaultHihatsFileIndex)
             
             let openHihatsPattern = DrumBeatPattern(false, true, false, true,
                                                 false, true, false, true,
@@ -224,13 +225,13 @@ extension AppDelegate {
            
             
             let hiTomPattern = DrumBeatPattern()
-            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: hiTomPattern, fileIndex: 19)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: hiTomPattern, fileIndex: DrumMachineManger.manger.defaultPercussionFileIndex)
             
             let lowTomPattern = DrumBeatPattern()
             DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: lowTomPattern, fileIndex: 23)
             
             let classicPattern = DrumBeatPattern()
-            DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: 4)
+            DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: DrumMachineManger.manger.defaultPercussionFileIndex)
             //only connect in firstTime
             MixerManger.manger.mixer.connect(input: DrumMachineManger.manger.drumMixer, bus: 5)
             userDefault.setValue(false, forKey: "NeedDefaultPattern")

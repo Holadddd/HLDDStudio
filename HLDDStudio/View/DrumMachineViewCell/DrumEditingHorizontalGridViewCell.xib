@@ -23,18 +23,18 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-CS-OOA">
                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                     <subviews>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXU-aq-IRS">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXU-aq-IRS">
+                            <rect key="frame" x="0.0" y="-2" width="50" height="54"/>
                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" red="1" green="0.91559791644918154" blue="0.7118512325605364" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <state key="normal" title="Button"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="zXU-aq-IRS" secondAttribute="trailing" id="GbQ-6x-NCd"/>
-                        <constraint firstItem="zXU-aq-IRS" firstAttribute="top" secondItem="zEU-CS-OOA" secondAttribute="top" id="Z27-de-u8i"/>
-                        <constraint firstAttribute="bottom" secondItem="zXU-aq-IRS" secondAttribute="bottom" id="cX8-sD-SwI"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="top" secondItem="zEU-CS-OOA" secondAttribute="top" constant="-2" id="Z27-de-u8i"/>
+                        <constraint firstAttribute="bottom" secondItem="zXU-aq-IRS" secondAttribute="bottom" constant="-2" id="cX8-sD-SwI"/>
                         <constraint firstAttribute="width" secondItem="zEU-CS-OOA" secondAttribute="height" id="cxt-nt-Mmu"/>
                         <constraint firstItem="zXU-aq-IRS" firstAttribute="leading" secondItem="zEU-CS-OOA" secondAttribute="leading" id="gHd-sf-7c8"/>
                     </constraints>

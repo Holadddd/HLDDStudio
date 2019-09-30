@@ -62,7 +62,6 @@ class PlugInDelayTableViewCell: UITableViewCell, HLDDKnobDelegate {
         case timeKnob:
             timeLabel.text = String(format: "%.2f", value)
             delegate?.delayValueChange(value, type: .time, cell: self)
-            print(value)
         case feedbackKnob:
             feedbackLabel.text = String(format: "%.2f", value)
             delegate?.delayValueChange(value, type: .feedback, cell: self)
@@ -70,7 +69,7 @@ class PlugInDelayTableViewCell: UITableViewCell, HLDDKnobDelegate {
             mixLabel.text = String(format: "%.2f", value)
             delegate?.delayValueChange(value, type: .mix, cell: self)
         default:
-            return
+            break
         }
     }
     

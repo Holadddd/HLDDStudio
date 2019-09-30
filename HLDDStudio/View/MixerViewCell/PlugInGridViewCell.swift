@@ -132,7 +132,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
     
         switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
-            cell.plugInLabel.text = "Reverb"
+            cell.plugInLabel.text = PlugInDescription.reverb.rawValue
             cell.plugInMarqueeLabel.text = "Factory: \(reverb.factory), DryWetMixValue: \(String(format:"%.2f", reverb.dryWetMix)).   "
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
@@ -145,7 +145,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 reverb.start()
             }
         case .guitarProcessor(let guitarProcessor):
-            cell.plugInLabel.text = "GuitarProcessor"
+            cell.plugInLabel.text = PlugInDescription.guitarProcessor.rawValue
             cell.plugInMarqueeLabel.text = "PreGain: \(String(format:"%.2f", guitarProcessor.preGain)), Distortion:\(String(format:"%.2f", guitarProcessor.distortion)), PostGain:\(String(format:"%.2f", guitarProcessor.postGain)).   "
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
@@ -158,7 +158,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 guitarProcessor.start()
             }
         case .delay(let delay):
-            cell.plugInLabel.text = "Delay"
+            cell.plugInLabel.text = PlugInDescription.delay.rawValue
             cell.plugInMarqueeLabel.text = "Time: \(String(format:"%.2f", delay.time)), Feedback: \(String(format:"%.2f", delay.feedback)), Mix: \(String(format:"%.2f", delay.dryWetMix)).   "
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
             case true:
@@ -171,7 +171,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 delay.start()
             }
         case .chorus(let chorus):
-            cell.plugInLabel.text = "Chorus"
+            cell.plugInLabel.text = PlugInDescription.chorus.rawValue
             cell.plugInMarqueeLabel.text = "Feedback: \(String(format:"%.2f", chorus.feedback)), Depth: \(String(format:"%.2f", chorus.depth)), Mix: \(String(format:"%.2f", chorus.dryWetMix)), Frequency: \(chorus.frequency).   "
             
             switch PlugInCreater.shared.plugInOntruck[gridCell.indexPath.column].plugInArr[indexPath.row].bypass {
@@ -203,11 +203,7 @@ extension PlugInGridViewCell: UITableViewDataSource {
                 self.delegate?.resetTrackOn(Track: track)
             }
         }
-        
-        if editingStyle == .insert{
-            
-            print(indexPath)
-        }
+       
     }
 
 }

@@ -120,7 +120,7 @@ extension PlugInReverbTableViewCell: UITextFieldDelegate {
 extension PlugInReverbTableViewCell: PlugInBarViewDelegate {
     
     func plugInPresetSelect(_ parameter: String) {
-        print("Set parameter as:\(parameter)")
+        
     }
     
     func isBypass(_ bool: Bool) {

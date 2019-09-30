@@ -11,7 +11,7 @@
         <!--Drum Machine View Controller-->
         <scene sceneID="Bfr-8M-gE2">
             <objects>
-                <viewController storyboardIdentifier="DrumMachineViewController" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" id="SUg-nn-uIE" customClass="DrumMachineViewController" customModule="HLDDStudio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrumMachineViewController" wantsFullScreenLayout="YES" id="SUg-nn-uIE" customClass="DrumMachineViewController" customModule="HLDDStudio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U1o-jn-SXQ" customClass="DrumMachineView" customModule="HLDDStudio" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,7 +128,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zo4-5X-ibk" customClass="GridView" customModule="G3GridView">
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="80"/>
-                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -142,9 +142,9 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-qy-mq2">
                                         <rect key="frame" x="0.0" y="80" width="160" height="772"/>
                                         <subviews>
-                                            <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
+                                            <scrollView verifyAmbiguity="off" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
                                                 <rect key="frame" x="0.0" y="0.0" width="160" height="772"/>
-                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -160,7 +160,7 @@
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdo-ec-7jZ" customClass="GridView" customModule="G3GridView">
                                                 <rect key="frame" x="0.0" y="0.0" width="254" height="772"/>
-                                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -214,7 +214,6 @@
                             <outlet property="tempoTextField" destination="nTq-LK-fK8" id="R4N-Xx-dDx"/>
                         </connections>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="drumMachineView" destination="U1o-jn-SXQ" id="TTx-vz-Zbb"/>

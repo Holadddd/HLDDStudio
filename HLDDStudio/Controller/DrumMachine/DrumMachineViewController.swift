@@ -51,7 +51,7 @@ class DrumMachineViewController: UIViewController {
 //        try? AudioKit.start()
     }
     override func viewWillLayoutSubviews() {
-        print("viewWillLayoutSubviews")
+        
     }
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
@@ -81,7 +81,6 @@ extension DrumMachineViewController: DrumMachineDelegate {
     }
   
     func popDrumMachineView() {
-        print("popDrumMachineView")
         dismiss(animated: true, completion: nil)
     }
     
@@ -96,7 +95,6 @@ extension DrumMachineViewController: DrumMachineDelegate {
     }
     
     func savePattern(withName: String) {
-        print("savePattern")
     }
     
 }
@@ -332,7 +330,7 @@ extension DrumMachineViewController: GridViewDataSource {
                 cell.thirdLabel.text = ""
                 cell.fourthLabel.text = "\(numberOfBeat)"
             default:
-                print("pass")
+                break
             }
             switch Int(indexPath.column/4) {
             case 0:
@@ -344,7 +342,7 @@ extension DrumMachineViewController: GridViewDataSource {
             case 3:
                 cell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
             default:
-                cell.backgroundColor = .blue
+                break
             }
             cell.delegate = self
             return cell
@@ -388,7 +386,7 @@ extension DrumMachineViewController: GridViewDataSource {
                 case 3:
                     hCell.backgroundColor = UIColor.hexStringToUIColor(hex: DrumMachinePatternBackgroundColor.fourthSec.rawValue)
                 default:
-                    hCell.backgroundColor = .blue
+                    break
                 }
                 
                 hCell.delegate = self

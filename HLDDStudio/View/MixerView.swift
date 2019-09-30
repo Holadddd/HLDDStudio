@@ -406,9 +406,9 @@ extension MixerView: UITextFieldDelegate {
             guard let bpm = Int(bpmString) else { return }
             delegate?.metronomeBPM(bpm: bpm)
         case startRecordTextField:
-            print(startRecordTextField.text!)
+            break
         case stopRecordTextField:
-            print(stopRecordTextField.text!)
+            break
         case fileNameTextField:
             var fileName = ""
             
@@ -487,7 +487,6 @@ extension MixerView {
     
     @objc func showDrumVCButtonAction(_ sender:Any) {
         delegate?.showDrumVC()
-        print("touch")
     }
     
 }

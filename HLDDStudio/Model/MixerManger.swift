@@ -107,6 +107,8 @@ class MixerManger {
     
     var recordFileDefaultDateNameFormatt: String = "MM.dd HH:mm"
     
+    var isenabledMixerFunctionalButton: Bool = true
+    
     var titleContent: String = "" {
         didSet {
             NotificationCenter.default.post(.init(name: .mixerNotificationTitleChange))

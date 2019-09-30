@@ -21,6 +21,10 @@ extension Notification.Name {
     static let mixerBarTitleChange = Notification.Name("mixerBarTitleChange")
     
     static let drumMachinePatternAnimation = Notification.Name("drumMachinePatternAnimation")
+    
+    static let enabledIOButton = Notification.Name("enabledIOButton")
+    
+    static let disabledIOButton = Notification.Name("disabledIOButton")
 }
 
 

@@ -112,6 +112,31 @@ class ViewController: UIViewController {
     
 }
 
+extension ViewController {
+    
+    func enabledMixerFunctionalButton(){
+        MixerManger.manger.isenabledMixerFunctionalButton = true
+        DispatchQueue.main.async {[weak self] in
+            guard let stromgSelf = self else {fatalError()}
+            stromgSelf.mixerView.tempoTextField.isEnabled = true
+            stromgSelf.mixerView.startRecordTextField.isEnabled = true
+            stromgSelf.mixerView.stopRecordTextField.isEnabled = true
+            NotificationCenter.default.post(.init(name: .enabledIOButton))
+        }
+    }
+    
+    func disabledMixerFunctionalButton(){
+         MixerManger.manger.isenabledMixerFunctionalButton = false
+        DispatchQueue.main.async {[weak self] in
+            guard let stromgSelf = self else {fatalError()}
+            stromgSelf.mixerView.tempoTextField.isEnabled = false
+            stromgSelf.mixerView.startRecordTextField.isEnabled = false
+            stromgSelf.mixerView.stopRecordTextField.isEnabled = false
+            NotificationCenter.default.post(.init(name: .disabledIOButton))
+        }
+    }
+}
+
 extension ViewController: MixerDelegate {
     
     
@@ -174,7 +199,11 @@ extension ViewController: MixerDelegate {
     }
     
     func stopAudioPlayer() {
-        mixerView.tempoTextField.isEnabled = true
+        enabledMixerFunctionalButton()
+        
+        mixerView.playAndResumeButton.isEnabled = true
+        mixerView.recordButton.isEnabled = true
+        
         print("StopPlayer")
         MixerManger.manger.metronome.restart()
         MixerManger.manger.metronome.stop()
@@ -239,6 +268,7 @@ extension ViewController: MixerDelegate {
        
         let oneBarTime = (60 / MixerManger.manger.metronome.tempo) * 4
         
+        disabledMixerFunctionalButton()
         switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
             
@@ -256,7 +286,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
-            mixerView.tempoTextField.isEnabled = false
+            
             DrumMachineManger.manger.mixerPlayDrumMachine()
             print("firstTrack pause drumMachine")
         }
@@ -277,15 +307,17 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
-            mixerView.tempoTextField.isEnabled = false
+            
             DrumMachineManger.manger.mixerPlayDrumMachine()
             print("secondTrack pause drumMachine")
         }
+        
+        mixerView.recordButton.isEnabled = false
     }
     
     func pauseAudioPlayer() {
         MixerManger.manger.metronome.stop()
-        mixerView.tempoTextField.isEnabled = true
+        enabledMixerFunctionalButton()
         
         switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
@@ -323,7 +355,7 @@ extension ViewController: MixerDelegate {
     func resumeAudioPlayer() {
         print("resumePlayer")
         MixerManger.manger.metronome.start()
-        mixerView.tempoTextField.isEnabled = true
+        enabledMixerFunctionalButton()
         //for each player play
         
         switch MixerManger.manger.firstTrackStatus {
@@ -358,7 +390,8 @@ extension ViewController: MixerDelegate {
     }
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
-        mixerView.tempoTextField.isEnabled = false
+        disabledMixerFunctionalButton()
+        
         FirebaseManager.createEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
@@ -418,7 +451,9 @@ extension ViewController: MixerDelegate {
                     
                     MixerManger.manger.recorder.stop()
                     strongSelf.mixerView.recordButtonAction()
-                    
+                    DispatchQueue.main.async {
+                        strongSelf.mixerView.playAndResumeButton.isEnabled = true
+                    }
                 case .error(let error):
                     AKLog(error)
                     return
@@ -446,10 +481,11 @@ extension ViewController: MixerDelegate {
         MixerManger.manger.title(with: .recording)
         MixerManger.manger.subTitleContent = "Device Is Recording From Bar \(start) to \(stop). Duration: \(String(format: "%.2f", durationTime)) seconds."
         
+        mixerView.playAndResumeButton.isEnabled = false
     }
     
     func stopRecord() {
-        mixerView.tempoTextField.isEnabled = true
+        enabledMixerFunctionalButton()
         try? AudioKit.stop()
         MixerManger.manger.title(with: .finishingRecording)
         MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."

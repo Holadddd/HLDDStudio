@@ -92,7 +92,25 @@ class IOGridViewCell: GridViewCell {
     
     @IBOutlet weak var selectedInputLabel:MarqueeLabel!
     //需要寫一個 singleTon 的 manger 管理
-    @IBAction func addPlugInButton(_ sender: UIButton) {
+    
+    @IBOutlet weak var addPlugInButton: UIButton!
+    
+    static var nib: UINib {
+        return UINib(nibName: "IOGridViewCell", bundle: Bundle(for: self))
+    }
+    
+    override func awakeFromNib() {
+        super .awakeFromNib()
+        inputSourceTextField.isEnabled = MixerManger.manger.isenabledMixerFunctionalButton
+        addPlugInButton.isEnabled = MixerManger.manger.isenabledMixerFunctionalButton
+        
+        addPlugInButton.addTarget(self, action: #selector(addPlugInButtonAction(_:)), for: .touchUpInside)
+        NotificationCenter.default.addObserver(self, selector: #selector(enabledIOButton(_:)), name: .enabledIOButton, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(disabledIOButton(_:)), name: .disabledIOButton, object: nil)
+    }
+    
+    @objc func addPlugInButtonAction(_ sender: UIButton) {
+        
         let row = PlugInCreater.shared.plugInOntruck[self.indexPath.column].plugInArr.count
         let column = self.indexPath.column
         //再加上多種 plugin
@@ -112,16 +130,15 @@ class IOGridViewCell: GridViewCell {
         plugInSelectLabel.text = ""
         indexForSelectedPlugIn = 0
     }
-    
-    static var nib: UINib {
-        return UINib(nibName: "IOGridViewCell", bundle: Bundle(for: self))
-    }
-    
-    override func awakeFromNib() {
-        super .awakeFromNib()
-    }
 
-    
+    @objc func enabledIOButton(_ notification: Notification){
+        inputSourceTextField.isEnabled = true
+        addPlugInButton.isEnabled = true
+    }
+    @objc func disabledIOButton(_ notification: Notification){
+        inputSourceTextField.isEnabled = false
+        addPlugInButton.isEnabled = false
+    }
 }
 
 extension IOGridViewCell: UIPickerViewDelegate {

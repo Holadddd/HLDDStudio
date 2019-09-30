@@ -198,12 +198,14 @@ class DrumMachineView: UIView {
             let bpm = Int(bpmString)
             delegate?.playDrum(bpm: bpm ?? 60)
             rotateButton.isEnabled = false
+            tempoTextField.isEnabled = false
             drumEditingGridView.superview?.isUserInteractionEnabled = false
             drumBarGridView.superview?.isUserInteractionEnabled = false
             drumPatternGridView.superview?.isUserInteractionEnabled = false
         case false:
             delegate?.stopPlayingDrum()
             rotateButton.isEnabled = true
+            tempoTextField.isEnabled = true
             drumEditingGridView.superview?.isUserInteractionEnabled = true
             drumBarGridView.superview?.isUserInteractionEnabled = true
             drumPatternGridView.superview?.isUserInteractionEnabled = true

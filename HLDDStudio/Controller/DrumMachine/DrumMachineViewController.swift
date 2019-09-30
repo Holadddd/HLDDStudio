@@ -38,6 +38,7 @@ class DrumMachineViewController: UIViewController {
 
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
+        drumMachineView.tempoTextField.isEnabled = true
         
     }
     
@@ -91,6 +92,7 @@ extension DrumMachineViewController: DrumMachineDelegate {
     
     func stopPlayingDrum() {
         DrumMachineManger.manger.stopPlayingDrumMachine()
+        
     }
     
     func savePattern(withName: String) {

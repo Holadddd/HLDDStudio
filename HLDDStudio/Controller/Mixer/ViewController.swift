@@ -331,7 +331,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
-            DrumMachineManger.manger.pauseDrumMachine()
+            DrumMachineManger.manger.stopPlayingDrumMachine()
             print("firstTrack pause drumMachine")
         }
         
@@ -347,7 +347,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
-            DrumMachineManger.manger.pauseDrumMachine()
+            DrumMachineManger.manger.stopPlayingDrumMachine()
             print("second pause drumMachine")
         }
     }

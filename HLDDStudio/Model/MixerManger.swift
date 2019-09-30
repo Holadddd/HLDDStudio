@@ -18,6 +18,8 @@ enum TrackInputStatus {
     case lineIn
     
     case audioFile
+    
+    case drumMachine
 }
 
 enum MixerStatus {
@@ -85,6 +87,8 @@ class MixerManger {
     
     var metronomeStartTime:AVAudioTime = AVAudioTime.now()
     
+    var drumMachineStartTime: AVAudioTime = AVAudioTime.now()
+    
     var firstTrackStatus = TrackInputStatus.noInput
     
     var secondTrackStatus = TrackInputStatus.noInput
@@ -102,6 +106,8 @@ class MixerManger {
     var recordFileName: String = ""
     
     var recordFileDefaultDateNameFormatt: String = "MM.dd HH:mm"
+    
+    var isenabledMixerFunctionalButton: Bool = true
     
     var titleContent: String = "" {
         didSet {
@@ -135,13 +141,17 @@ class MixerManger {
     func metronomeCallBack() {
         print("\(self.bar) | \((self.beat % 4) + 1 )")
         NotificationCenter.default.post(.init(name: .mixerBarTitleChange))
+        drumMachineStartTime = AVAudioTime.now()
+        
         if mixerStatus  == .prepareToRecordAndPlay {
             metronomeStartTime = AVAudioTime.now()
+            
             mixerStatus = .recordingAndPlaying
             print("metronomeFirstCallBackTime:\(DispatchTime.now())")
             print("1")
             semaphore.signal()
         }
+        
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             self.beat += 1

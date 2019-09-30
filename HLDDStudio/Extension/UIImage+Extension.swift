@@ -58,6 +58,12 @@ enum ImageAsset: String {
     case DownButton
     
     case StatusBarLayerView
+    //drumTypr
+    case drumClassic
+    case drumHihats
+    case drumKicks
+    case drumPercussion
+    case drumSnares
 }
 
 // swiftlint:enable identifier_name

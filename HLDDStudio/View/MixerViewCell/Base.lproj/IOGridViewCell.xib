@@ -59,9 +59,6 @@
                         <constraint firstAttribute="width" secondItem="r6y-J4-XLw" secondAttribute="height" multiplier="55:31" id="QOG-jX-NoQ"/>
                     </constraints>
                     <state key="normal" title="Button" image="AddPlugIn3"/>
-                    <connections>
-                        <action selector="addPlugInButton:" destination="iN0-l3-epB" eventType="touchUpInside" id="2oS-iK-EyP"/>
-                    </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ndF-NI-ASJ">
                     <rect key="frame" x="0.0" y="38" width="219" height="2"/>
@@ -145,6 +142,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="addPlugInButton" destination="r6y-J4-XLw" id="ceL-Wa-9gm"/>
                 <outlet property="busLabel" destination="4bG-UD-1cA" id="ud2-Sb-mpA"/>
                 <outlet property="inputSourceTextField" destination="5k4-Vb-L9a" id="eA6-Kq-tHW"/>
                 <outlet property="plugInSelectLabel" destination="z5H-4o-AGh" id="M0D-C0-5eS"/>

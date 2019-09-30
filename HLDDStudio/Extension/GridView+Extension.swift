@@ -29,5 +29,5 @@ enum GridViewCategory {
 
 class DrumPatternFrame {
     static let Width:CGFloat = 50
-    static let Heigh:CGFloat = 50
+    static let Heigh:CGFloat = 80
 }

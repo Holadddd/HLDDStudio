@@ -11,13 +11,19 @@
         <!--Drum Machine View Controller-->
         <scene sceneID="Bfr-8M-gE2">
             <objects>
-                <viewController storyboardIdentifier="DrumMachineViewController" id="SUg-nn-uIE" customClass="DrumMachineViewController" customModule="HLDDStudio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DrumMachineViewController" wantsFullScreenLayout="YES" automaticallyAdjustsScrollViewInsets="NO" id="SUg-nn-uIE" customClass="DrumMachineViewController" customModule="HLDDStudio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U1o-jn-SXQ" customClass="DrumMachineView" customModule="HLDDStudio" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="A27-7J-x7l">
+                                <rect key="frame" x="0.0" y="-38.666666666666664" width="414" height="82.666666666666671"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="A27-7J-x7l" secondAttribute="height" multiplier="5:1" id="kJm-4P-dkA"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dVS-Xn-oTg">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="852"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="i1d-WA-2yz">
                                         <rect key="frame" x="0.0" y="0.0" width="160" height="80"/>
@@ -86,10 +92,10 @@
                                                     <constraint firstAttribute="bottom" secondItem="08l-LB-qv5" secondAttribute="bottom" id="kub-mR-m9w"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" minimumFontSize="10" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-LK-fK8">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" minimumFontSize="14" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="nTq-LK-fK8">
                                                 <rect key="frame" x="64" y="4" width="80" height="25"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="19"/>
+                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="18"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
@@ -134,10 +140,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="M6a-qy-mq2">
-                                        <rect key="frame" x="0.0" y="80" width="160" height="738"/>
+                                        <rect key="frame" x="0.0" y="80" width="160" height="772"/>
                                         <subviews>
                                             <scrollView verifyAmbiguity="off" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" contentInsetAdjustmentBehavior="always" translatesAutoresizingMaskIntoConstraints="NO" id="GfG-ue-P23" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="160" height="738"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="160" height="772"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
@@ -150,10 +156,10 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dQX-U0-hOf">
-                                        <rect key="frame" x="160" y="80" width="254" height="738"/>
+                                        <rect key="frame" x="160" y="80" width="254" height="772"/>
                                         <subviews>
                                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hdo-ec-7jZ" customClass="GridView" customModule="G3GridView">
-                                                <rect key="frame" x="0.0" y="0.0" width="254" height="738"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="254" height="772"/>
                                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </scrollView>
                                         </subviews>
@@ -188,9 +194,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="A27-7J-x7l" firstAttribute="bottom" secondItem="dVS-Xn-oTg" secondAttribute="top" id="2Wo-2m-DV7"/>
                             <constraint firstItem="dVS-Xn-oTg" firstAttribute="leading" secondItem="83v-cc-zYJ" secondAttribute="leading" id="4Mo-gV-CJJ"/>
+                            <constraint firstItem="A27-7J-x7l" firstAttribute="centerX" secondItem="dVS-Xn-oTg" secondAttribute="centerX" id="BuM-fB-K7W"/>
                             <constraint firstItem="83v-cc-zYJ" firstAttribute="trailing" secondItem="dVS-Xn-oTg" secondAttribute="trailing" id="Xho-T9-8nY"/>
-                            <constraint firstItem="83v-cc-zYJ" firstAttribute="bottom" secondItem="dVS-Xn-oTg" secondAttribute="bottom" id="tWz-Up-NiW"/>
+                            <constraint firstItem="A27-7J-x7l" firstAttribute="width" secondItem="dVS-Xn-oTg" secondAttribute="width" id="ecv-cn-MR4"/>
+                            <constraint firstAttribute="bottom" secondItem="dVS-Xn-oTg" secondAttribute="bottom" id="tWz-Up-NiW"/>
                             <constraint firstItem="dVS-Xn-oTg" firstAttribute="top" secondItem="83v-cc-zYJ" secondAttribute="top" id="xnG-w1-sTE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="83v-cc-zYJ"/>
@@ -205,6 +214,8 @@
                             <outlet property="tempoTextField" destination="nTq-LK-fK8" id="R4N-Xx-dDx"/>
                         </connections>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="drumMachineView" destination="U1o-jn-SXQ" id="TTx-vz-Zbb"/>
                     </connections>

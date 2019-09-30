@@ -64,6 +64,7 @@ class ViewController: UIViewController {
         MixerManger.manger.title(with: .HLDDStudio)
         MixerManger.manger.subTitle(with: .selectInputDevice)
         
+        
         print("viewWillAppear")
     }
     
@@ -113,7 +114,9 @@ class ViewController: UIViewController {
 
 extension ViewController: MixerDelegate {
     
+    
     func showDrumVC() {
+        
         
         var vc: UIViewController = UIViewController()
         if #available(iOS 13.0, *) {
@@ -126,6 +129,7 @@ extension ViewController: MixerDelegate {
         guard let drumVC = vc as? DrumMachineViewController else { fatalError() }
         drumVC.modalPresentationStyle = .fullScreen
         present(drumVC, animated: true) {
+            self.mixerView.stopButtonAction()
             print("save parameter")
         }
         
@@ -170,6 +174,7 @@ extension ViewController: MixerDelegate {
     }
     
     func stopAudioPlayer() {
+        mixerView.tempoTextField.isEnabled = true
         print("StopPlayer")
         MixerManger.manger.metronome.restart()
         MixerManger.manger.metronome.stop()
@@ -251,6 +256,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
+            mixerView.tempoTextField.isEnabled = false
             DrumMachineManger.manger.mixerPlayDrumMachine()
             print("firstTrack pause drumMachine")
         }
@@ -271,6 +277,7 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
+            mixerView.tempoTextField.isEnabled = false
             DrumMachineManger.manger.mixerPlayDrumMachine()
             print("secondTrack pause drumMachine")
         }
@@ -278,6 +285,7 @@ extension ViewController: MixerDelegate {
     
     func pauseAudioPlayer() {
         MixerManger.manger.metronome.stop()
+        mixerView.tempoTextField.isEnabled = true
         
         switch MixerManger.manger.firstTrackStatus {
         case .lineIn:
@@ -313,8 +321,9 @@ extension ViewController: MixerDelegate {
     }
     
     func resumeAudioPlayer() {
-        print("PausePlayer")
+        print("resumePlayer")
         MixerManger.manger.metronome.start()
+        mixerView.tempoTextField.isEnabled = true
         //for each player play
         
         switch MixerManger.manger.firstTrackStatus {
@@ -328,8 +337,8 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
-            DrumMachineManger.manger.pauseDrumMachine()
-            print("firstTrack pause drumMachine")
+            DrumMachineManger.manger.mixerPlayDrumMachine()
+            print("firstTrack resume drumMachine")
         }
         
         switch MixerManger.manger.secondTrackStatus {
@@ -343,13 +352,13 @@ extension ViewController: MixerDelegate {
         case .noInput:
             print("secondTrackNoInput")
         case .drumMachine:
-            DrumMachineManger.manger.pauseDrumMachine()
-            print("second pause drumMachine")
+            DrumMachineManger.manger.mixerPlayDrumMachine()
+            print("second resume drumMachine")
         }
     }
     
     func startRecordAudioPlayer(frombar start: Int, tobar stop: Int) {
-        
+        mixerView.tempoTextField.isEnabled = false
         FirebaseManager.createEventWith(category: .ViewController, action: .Record, label: .UsersEvent, value: .one)
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
@@ -440,7 +449,7 @@ extension ViewController: MixerDelegate {
     }
     
     func stopRecord() {
-        
+        mixerView.tempoTextField.isEnabled = true
         try? AudioKit.stop()
         MixerManger.manger.title(with: .finishingRecording)
         MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."
@@ -671,9 +680,11 @@ extension ViewController: IOGridViewCellDelegate {
         case 0:
             print("TrackOne select drummachine")
             MixerManger.manger.firstTrackStatus = .drumMachine
+            
         case 1:
             print("TrackTwo select drummachine")
             MixerManger.manger.secondTrackStatus = .drumMachine
+            
         default:
             print("error")
         }
@@ -752,7 +763,7 @@ extension ViewController: IOGridViewCellDelegate {
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Tracktwo Input Source."
                 PlugInCreater.shared.plugInOntruck[1].inputNode = MixerManger.manger.mic
                 //need adjust for audioFile into plugIn
-                PlugInCreater.shared.resetTrackNode(Track: 2)
+                //PlugInCreater.shared.resetTrackNode(Track: 2)
                 setTrackNode(track: 2)
                 try? AudioKit.start()
                 //switch the track status
@@ -831,6 +842,7 @@ extension ViewController: IOGridViewCellDelegate {
             MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
             MixerManger.manger.secondTrackStatus = .noInput
+            MixerManger.manger.mixer.disconnectInput(bus: 2)
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Tracktwo."
             print("Need Disconnect bus2 track")

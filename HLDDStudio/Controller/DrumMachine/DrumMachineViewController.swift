@@ -38,6 +38,7 @@ class DrumMachineViewController: UIViewController {
 
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -111,8 +111,10 @@ class DrumMachineView: UIView {
         drumBarGridView.bounces = false
         drumPatternGridView.bounces = false
         //ScrollIndicator
+        drumEditingGridView.showsHorizontalScrollIndicator = false
         drumEditingGridView.showsVerticalScrollIndicator = false
         drumBarGridView.showsHorizontalScrollIndicator = false
+        drumBarGridView.showsVerticalScrollIndicator = false
         drumPatternGridView.showsHorizontalScrollIndicator = false
         drumPatternGridView.showsVerticalScrollIndicator = false
         
@@ -124,6 +126,9 @@ class DrumMachineView: UIView {
         drumEditingGridView.isInfinitable = infinitable
         drumBarGridView.isInfinitable = infinitable
         drumPatternGridView.isInfinitable = infinitable
+        //invalidateLayout
+        
+        
         //drumPatternGridViewScale
         drumPatternGridView.minimumScale = minScale
         drumPatternGridView.maximumScale = maxScale
@@ -136,11 +141,13 @@ class DrumMachineView: UIView {
         
         //contentInset
         drumPatternGridView.contentInset.top = 0
+        drumEditingGridView.contentInset.top = 0
         
+        drumEditingGridView.scrollIndicatorInsets.top = 0
         drumPatternGridView.scrollIndicatorInsets.top = 0
         drumPatternGridView.scrollIndicatorInsets.left = drumEditingGridView.bounds.width
         
-        drumEditingGridView.contentInset.top = 0
+        //drumEditingGridView.contentInset.top = 0
         
         //scroll
         drumEditingGridView.superview?.isUserInteractionEnabled = true
@@ -168,7 +175,15 @@ class DrumMachineView: UIView {
     }
     
     override func layoutSubviews() {
-        drumEditingGridView.frame.origin = CGPoint(x: 0, y: 0)
+        drumEditingGridView.invalidateLayout()
+//        drumBarGridView.invalidateLayout()
+//        drumPatternGridView.invalidateLayout()
+        
+        
+        let offSet = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        drumEditingGridView.contentInset = offSet
+        drumBarGridView.contentInset = offSet
+        drumPatternGridView.contentInset = offSet
         
     }
     

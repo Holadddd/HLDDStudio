@@ -17,13 +17,13 @@ import Crashlytics
 class ViewController: UIViewController {
     
     var bufferTime: Double = 2.0
-
+    
     var filePlayer = AKPlayer()
     
     var filePlayerTwo = AKPlayer()
-
+    
     @IBOutlet var mixerView: MixerView!
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -31,14 +31,14 @@ class ViewController: UIViewController {
         mixerView.datasource = self
         mixerView.trackGridView.delegate = self
         mixerView.trackGridView.dataSource = self
-
+        
         MixerManger.manger.metronomeBooster.gain = 0
         //SetAnotherMixerForMetronome PassRecorder
         MixerManger.manger.mixerForMaster.connect(input: MixerManger.manger.mixer, bus: 1)
         
         MixerManger.manger.mixerForMaster.connect(input: MixerManger.manger.metronomeBooster, bus: 0)
         AudioKit.output = MixerManger.manger.mixerForMaster
-      
+        
         //MakeTwoTrackNode
         for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
             PlugInCreater.shared.plugInOntruck[index].inputNode = AKPlayer()
@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
             setTrackNode(track: index + 1)
         }
-
+        
         try? AudioKit.start()
         NotificationCenter.default.addObserver(self, selector: #selector(ViewController.notificationTitleChange), name: .mixerNotificationTitleChange, object: nil)
         
@@ -69,9 +69,9 @@ class ViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         mixerView.inputDeviceTextField.text = AudioKit.inputDevice?.deviceID
-      
+        
     }
-
+    
     override func viewWillLayoutSubviews() {
         mixerView.masterFader.layoutSubviews()
     }
@@ -91,7 +91,7 @@ class ViewController: UIViewController {
             self.mixerView.notificationTitleLabel.text = MixerManger.manger.titleContent
         }
     }
-
+    
     @objc func notificationSubTitleChange(_ notification: Notification){
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
@@ -124,7 +124,7 @@ extension ViewController {
     }
     
     func disabledMixerFunctionalButton(){
-         MixerManger.manger.isenabledMixerFunctionalButton = false
+        MixerManger.manger.isenabledMixerFunctionalButton = false
         DispatchQueue.main.async {[weak self] in
             guard let stromgSelf = self else {fatalError()}
             stromgSelf.mixerView.tempoTextField.isEnabled = false
@@ -179,7 +179,7 @@ extension ViewController: MixerDelegate {
         
         switch isOn {
         case true:
-        
+            
             MixerManger.manger.metronomeBooster.gain = 1
             
         case false:
@@ -231,7 +231,7 @@ extension ViewController: MixerDelegate {
             
             print("secondTracklineIN")
         case .audioFile :
-           
+            
             
             filePlayerTwo.stop()
             filePlayerTwo.preroll()
@@ -252,13 +252,13 @@ extension ViewController: MixerDelegate {
             MixerManger.manger.subTitle(with: .noFileOrInputSource)
         }
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
-    
+        
         filePlayer.prepare()
         filePlayerTwo.prepare()
         
         MixerManger.manger.metronome.start()
         MixerManger.manger.semaphore.wait()
-       
+        
         let oneBarTime = (60 / MixerManger.manger.metronome.tempo) * 4
         
         disabledMixerFunctionalButton()
@@ -275,7 +275,7 @@ extension ViewController: MixerDelegate {
                 filePlayer.play(at:MixerManger.manger.metronomeStartTime + oneBarTime )
                 
             }
-        
+            
         case .noInput:
             print("firstTrackNoInput")
         case .drumMachine:
@@ -508,7 +508,7 @@ extension ViewController: MixerDelegate {
 }
 
 extension ViewController: MixerDatasource {
-
+    
     func currentInputDevice() -> DeviceID {
         
         guard let inputDeviceID = AudioKit.inputDevice?.deviceID else {return "NO INPUT"}
@@ -657,13 +657,13 @@ extension ViewController: PlugInGridViewCellDelegate {
     }
     
     func perforPlugInVC(forTrack column: Int) {
-  
+        
         PlugInCreater.shared.showingTrackOnPlugInVC = column
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
         }
-
+        
     }
     
     func resetTrackOn(Track track: Int) {
@@ -734,7 +734,7 @@ extension ViewController: IOGridViewCellDelegate {
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
                 
                 PlugInCreater.shared.plugInOntruck[0].inputNode = MixerManger.manger.mic
-
+                
                 setTrackNode(track: 1)
                 
                 try? AudioKit.start()
@@ -753,7 +753,7 @@ extension ViewController: IOGridViewCellDelegate {
                         
                         switch result {
                         case .success(let file):
-
+                            
                             filePlayer = AKPlayer(audioFile: file)
                             PlugInCreater.shared.plugInOntruck[0].inputNode = filePlayer
                             
@@ -867,7 +867,7 @@ extension ViewController: IOGridViewCellDelegate {
         
         try? AudioKit.start()
     }
-
+    
 }
 
 extension ViewController: IOGridViewCellDatasource {
@@ -905,7 +905,7 @@ extension ViewController {
         case .reverb:
             MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))
-        
+            
         case .guitarProcessor:
             MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             PlugInCreater.shared.plugInOntruck[column].plugInArr.append(HLDDStudioPlugIn(plugIn: .guitarProcessor(AKRhinoGuitarProcessor(PlugInCreater.shared.plugInOntruck[column].node)), bypass: false, sequence: row))

@@ -28,7 +28,7 @@ class PlugInViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-    
+        
         plugInView.tableView.reloadData()
         //AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
@@ -308,6 +308,6 @@ extension PlugInViewController: PlugInControlDatasource {
     func plugInReverbPresetParameter(cell: PlugInReverbTableViewCell) -> [String]? {
         return nil
     }
- 
+    
 }
 

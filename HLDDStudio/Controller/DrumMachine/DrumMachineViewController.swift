@@ -35,7 +35,7 @@ class DrumMachineViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
         FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
         AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
         drumMachineView.tempoTextField.isEnabled = true
@@ -46,9 +46,9 @@ class DrumMachineViewController: UIViewController {
         super.viewWillDisappear(animated)
         //need to stop drumMachine
         DrumMachineManger.manger.stopPlayingDrumMachine()
-//        try? AudioKit.stop()
-//        MixerManger.manger.mixerForMaster.disconnectInput(bus: 3)
-//        try? AudioKit.start()
+        //        try? AudioKit.stop()
+        //        MixerManger.manger.mixerForMaster.disconnectInput(bus: 3)
+        //        try? AudioKit.start()
     }
     override func viewWillLayoutSubviews() {
         
@@ -59,7 +59,7 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumBarGridView.reloadData()
         drumMachineView.drumPatternGridView.reloadData()
     }
-   
+    
 }
 
 extension DrumMachineViewController: DrumMachineDelegate {
@@ -79,7 +79,7 @@ extension DrumMachineViewController: DrumMachineDelegate {
             }
         }
     }
-  
+    
     func popDrumMachineView() {
         dismiss(animated: true, completion: nil)
     }
@@ -108,7 +108,7 @@ extension DrumMachineViewController: GridViewDelegate{
         
         switch gridView {
         case drumMachineView.drumEditingGridView:
-        
+            
             drumMachineView.drumPatternGridView.contentScale(scale)
             //drumMachineView.drumEditingGridView.contentOffset = CGPoint(x: 0, y: 0)
             
@@ -118,7 +118,7 @@ extension DrumMachineViewController: GridViewDelegate{
             
             drumMachineView.drumEditingGridView.contentScale(scale)
             drumMachineView.drumBarGridView.contentScale(scale)
-            //drumMachineView.drumPatternGridView.contentOffset = CGPoint(x: 0, y: 0)
+        //drumMachineView.drumPatternGridView.contentOffset = CGPoint(x: 0, y: 0)
         default:
             return
         }
@@ -148,7 +148,7 @@ extension DrumMachineViewController: GridViewDelegate{
             let y = drumMachineView.drumPatternGridView.contentOffset.y
             drumMachineView.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: y), animated: false)
             drumMachineView.drumBarGridView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
-        
+            
         default:
             print("")
         }
@@ -394,7 +394,7 @@ extension DrumMachineViewController: GridViewDataSource {
             }
             
             return cell
-
+            
         default:
             return GridViewCell()
         }
@@ -432,7 +432,7 @@ extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
         let row = cell.indexPath.row
         DrumMachineManger.manger.pattern[row].filePlayer.play()
     }
-
+    
     func changeDrumSample(cell: GridViewCell, drumType: DrumType, sampleIndex: Int) {
         let row = cell.indexPath.row
         DrumMachineManger.manger.changeDrumSample(atRow: row, withType: drumType, fileIndex: sampleIndex)
@@ -440,7 +440,7 @@ extension DrumMachineViewController: DrumEditingGridViewCellDelegate {
 }
 
 extension DrumMachineViewController: DrumBarGridViewCellDelegate {
-
+    
 }
 
 extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
@@ -450,7 +450,7 @@ extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
         
         DrumMachineManger.manger.pattern[indexPath.row].drumBeatPattern.beatPattern[indexPath.column] = isSelected
     }
-
+    
 }
 
 extension DrumMachineViewController{

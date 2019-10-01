@@ -61,11 +61,15 @@ class DrumEditingHorizontalGridViewCell: GridViewCell {
     override func awakeFromNib() {
         super .awakeFromNib()
         samplePlayButton.addTarget(self, action: #selector(samplePlay), for: .touchUpInside)
-        samplePickTextField.isEnabled = false
+        samplePickTextField.isEnabled = true
     }
     
     deinit {
         print("DrumEditingHorizontalGridViewCellDeinit\(self.indexPath)")
+    }
+    
+    override func layoutSubviews() {
+        
     }
     
     @objc func samplePlay(_ sender: Any) {
@@ -160,5 +164,7 @@ extension DrumEditingHorizontalGridViewCell: UIPickerViewDataSource {
 }
 
 extension DrumEditingHorizontalGridViewCell: UITextFieldDelegate {
-    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        
+    }
 }

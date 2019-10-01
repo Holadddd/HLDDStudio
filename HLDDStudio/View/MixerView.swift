@@ -16,7 +16,7 @@ import IQKeyboardManager
 
 
 protocol MixerDelegate: AnyObject {
-
+    
     func didSelectInputDevice(_ deviceID: DeviceID)
     
     func metronomeSwitch(isOn: Bool)
@@ -49,7 +49,7 @@ protocol MixerDatasource: AnyObject {
     func nameOfInputDevice() -> [DeviceID]
     
     func trackInputStatusIsReadyForRecord() -> Bool
-
+    
 }
 
 protocol GridViewStopScrollingWhileUIKitIsTouchingDelegate: AnyObject {
@@ -239,7 +239,7 @@ class MixerView: UIView {
     weak var delegate: MixerDelegate?
     
     weak var datasource: MixerDatasource?
-  
+    
     override func awakeFromNib() {
         super .awakeFromNib()
         trackGridView.register(IOGridViewCell.nib, forCellWithReuseIdentifier: "IOGridViewCell")
@@ -279,13 +279,13 @@ class MixerView: UIView {
     }
     
     override func layoutSubviews() {
-//        super.layoutSubviews()
+        //        super.layoutSubviews()
         let h = iOStatusBar.bounds.height
         let w = iOStatusBar.bounds.width
         routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
         
     }
-
+    
 }
 //IOStatusBar
 extension MixerView {
@@ -353,12 +353,12 @@ extension MixerView: UIPickerViewDataSource {
     }
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-
+        
         switch pickerView{
         case inputPicker:
             guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
             inputDeviceTextField.text = inputDeviceNameArr[row]
-
+            
         case tempoPicker:
             tempoTextField.text = "\(tempoArr[row])"
         case startBarPicker:
@@ -368,7 +368,7 @@ extension MixerView: UIPickerViewDataSource {
         default:
             return
         }
-
+        
     }
     
 }

@@ -235,6 +235,7 @@ extension AppDelegate {
             //only connect in firstTime
             MixerManger.manger.mixer.connect(input: DrumMachineManger.manger.drumMixer, bus: 5)
             userDefault.setValue(false, forKey: "NeedDefaultPattern")
+            StorageManager.sharedManager.saveContext()
         } else {
             for (index, drumPattern) in StorageManager.sharedManager.fetchedOrderList.enumerated() {
                 let pattern = DrumBeatPattern(drumPattern.barOneBeatOne, drumPattern.barOneBeatTwo, drumPattern.barOneBeatThree, drumPattern.barOneBeatFour, drumPattern.barTwoBeatOne, drumPattern.barTwoBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barTwoBeatFour, drumPattern.barThreeBeatOne, drumPattern.barThreeBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barThreeBeatFour, drumPattern.barFourBeatOne, drumPattern.barFourBeatTwo, drumPattern.barFourBeatThree, drumPattern.barFourBeatFour)

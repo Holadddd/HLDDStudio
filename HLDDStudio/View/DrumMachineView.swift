@@ -139,15 +139,14 @@ class DrumMachineView: UIView {
         drumBarGridView.minimumScale.x = drumPatternGridView.minimumScale.x
         drumBarGridView.maximumScale.x = drumPatternGridView.maximumScale.x
         
+        //contentSize
+        
         //contentInset
         drumPatternGridView.contentInset.top = 0
         drumEditingGridView.contentInset.top = 0
         
-        drumEditingGridView.scrollIndicatorInsets.top = 0
-        drumPatternGridView.scrollIndicatorInsets.top = 0
-        drumPatternGridView.scrollIndicatorInsets.left = drumEditingGridView.bounds.width
+        //
         
-        //drumEditingGridView.contentInset.top = 0
         
         //scroll
         drumEditingGridView.superview?.isUserInteractionEnabled = true
@@ -175,15 +174,13 @@ class DrumMachineView: UIView {
     }
     
     override func layoutSubviews() {
-        drumEditingGridView.invalidateLayout()
-//        drumBarGridView.invalidateLayout()
-//        drumPatternGridView.invalidateLayout()
-        
         
         let offSet = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         drumEditingGridView.contentInset = offSet
         drumBarGridView.contentInset = offSet
         drumPatternGridView.contentInset = offSet
+        
+        drumEditingGridView.invalidateLayout()
         
     }
     

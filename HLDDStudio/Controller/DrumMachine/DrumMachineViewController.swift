@@ -16,6 +16,8 @@ class DrumMachineViewController: UIViewController {
     
     let mainW = UIScreen.main.bounds.width
     let mainH = UIScreen.main.bounds.height
+    //20 is time heigh same at every iphone.
+    let adjustValue = UIApplication.shared.statusBarFrame.height - 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +62,9 @@ class DrumMachineViewController: UIViewController {
         drumMachineView.drumPatternGridView.reloadData()
     }
     
+    override func viewSafeAreaInsetsDidChange() {
+        print("viewSafeAreaInsetsDidChange")
+    }
 }
 
 extension DrumMachineViewController: DrumMachineDelegate {
@@ -138,24 +143,27 @@ extension DrumMachineViewController: GridViewDelegate{
             let y = drumMachineView.drumEditingGridView.contentOffset.y
             let offset = CGPoint(x: x, y: y)
             drumMachineView.drumPatternGridView.setContentOffset(offset, animated: false)
+            
         case drumMachineView.drumBarGridView:
             let x = drumMachineView.drumBarGridView.contentOffset.x
             let y = drumMachineView.drumPatternGridView.contentOffset.y
             let offset = CGPoint(x: x, y: y)
+            
             drumMachineView.drumPatternGridView.setContentOffset(offset, animated: false)
+            
         case drumMachineView.drumPatternGridView:
             let x = drumMachineView.drumPatternGridView.contentOffset.x
             let y = drumMachineView.drumPatternGridView.contentOffset.y
+            
             drumMachineView.drumEditingGridView.setContentOffset(CGPoint(x: 0, y: y), animated: false)
             drumMachineView.drumBarGridView.setContentOffset(CGPoint(x: x, y: 0), animated: false)
             
         default:
-            print("")
+            break
         }
     }
-    
-}
 
+}
 
 extension DrumMachineViewController: GridViewDataSource {
     
@@ -298,6 +306,10 @@ extension DrumMachineViewController: GridViewDataSource {
                     hCell.drumType = .snares
                     hCell.samplePlayButton.setImage(UIImage.asset(.drumSnares), for: .normal)
                 }
+                //Use contentOffset adjust value
+                hCell.statusBarContentView.translatesAutoresizingMaskIntoConstraints = false
+                
+                hCell.statusBarContentView.widthAnchor.constraint(equalToConstant: adjustValue).isActive = true
                 
                 hCell.samplePickTextField.text = patterInfo.fileName
                 hCell.delegate = self

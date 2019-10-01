@@ -13,6 +13,9 @@ import AudioKit
 
 class DrumEditingHorizontalGridViewCell: GridViewCell {
     
+    @IBOutlet weak var statusBarContentView: UIView!
+    
+    
     @IBOutlet weak var samplePlayButton: UIButton!
     
     var drumType = DrumType.classic
@@ -62,6 +65,7 @@ class DrumEditingHorizontalGridViewCell: GridViewCell {
         super .awakeFromNib()
         samplePlayButton.addTarget(self, action: #selector(samplePlay), for: .touchUpInside)
         samplePickTextField.isEnabled = true
+        
     }
     
     deinit {

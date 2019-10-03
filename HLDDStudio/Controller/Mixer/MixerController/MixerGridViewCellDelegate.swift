@@ -160,8 +160,8 @@ extension ViewController: IOGridViewCellDelegate {
                         switch result {
                         case .success(let file):
                             
-                            filePlayer = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[0].inputNode = filePlayer
+                            PlugInCreater.shared.plugInOntruck[0].filePlayer = AKPlayer(audioFile: file)
+                            PlugInCreater.shared.plugInOntruck[0].inputNode = PlugInCreater.shared.plugInOntruck[0].filePlayer
                             
                             //need adjust for audioFile into plugIn
                             PlugInCreater.shared.resetTrackNode(Track: 1)
@@ -210,8 +210,8 @@ extension ViewController: IOGridViewCellDelegate {
                         
                         switch result {
                         case .success(let file):
-                            filePlayerTwo = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[1].inputNode = filePlayerTwo
+                            PlugInCreater.shared.plugInOntruck[1].filePlayer = AKPlayer(audioFile: file)
+                            PlugInCreater.shared.plugInOntruck[1].inputNode = PlugInCreater.shared.plugInOntruck[1].filePlayer
                             
                             //need adjust for audioFile into plugIn
                             PlugInCreater.shared.resetTrackNode(Track: 2)

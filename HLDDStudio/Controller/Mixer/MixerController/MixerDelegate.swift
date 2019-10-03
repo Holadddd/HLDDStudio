@@ -119,9 +119,9 @@ extension ViewController: MixerDelegate {
             print("firstTracklineIN")
         case .audioFile :
             
-            filePlayer.stop()
+            PlugInCreater.shared.plugInOntruck[0].filePlayer.stop()
             
-            filePlayer.preroll()
+            PlugInCreater.shared.plugInOntruck[0].filePlayer.preroll()
         case .noInput:
             
             print("firstTrackNoInput")
@@ -138,9 +138,9 @@ extension ViewController: MixerDelegate {
             print("secondTracklineIN")
         case .audioFile :
             
-            filePlayerTwo.stop()
+            PlugInCreater.shared.plugInOntruck[1].filePlayer.stop()
             
-            filePlayerTwo.preroll()
+            PlugInCreater.shared.plugInOntruck[1].filePlayer.preroll()
             
             print("secondTrackPlaySelectFile")
         case .noInput:
@@ -171,9 +171,9 @@ extension ViewController: MixerDelegate {
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         
-        filePlayer.prepare()
+        PlugInCreater.shared.plugInOntruck[0].filePlayer.prepare()
         
-        filePlayerTwo.prepare()
+        PlugInCreater.shared.plugInOntruck[1].filePlayer.prepare()
         
         MixerManger.manger.metronome.start()
         
@@ -190,12 +190,13 @@ extension ViewController: MixerDelegate {
             print("firstTracklineIN")
         case .audioFile :
             
-            if filePlayer.isPaused {
+            if PlugInCreater.shared.plugInOntruck[0].filePlayer.isPaused {
                 
-                filePlayer.resume()
+                PlugInCreater.shared.plugInOntruck[0].filePlayer.resume()
             } else {
+                let time = MixerManger.manger.metronomeStartTime + oneBarTime
                 
-                filePlayer.play(at:MixerManger.manger.metronomeStartTime + oneBarTime )
+                PlugInCreater.shared.plugInOntruck[0].filePlayer.play(at: time)
             }
         case .noInput:
             
@@ -214,12 +215,14 @@ extension ViewController: MixerDelegate {
             print("secondTracklineIN")
         case .audioFile :
             
-            if filePlayerTwo.isPaused {
+            if PlugInCreater.shared.plugInOntruck[1].filePlayer.isPaused {
                 
-                filePlayerTwo.resume()
+                PlugInCreater.shared.plugInOntruck[1].filePlayer.resume()
             } else {
                 
-                filePlayerTwo.play(at:MixerManger.manger.metronomeStartTime + oneBarTime )
+                let time = MixerManger.manger.metronomeStartTime + oneBarTime
+                
+                PlugInCreater.shared.plugInOntruck[1].filePlayer.play(at: time)
             }
             
             print("secondTrackPlaySelectFile")
@@ -249,7 +252,7 @@ extension ViewController: MixerDelegate {
             print("firstTracklineIN")
         case .audioFile :
             
-            filePlayer.pause()
+            PlugInCreater.shared.plugInOntruck[0].filePlayer.pause()
             
             print("firstTrackPlaySelectFile")
         case .noInput:
@@ -269,7 +272,7 @@ extension ViewController: MixerDelegate {
             print("secondTracklineIN")
         case .audioFile :
             
-            filePlayerTwo.pause()
+            PlugInCreater.shared.plugInOntruck[1].filePlayer.pause()
             
             print("secondTrackPlaySelectFile")
         case .noInput:
@@ -298,7 +301,7 @@ extension ViewController: MixerDelegate {
             print("firstTracklineIN")
         case .audioFile :
             
-            filePlayer.pause()
+            PlugInCreater.shared.plugInOntruck[0].filePlayer.pause()
             
             print("firstTrackPlaySelectFile")
         case .noInput:
@@ -318,7 +321,7 @@ extension ViewController: MixerDelegate {
             print("secondTracklineIN")
         case .audioFile :
             
-            filePlayerTwo.pause()
+            PlugInCreater.shared.plugInOntruck[1].filePlayer.pause()
             
             print("secondTrackPlaySelectFile")
         case .noInput:
@@ -344,13 +347,12 @@ extension ViewController: MixerDelegate {
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         
-        filePlayer.prepare()
-        
-        filePlayer.preroll()
-        
-        filePlayerTwo.prepare()
-        
-        filePlayerTwo.preroll()
+        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated(){
+            
+            PlugInCreater.shared.plugInOntruck[index].filePlayer.prepare()
+            
+            PlugInCreater.shared.plugInOntruck[index].filePlayer.preroll()
+        }
         
         print(MixerManger.manger.metronome.tempo)
         
@@ -435,12 +437,12 @@ extension ViewController: MixerDelegate {
             }
             //        play audio
             if MixerManger.manger.firstTrackStatus == .audioFile {
-                guard let self = self else{return}
-                self.filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
+                
+                PlugInCreater.shared.plugInOntruck[0].filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
             if MixerManger.manger.secondTrackStatus == .audioFile {
-                guard let self = self else{return}
-                self.filePlayerTwo.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
+                
+                PlugInCreater.shared.plugInOntruck[1].filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
             }
             // play drumMachine
             if MixerManger.manger.firstTrackStatus == .drumMachine {

@@ -18,10 +18,10 @@ class ViewController: UIViewController {
     
     var bufferTime: Double = 2.0
     
-    var filePlayer = AKPlayer()
-    
-    var filePlayerTwo = AKPlayer()
-    
+//    var filePlayer = AKPlayer()
+//    
+//    var filePlayerTwo = AKPlayer()
+//    
     @IBOutlet var mixerView: MixerView!
     
     override func viewDidLoad() {

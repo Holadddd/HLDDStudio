@@ -14,6 +14,7 @@ struct HLDDMixerTrack {
     var plugInArr: [HLDDStudioPlugIn] = []
     var inputNode: AKNode = AKPlayer()
     var node: AKNode = AKPlayer()
+    var filePlayer = AKPlayer()
     var equlizerAndPanner: FaderEqualizerAndPanner = FaderEqualizerAndPanner(node: AKPlayer())
 
     init(name: String) {

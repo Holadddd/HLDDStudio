@@ -31,7 +31,7 @@ class DrumPatternHorizontalGridViewCell: GridViewCell {
     @objc func selectButtonAction(_ sender: Any?) {
         selectButton.isSelected = !selectButton.isSelected
         
-        delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
+        delegate?.patternSelected(cell: self, isSelected: selectButton.isSelected)
     }
    
     @objc func drumPatternAnimation(_ notification: Notification){

@@ -100,7 +100,7 @@ class DrumEditingGridViewCell: GridViewCell {
             
             samplePickTextField.rightView = view
             
-            samplePickTextField.rightViewMode = .never
+            samplePickTextField.rightViewMode = .always
             
             samplePickTextField.delegate = self
         }

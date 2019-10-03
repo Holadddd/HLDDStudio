@@ -356,14 +356,7 @@ extension DrumMachineViewController: GridViewDataSource {
                 
                 vCell.selectButton.isSelected = patterInfo.drumBeatPattern.beatPattern[indexPath.column]
                 
-                switch  vCell.selectButton.isSelected {
-                case true:
-                    vCell.animateView.backgroundColor = .blue
-                case false:
-                    vCell.animateView.backgroundColor = .white
-                }
-                
-                vCell.drumLabel.text = "\(indexPath)"
+               
                 vCell.delegate = self
                 cell = vCell
             } else {
@@ -447,12 +440,13 @@ extension DrumMachineViewController: DrumBarGridViewCellDelegate {
 
 extension DrumMachineViewController: DrumPatternGridViewCellDelegate {
     
-    func patternSelecte(cell: GridViewCell, isSelected: Bool) {
+    func patternSelected(cell: GridViewCell, isSelected: Bool) {
         let indexPath = cell.indexPath
         
         DrumMachineManger.manger.pattern[indexPath.row].drumBeatPattern.beatPattern[indexPath.column] = isSelected
+        
     }
-    
+
 }
 
 extension DrumMachineViewController{

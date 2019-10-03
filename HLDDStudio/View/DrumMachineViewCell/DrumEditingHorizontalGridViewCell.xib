@@ -14,41 +14,53 @@
             <rect key="frame" x="0.0" y="0.0" width="131" height="50"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pl2-Df-Dtl">
+                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pl2-Df-Dtl">
                     <rect key="frame" x="99" y="0.0" width="32" height="50"/>
-                    <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                     <textInputTraits key="textInputTraits"/>
                 </textField>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zEU-CS-OOA">
-                    <rect key="frame" x="49" y="0.0" width="50" height="50"/>
+                    <rect key="frame" x="41" y="-4" width="58" height="58"/>
                     <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Pad_Off" translatesAutoresizingMaskIntoConstraints="NO" id="scW-uK-qtc">
+                            <rect key="frame" x="0.0" y="0.0" width="58" height="58"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="scW-uK-qtc" secondAttribute="height" multiplier="1:1" id="zqt-my-LWZ"/>
+                            </constraints>
+                        </imageView>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zXU-aq-IRS">
-                            <rect key="frame" x="0.0" y="-2" width="50" height="54"/>
-                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" red="1" green="0.91559791644918154" blue="0.7118512325605364" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <rect key="frame" x="11.5" y="11.5" width="35" height="35"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="zXU-aq-IRS" secondAttribute="height" id="10R-jT-eSL"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <state key="normal" title="Button"/>
                         </button>
                     </subviews>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                     <constraints>
-                        <constraint firstAttribute="trailing" secondItem="zXU-aq-IRS" secondAttribute="trailing" id="GbQ-6x-NCd"/>
-                        <constraint firstItem="zXU-aq-IRS" firstAttribute="top" secondItem="zEU-CS-OOA" secondAttribute="top" constant="-2" id="Z27-de-u8i"/>
-                        <constraint firstAttribute="bottom" secondItem="zXU-aq-IRS" secondAttribute="bottom" constant="-2" id="cX8-sD-SwI"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="width" secondItem="zEU-CS-OOA" secondAttribute="width" multiplier="0.6" id="0Ju-Zc-SaV"/>
+                        <constraint firstItem="scW-uK-qtc" firstAttribute="centerY" secondItem="zEU-CS-OOA" secondAttribute="centerY" id="Gu2-h7-nZc"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="centerX" secondItem="zEU-CS-OOA" secondAttribute="centerX" id="O3y-ct-JDV"/>
+                        <constraint firstItem="zXU-aq-IRS" firstAttribute="centerY" secondItem="zEU-CS-OOA" secondAttribute="centerY" id="Rpy-yl-Eui"/>
                         <constraint firstAttribute="width" secondItem="zEU-CS-OOA" secondAttribute="height" id="cxt-nt-Mmu"/>
-                        <constraint firstItem="zXU-aq-IRS" firstAttribute="leading" secondItem="zEU-CS-OOA" secondAttribute="leading" id="xX8-oy-Fd6"/>
+                        <constraint firstItem="scW-uK-qtc" firstAttribute="centerX" secondItem="zEU-CS-OOA" secondAttribute="centerX" id="gRu-Ny-Zbo"/>
+                        <constraint firstItem="scW-uK-qtc" firstAttribute="width" secondItem="zEU-CS-OOA" secondAttribute="width" id="koK-b5-Bu5"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TgJ-cf-CqG">
-                    <rect key="frame" x="0.0" y="-2" width="49" height="54"/>
-                    <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="0.0" y="-2" width="41" height="54"/>
+                    <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
             <constraints>
                 <constraint firstItem="TgJ-cf-CqG" firstAttribute="top" secondItem="Nsz-e4-TLA" secondAttribute="top" constant="-2" id="6Nu-Jb-Asm"/>
-                <constraint firstItem="jgH-oc-ka6" firstAttribute="bottom" secondItem="zEU-CS-OOA" secondAttribute="bottom" id="7Tx-L7-R72"/>
-                <constraint firstItem="zEU-CS-OOA" firstAttribute="top" secondItem="Nsz-e4-TLA" secondAttribute="top" id="QLw-c0-uSx"/>
+                <constraint firstAttribute="bottom" secondItem="zEU-CS-OOA" secondAttribute="bottom" constant="-4" id="7Tx-L7-R72"/>
+                <constraint firstItem="zEU-CS-OOA" firstAttribute="top" secondItem="Nsz-e4-TLA" secondAttribute="top" constant="-4" id="QLw-c0-uSx"/>
                 <constraint firstItem="jgH-oc-ka6" firstAttribute="bottom" secondItem="pl2-Df-Dtl" secondAttribute="bottom" id="awq-aF-zWQ"/>
                 <constraint firstAttribute="trailing" secondItem="pl2-Df-Dtl" secondAttribute="trailing" id="b9Y-gx-ddI"/>
                 <constraint firstItem="zEU-CS-OOA" firstAttribute="leading" secondItem="TgJ-cf-CqG" secondAttribute="trailing" id="g5k-mw-eNz"/>
@@ -67,4 +79,7 @@
             <point key="canvasLocation" x="50.000000000000007" y="-61.607142857142854"/>
         </view>
     </objects>
+    <resources>
+        <image name="Pad_Off" width="500" height="500"/>
+    </resources>
 </document>

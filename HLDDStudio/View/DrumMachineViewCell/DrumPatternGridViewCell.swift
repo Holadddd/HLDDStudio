@@ -12,16 +12,12 @@ import UIKit
 
 protocol DrumPatternGridViewCellDelegate: AnyObject {
     
-    func patternSelecte(cell: GridViewCell, isSelected: Bool)
+    func patternSelected(cell: GridViewCell, isSelected: Bool)
     
 }
 class DrumPatternGridViewCell: GridViewCell {
     
-    @IBOutlet weak var drumLabel: UILabel!
-    
     @IBOutlet weak var animateView: UIView!
-    
-    @IBOutlet weak var midAnimateView: UIView!
     
     @IBOutlet weak var selectButton: UIButton!
     
@@ -36,47 +32,33 @@ class DrumPatternGridViewCell: GridViewCell {
         super .awakeFromNib()
         selectButton.addTarget(self, action: #selector(selectButtonAction), for: .touchUpInside)
         NotificationCenter.default.addObserver(self, selector: #selector(drumPatternAnimation), name:.drumMachinePatternAnimation, object: nil)
-        
-        
     }
     
-    @objc func selectButtonAction() {
+    @objc func selectButtonAction(_ sender: UIButton) {
         selectButton.isSelected = !selectButton.isSelected
-        switch selectButton.isSelected {
-        case true:
-            animateView.backgroundColor = .blue
-        case false:
-            animateView.backgroundColor = .white
-        }
-        delegate?.patternSelecte(cell: self, isSelected: selectButton.isSelected)
+//        switch selectButton.isSelected {
+//        case true:
+//            animateView.backgroundColor = .blue
+//        case false:
+//            animateView.backgroundColor = .white
+//        }
+        delegate?.patternSelected(cell: self, isSelected: selectButton.isSelected)
     }
     
     @objc func drumPatternAnimation(_ notification: Notification){
         guard let info = notification.object as? DrumMachinePatternAnimationInfo else{ fatalError() }
         let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
-        
-        self.midAnimateView.frame.origin = CGPoint(x: 0, y: 0)
-        
-        let midAnimate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-            self.midAnimateView.frame = self.midAnimateView.frame.offsetBy(dx: 50, dy: 50)
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
-            //midAnimate.startAnimation()
-        }
-        
+    
         if info.indexPath == self.indexPath{
             
-            
-            
             let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-                self.animateView.backgroundColor = .blue
-                self.midAnimateView.frame = self.midAnimateView.frame.offsetBy(dx: 50, dy: 50)
+                self.animateView.backgroundColor = .clear
+                
             }
             
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {
                 //self.selectButton.backgroundColor = .yellow
-                self.animateView.backgroundColor = .yellow
+                self.animateView.backgroundColor = .white
                 animate.startAnimation()
             }
         }

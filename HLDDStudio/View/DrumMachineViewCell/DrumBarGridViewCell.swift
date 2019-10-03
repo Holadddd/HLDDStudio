@@ -20,11 +20,13 @@ class DrumBarGridViewCell: GridViewCell {
     weak var delegate: DrumBarGridViewCellDelegate?
     
     static var nib: UINib {
-        return UINib(nibName: "DrumBarGridViewCell", bundle: Bundle(for: self))
+        
+        return UINib(nibName: String(describing: self),
+                     bundle: Bundle(for: self))
     }
     
     override func awakeFromNib() {
-        super .awakeFromNib()
         
+        super .awakeFromNib()
     }
 }

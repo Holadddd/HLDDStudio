@@ -13,7 +13,6 @@ import UIKit
 protocol DrumPatternGridViewCellDelegate: AnyObject {
     
     func patternSelected(cell: GridViewCell, isSelected: Bool)
-    
 }
 class DrumPatternGridViewCell: GridViewCell {
     
@@ -27,36 +26,46 @@ class DrumPatternGridViewCell: GridViewCell {
     
     static var nib: UINib {
         
-        return UINib(nibName: "DrumPatternGridViewCell", bundle: Bundle(for: self))
+        return UINib(nibName: String(describing: self),
+                     bundle: Bundle(for: self))
     }
     
     override func awakeFromNib() {
         
         super .awakeFromNib()
         
-        selectButton.addTarget(self, action: #selector(selectButtonAction), for: .touchUpInside)
+        selectButton.addTarget(self,
+                               action: #selector(selectButtonAction),
+                               for: .touchUpInside)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(drumPatternAnimation), name:.drumMachinePatternAnimation, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(drumPatternAnimation),
+                                               name:.drumMachinePatternAnimation,
+                                               object: nil)
     }
     
     @objc func selectButtonAction(_ sender: UIButton) {
         
         selectButton.isSelected = !selectButton.isSelected
         
-        delegate?.patternSelected(cell: self, isSelected: selectButton.isSelected)
+        delegate?.patternSelected(cell: self,
+                                  isSelected: selectButton.isSelected)
     }
     
     @objc func drumPatternAnimation(_ notification: Notification){
         
-        guard let info = notification.object as? DrumMachinePatternAnimationInfo else{ fatalError() }
+        guard let info = notification.object
+            as? DrumMachinePatternAnimationInfo
+            else{ fatalError() }
         
         let dispatchTime = DispatchTime(uptimeNanoseconds: info.startTime.audioTimeStamp.mHostTime)
-    
+        
         if info.indexPath == self.indexPath{
             
-            let animate = UIViewPropertyAnimator(duration: 0.5, curve: .linear) {
-                
-                self.animateView.backgroundColor = .clear
+            let animate = UIViewPropertyAnimator(duration: 0.5,
+                                                 curve: .linear) {
+                                                    
+                                                    self.animateView.backgroundColor = .clear
             }
             
             DispatchQueue.main.asyncAfter(deadline: dispatchTime) {

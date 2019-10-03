@@ -15,28 +15,38 @@ class DrumMachineViewController: UIViewController {
     @IBOutlet var drumMachineView: DrumMachineView!
     
     let mainW = UIScreen.main.bounds.width
+    
     let mainH = UIScreen.main.bounds.height
     
     var controlH: CGFloat?
+    
     var controlW: CGFloat?
     //20 is time heigh same at every iphone.
     let adjustValue = UIApplication.shared.statusBarFrame.height - 20
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
         drumMachineView.delegate = self
+        
         drumMachineView.datasource = self
         //DrumEditingGridView
+        
         drumMachineView.drumEditingGridView.delegate = self
+        
         drumMachineView.drumEditingGridView.dataSource = self
         
         drumMachineView.drumBarGridView.delegate = self
+        
         drumMachineView.drumBarGridView.dataSource = self
         
         drumMachineView.drumPatternGridView.delegate = self
+        
         drumMachineView.drumPatternGridView.dataSource = self
         
         controlH = drumMachineView.controlView.bounds.height
+        
         controlW = drumMachineView.controlView.bounds.width
     }
     
@@ -44,11 +54,16 @@ class DrumMachineViewController: UIViewController {
         
         super.viewWillAppear(animated)
         
-        FirebaseManager.createEventWith(category: .DrumMachineController, action: .ViewDidAppear, label: .UsersEvent, value: .one)
+        FirebaseManager.createEventWith(category: .DrumMachineController,
+                                        action: .ViewDidAppear,
+                                        label: .UsersEvent,
+                                        value: .one)
         
         DrumMachineManger.manger.isPortrait = true
         
-        AppUtility.lockOrientation(.portrait, andRotateTo: .portrait, complete: nil)
+        AppUtility.lockOrientation(.portrait,
+                                   andRotateTo: .portrait,
+                                   complete: nil)
         
         drumMachineView.tempoTextField.isEnabled = true
     }
@@ -67,14 +82,18 @@ class DrumMachineViewController: UIViewController {
         
     }
     
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        drumMachineView.drumEditingGridView.reloadData()
-        drumMachineView.drumBarGridView.reloadData()
-        drumMachineView.drumPatternGridView.reloadData()
+    override func viewWillTransition(to size: CGSize,
+                                     with coordinator: UIViewControllerTransitionCoordinator) {
         
+        drumMachineView.drumEditingGridView.reloadData()
+        
+        drumMachineView.drumBarGridView.reloadData()
+        
+        drumMachineView.drumPatternGridView.reloadData()
     }
     
     override func viewSafeAreaInsetsDidChange() {
+        
         print("viewSafeAreaInsetsDidChange")
     }
 }

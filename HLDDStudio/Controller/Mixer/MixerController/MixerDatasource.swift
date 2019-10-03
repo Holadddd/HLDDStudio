@@ -25,10 +25,13 @@ extension ViewController: MixerDatasource {
     
     
     func nameOfInputDevice() -> [String] {
+        
         var inputDevieNameArr: [DeviceID] = []
         
         guard let inputDeviceArr = AudioKit.inputDevices else { fatalError() }
+        
         for inputDevice in inputDeviceArr {
+            
             inputDevieNameArr.append(inputDevice.deviceID)
         }
         
@@ -44,10 +47,10 @@ extension ViewController: MixerDatasource {
         } else {
             
             MixerManger.manger.title(with: .recordWarning)
+            
             MixerManger.manger.subTitle(with: .checkInputSource)
+            
             return false
         }
-        
     }
-    
 }

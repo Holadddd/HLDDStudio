@@ -11,6 +11,7 @@ import MarqueeLabel
 
 
 protocol PlugInTableViewCellDelegate: AnyObject {
+    
     func bypassPlugin(_ cell: PlugInTableViewCell)
 }
 
@@ -25,25 +26,31 @@ class PlugInTableViewCell: UITableViewCell {
     weak var delegate: PlugInTableViewCellDelegate?
     
     static var nib: UINib {
-        return UINib(nibName: "PlugInTableViewCell", bundle: Bundle(for: self))
+        
+        return UINib(nibName: String(describing: self),
+                     bundle: Bundle(for: self))
     }
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
-        bypassButton.addTarget(self, action: #selector(PlugInTableViewCell.bypassButtonDidTouch), for: .touchUpInside)
-       
+        
+        bypassButton.addTarget(self,
+                               action: #selector(PlugInTableViewCell.bypassButtonDidTouch),
+                               for: .touchUpInside)
     }
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
+    override func setSelected(_ selected: Bool,
+                              animated: Bool) {
         
-        // Configure the view for the selected state
+        super.setSelected(selected,
+                          animated: animated)
     }
 
     @objc func bypassButtonDidTouch() {
-        bypassButton.isSelected = !bypassButton.isSelected
-        delegate?.bypassPlugin(self)
         
+        bypassButton.isSelected = !bypassButton.isSelected
+        
+        delegate?.bypassPlugin(self)
     }
-    
 }

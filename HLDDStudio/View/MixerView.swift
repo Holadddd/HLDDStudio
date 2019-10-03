@@ -128,7 +128,10 @@ class MixerView: UIView {
             
             let button = UIButton(type: .custom)
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            button.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: 24,
+                                  height: 24)
             
             button.setBackgroundImage(
                 UIImage.asset(.Icons_24px_DropDown),
@@ -168,7 +171,10 @@ class MixerView: UIView {
             
             let button = UIButton(type: .custom)
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            button.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: 24,
+                                  height: 24)
             
             button.setBackgroundImage(
                 UIImage.asset(.Icons_24px_DropDown),
@@ -190,6 +196,7 @@ class MixerView: UIView {
     let button = UIButton(type: .custom)
     
     @IBOutlet weak var stopRecordTextField: UITextField! {
+        
         didSet {
             
             stopBarPicker.delegate = self
@@ -198,10 +205,18 @@ class MixerView: UIView {
             
             stopRecordTextField.inputView = stopBarPicker
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
-            button.bounds.size = CGSize(width: 24, height: 24)
+            button.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: 24,
+                                  height: 24)
             
-            button.frame = CGRect(x: 0, y: 0, width: 24, height: 24)
+            button.bounds.size = CGSize(width: 24,
+                                        height: 24)
+            
+            button.frame = CGRect(x: 0,
+                                  y: 0,
+                                  width: 24,
+                                  height: 24)
             
             button.setBackgroundImage(
                 UIImage.asset(.Icons_24px_DropDown),
@@ -222,7 +237,9 @@ class MixerView: UIView {
     
     //MasterFader
     @IBOutlet weak var fileNameTextField: UITextField! {
+        
         didSet {
+            
             fileNameTextField.delegate = self
         }
     }
@@ -236,51 +253,88 @@ class MixerView: UIView {
     weak var datasource: MixerDatasource?
     
     override func awakeFromNib() {
+        
         super .awakeFromNib()
-        trackGridView.register(IOGridViewCell.nib, forCellWithReuseIdentifier: "IOGridViewCell")
-        trackGridView.register(PlugInGridViewCell.nib, forCellWithReuseIdentifier: "PlugInGridViewCell")
-        trackGridView.register(FaderGridViewCell.nib, forCellWithReuseIdentifier: "FaderGridViewCell")
-        trackGridView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        
+        trackGridView.register(IOGridViewCell.nib,
+                               forCellWithReuseIdentifier: String(describing: IOGridViewCell.self))
+        
+        trackGridView.register(PlugInGridViewCell.nib,
+                               forCellWithReuseIdentifier: String(describing: PlugInGridViewCell.self))
+        
+        trackGridView.register(FaderGridViewCell.nib,
+                               forCellWithReuseIdentifier: String(describing: FaderGridViewCell.self))
+        
+        trackGridView.contentInset = UIEdgeInsets(top: 0,
+                                                  left: 0,
+                                                  bottom: 0,
+                                                  right: 0)
+        
         trackGridView.bounces = false
+        
         trackGridView.isPagingEnabled = true
+        
         trackGridView.isDirectionalLockEnabled = true
+        
         trackGridView.clipsToBounds = true
         //trackGridView.superview?.clipsToBounds = true
         trackGridView.contentSize = self.bounds.size
         
         trackGridView.isInfinitable = false
-        trackGridView.maximumScale = Scale(x: 1, y: 1)
-        trackGridView.minimumScale = Scale(x: 1, y: 1)
+        
+        trackGridView.maximumScale = Scale(x: 1,
+                                           y: 1)
+        
+        trackGridView.minimumScale = Scale(x: 1,
+                                           y: 1)
         
         setRouterPiskerView()
+        
         inputDeviceButton.isSelected = true
         
-        metronomeButton.addTarget(self, action: #selector(MixerView.metronomeState), for: .touchUpInside)
-        stopButton.addTarget(self, action: #selector(MixerView.stopButtonAction), for: .touchUpInside)
-        playAndResumeButton.addTarget(self, action: #selector(MixerView.playAndResumeButtonAction), for: .touchUpInside)
-        recordButton.addTarget(self, action: #selector(MixerView.recordButtonAction), for: .touchUpInside)
-        showDrumVCButton.addTarget(self, action: #selector(MixerView.showDrumVCButtonAction), for: .touchUpInside)
+        metronomeButton.addTarget(self,
+                                  action: #selector(MixerView.metronomeState),
+                                  for: .touchUpInside)
+        
+        stopButton.addTarget(self,
+                             action: #selector(MixerView.stopButtonAction),
+                             for: .touchUpInside)
+        
+        playAndResumeButton.addTarget(self,
+                                      action: #selector(MixerView.playAndResumeButtonAction),
+                                      for: .touchUpInside)
+        
+        recordButton.addTarget(self,
+                               action: #selector(MixerView.recordButtonAction),
+                               for: .touchUpInside)
+        
+        showDrumVCButton.addTarget(self,
+                                   action: #selector(MixerView.showDrumVCButtonAction),
+                                   for: .touchUpInside)
         
         masterFader.delegate = self
         
         for tempo in 40...240 {
+            
             tempoArr.append(tempo)
         }
         
         for bar in 1...40 {
+            
             barArr.append(bar)
         }
         
     }
     
     override func layoutSubviews() {
-        //        super.layoutSubviews()
-        let h = iOStatusBar.bounds.height
-        let w = iOStatusBar.bounds.width
-        routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0), size: CGSize(width: h, height: h))
         
+        let h = iOStatusBar.bounds.height
+        
+        let w = iOStatusBar.bounds.width
+        
+        routePickerView.frame = CGRect(origin: CGPoint(x: w - h * 1.05, y: 0),
+                                       size: CGSize(width: h, height: h))
     }
-    
 }
 //IOStatusBar
 extension MixerView {
@@ -288,10 +342,8 @@ extension MixerView {
     func setRouterPiskerView() {
         
         iOStatusBar.addSubview(routePickerView)
-        
     }
 }
-
 
 extension MixerView: UIPickerViewDelegate {
     
@@ -300,72 +352,106 @@ extension MixerView: UIPickerViewDelegate {
 extension MixerView: UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        
         return 1
     }
     
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView,
+                    numberOfRowsInComponent component: Int) -> Int {
+        
         switch pickerView{
+            
         case inputPicker:
+            
             guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
+            
             return inputDeviceNameArr.count
         case tempoPicker:
+            
             return tempoArr.count
         case startBarPicker:
+            
             return barArr.count
         case stopBarPicker:
+            
             return barArr.count
         default:
+            
             return 0
         }
     }
     
-    func pickerView(_ pickerView: UIPickerView, viewForRow row: Int, forComponent component: Int, reusing view: UIView?) -> UIView {
+    func pickerView(_ pickerView: UIPickerView,
+                    viewForRow row: Int,
+                    forComponent component: Int,
+                    reusing view: UIView?) -> UIView {
+        
         pickerView.backgroundColor = UIColor.B1
+        
         let pickerLabel = UILabel()
+        
         pickerLabel.textColor = UIColor.white
+        
         pickerLabel.textAlignment = NSTextAlignment.center
         
         let image = UIImageView.init(image: UIImage.asset(.StatusBarLayerView))
         
         pickerLabel.backgroundColor = .clear
+        
         image.stickSubView(pickerLabel)
+        
         switch pickerView{
+            
         case inputPicker:
-            guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
+            
+            guard let inputDeviceNameArr = datasource?.nameOfInputDevice()
+                else { fatalError() }
+            
             pickerLabel.text = inputDeviceNameArr[row]
             
         case tempoPicker:
+            
             pickerLabel.text = "\(tempoArr[row])"
         case startBarPicker:
+            
             pickerLabel.text = "\(barArr[row])"
         case stopBarPicker:
+            
             pickerLabel.text = "\(barArr[row])"
         default:
+            
             break
         }
         
         return image
     }
     
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+    func pickerView(_ pickerView: UIPickerView,
+                    didSelectRow row: Int,
+                    inComponent component: Int) {
         
         switch pickerView{
-        case inputPicker:
-            guard let inputDeviceNameArr = datasource?.nameOfInputDevice() else { fatalError() }
-            inputDeviceTextField.text = inputDeviceNameArr[row]
             
+        case inputPicker:
+            
+            guard let inputDeviceNameArr = datasource?.nameOfInputDevice()
+                else { fatalError() }
+            
+            inputDeviceTextField.text = inputDeviceNameArr[row]
         case tempoPicker:
+            
             tempoTextField.text = "\(tempoArr[row])"
         case startBarPicker:
+            
             startRecordTextField.text = "\(barArr[row])"
         case stopBarPicker:
+            
             stopRecordTextField.text = "\(barArr[row])"
         default:
+            
             return
         }
-        
     }
-    
 }
 
 extension MixerView: UITextFieldDelegate {
@@ -373,18 +459,24 @@ extension MixerView: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         
         switch textField{
+            
         case inputDeviceTextField:
+            
             inputDeviceButton.isSelected = false
         case tempoTextField:
+            
             return
         case startRecordTextField:
+            
             return
         case stopRecordTextField:
+            
             return
         case fileNameTextField:
             
             return
         default:
+            
             return
         }
     }
@@ -392,108 +484,146 @@ extension MixerView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
         
         switch textField{
+            
         case inputDeviceTextField:
-            guard let devieID = textField.text else { return }
+            
+            guard let devieID = textField.text
+                else { return }
+            
             delegate?.didSelectInputDevice(devieID)
+            
             inputDeviceButton.isSelected = true
         case tempoTextField:
-            guard let bpmString = tempoTextField.text else { return }
-            guard let bpm = Int(bpmString) else { return }
+            
+            guard let bpmString = tempoTextField.text
+                else { return }
+            
+            guard let bpm = Int(bpmString)
+                else { return }
+            
             delegate?.metronomeBPM(bpm: bpm)
         case startRecordTextField:
+            
             break
         case stopRecordTextField:
+            
             break
         case fileNameTextField:
+            
             var fileName = ""
             
             if textField.text != nil {
-                guard let recordFileName = fileNameTextField.text else{fatalError()}
+                guard let recordFileName = fileNameTextField.text
+                    else{fatalError()}
+                
                 fileName = recordFileName
             }
             
             delegate?.changeRecordFileName(fileName: fileName)
         default:
+            
             return
         }
-        
     }
 }
 
 extension MixerView {
     
     @objc func metronomeState() {
+        
         metronomeButton.isSelected = !metronomeButton.isSelected
+        
         delegate?.metronomeSwitch(isOn: metronomeButton.isSelected)
     }
     
     @objc func stopButtonAction() {
+        
         playAndResumeButton.isSelected = false
+        
         delegate?.stopAudioPlayer()
     }
     
     @objc func playAndResumeButtonAction() {
         
-        
         playAndResumeButton.isSelected = !playAndResumeButton.isSelected
+        
         switch playAndResumeButton.isSelected {
+            
         case true:
+            
             delegate?.playingAudioPlayer()
         case false:
+            
             delegate?.pauseAudioPlayer()
         }
     }
     
     @objc func recordButtonAction() {
         
-        guard  datasource?.trackInputStatusIsReadyForRecord() == true else { return }
+        guard  datasource?.trackInputStatusIsReadyForRecord() == true
+            else { return }
         
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else{return}
+        DispatchQueue.main.async { [ weak self ] in
+            
+            guard let self = self else { return }
+            
             switch self.recordButton.isSelected {
+                
             case false:
-                //playAndResumeButtonAction()
-                guard let startString = self.startRecordTextField.text else { return }
-                guard let stopString = self.stopRecordTextField.text else { return }
-                guard let start = Int(startString) else { return }
-                guard let stop = Int(stopString) else { return }
-                //if not trigger show in notification
+                
+                guard let startString = self.startRecordTextField.text
+                    else { return }
+                
+                guard let stopString = self.stopRecordTextField.text
+                    else { return }
+                
+                guard let start = Int(startString)
+                    else { return }
+                
+                guard let stop = Int(stopString)
+                    else { return }
+                
                 if start > stop {
+                    
                     MixerManger.manger.title(with: .recordWarning)
+                    
                     MixerManger.manger.subTitle(with: .barWarning)
+                    
                     return
                 }
-                self.delegate?.startRecordAudioPlayer(frombar: start, tobar: stop)
                 
+                self.delegate?.startRecordAudioPlayer(frombar: start,
+                                                      tobar: stop)
             case true:
-                //playAndResumeButtonAction()
+                
                 self.delegate?.stopRecord()
             }
             
             self.recordButton.isSelected = !self.recordButton.isSelected
-            //Switch playing button but not doing playing audio function
+            
             self.playAndResumeButton.isSelected = !self.playAndResumeButton.isSelected
         }
-        
     }
 }
 
 extension MixerView {
     
     @objc func showDrumVCButtonAction(_ sender:Any) {
+        
         delegate?.showDrumVC()
     }
-    
 }
 
 extension MixerView: HLDDRedFaderDelegate {
     
-    func redFaderValueDidChange(faderValue value: Float, fader: RedFader) {
+    func redFaderValueDidChange(faderValue value: Float,
+                                fader: RedFader) {
+        
         delegate?.masterVolumeDidChange(volume: value)
     }
     
-    func redFaderIsTouching(bool: Bool, fader: RedFader) {
+    func redFaderIsTouching(bool: Bool,
+                            fader: RedFader) {
         
     }
-    
 }

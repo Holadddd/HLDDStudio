@@ -201,6 +201,9 @@ extension ViewController {
     func plugInProvide(row: Int,
                        column: Int,
                        plugIn: PlugIn) {
+        let busOnMixer = column + 1
+        
+        let trackSeq = column + 1
         
         try? AudioKit.stop()
         
@@ -209,7 +212,7 @@ extension ViewController {
         case .reverb:
             
             MixerManger.manger.mixer.disconnectInput(
-                bus: column + 1)
+                bus: busOnMixer)
             
             PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInManager.shared.plugInOntruck[column].node)),
@@ -219,7 +222,7 @@ extension ViewController {
         case .guitarProcessor:
             
             MixerManger.manger.mixer.disconnectInput(
-                bus: column + 1)
+                bus: busOnMixer)
             
             PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
@@ -231,7 +234,7 @@ extension ViewController {
             )
         case .delay:
             
-            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: busOnMixer)
             
             PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
@@ -242,7 +245,7 @@ extension ViewController {
                     sequence: row))
         case .chorus:
             
-            MixerManger.manger.mixer.disconnectInput(bus: column + 1)
+            MixerManger.manger.mixer.disconnectInput(bus: busOnMixer)
             
             PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
@@ -251,8 +254,8 @@ extension ViewController {
                     sequence: row))
         }
         
-        PlugInManager.shared.resetTrackNode(Track: column + 1)
+        PlugInManager.shared.resetTrackNode(Track: trackSeq)
         
-        setTrackNode(track: column + 1)
+        setTrackNode(track: trackSeq)
     }
 }

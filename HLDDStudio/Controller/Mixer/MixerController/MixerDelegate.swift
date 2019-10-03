@@ -150,9 +150,10 @@ extension ViewController: MixerDelegate {
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         
-        PlugInManager.shared.plugInOntruck[0].filePlayer.prepare()
-        
-        PlugInManager.shared.plugInOntruck[1].filePlayer.prepare()
+        for (index, _) in PlugInManager.shared.plugInOntruck.enumerated() {
+            
+            PlugInManager.shared.plugInOntruck[index].filePlayer.prepare()
+        }
         
         MixerManger.manger.metronome.start()
         
@@ -384,32 +385,48 @@ extension ViewController: MixerDelegate {
     }
     
     func stopRecord() {
+        
         enabledMixerFunctionalButton()
+        
         try? AudioKit.stop()
+        
         MixerManger.manger.title(with: .finishingRecording)
+        
         MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."
+        
         mixerView.fileNameTextField.text = nil
+        
         mixerView.fileNameTextField.placeholder = "FileName"
         
-        DispatchQueue.main.async {[weak self] in
-            guard let self = self else{return}
+        DispatchQueue.main.async { [ weak self ] in
+            
+            guard let self = self else { return }
+            
             DrumMachineManger.manger.stopPlayingDrumMachine()
+            
             MixerManger.manger.bar = 0
+            
             MixerManger.manger.beat = 0
+            
             self.mixerView.barLabel.text = "0 | 1"
+            
             MixerManger.manger.metronome.restart()
+            
             MixerManger.manger.metronome.stop()
         }
-        try? AudioKit.start()
         
+        try? AudioKit.start()
     }
     
     func changeRecordFileName(fileName: String) {
+        
         MixerManger.manger.recordFileName = fileName
     }
     
     func masterVolumeDidChange(volume: Float) {
+        
         MixerManger.manger.mixerForMaster.volume = Double(volume)
+        
         print(MixerManger.manger.mixerForMaster.volume)
     }
 }

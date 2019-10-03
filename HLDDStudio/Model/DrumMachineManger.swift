@@ -130,6 +130,8 @@ class DrumBeatPattern {
 
 class DrumMachineManger {
     
+    var isPortrait = true
+    
     static let manger = DrumMachineManger()
     
     var drumMixer = AKMixer()

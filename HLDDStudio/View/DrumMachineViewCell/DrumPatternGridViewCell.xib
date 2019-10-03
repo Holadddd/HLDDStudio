@@ -14,7 +14,7 @@
             <rect key="frame" x="0.0" y="0.0" width="85" height="209"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView hidden="YES" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="51e3e4dbbeb9a7b77fb8d8bc99561205" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage_sunset" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
                     <rect key="frame" x="-5" y="-5" width="95" height="219"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
@@ -22,13 +22,13 @@
                     <rect key="frame" x="0.0" y="125.5" width="85" height="83.5"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t23-Jb-6jm">
-                            <rect key="frame" x="0.0" y="-1.5" width="85" height="85"/>
+                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="t23-Jb-6jm" secondAttribute="height" multiplier="1:1" id="Hcb-LE-jeL"/>
                             </constraints>
                         </imageView>
                         <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bm9-y1-68m">
-                            <rect key="frame" x="0.0" y="-1.5" width="85" height="85"/>
+                            <rect key="frame" x="0.0" y="0.0" width="85" height="85"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="bm9-y1-68m" secondAttribute="height" multiplier="1:1" id="N1y-8g-LMo"/>
@@ -37,10 +37,10 @@
                             <state key="normal" image="Pad_Off">
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </state>
-                            <state key="selected" image="Pad_On_Green"/>
+                            <state key="selected" image="Pad_On_Blue"/>
                         </button>
                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w1E-Hg-DcY">
-                            <rect key="frame" x="13" y="11.5" width="59.5" height="59.5"/>
+                            <rect key="frame" x="13" y="12.5" width="59.5" height="59.5"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="w1E-Hg-DcY" secondAttribute="height" multiplier="1:1" id="Mfw-Bs-4MU"/>
@@ -49,10 +49,10 @@
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="bottom" secondItem="bm9-y1-68m" secondAttribute="bottom" id="1jf-hk-XDu"/>
                         <constraint firstItem="t23-Jb-6jm" firstAttribute="centerY" secondItem="bm9-y1-68m" secondAttribute="centerY" id="5Bb-4X-9dy"/>
                         <constraint firstItem="bm9-y1-68m" firstAttribute="centerX" secondItem="fSg-8S-IUz" secondAttribute="centerX" id="9gh-b5-fYl"/>
                         <constraint firstItem="t23-Jb-6jm" firstAttribute="width" secondItem="fSg-8S-IUz" secondAttribute="width" id="Aou-zl-pmh"/>
+                        <constraint firstItem="bm9-y1-68m" firstAttribute="top" secondItem="fSg-8S-IUz" secondAttribute="top" id="Kon-LI-nXQ"/>
                         <constraint firstItem="w1E-Hg-DcY" firstAttribute="centerX" secondItem="bm9-y1-68m" secondAttribute="centerX" id="Tvv-z1-C0m"/>
                         <constraint firstItem="w1E-Hg-DcY" firstAttribute="width" secondItem="bm9-y1-68m" secondAttribute="width" multiplier="0.7" id="Un2-Pp-NTD"/>
                         <constraint firstItem="bm9-y1-68m" firstAttribute="width" secondItem="fSg-8S-IUz" secondAttribute="width" id="Wbx-uA-2i6"/>
@@ -104,13 +104,14 @@
             <connections>
                 <outlet property="animateView" destination="w1E-Hg-DcY" id="g14-Ln-v6Z"/>
                 <outlet property="selectButton" destination="bm9-y1-68m" id="5Tm-aC-b76"/>
+                <outlet property="topAnimateView" destination="Ngq-E3-nJE" id="FXW-GV-DJH"/>
             </connections>
             <point key="canvasLocation" x="-55.797101449275367" y="153.01339285714286"/>
         </view>
     </objects>
     <resources>
-        <image name="51e3e4dbbeb9a7b77fb8d8bc99561205" width="564" height="1002"/>
+        <image name="BGImage_sunset" width="564" height="1001"/>
         <image name="Pad_Off" width="500" height="500"/>
-        <image name="Pad_On_Green" width="500" height="500"/>
+        <image name="Pad_On_Blue" width="500" height="500"/>
     </resources>
 </document>

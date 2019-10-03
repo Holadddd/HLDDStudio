@@ -52,11 +52,6 @@ protocol MixerDatasource: AnyObject {
     
 }
 
-protocol GridViewStopScrollingWhileUIKitIsTouchingDelegate: AnyObject {
-    
-    func isInteractWithUser(bool: Bool)
-}
-
 class MixerView: UIView {
     
     @IBOutlet weak var iOStatusBar: UIView!

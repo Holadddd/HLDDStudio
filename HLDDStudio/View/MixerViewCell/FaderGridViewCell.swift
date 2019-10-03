@@ -39,10 +39,6 @@ class FaderGridViewCell: GridViewCell {
     
     @IBOutlet weak var FaderLabel: UILabel!
     
-    
-    
-    weak var touchingDelegate: GridViewStopScrollingWhileUIKitIsTouchingDelegate?
-    
     weak var delegate: FaderGridViewCellDelegate?
     
     static var nib: UINib {
@@ -106,7 +102,7 @@ extension FaderGridViewCell: HLDDFaderDelegate, HLDDKnobDelegate {
     }
     
     func knobIsTouching(bool: Bool, knob: Knob) {
-        touchingDelegate?.isInteractWithUser(bool: !bool)
+        
     }
     
     func faderValueDidChange(faderValue value: Float, fader: Fader) {
@@ -120,6 +116,6 @@ extension FaderGridViewCell: HLDDFaderDelegate, HLDDKnobDelegate {
     }
     
     func faderIsTouching(bool: Bool, fader: Fader) {
-        touchingDelegate?.isInteractWithUser(bool: !bool)
+        
     }
 }

@@ -111,46 +111,25 @@ extension ViewController: MixerDelegate {
             
             strongSelf.mixerView.barLabel.text = "0 | 1"
         }
-        
-        switch MixerManger.manger.firstTrackStatus {
+        for (inedx, element) in PlugInManager.shared.plugInOntruck.enumerated() {
             
-        case .lineIn:
-            
-            print("firstTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[0].filePlayer.stop()
-            
-            PlugInCreater.shared.plugInOntruck[0].filePlayer.preroll()
-        case .noInput:
-            
-            print("firstTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.stopPlayingDrumMachine()
-            print("Firsttrack stop drummachine")
-        }
-        
-        switch MixerManger.manger.secondTrackStatus {
-            
-        case .lineIn:
-            
-            print("secondTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[1].filePlayer.stop()
-            
-            PlugInCreater.shared.plugInOntruck[1].filePlayer.preroll()
-            
-            print("secondTrackPlaySelectFile")
-        case .noInput:
-            
-            print("secondTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.stopPlayingDrumMachine()
-            
-            print("Secondtrack stop drummachine")
+            switch element.trackInputStatus {
+                
+            case .lineIn:
+                
+                break
+            case .audioFile :
+                
+                PlugInManager.shared.plugInOntruck[inedx].filePlayer.stop()
+                
+                PlugInManager.shared.plugInOntruck[inedx].filePlayer.preroll()
+            case .noInput:
+                
+                break
+            case .drumMachine:
+                
+                DrumMachineManger.manger.stopPlayingDrumMachine()
+            }
         }
     }
     
@@ -161,8 +140,8 @@ extension ViewController: MixerDelegate {
                              label: .UsersEvent,
                              value: .one)
         
-        if MixerManger.manger.firstTrackStatus == .noInput &&
-            MixerManger.manger.secondTrackStatus == .noInput {
+        if PlugInManager.shared.plugInOntruck[0].trackInputStatus == .noInput &&
+            PlugInManager.shared.plugInOntruck[1].trackInputStatus == .noInput {
             
             MixerManger.manger.title(with: .HLDDStudio)
             
@@ -171,9 +150,9 @@ extension ViewController: MixerDelegate {
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         
-        PlugInCreater.shared.plugInOntruck[0].filePlayer.prepare()
+        PlugInManager.shared.plugInOntruck[0].filePlayer.prepare()
         
-        PlugInCreater.shared.plugInOntruck[1].filePlayer.prepare()
+        PlugInManager.shared.plugInOntruck[1].filePlayer.prepare()
         
         MixerManger.manger.metronome.start()
         
@@ -183,57 +162,33 @@ extension ViewController: MixerDelegate {
         
         disabledMixerFunctionalButton()
         
-        switch MixerManger.manger.firstTrackStatus {
+        for (inedx, element) in PlugInManager.shared.plugInOntruck.enumerated() {
             
-        case .lineIn:
-            
-            print("firstTracklineIN")
-        case .audioFile :
-            
-            if PlugInCreater.shared.plugInOntruck[0].filePlayer.isPaused {
+            switch element.trackInputStatus {
                 
-                PlugInCreater.shared.plugInOntruck[0].filePlayer.resume()
-            } else {
-                let time = MixerManger.manger.metronomeStartTime + oneBarTime
+            case .lineIn:
                 
-                PlugInCreater.shared.plugInOntruck[0].filePlayer.play(at: time)
+                print("firstTracklineIN")
+            case .audioFile :
+                
+                if PlugInManager.shared.plugInOntruck[inedx].filePlayer.isPaused {
+                    
+                    PlugInManager.shared.plugInOntruck[inedx].filePlayer.resume()
+                } else {
+                    
+                    let time = MixerManger.manger.metronomeStartTime + oneBarTime
+                    
+                    PlugInManager.shared.plugInOntruck[inedx].filePlayer.play(at: time)
+                }
+            case .noInput:
+                
+                print("firstTrackNoInput")
+            case .drumMachine:
+                
+                DrumMachineManger.manger.mixerPlayDrumMachine()
+                
+                print("firstTrack pause drumMachine")
             }
-        case .noInput:
-            
-            print("firstTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.mixerPlayDrumMachine()
-            
-            print("firstTrack pause drumMachine")
-        }
-        
-        switch MixerManger.manger.secondTrackStatus {
-            
-        case .lineIn:
-            
-            print("secondTracklineIN")
-        case .audioFile :
-            
-            if PlugInCreater.shared.plugInOntruck[1].filePlayer.isPaused {
-                
-                PlugInCreater.shared.plugInOntruck[1].filePlayer.resume()
-            } else {
-                
-                let time = MixerManger.manger.metronomeStartTime + oneBarTime
-                
-                PlugInCreater.shared.plugInOntruck[1].filePlayer.play(at: time)
-            }
-            
-            print("secondTrackPlaySelectFile")
-        case .noInput:
-            
-            print("secondTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.mixerPlayDrumMachine()
-            
-            print("secondTrack pause drumMachine")
         }
         
         mixerView.recordButton.isEnabled = false
@@ -245,44 +200,27 @@ extension ViewController: MixerDelegate {
         
         enabledMixerFunctionalButton()
         
-        switch MixerManger.manger.firstTrackStatus {
+        for (inedx, element) in PlugInManager.shared.plugInOntruck.enumerated() {
             
-        case .lineIn:
-            
-            print("firstTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[0].filePlayer.pause()
-            
-            print("firstTrackPlaySelectFile")
-        case .noInput:
-            
-            print("firstTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.stopPlayingDrumMachine()
-            
-            print("firstTrack pause drumMachine")
-        }
-        
-        switch MixerManger.manger.secondTrackStatus {
-            
-        case .lineIn:
-            
-            print("secondTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[1].filePlayer.pause()
-            
-            print("secondTrackPlaySelectFile")
-        case .noInput:
-            
-            print("secondTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.stopPlayingDrumMachine()
-            
-            print("second pause drumMachine")
+            switch element.trackInputStatus {
+                
+            case .lineIn:
+                
+                print("firstTracklineIN")
+            case .audioFile :
+                
+                PlugInManager.shared.plugInOntruck[inedx].filePlayer.pause()
+                
+                print("firstTrackPlaySelectFile")
+            case .noInput:
+                
+                print("firstTrackNoInput")
+            case .drumMachine:
+                
+                DrumMachineManger.manger.stopPlayingDrumMachine()
+                
+                print("firstTrack pause drumMachine")
+            }
         }
     }
     
@@ -293,45 +231,28 @@ extension ViewController: MixerDelegate {
         MixerManger.manger.metronome.start()
         
         enabledMixerFunctionalButton()
-        //for each player play]
-        switch MixerManger.manger.firstTrackStatus {
-            
-        case .lineIn:
-            
-            print("firstTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[0].filePlayer.pause()
-            
-            print("firstTrackPlaySelectFile")
-        case .noInput:
-            
-            print("firstTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.mixerPlayDrumMachine()
-            
-            print("firstTrack resume drumMachine")
-        }
         
-        switch MixerManger.manger.secondTrackStatus {
+        for (inedx, element) in PlugInManager.shared.plugInOntruck.enumerated() {
             
-        case .lineIn:
-            
-            print("secondTracklineIN")
-        case .audioFile :
-            
-            PlugInCreater.shared.plugInOntruck[1].filePlayer.pause()
-            
-            print("secondTrackPlaySelectFile")
-        case .noInput:
-            
-            print("secondTrackNoInput")
-        case .drumMachine:
-            
-            DrumMachineManger.manger.mixerPlayDrumMachine()
-            
-            print("second resume drumMachine")
+            switch element.trackInputStatus {
+                
+            case .lineIn:
+                
+                print("firstTracklineIN")
+            case .audioFile :
+                
+                PlugInManager.shared.plugInOntruck[inedx].filePlayer.pause()
+                
+                print("firstTrackPlaySelectFile")
+            case .noInput:
+                
+                print("firstTrackNoInput")
+            case .drumMachine:
+                
+                DrumMachineManger.manger.mixerPlayDrumMachine()
+                
+                print("firstTrack resume drumMachine")
+            }
         }
     }
     
@@ -347,11 +268,11 @@ extension ViewController: MixerDelegate {
         
         MixerManger.manger.mixerStatus = .prepareToRecordAndPlay
         
-        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated(){
+        for (index, _) in PlugInManager.shared.plugInOntruck.enumerated(){
             
-            PlugInCreater.shared.plugInOntruck[index].filePlayer.prepare()
+            PlugInManager.shared.plugInOntruck[index].filePlayer.prepare()
             
-            PlugInCreater.shared.plugInOntruck[index].filePlayer.preroll()
+            PlugInManager.shared.plugInOntruck[index].filePlayer.preroll()
         }
         
         print(MixerManger.manger.metronome.tempo)
@@ -436,25 +357,27 @@ extension ViewController: MixerDelegate {
                 }
             }
             //        play audio
-            if MixerManger.manger.firstTrackStatus == .audioFile {
-                
-                PlugInCreater.shared.plugInOntruck[0].filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
-            }
-            if MixerManger.manger.secondTrackStatus == .audioFile {
-                
-                PlugInCreater.shared.plugInOntruck[1].filePlayer.play(at: MixerManger.manger.metronomeStartTime + oneBarTime)
-            }
-            // play drumMachine
-            if MixerManger.manger.firstTrackStatus == .drumMachine {
-                
-                DrumMachineManger.manger.mixerPlayDrumMachine()
-            }
-            if MixerManger.manger.secondTrackStatus == .drumMachine {
-                
-                DrumMachineManger.manger.mixerPlayDrumMachine()
+            for (index, element) in PlugInManager.shared.plugInOntruck.enumerated(){
+                switch element.trackInputStatus {
+                case .audioFile:
+                    
+                    let time = MixerManger.manger.metronomeStartTime + oneBarTime
+                    
+                    PlugInManager.shared.plugInOntruck[index].filePlayer.play(at: time)
+                case .drumMachine:
+                    
+                    DrumMachineManger.manger.mixerPlayDrumMachine()
+                case .noInput:
+                    
+                    break
+                case .lineIn:
+                    
+                    break
+                }
             }
         }
         MixerManger.manger.title(with: .recording)
+        
         MixerManger.manger.subTitleContent = "Device Is Recording From Bar \(start) to \(stop). Duration: \(String(format: "%.2f", durationTime)) seconds."
         
         mixerView.playAndResumeButton.isEnabled = false

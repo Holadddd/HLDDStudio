@@ -16,7 +16,7 @@ struct HLDDMixerTrack {
     var node: AKNode = AKPlayer()
     var filePlayer = AKPlayer()
     var equlizerAndPanner: FaderEqualizerAndPanner = FaderEqualizerAndPanner(node: AKPlayer())
-
+    var trackInputStatus: TrackInputStatus = TrackInputStatus.noInput
     init(name: String) {
         self.name = name
     }
@@ -102,9 +102,9 @@ enum ChorusValueType {
     case frequency
 }
 
-class PlugInCreater {
+class PlugInManager {
     
-    static let shared = PlugInCreater()
+    static let shared = PlugInManager()
     
     var eventRow = 0
     
@@ -123,15 +123,15 @@ class PlugInCreater {
 
     func resetTrack(track: Int) {
         
-        let oldEqulizerAndPanner = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner
+        let oldEqulizerAndPanner = PlugInManager.shared.plugInOntruck[track - 1].equlizerAndPanner
         let panValue = oldEqulizerAndPanner.busPanner.pan
         let lowGain = oldEqulizerAndPanner.busLowEQ.gain
         let midGain = oldEqulizerAndPanner.busMidEQ.gain
         let highGain = oldEqulizerAndPanner.busHighEQ.gain
         let volume = oldEqulizerAndPanner.busBooster.gain
         try? AudioKit.stop()
-        PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner = FaderEqualizerAndPanner(node: PlugInCreater.shared.plugInOntruck[track - 1].node, pan: panValue, lowGain: lowGain, midGain: midGain, highGain: highGain, volume: volume)
-        PlugInCreater.shared.plugInOntruck[track - 1].node = PlugInCreater.shared.plugInOntruck[track - 1].equlizerAndPanner.busBooster
+        PlugInManager.shared.plugInOntruck[track - 1].equlizerAndPanner = FaderEqualizerAndPanner(node: PlugInManager.shared.plugInOntruck[track - 1].node, pan: panValue, lowGain: lowGain, midGain: midGain, highGain: highGain, volume: volume)
+        PlugInManager.shared.plugInOntruck[track - 1].node = PlugInManager.shared.plugInOntruck[track - 1].equlizerAndPanner.busBooster
         try? AudioKit.start()
     }
 
@@ -155,15 +155,15 @@ class PlugInCreater {
         try? AudioKit.stop()
         let numberOfPlugIn = plugInOntruck[Track - 1].plugInArr.count
         
-        PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.plugInOntruck[Track - 1].inputNode
+        PlugInManager.shared.plugInOntruck[Track - 1].node = PlugInManager.shared.plugInOntruck[Track - 1].inputNode
 
         if numberOfPlugIn != 0 {
             
             for seq in 0 ..< numberOfPlugIn {
                 
-                PlugInCreater.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: PlugInCreater.shared.plugInOntruck[Track - 1].node)
+                PlugInManager.shared.plugInOntruck[Track - 1].plugInArr[seq].plugIn.replaceInputNodeInPlugIn(node: PlugInManager.shared.plugInOntruck[Track - 1].node)
                 
-                            PlugInCreater.shared.plugInOntruck[Track - 1].node = PlugInCreater.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
+                            PlugInManager.shared.plugInOntruck[Track - 1].node = PlugInManager.shared.providePlugInNode(with: plugInOntruck[Track - 1].plugInArr[seq])
             }
             
         }
@@ -174,55 +174,60 @@ class PlugInCreater {
     func deletePlugInOnTrack(_ track: Int, seq: Int) {
         try? AudioKit.stop()
         let column = track - 1
-        PlugInCreater.shared.plugInOntruck[column].plugInArr.remove(at: seq)
+        PlugInManager.shared.plugInOntruck[column].plugInArr.remove(at: seq)
         
-        PlugInCreater.shared.resetTrackNode(Track: track)
-        PlugInCreater.shared.resetTrack(track: track)
+        PlugInManager.shared.resetTrackNode(Track: track)
+        
+        PlugInManager.shared.resetTrack(track: track)
     }
     
     func plugInBypass(_ track: Int, seq: Int) {
         try? AudioKit.stop()
-        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].plugIn {
+        switch PlugInManager.shared.plugInOntruck[track].plugInArr[seq].plugIn {
         case .reverb(let reverb):
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = false
                 reverb.start()
             case false:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = true
                 reverb.bypass()
             }
             
         case .guitarProcessor(let guitarProcessor):
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = false
                 guitarProcessor.start()
                 
             case false:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = true
                 guitarProcessor.bypass()
             }
         case .delay(let delay):
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = false
                 delay.start()
             case false:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = true
                 delay.bypass()
             }
         case .chorus(let chorus):
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass {
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = false
+                
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = false
                 chorus.start()
             case false:
-                PlugInCreater.shared.plugInOntruck[track].plugInArr[seq].bypass = true
+                
+                PlugInManager.shared.plugInOntruck[track].plugInArr[seq].bypass = true
                 chorus.bypass()
             }
         }

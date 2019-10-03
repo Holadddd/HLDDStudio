@@ -46,15 +46,15 @@ class ViewController: UIViewController {
         
         AudioKit.output = MixerManger.manger.mixerForMaster
         //MakeTwoTrackNode
-        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
+        for (index, _) in PlugInManager.shared.plugInOntruck.enumerated() {
             
-            PlugInCreater.shared.plugInOntruck[index].inputNode = AKPlayer()
+            PlugInManager.shared.plugInOntruck[index].inputNode = AKPlayer()
             
-            MixerManger.manger.mixer.connect(input: PlugInCreater.shared.plugInOntruck[index].inputNode,
+            MixerManger.manger.mixer.connect(input: PlugInManager.shared.plugInOntruck[index].inputNode,
                                              bus: index + 1)
         }
         
-        for (index, _) in PlugInCreater.shared.plugInOntruck.enumerated() {
+        for (index, _) in PlugInManager.shared.plugInOntruck.enumerated() {
             setTrackNode(track: index + 1)
         }
         
@@ -112,11 +112,11 @@ class ViewController: UIViewController {
         
         MixerManger.manger.mixer.disconnectInput(bus: track)
         
-        PlugInCreater.shared.resetTrackNode(Track: track)
+        PlugInManager.shared.resetTrackNode(Track: track)
         
-        PlugInCreater.shared.resetTrack(track: track)
+        PlugInManager.shared.resetTrack(track: track)
         
-        MixerManger.manger.mixer.connect(input: PlugInCreater.shared.plugInOntruck[track - 1].node,
+        MixerManger.manger.mixer.connect(input: PlugInManager.shared.plugInOntruck[track - 1].node,
                                          bus: track)
         
         try? AudioKit.start()
@@ -211,8 +211,8 @@ extension ViewController {
             MixerManger.manger.mixer.disconnectInput(
                 bus: column + 1)
             
-            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(
-                HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInCreater.shared.plugInOntruck[column].node)),
+            PlugInManager.shared.plugInOntruck[column].plugInArr.append(
+                HLDDStudioPlugIn(plugIn: .reverb(AKReverb( PlugInManager.shared.plugInOntruck[column].node)),
                                  bypass: false,
                                  sequence: row))
             
@@ -221,11 +221,11 @@ extension ViewController {
             MixerManger.manger.mixer.disconnectInput(
                 bus: column + 1)
             
-            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(
+            PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
                     plugIn: .guitarProcessor(
                         AKRhinoGuitarProcessor(
-                            PlugInCreater.shared.plugInOntruck[column].node)),
+                            PlugInManager.shared.plugInOntruck[column].node)),
                     bypass: false,
                     sequence: row)
             )
@@ -233,25 +233,25 @@ extension ViewController {
             
             MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             
-            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(
+            PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
                     plugIn: .delay(
                         AKDelay(
-                            PlugInCreater.shared.plugInOntruck[column].node)),
+                            PlugInManager.shared.plugInOntruck[column].node)),
                     bypass: false,
                     sequence: row))
         case .chorus:
             
             MixerManger.manger.mixer.disconnectInput(bus: column + 1)
             
-            PlugInCreater.shared.plugInOntruck[column].plugInArr.append(
+            PlugInManager.shared.plugInOntruck[column].plugInArr.append(
                 HLDDStudioPlugIn(
-                    plugIn: .chorus(AKChorus(PlugInCreater.shared.plugInOntruck[column].node)),
+                    plugIn: .chorus(AKChorus(PlugInManager.shared.plugInOntruck[column].node)),
                     bypass: false,
                     sequence: row))
         }
         
-        PlugInCreater.shared.resetTrackNode(Track: column + 1)
+        PlugInManager.shared.resetTrackNode(Track: column + 1)
         
         setTrackNode(track: column + 1)
     }

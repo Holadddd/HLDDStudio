@@ -111,7 +111,7 @@ class IOGridViewCell: GridViewCell {
     
     @objc func addPlugInButtonAction(_ sender: UIButton) {
         
-        let row = PlugInCreater.shared.plugInOntruck[self.indexPath.column].plugInArr.count
+        let row = PlugInManager.shared.plugInOntruck[self.indexPath.column].plugInArr.count
         let column = self.indexPath.column
         //再加上多種 plugin
         switch plugInSelectLabel.text {
@@ -192,13 +192,13 @@ extension IOGridViewCell: UITextFieldDelegate {
         
         if inputSource == "\(InputSourceCase.drumMachine.rawValue)(\(DrumMachineManger.manger.bpm))" {
             if self.indexPath.column == 0 {
-                if MixerManger.manger.secondTrackStatus == .drumMachine {
+                if PlugInManager.shared.plugInOntruck[0].trackInputStatus == .drumMachine {
                     inputSourceButton.isSelected = false
                     delegate?.noInputSource(cell: self)
                     return
                 }
             } else {
-                if MixerManger.manger.firstTrackStatus == .drumMachine {
+                if PlugInManager.shared.plugInOntruck[1].trackInputStatus == .drumMachine {
                     inputSourceButton.isSelected = false
                     delegate?.noInputSource(cell: self)
                     return

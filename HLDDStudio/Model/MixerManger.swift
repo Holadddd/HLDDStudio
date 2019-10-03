@@ -95,9 +95,9 @@ class MixerManger {
     
     var drumMachineStartTime: AVAudioTime = AVAudioTime.now()
     
-    var firstTrackStatus = TrackInputStatus.noInput
-    
-    var secondTrackStatus = TrackInputStatus.noInput
+//    var firstTrackStatus = TrackInputStatus.noInput
+//    
+//    var secondTrackStatus = TrackInputStatus.noInput
     
     var mic: AKMicrophone!
 

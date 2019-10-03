@@ -49,13 +49,13 @@ extension PlugInViewController: UITableViewDelegate {
 extension PlugInViewController: UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let track = PlugInCreater.shared.showingTrackOnPlugInVC
-        return PlugInCreater.shared.plugInOntruck[track].plugInArr.count
+        let track = PlugInManager.shared.showingTrackOnPlugInVC
+        return PlugInManager.shared.plugInOntruck[track].plugInArr.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let track = PlugInCreater.shared.showingTrackOnPlugInVC
-        switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
+        let track = PlugInManager.shared.showingTrackOnPlugInVC
+        switch PlugInManager.shared.plugInOntruck[track].plugInArr[indexPath.row].plugIn {
         case .reverb(let reverb):
             guard let cell = plugInView.tableView.dequeueReusableCell(withIdentifier: "PlugInReverbTableViewCell") as? PlugInReverbTableViewCell else { fatalError() }
             cell.plugInBarView.plugInTitleLabel.text = "Reverb"
@@ -64,7 +64,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.dryWetMixLabel.text = String(format: "%.2f", reverb.dryWetMix)
             cell.dryWetMixKnob.value = Float(reverb.dryWetMix)
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
                 cell.dryWetMixKnob.isEnabled = false
@@ -93,7 +93,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.outputGainLabel.text = String(format: "%.2f", guitarProcessor.postGain)
             cell.outputKnob.value = Float(guitarProcessor.postGain)
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
                 
@@ -117,7 +117,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.mixLabel.text = String(format: "%.2f", delay.dryWetMix)
             cell.mixKnob.value = Float(delay.dryWetMix)
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
                 
@@ -144,7 +144,7 @@ extension PlugInViewController: UITableViewDataSource{
             cell.frequencyLabel.text = String(format: "%.2f", chorus.frequency)
             cell.frequencyKnob.value = Float(chorus.frequency)
             
-            switch PlugInCreater.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
+            switch PlugInManager.shared.plugInOntruck[track].plugInArr[indexPath.row].bypass{
             case true:
                 cell.plugInBarView.bypassButton.isSelected = true
                 

@@ -16,7 +16,7 @@ import Crashlytics
 extension ViewController: GridViewDataSource {
     
     func numberOfColumns(in gridView: GridView) -> Int {
-        return PlugInCreater.shared.plugInOntruck.count
+        return PlugInManager.shared.plugInOntruck.count
     }
     
     func gridView(_ gridView: GridView, numberOfRowsInColumn column: Int) -> Int {
@@ -28,7 +28,7 @@ extension ViewController: GridViewDataSource {
         switch indexPath.row {
         case 0:
             guard let cell = mixerView.trackGridView.dequeueReusableCell(withReuseIdentifier: "IOGridViewCell", for: indexPath) as? IOGridViewCell else { fatalError() }
-            cell.busLabel.text = PlugInCreater.shared.plugInOntruck[indexPath.column].name
+            cell.busLabel.text = PlugInManager.shared.plugInOntruck[indexPath.column].name
             cell.delegate = self
             cell.datasource = self
             return cell

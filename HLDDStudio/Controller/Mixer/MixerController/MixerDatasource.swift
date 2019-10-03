@@ -37,9 +37,12 @@ extension ViewController: MixerDatasource {
     
     func trackInputStatusIsReadyForRecord() -> Bool {
         
-        if MixerManger.manger.firstTrackStatus != .noInput || MixerManger.manger.secondTrackStatus != .noInput {
+        if PlugInManager.shared.plugInOntruck[0].trackInputStatus != .noInput ||
+            PlugInManager.shared.plugInOntruck[1].trackInputStatus != .noInput {
+            
             return true
         } else {
+            
             MixerManger.manger.title(with: .recordWarning)
             MixerManger.manger.subTitle(with: .checkInputSource)
             return false

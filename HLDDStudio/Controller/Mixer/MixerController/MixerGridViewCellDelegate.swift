@@ -20,41 +20,41 @@ extension ViewController: PlugInGridViewCellDelegate {
         
         try? AudioKit.stop()
         
-        switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].plugIn {
+        switch PlugInManager.shared.plugInOntruck[column].plugInArr[row].plugIn {
         case .reverb(let reverb):
-            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            switch PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = false
                 reverb.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 reverb.start()
             }
         case .guitarProcessor(let guitarProcessor):
-            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            switch PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = false
                 guitarProcessor.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 guitarProcessor.start()
             }
         case .delay(let delay):
-            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            switch PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = false
                 delay.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 delay.start()
             }
         case .chorus(let chorus):
-            switch PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass {
+            switch PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass {
             case true:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = false
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = false
                 chorus.bypass()
             case false:
-                PlugInCreater.shared.plugInOntruck[column].plugInArr[row].bypass = true
+                PlugInManager.shared.plugInOntruck[column].plugInArr[row].bypass = true
                 chorus.start()
             }
         }
@@ -64,7 +64,7 @@ extension ViewController: PlugInGridViewCellDelegate {
     
     func perforPlugInVC(forTrack column: Int) {
         
-        PlugInCreater.shared.showingTrackOnPlugInVC = column
+        PlugInManager.shared.showingTrackOnPlugInVC = column
         DispatchQueue.main.async {[weak self] in
             guard let self = self else{return}
             self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
@@ -81,45 +81,46 @@ extension ViewController: PlugInGridViewCellDelegate {
 extension ViewController: FaderGridViewCellDelegate {
     func pannerValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busPanner.pan = value
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busPanner.pan = value
     }
     
     func lowEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busLowEQ.gain = value
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busLowEQ.gain = value
     }
     
     func midEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busMidEQ.gain = value
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busMidEQ.gain = value
     }
     
     func highEQValueChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busHighEQ.gain = value
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busHighEQ.gain = value
     }
     
     func volumeChange(value: Float, cell: FaderGridViewCell) {
         let value = Double(value)
-        PlugInCreater.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busBooster.gain = value
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].equlizerAndPanner.busBooster.gain = value
     }
 }
 
 extension ViewController: IOGridViewCellDelegate {
     
     func didSelectDrumMachine(cell: IOGridViewCell) {
-        switch cell.indexPath.column {
-        case 0:
-            print("TrackOne select drummachine")
-            MixerManger.manger.firstTrackStatus = .drumMachine
-            
-        case 1:
-            print("TrackTwo select drummachine")
-            MixerManger.manger.secondTrackStatus = .drumMachine
-            
-        default:
-            print("error")
-        }
+        PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .drumMachine
+//        switch cell.indexPath.column {
+//        case 0:
+//            print("TrackOne select drummachine")
+//            PlugInManager.shared.plugInOntruck[0].trackInputStatus = .drumMachine
+//
+//        case 1:
+//            print("TrackTwo select drummachine")
+//            MixerManger.manger.secondTrackStatus = .drumMachine
+//
+//        default:
+//            print("error")
+//        }
     }
     
     
@@ -139,13 +140,13 @@ extension ViewController: IOGridViewCellDelegate {
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Trackone Input Source."
                 
-                PlugInCreater.shared.plugInOntruck[0].inputNode = MixerManger.manger.mic
+                PlugInManager.shared.plugInOntruck[0].inputNode = MixerManger.manger.mic
                 
                 setTrackNode(track: 1)
                 
                 try? AudioKit.start()
                 //switch the track status
-                MixerManger.manger.firstTrackStatus = .lineIn
+                PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .lineIn
                 FirebaseManager.createEventWith(category: .ViewController, action: .SwitchInputDevice, label: .UsersEvent, value: .one)
                 return
                 
@@ -160,18 +161,18 @@ extension ViewController: IOGridViewCellDelegate {
                         switch result {
                         case .success(let file):
                             
-                            PlugInCreater.shared.plugInOntruck[0].filePlayer = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[0].inputNode = PlugInCreater.shared.plugInOntruck[0].filePlayer
+                            PlugInManager.shared.plugInOntruck[0].filePlayer = AKPlayer(audioFile: file)
+                            PlugInManager.shared.plugInOntruck[0].inputNode = PlugInManager.shared.plugInOntruck[0].filePlayer
                             
                             //need adjust for audioFile into plugIn
-                            PlugInCreater.shared.resetTrackNode(Track: 1)
+                            PlugInManager.shared.resetTrackNode(Track: 1)
                             setTrackNode(track: 1)
                             
                             print("FirstTrackFileSelectIn:\(fileName)")
                             MixerManger.manger.title(with: .HLDDStudio)
                             MixerManger.manger.subTitleContent = "Selected \(fileName) As Trackone Input File."
                             //switch the track status
-                            MixerManger.manger.firstTrackStatus = .audioFile
+                            PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .audioFile
                             
                         case .failure(let error):
                             print(error)
@@ -190,13 +191,13 @@ extension ViewController: IOGridViewCellDelegate {
                 try? AudioKit.stop()
                 MixerManger.manger.title(with: .HLDDStudio)
                 MixerManger.manger.subTitleContent = "Selected \(currentDevice) As Tracktwo Input Source."
-                PlugInCreater.shared.plugInOntruck[1].inputNode = MixerManger.manger.mic
+                PlugInManager.shared.plugInOntruck[1].inputNode = MixerManger.manger.mic
                 //need adjust for audioFile into plugIn
                 //PlugInCreater.shared.resetTrackNode(Track: 2)
                 setTrackNode(track: 2)
                 try? AudioKit.start()
                 //switch the track status
-                MixerManger.manger.secondTrackStatus = .lineIn
+                PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .lineIn
                 
                 return
                 
@@ -210,16 +211,16 @@ extension ViewController: IOGridViewCellDelegate {
                         
                         switch result {
                         case .success(let file):
-                            PlugInCreater.shared.plugInOntruck[1].filePlayer = AKPlayer(audioFile: file)
-                            PlugInCreater.shared.plugInOntruck[1].inputNode = PlugInCreater.shared.plugInOntruck[1].filePlayer
+                            PlugInManager.shared.plugInOntruck[1].filePlayer = AKPlayer(audioFile: file)
+                            PlugInManager.shared.plugInOntruck[1].inputNode = PlugInManager.shared.plugInOntruck[1].filePlayer
                             
                             //need adjust for audioFile into plugIn
-                            PlugInCreater.shared.resetTrackNode(Track: 2)
+                            PlugInManager.shared.resetTrackNode(Track: 2)
                             setTrackNode(track: 2)
                             MixerManger.manger.title(with: .HLDDStudio)
                             MixerManger.manger.subTitleContent = "Selected \(fileName) As Tracktwo Input File."
                             //switch the track status
-                            MixerManger.manger.secondTrackStatus = .audioFile
+                            PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .audioFile
                             
                         case .failure(let error):
                             print(error)
@@ -258,12 +259,12 @@ extension ViewController: IOGridViewCellDelegate {
         let indexPath = cell.indexPath
         switch indexPath.column {
         case 0:
-            MixerManger.manger.firstTrackStatus = .noInput
+            PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .noInput
             MixerManger.manger.mixer.disconnectInput(bus: 1)
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Trackone."
         case 1:
-            MixerManger.manger.secondTrackStatus = .noInput
+            PlugInManager.shared.plugInOntruck[cell.indexPath.column].trackInputStatus = .noInput
             MixerManger.manger.mixer.disconnectInput(bus: 2)
             MixerManger.manger.title(with: .HLDDStudio)
             MixerManger.manger.subTitleContent = "Disconnect Tracktwo."

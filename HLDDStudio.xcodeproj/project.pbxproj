@@ -193,6 +193,7 @@
 		0106321023335BFD00214672 /* Mixer */ = {
 			isa = PBXGroup;
 			children = (
+				0171720E232380D900049F3B /* ViewController.swift */,
 				DB8D0E2D2345D7DB00FA9595 /* MixerController */,
 				DB8D0E2E2345D7F600FA9595 /* PlugInController */,
 			);
@@ -372,7 +373,6 @@
 		DB8D0E2D2345D7DB00FA9595 /* MixerController */ = {
 			isa = PBXGroup;
 			children = (
-				0171720E232380D900049F3B /* ViewController.swift */,
 				DB8D0E2F2345D84000FA9595 /* MixerDelegate.swift */,
 				DB8D0E312345D8AE00FA9595 /* MixerDatasource.swift */,
 				DB8D0E332345DE6500FA9595 /* MixerGridViewDelegate.swift */,
@@ -789,7 +789,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HLDDStudio/HLDDStudio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
 				INFOPLIST_FILE = HLDDStudio/Info.plist;
@@ -798,7 +798,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -814,7 +814,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = HLDDStudio/HLDDStudio.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 2;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = R8WVK7NKZV;
 				INFOPLIST_FILE = HLDDStudio/Info.plist;
@@ -823,7 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

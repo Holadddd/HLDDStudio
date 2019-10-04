@@ -15,13 +15,13 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage＿painting" translatesAutoresizingMaskIntoConstraints="NO" id="8sn-9t-MSh">
-                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
+                    <rect key="frame" x="-5" y="-5" width="95" height="219"/>
                 </imageView>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage_wave" translatesAutoresizingMaskIntoConstraints="NO" id="7TN-u9-5a8">
-                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
+                    <rect key="frame" x="-5" y="-5" width="95" height="219"/>
                 </imageView>
                 <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audioWave4" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
-                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
+                    <rect key="frame" x="-5" y="-5" width="95" height="219"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-8S-IUz">

@@ -14,8 +14,14 @@
             <rect key="frame" x="0.0" y="0.0" width="85" height="209"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage_sunset" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
-                    <rect key="frame" x="-5" y="-5" width="95" height="219"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.45000000000000001" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage＿painting" translatesAutoresizingMaskIntoConstraints="NO" id="8sn-9t-MSh">
+                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BGImage_wave" translatesAutoresizingMaskIntoConstraints="NO" id="7TN-u9-5a8">
+                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
+                </imageView>
+                <imageView opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="audioWave4" translatesAutoresizingMaskIntoConstraints="NO" id="X6n-59-RJL">
+                    <rect key="frame" x="-5" y="-5" width="95.000000000000114" height="219"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fSg-8S-IUz">
@@ -63,7 +69,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ngq-E3-nJE">
                     <rect key="frame" x="0.0" y="0.0" width="85" height="83.5"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jki-Rd-40A">
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.10000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="jki-Rd-40A">
                             <rect key="frame" x="0.0" y="0.0" width="85" height="83.5"/>
                         </imageView>
                     </subviews>
@@ -89,15 +95,23 @@
                 <constraint firstAttribute="leading" secondItem="X6n-59-RJL" secondAttribute="leading" constant="5" id="8ph-dJ-b17"/>
                 <constraint firstItem="DE0-O2-7yH" firstAttribute="leading" secondItem="mjC-mJ-clT" secondAttribute="leading" id="Bxr-K5-HTw"/>
                 <constraint firstItem="fSg-8S-IUz" firstAttribute="leading" secondItem="RDh-sY-P7Q" secondAttribute="leading" id="DzY-qA-6F4"/>
+                <constraint firstItem="7TN-u9-5a8" firstAttribute="centerX" secondItem="X6n-59-RJL" secondAttribute="centerX" id="FjJ-UV-ual"/>
                 <constraint firstItem="DE0-O2-7yH" firstAttribute="top" secondItem="Ngq-E3-nJE" secondAttribute="bottom" id="Gvm-xv-PxV"/>
+                <constraint firstItem="8sn-9t-MSh" firstAttribute="centerX" secondItem="X6n-59-RJL" secondAttribute="centerX" id="KOh-3m-BJa"/>
                 <constraint firstItem="fSg-8S-IUz" firstAttribute="bottom" secondItem="RDh-sY-P7Q" secondAttribute="bottom" id="Kje-6r-mzh"/>
                 <constraint firstItem="DE0-O2-7yH" firstAttribute="trailing" secondItem="mjC-mJ-clT" secondAttribute="trailing" id="PM8-Ia-hvd"/>
                 <constraint firstItem="Ngq-E3-nJE" firstAttribute="top" secondItem="mjC-mJ-clT" secondAttribute="top" id="RuH-0T-bLz"/>
+                <constraint firstItem="7TN-u9-5a8" firstAttribute="width" secondItem="X6n-59-RJL" secondAttribute="width" id="Tan-kW-Cr2"/>
+                <constraint firstItem="7TN-u9-5a8" firstAttribute="centerY" secondItem="X6n-59-RJL" secondAttribute="centerY" id="U8P-JH-OKP"/>
+                <constraint firstItem="8sn-9t-MSh" firstAttribute="centerY" secondItem="X6n-59-RJL" secondAttribute="centerY" id="alC-xo-Ahx"/>
+                <constraint firstItem="7TN-u9-5a8" firstAttribute="height" secondItem="X6n-59-RJL" secondAttribute="height" id="czc-ec-7RU"/>
                 <constraint firstItem="fSg-8S-IUz" firstAttribute="top" secondItem="DE0-O2-7yH" secondAttribute="bottom" id="duB-ks-J7G"/>
                 <constraint firstItem="fSg-8S-IUz" firstAttribute="trailing" secondItem="RDh-sY-P7Q" secondAttribute="trailing" id="fyS-52-u4K"/>
                 <constraint firstItem="Ngq-E3-nJE" firstAttribute="leading" secondItem="mjC-mJ-clT" secondAttribute="leading" id="mEF-uW-IX6"/>
                 <constraint firstAttribute="top" secondItem="X6n-59-RJL" secondAttribute="top" constant="5" id="mor-6x-7Xs"/>
+                <constraint firstItem="8sn-9t-MSh" firstAttribute="width" secondItem="X6n-59-RJL" secondAttribute="width" id="n5d-sM-Kbf"/>
                 <constraint firstItem="fSg-8S-IUz" firstAttribute="height" secondItem="mjC-mJ-clT" secondAttribute="height" multiplier="0.4" id="xl8-o7-jbB"/>
+                <constraint firstItem="8sn-9t-MSh" firstAttribute="height" secondItem="X6n-59-RJL" secondAttribute="height" id="zAC-1i-fBc"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="RDh-sY-P7Q"/>
@@ -110,8 +124,10 @@
         </view>
     </objects>
     <resources>
-        <image name="BGImage_sunset" width="564" height="1001"/>
+        <image name="BGImage_wave" width="412" height="589"/>
+        <image name="BGImage＿painting" width="474" height="842"/>
         <image name="Pad_Off" width="500" height="500"/>
         <image name="Pad_On_Blue" width="500" height="500"/>
+        <image name="audioWave4" width="389" height="690"/>
     </resources>
 </document>

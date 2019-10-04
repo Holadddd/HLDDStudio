@@ -12,6 +12,6 @@ import UIKit
 class Offset {
     
     static let manager = Offset()
-    var offsetY: CGFloat = 0.0
     
+    var offsetY: CGFloat = 0.0
 }

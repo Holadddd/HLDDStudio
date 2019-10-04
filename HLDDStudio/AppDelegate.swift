@@ -158,12 +158,17 @@ extension AppDelegate {
             
             var samplePathFileArr: [AKAudioFile] = []
             do {
-                let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+                let kicksURLs = try fileManager.contentsOfDirectory(at: url,
+                                                                    includingPropertiesForKeys: properties,
+                                                                    options:FileManager
+                                                                        .DirectoryEnumerationOptions
+                                                                        .skipsHiddenFiles)
 
                 for (_, element) in kicksURLs.enumerated(){
                     let sampleFileURL = element
                     
                     let result = Result{try AKAudioFile(forReading: sampleFileURL)}
+                    
                     switch result {
                     case .success(let file):
                         samplePathFileArr.append(file)
@@ -201,19 +206,20 @@ extension AppDelegate {
                                               true, false, false, false,
                                               true, false, false, false,
                                               true, false, false, false)
-            DrumMachineManger.manger.creatPattern(withType: .kicks, drumBeatPattern: kickPattern, fileIndex: 9)
+            DrumMachineManger.manger.creatPattern(withType: .kicks, drumBeatPattern: kickPattern, fileIndex: DrumMachineManger.manger.defaultKickFileIndex
+            )
             
             let snarePattern = DrumBeatPattern(false, false, true, false,
                                                false, false, true, false,
                                                false, false, true, false,
                                                false, false, true, false)
-            DrumMachineManger.manger.creatPattern(withType: .snares, drumBeatPattern: snarePattern, fileIndex: 56)
+            DrumMachineManger.manger.creatPattern(withType: .snares, drumBeatPattern: snarePattern, fileIndex: DrumMachineManger.manger.defaultSnareFileIndex)
             
             let hihatsPattern = DrumBeatPattern(true, false, true, false,
                                                 true, false, true, false,
                                                 true, false, true, false,
                                                 true, false, true, false)
-            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: hihatsPattern, fileIndex: 9)
+            DrumMachineManger.manger.creatPattern(withType: .hihats, drumBeatPattern: hihatsPattern, fileIndex: DrumMachineManger.manger.defaultHihatsFileIndex)
             
             let openHihatsPattern = DrumBeatPattern(false, true, false, true,
                                                 false, true, false, true,
@@ -224,16 +230,17 @@ extension AppDelegate {
            
             
             let hiTomPattern = DrumBeatPattern()
-            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: hiTomPattern, fileIndex: 19)
+            DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: hiTomPattern, fileIndex: DrumMachineManger.manger.defaultPercussionFileIndex)
             
             let lowTomPattern = DrumBeatPattern()
             DrumMachineManger.manger.creatPattern(withType: .percussion, drumBeatPattern: lowTomPattern, fileIndex: 23)
             
             let classicPattern = DrumBeatPattern()
-            DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: 4)
+            DrumMachineManger.manger.creatPattern(withType: .classic, drumBeatPattern: classicPattern, fileIndex: DrumMachineManger.manger.defaultPercussionFileIndex)
             //only connect in firstTime
             MixerManger.manger.mixer.connect(input: DrumMachineManger.manger.drumMixer, bus: 5)
             userDefault.setValue(false, forKey: "NeedDefaultPattern")
+            StorageManager.sharedManager.saveContext()
         } else {
             for (index, drumPattern) in StorageManager.sharedManager.fetchedOrderList.enumerated() {
                 let pattern = DrumBeatPattern(drumPattern.barOneBeatOne, drumPattern.barOneBeatTwo, drumPattern.barOneBeatThree, drumPattern.barOneBeatFour, drumPattern.barTwoBeatOne, drumPattern.barTwoBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barTwoBeatFour, drumPattern.barThreeBeatOne, drumPattern.barThreeBeatTwo, drumPattern.barTwoBeatThree, drumPattern.barThreeBeatFour, drumPattern.barFourBeatOne, drumPattern.barFourBeatTwo, drumPattern.barFourBeatThree, drumPattern.barFourBeatFour)

@@ -72,6 +72,20 @@
 		DB744F3E233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F3D233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib */; };
 		DB744F44233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F43233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift */; };
 		DB744F46233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */; };
+		DB8D0E302345D84000FA9595 /* MixerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E2F2345D84000FA9595 /* MixerDelegate.swift */; };
+		DB8D0E322345D8AE00FA9595 /* MixerDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E312345D8AE00FA9595 /* MixerDatasource.swift */; };
+		DB8D0E342345DE6500FA9595 /* MixerGridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E332345DE6500FA9595 /* MixerGridViewDelegate.swift */; };
+		DB8D0E362345DECE00FA9595 /* MixerGridViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E352345DECE00FA9595 /* MixerGridViewDatasource.swift */; };
+		DB8D0E382345DF0300FA9595 /* MixerGridViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E372345DF0300FA9595 /* MixerGridViewCellDelegate.swift */; };
+		DB8D0E3A2345DF9D00FA9595 /* MixerGridViewCellDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E392345DF9D00FA9595 /* MixerGridViewCellDatasource.swift */; };
+		DB8D0E3C2345E0C200FA9595 /* PlugInControlDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E3B2345E0C200FA9595 /* PlugInControlDelegate.swift */; };
+		DB8D0E3E2345E0E500FA9595 /* PlugInControlDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E3D2345E0E500FA9595 /* PlugInControlDatasource.swift */; };
+		DB8D0E402345E18A00FA9595 /* DrumMachineDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E3F2345E18A00FA9595 /* DrumMachineDelegate.swift */; };
+		DB8D0E422345E19800FA9595 /* DrumMachineDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E412345E19800FA9595 /* DrumMachineDatasource.swift */; };
+		DB8D0E442345E1D700FA9595 /* DrumMachineGridViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E432345E1D700FA9595 /* DrumMachineGridViewDelegate.swift */; };
+		DB8D0E462345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E452345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift */; };
+		DB8D0E482345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E472345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift */; };
+		DB8D0E4A2345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */; };
 		DBCB3700233B3E2100DFBF83 /* IOGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBCB3702233B3E2100DFBF83 /* IOGridViewCell.xib */; };
 /* End PBXBuildFile section */
 
@@ -146,6 +160,20 @@
 		DB744F3D233CADE600AA8AFC /* DrumEditingHorizontalGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumEditingHorizontalGridViewCell.xib; sourceTree = "<group>"; };
 		DB744F43233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumPatternHorizontalGridViewCell.swift; sourceTree = "<group>"; };
 		DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumPatternHorizontalGridViewCell.xib; sourceTree = "<group>"; };
+		DB8D0E2F2345D84000FA9595 /* MixerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E312345D8AE00FA9595 /* MixerDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E332345DE6500FA9595 /* MixerGridViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerGridViewDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E352345DECE00FA9595 /* MixerGridViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerGridViewDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E372345DF0300FA9595 /* MixerGridViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerGridViewCellDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E392345DF9D00FA9595 /* MixerGridViewCellDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerGridViewCellDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E3B2345E0C200FA9595 /* PlugInControlDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInControlDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E3D2345E0E500FA9595 /* PlugInControlDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInControlDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E3F2345E18A00FA9595 /* DrumMachineDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E412345E19800FA9595 /* DrumMachineDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E432345E1D700FA9595 /* DrumMachineGridViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E452345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewDatasource.swift; sourceTree = "<group>"; };
+		DB8D0E472345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewCellDelegate.swift; sourceTree = "<group>"; };
+		DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumMachineGridViewCellDatasource.swift; sourceTree = "<group>"; };
 		DBCB3701233B3E2100DFBF83 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/IOGridViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -166,7 +194,8 @@
 			isa = PBXGroup;
 			children = (
 				0171720E232380D900049F3B /* ViewController.swift */,
-				0179403523251236000DCFCB /* PlugInViewController.swift */,
+				DB8D0E2D2345D7DB00FA9595 /* MixerController */,
+				DB8D0E2E2345D7F600FA9595 /* PlugInController */,
 			);
 			path = Mixer;
 			sourceTree = "<group>";
@@ -174,7 +203,7 @@
 		0106321123335C1200214672 /* DrumMachine */ = {
 			isa = PBXGroup;
 			children = (
-				0106321223335C4200214672 /* DrumMachineViewController.swift */,
+				DB8D0E4B2345E2BB00FA9595 /* DrumMachineController */,
 			);
 			path = DrumMachine;
 			sourceTree = "<group>";
@@ -339,6 +368,43 @@
 				DB744F45233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib */,
 			);
 			path = DrumMachineViewCell;
+			sourceTree = "<group>";
+		};
+		DB8D0E2D2345D7DB00FA9595 /* MixerController */ = {
+			isa = PBXGroup;
+			children = (
+				DB8D0E2F2345D84000FA9595 /* MixerDelegate.swift */,
+				DB8D0E312345D8AE00FA9595 /* MixerDatasource.swift */,
+				DB8D0E332345DE6500FA9595 /* MixerGridViewDelegate.swift */,
+				DB8D0E352345DECE00FA9595 /* MixerGridViewDatasource.swift */,
+				DB8D0E372345DF0300FA9595 /* MixerGridViewCellDelegate.swift */,
+				DB8D0E392345DF9D00FA9595 /* MixerGridViewCellDatasource.swift */,
+			);
+			path = MixerController;
+			sourceTree = "<group>";
+		};
+		DB8D0E2E2345D7F600FA9595 /* PlugInController */ = {
+			isa = PBXGroup;
+			children = (
+				0179403523251236000DCFCB /* PlugInViewController.swift */,
+				DB8D0E3B2345E0C200FA9595 /* PlugInControlDelegate.swift */,
+				DB8D0E3D2345E0E500FA9595 /* PlugInControlDatasource.swift */,
+			);
+			path = PlugInController;
+			sourceTree = "<group>";
+		};
+		DB8D0E4B2345E2BB00FA9595 /* DrumMachineController */ = {
+			isa = PBXGroup;
+			children = (
+				0106321223335C4200214672 /* DrumMachineViewController.swift */,
+				DB8D0E3F2345E18A00FA9595 /* DrumMachineDelegate.swift */,
+				DB8D0E412345E19800FA9595 /* DrumMachineDatasource.swift */,
+				DB8D0E432345E1D700FA9595 /* DrumMachineGridViewDelegate.swift */,
+				DB8D0E452345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift */,
+				DB8D0E472345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift */,
+				DB8D0E492345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift */,
+			);
+			path = DrumMachineController;
 			sourceTree = "<group>";
 		};
 		E74390EB015D20E17D329B98 /* Pods */ = {
@@ -513,25 +579,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				01371C352338D20700617A9D /* FirebaseManager.swift in Sources */,
+				DB8D0E3A2345DF9D00FA9595 /* MixerGridViewCellDatasource.swift in Sources */,
+				DB8D0E4A2345E26000FA9595 /* DrumMachineGridViewCellDatasource.swift in Sources */,
 				01F16621232BCFD700F1C107 /* CustonIcon.swift in Sources */,
 				010632172333622800214672 /* UIStoryboard+Extension.swift in Sources */,
 				017172352323993800049F3B /* PlugInTableViewCell.swift in Sources */,
 				010632192333687F00214672 /* FaderEqualizer+Panner.swift in Sources */,
 				016F4D25232561B50027D507 /* ReverbSet.swift in Sources */,
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
+				DB8D0E382345DF0300FA9595 /* MixerGridViewCellDelegate.swift in Sources */,
+				DB8D0E322345D8AE00FA9595 /* MixerDatasource.swift in Sources */,
+				DB8D0E422345E19800FA9595 /* DrumMachineDatasource.swift in Sources */,
 				0106321323335C4200214672 /* DrumMachineViewController.swift in Sources */,
 				DB744F3C233CADCB00AA8AFC /* DrumEditingHorizontalGridViewCell.swift in Sources */,
 				DB744F33233B544000AA8AFC /* DrumBarGridViewCell.swift in Sources */,
 				DB744F37233B549200AA8AFC /* DrumPatternGridViewCell.swift in Sources */,
+				DB8D0E402345E18A00FA9595 /* DrumMachineDelegate.swift in Sources */,
 				0179403C232536C1000DCFCB /* PlugInReverbTableViewCell.swift in Sources */,
 				010D7820231681690099D76D /* HLDDFader.swift in Sources */,
 				01DC76742331F87600CA105E /* PlugInGuitarProcessorTableViewCell.swift in Sources */,
+				DB8D0E3C2345E0C200FA9595 /* PlugInControlDelegate.swift in Sources */,
+				DB8D0E342345DE6500FA9595 /* MixerGridViewDelegate.swift in Sources */,
 				0106320D2333584D00214672 /* UIColor+Extension.swift in Sources */,
 				0179404023253A94000DCFCB /* PlugInBarView.swift in Sources */,
 				DB744F31233B50E400AA8AFC /* DrumEditingGridViewCell.swift in Sources */,
 				01F1661B232BA63F00F1C107 /* Notification+extension.swift in Sources */,
 				0171722B2323908600049F3B /* IOGridViewCell.swift in Sources */,
 				DB744F44233CB0C200AA8AFC /* DrumPatternHorizontalGridViewCell.swift in Sources */,
+				DB8D0E362345DECE00FA9595 /* MixerGridViewDatasource.swift in Sources */,
 				01E7366A2335F58900B9582B /* DrumMachineManger.swift in Sources */,
 				0171723E2323DEA100049F3B /* UIImage+Extension.swift in Sources */,
 				01371C272337C32000617A9D /* GridView+Extension.swift in Sources */,
@@ -541,14 +616,19 @@
 				016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */,
 				01DC76782331F94100CA105E /* PlugInDelayTableViewCell.swift in Sources */,
 				010D781E231652EA0099D76D /* GestureManager.swift in Sources */,
+				DB8D0E482345E24500FA9595 /* DrumMachineGridViewCellDelegate.swift in Sources */,
 				015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */,
 				01280F9823289E27004AF13C /* HLDDKnob.swift in Sources */,
 				DB0CDC37233FBED200D8583C /* StorageManager.swift in Sources */,
+				DB8D0E302345D84000FA9595 /* MixerDelegate.swift in Sources */,
 				01717231232393FA00049F3B /* PlugInGridViewCell.swift in Sources */,
 				0179404423254797000DCFCB /* UIView+Extension.swift in Sources */,
 				017172372323995900049F3B /* FaderGridViewCell.swift in Sources */,
 				0179403623251236000DCFCB /* PlugInViewController.swift in Sources */,
+				DB8D0E3E2345E0E500FA9595 /* PlugInControlDatasource.swift in Sources */,
 				0171722923238F8600049F3B /* MixerView.swift in Sources */,
+				DB8D0E462345E1EB00FA9595 /* DrumMachineGridViewDatasource.swift in Sources */,
+				DB8D0E442345E1D700FA9595 /* DrumMachineGridViewDelegate.swift in Sources */,
 				01794039232512AA000DCFCB /* PlugInView.swift in Sources */,
 				01717215232380D900049F3B /* HLDDStudio.xcdatamodeld in Sources */,
 				01F1661F232BC9E800F1C107 /* HLDDRedFader.swift in Sources */,
@@ -718,6 +798,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -742,6 +823,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.wu1221.HLDDStudio;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

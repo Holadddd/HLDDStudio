@@ -15,22 +15,18 @@ protocol DrumBarGridViewCellDelegate: AnyObject {
 }
 class DrumBarGridViewCell: GridViewCell {
     
-    @IBOutlet weak var firstLabel: UILabel!
-    
-    @IBOutlet weak var secondLabel: UILabel!
-    
-    @IBOutlet weak var thirdLabel: UILabel!
-    
-    @IBOutlet weak var fourthLabel: UILabel!
+    @IBOutlet weak var barLabel: UILabel!
     
     weak var delegate: DrumBarGridViewCellDelegate?
     
     static var nib: UINib {
-        return UINib(nibName: "DrumBarGridViewCell", bundle: Bundle(for: self))
+        
+        return UINib(nibName: String(describing: self),
+                     bundle: Bundle(for: self))
     }
     
     override func awakeFromNib() {
-        super .awakeFromNib()
         
+        super .awakeFromNib()
     }
 }

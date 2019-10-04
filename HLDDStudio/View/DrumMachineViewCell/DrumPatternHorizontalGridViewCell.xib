@@ -17,51 +17,43 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Br6-NT-4DZ">
                     <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-Ez-eXy">
-                            <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusLabel" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-Ez-eXy">
+                            <rect key="frame" x="-5" y="0.0" width="348" height="376"/>
                         </imageView>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JiH-nY-neb">
-                            <rect key="frame" x="34" y="53" width="270" height="270"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="daP-FR-q7u">
-                                    <rect key="frame" x="13.5" y="13.5" width="243" height="243"/>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                </view>
-                            </subviews>
-                            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <constraints>
-                                <constraint firstItem="daP-FR-q7u" firstAttribute="height" secondItem="JiH-nY-neb" secondAttribute="height" multiplier="0.9" id="39H-Er-OcS"/>
-                                <constraint firstItem="daP-FR-q7u" firstAttribute="centerX" secondItem="JiH-nY-neb" secondAttribute="centerX" id="eCG-OR-bhf"/>
-                                <constraint firstItem="daP-FR-q7u" firstAttribute="width" secondItem="JiH-nY-neb" secondAttribute="width" multiplier="0.9" id="ftz-Hr-caR"/>
-                                <constraint firstItem="daP-FR-q7u" firstAttribute="centerY" secondItem="JiH-nY-neb" secondAttribute="centerY" id="i9m-qi-5cw"/>
-                            </constraints>
-                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-PT-dWX">
-                            <rect key="frame" x="34" y="53" width="270" height="270"/>
+                            <rect key="frame" x="-5" y="14" width="348" height="348"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="height" id="LGY-FQ-nZY"/>
                             </constraints>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="Pad_Off"/>
+                            <state key="selected" image="Pad_On_Blue"/>
                         </button>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxN-vk-56D">
+                            <rect key="frame" x="47" y="66" width="244" height="244"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="NxN-vk-56D" secondAttribute="height" multiplier="1:1" id="tjG-d5-cDD"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstItem="Adf-PT-dWX" firstAttribute="width" secondItem="dSq-Ez-eXy" secondAttribute="width" multiplier="0.8" id="6jT-52-7LF"/>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="width" secondItem="dSq-Ez-eXy" secondAttribute="width" id="6jT-52-7LF"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="centerY" secondItem="Adf-PT-dWX" secondAttribute="centerY" id="8nr-Uv-ZIc"/>
                         <constraint firstItem="Adf-PT-dWX" firstAttribute="centerX" secondItem="dSq-Ez-eXy" secondAttribute="centerX" id="EbU-U8-aNj"/>
-                        <constraint firstAttribute="trailing" secondItem="dSq-Ez-eXy" secondAttribute="trailing" id="FKG-Ei-8fX"/>
-                        <constraint firstItem="JiH-nY-neb" firstAttribute="height" secondItem="Adf-PT-dWX" secondAttribute="height" id="KEl-uh-TtK"/>
+                        <constraint firstAttribute="trailing" secondItem="dSq-Ez-eXy" secondAttribute="trailing" constant="-5" id="FKG-Ei-8fX"/>
                         <constraint firstAttribute="bottom" secondItem="dSq-Ez-eXy" secondAttribute="bottom" id="Kq4-A0-v1i"/>
-                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="leading" secondItem="Br6-NT-4DZ" secondAttribute="leading" id="MmZ-Qw-k6J"/>
+                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="leading" secondItem="Br6-NT-4DZ" secondAttribute="leading" constant="-5" id="MmZ-Qw-k6J"/>
                         <constraint firstItem="Adf-PT-dWX" firstAttribute="centerY" secondItem="dSq-Ez-eXy" secondAttribute="centerY" id="O28-2T-Wgn"/>
                         <constraint firstItem="dSq-Ez-eXy" firstAttribute="top" secondItem="Br6-NT-4DZ" secondAttribute="top" id="OY5-aB-gbb"/>
-                        <constraint firstItem="JiH-nY-neb" firstAttribute="centerY" secondItem="Adf-PT-dWX" secondAttribute="centerY" id="VOG-ry-0Fm"/>
-                        <constraint firstItem="JiH-nY-neb" firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="width" id="Xpk-OC-kgJ"/>
-                        <constraint firstItem="JiH-nY-neb" firstAttribute="centerX" secondItem="Adf-PT-dWX" secondAttribute="centerX" id="o9f-U4-n6h"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="centerX" secondItem="Adf-PT-dWX" secondAttribute="centerX" id="Ora-X7-WG1"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="width" multiplier="0.7" id="zLS-dd-ty6"/>
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" red="0.0" green="0.086966839273078592" blue="0.23159898477157359" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="Br6-NT-4DZ" secondAttribute="bottom" id="Bqr-YV-bp0"/>
                 <constraint firstItem="Br6-NT-4DZ" firstAttribute="leading" secondItem="u4p-bD-cak" secondAttribute="leading" id="NR2-aB-gIj"/>
@@ -71,10 +63,15 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="LGh-ov-HWH"/>
             <connections>
-                <outlet property="animateView" destination="daP-FR-q7u" id="OHG-A8-rb0"/>
+                <outlet property="animateView" destination="NxN-vk-56D" id="88v-qz-c2l"/>
                 <outlet property="selectButton" destination="Adf-PT-dWX" id="0Rj-Tu-Rlh"/>
             </connections>
             <point key="canvasLocation" x="198.55072463768118" y="-419.19642857142856"/>
         </view>
     </objects>
+    <resources>
+        <image name="BarStatusLabel" width="831" height="200"/>
+        <image name="Pad_Off" width="500" height="500"/>
+        <image name="Pad_On_Blue" width="500" height="500"/>
+    </resources>
 </document>

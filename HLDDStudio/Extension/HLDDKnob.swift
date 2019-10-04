@@ -159,11 +159,10 @@ private class RotationGestureRecognizer: UIPanGestureRecognizer {
         }
         let touchPoint = touch.location(in: view)
         if touchPoint.y != Offset.manager.offsetY && (touchPoint.y - Offset.manager.offsetY) < 0{
-            //print("上升中")
+           
             dirIsUp = true
-            //每一次triger可以用來旋轉角度
         } else {
-            //print("下降中")
+           
             dirIsUp = false
         }
         touchOffsetY = touchPoint.y

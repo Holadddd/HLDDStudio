@@ -14,30 +14,11 @@
             <rect key="frame" x="0.0" y="0.0" width="50" height="80"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" minimumFontSize="8" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j2H-f9-YZu">
-                    <rect key="frame" x="0.0" y="0.0" width="50" height="20"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jem-ny-2Aj">
-                    <rect key="frame" x="0.0" y="20" width="50" height="20"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IRF-JR-k4e">
-                    <rect key="frame" x="0.0" y="10" width="50" height="80"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Oi9-bG-qba">
-                    <rect key="frame" x="0.0" y="60" width="50" height="20"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.29999999999999999" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodBG" translatesAutoresizingMaskIntoConstraints="NO" id="mtO-sr-nJj">
+                    <rect key="frame" x="-2.5" y="0.0" width="55" height="80"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KNu-cX-Au3">
+                    <rect key="frame" x="4" y="29.5" width="42" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -45,32 +26,22 @@
             </subviews>
             <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="IRF-JR-k4e" firstAttribute="width" secondItem="7Yw-fz-qyT" secondAttribute="width" id="0l0-Rn-ei1"/>
-                <constraint firstItem="Oi9-bG-qba" firstAttribute="width" secondItem="7Yw-fz-qyT" secondAttribute="width" id="4mO-6e-Fbd"/>
-                <constraint firstItem="j2H-f9-YZu" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" multiplier="0.25" id="C0I-c1-i2R"/>
-                <constraint firstItem="Oi9-bG-qba" firstAttribute="height" secondItem="7Yw-fz-qyT" secondAttribute="height" multiplier="1/4" id="DQM-lG-UHa"/>
-                <constraint firstItem="IRF-JR-k4e" firstAttribute="centerX" secondItem="7Yw-fz-qyT" secondAttribute="centerX" id="H6f-0Z-f7d"/>
-                <constraint firstItem="IRF-JR-k4e" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" multiplier="1.25" id="UOw-xl-adt"/>
-                <constraint firstItem="Jem-ny-2Aj" firstAttribute="height" secondItem="7Yw-fz-qyT" secondAttribute="height" multiplier="1/4" id="UhV-Io-HFS"/>
-                <constraint firstItem="tw4-cJ-jE5" firstAttribute="trailing" secondItem="j2H-f9-YZu" secondAttribute="trailing" id="VuO-Zj-32v"/>
-                <constraint firstItem="IRF-JR-k4e" firstAttribute="height" secondItem="7Yw-fz-qyT" secondAttribute="height" id="Y4Z-Iu-6As"/>
-                <constraint firstItem="Jem-ny-2Aj" firstAttribute="width" secondItem="7Yw-fz-qyT" secondAttribute="width" id="ZOL-xe-Tkj"/>
-                <constraint firstItem="Jem-ny-2Aj" firstAttribute="centerX" secondItem="7Yw-fz-qyT" secondAttribute="centerX" id="c0l-Fc-2ua"/>
-                <constraint firstItem="Oi9-bG-qba" firstAttribute="centerX" secondItem="7Yw-fz-qyT" secondAttribute="centerX" id="d0S-Rx-VVF"/>
-                <constraint firstItem="Oi9-bG-qba" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" multiplier="1.75" id="dpD-MB-7HF"/>
-                <constraint firstItem="j2H-f9-YZu" firstAttribute="height" secondItem="7Yw-fz-qyT" secondAttribute="height" multiplier="1/4" id="k9Y-nv-XOH"/>
-                <constraint firstItem="Jem-ny-2Aj" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" multiplier="0.75" id="tp6-d6-4hG"/>
-                <constraint firstItem="j2H-f9-YZu" firstAttribute="leading" secondItem="tw4-cJ-jE5" secondAttribute="leading" id="wG4-Sf-Q2y"/>
+                <constraint firstItem="mtO-sr-nJj" firstAttribute="height" secondItem="7Yw-fz-qyT" secondAttribute="height" id="7x4-AI-yLN"/>
+                <constraint firstItem="mtO-sr-nJj" firstAttribute="width" secondItem="7Yw-fz-qyT" secondAttribute="width" multiplier="1.1" id="8yA-BT-EVQ"/>
+                <constraint firstItem="mtO-sr-nJj" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" id="QSF-88-KKW"/>
+                <constraint firstItem="mtO-sr-nJj" firstAttribute="centerX" secondItem="7Yw-fz-qyT" secondAttribute="centerX" id="ZU7-TP-Ilv"/>
+                <constraint firstItem="KNu-cX-Au3" firstAttribute="centerY" secondItem="7Yw-fz-qyT" secondAttribute="centerY" id="mbk-5V-h0A"/>
+                <constraint firstItem="KNu-cX-Au3" firstAttribute="centerX" secondItem="7Yw-fz-qyT" secondAttribute="centerX" id="utc-In-bK5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="tw4-cJ-jE5"/>
             <connections>
-                <outlet property="firstLabel" destination="j2H-f9-YZu" id="bOM-AC-7hm"/>
-                <outlet property="fourthLabel" destination="Oi9-bG-qba" id="CgQ-Nr-6nQ"/>
-                <outlet property="secondLabel" destination="Jem-ny-2Aj" id="RaC-AW-PaA"/>
-                <outlet property="thirdLabel" destination="IRF-JR-k4e" id="z4l-rE-0N3"/>
+                <outlet property="barLabel" destination="KNu-cX-Au3" id="Yr0-to-uSK"/>
             </connections>
             <point key="canvasLocation" x="0.0" y="135.9375"/>
         </view>
     </objects>
+    <resources>
+        <image name="WoodBG" width="500" height="1688"/>
+    </resources>
 </document>

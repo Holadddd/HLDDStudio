@@ -559,22 +559,27 @@ extension MixerView {
     }
     
     @objc func recordButtonAction() {
+        //dont let user stop recording while recording
         
         guard  datasource?.trackInputStatusIsReadyForRecord() == true
             else { return }
-        
+    
         DispatchQueue.main.async { [ weak self ] in
             
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
             
-            switch self.recordButton.isSelected {
+            strongSelf.recordButton.isSelected = !strongSelf.recordButton.isSelected
+            
+            strongSelf.playAndResumeButton.isSelected = !strongSelf.playAndResumeButton.isSelected
+            
+            switch strongSelf.recordButton.isSelected {
                 
-            case false:
+            case true:
                 
-                guard let startString = self.startRecordTextField.text
+                guard let startString = strongSelf.startRecordTextField.text
                     else { return }
                 
-                guard let stopString = self.stopRecordTextField.text
+                guard let stopString = strongSelf.stopRecordTextField.text
                     else { return }
                 
                 guard let start = Int(startString)
@@ -592,16 +597,12 @@ extension MixerView {
                     return
                 }
                 
-                self.delegate?.startRecordAudioPlayer(frombar: start,
+                strongSelf.delegate?.startRecordAudioPlayer(frombar: start,
                                                       tobar: stop)
-            case true:
+            case false:
                 
-                self.delegate?.stopRecord()
+                strongSelf.delegate?.stopRecord()
             }
-            
-            self.recordButton.isSelected = !self.recordButton.isSelected
-            
-            self.playAndResumeButton.isSelected = !self.playAndResumeButton.isSelected
         }
     }
 }

@@ -158,12 +158,17 @@ extension AppDelegate {
             
             var samplePathFileArr: [AKAudioFile] = []
             do {
-                let kicksURLs = try fileManager.contentsOfDirectory(at: url, includingPropertiesForKeys: properties, options:FileManager.DirectoryEnumerationOptions.skipsHiddenFiles)
+                let kicksURLs = try fileManager.contentsOfDirectory(at: url,
+                                                                    includingPropertiesForKeys: properties,
+                                                                    options:FileManager
+                                                                        .DirectoryEnumerationOptions
+                                                                        .skipsHiddenFiles)
 
                 for (_, element) in kicksURLs.enumerated(){
                     let sampleFileURL = element
                     
                     let result = Result{try AKAudioFile(forReading: sampleFileURL)}
+                    
                     switch result {
                     case .success(let file):
                         samplePathFileArr.append(file)

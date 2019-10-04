@@ -29,6 +29,8 @@ enum MixerStatus {
     case recordingAndPlaying
     
     case stopRecordingAndPlaying
+    
+    case finishingRecording
 }
 
 enum MixerMangerTilte {

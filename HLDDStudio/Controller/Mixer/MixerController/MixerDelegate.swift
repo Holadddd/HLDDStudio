@@ -338,28 +338,31 @@ extension ViewController: MixerDelegate {
                     
                     do {
                         
-                        let urlInDocs = FileManager.docs.appendingPathComponent("\(MixerManger.manger.recordFileName)(\(Int(MixerManger.manger.metronome.tempo)))").appendingPathExtension(clip.url.pathExtension)
+                        if MixerManger.manger.mixerStatus != .stopRecordingAndPlaying{
+                            let urlInDocs = FileManager.docs.appendingPathComponent("\(MixerManger.manger.recordFileName)(\(Int(MixerManger.manger.metronome.tempo)))").appendingPathExtension(clip.url.pathExtension)
+                            
+                            try FileManager.default.moveItem(at: clip.url, to: urlInDocs)
+                            MixerManger.manger.recordFile = try AKAudioFile(forReading: urlInDocs)
+                            MixerManger.manger.mixerStatus = .finishingRecording
+                            strongSelf.mixerView.recordButtonAction()
+                        }
                         
-                        try FileManager.default.moveItem(at: clip.url, to: urlInDocs)
-                        MixerManger.manger.recordFile = try AKAudioFile(forReading: urlInDocs)
-                        MixerManger.manger.mixerStatus = .stopRecordingAndPlaying
                     } catch {
                         print(error)
                     }
                     
-                    MixerManger.manger.recorder.stop()
-                    strongSelf.mixerView.recordButtonAction()
-                    DispatchQueue.main.async {
-                        strongSelf.mixerView.playAndResumeButton.isEnabled = true
-                    }
                 case .error(let error):
+                    
                     AKLog(error)
+                    
                     return
                 }
             }
             //        play audio
             for (index, element) in PlugInManager.shared.plugInOntruck.enumerated(){
+                
                 switch element.trackInputStatus {
+                    
                 case .audioFile:
                     
                     let time = MixerManger.manger.metronomeStartTime + oneBarTime
@@ -377,6 +380,7 @@ extension ViewController: MixerDelegate {
                 }
             }
         }
+        
         MixerManger.manger.title(with: .recording)
         
         MixerManger.manger.subTitleContent = "Device Is Recording From Bar \(start) to \(stop). Duration: \(String(format: "%.2f", durationTime)) seconds."
@@ -385,14 +389,26 @@ extension ViewController: MixerDelegate {
     }
     
     func stopRecord() {
+        if MixerManger.manger.mixerStatus == .finishingRecording {
+            MixerManger.manger.title(with: .finishingRecording)
+            
+            MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."
+        } else {
+            
+            MixerManger.manger.title(with: .finishingRecording)
+            
+            MixerManger.manger.subTitleContent = "Recording is interrupted. "
+        }
+        
+        MixerManger.manger.mixerStatus = .stopRecordingAndPlaying
+        
+        MixerManger.manger.recorder.stop()
         
         enabledMixerFunctionalButton()
         
+        mixerView.playAndResumeButton.isEnabled = true
+        
         try? AudioKit.stop()
-        
-        MixerManger.manger.title(with: .finishingRecording)
-        
-        MixerManger.manger.subTitleContent = "File: \(MixerManger.manger.recordFileName) is saved."
         
         mixerView.fileNameTextField.text = nil
         

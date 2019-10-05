@@ -53,6 +53,73 @@ enum PlugInDescription: String {
     case chorus = "Chorus"
 }
 
+struct HlDDPlugInDefaultParameter {
+    
+    var reverb = ReverbDefaultParameter()
+    
+    var guitarProcessor = PlugInGuitarProcessorDefaultParameter()
+    
+    var delay = DelayDefaultParameter()
+    
+    var chorus = ChorusDefaultParameter()
+}
+
+struct ReverbDefaultParameter {
+    
+    var minDryWetMix: Float = 0
+    
+    var maxDryWetMix: Float = 1
+}
+
+struct PlugInGuitarProcessorDefaultParameter {
+    
+    var minPreGain: Float = 0
+    
+    var maxPreGain: Float = 10
+    
+    var minDis: Float = 0
+    
+    var maxDis: Float = 1
+    
+    var minOutput: Float = 0
+    
+    var maxOutput: Float = 2
+}
+
+struct DelayDefaultParameter {
+    
+    var minTime: Float = 0
+    
+    var maxTime: Float = 3
+    
+    var minFeedback: Float = 0
+    
+    var maxFeedback: Float = 1
+    
+    var minDryWetMix: Float = 0
+    
+    var maxDryWetMix: Float = 1
+}
+
+struct ChorusDefaultParameter {
+    
+    var minFeedback: Float = -0.95
+    
+    var maxFeedback: Float = 0.95
+    
+    var minDepth: Float = 0
+    
+    var maxDepth: Float = 1
+    
+    var minDryWetMix: Float = 0
+    
+    var maxDryWetMix: Float = 1
+    
+    var minFrequency: Float = 0
+    
+    var maxFrequency: Float = 10
+}
+
 enum PlugIn {
     
     case reverb(AKReverb)
@@ -160,6 +227,8 @@ class PlugInManager {
                                                   userInfo: nil))
         }
     }
+    
+    var defaultParameter = HlDDPlugInDefaultParameter()
 
     func resetTrack(track: Int) {
         

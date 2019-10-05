@@ -44,21 +44,21 @@ class PlugInGuitarProcessorTableViewCell: UITableViewCell, HLDDKnobDelegate {
         //set preGainKnob
         preGainKnob.delegate = self
         
-        preGainKnob.maximumValue = 10
+        preGainKnob.maximumValue = PlugInManager.shared.defaultParameter.guitarProcessor.maxPreGain
         
-        preGainKnob.minimumValue = 0
+        preGainKnob.minimumValue = PlugInManager.shared.defaultParameter.guitarProcessor.minPreGain
         //set disKnob
         disKnob.delegate = self
         
-        disKnob.maximumValue = 1
+        disKnob.maximumValue = PlugInManager.shared.defaultParameter.guitarProcessor.maxDis
         
-        disKnob.minimumValue = 0
+        disKnob.minimumValue = PlugInManager.shared.defaultParameter.guitarProcessor.minDis
         //set outputKnob
         outputKnob.delegate = self
         
-        outputKnob.maximumValue = 2
+        outputKnob.maximumValue = PlugInManager.shared.defaultParameter.guitarProcessor.maxOutput
         
-        outputKnob.minimumValue = 0
+        outputKnob.minimumValue = PlugInManager.shared.defaultParameter.guitarProcessor.minOutput
     }
 
     override func setSelected(_ selected: Bool,

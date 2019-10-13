@@ -12,9 +12,11 @@ import ImageIO
 extension UIImageView {
     
     public func loadGif(name: String) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async {[weak self] in
+            guard let self = self else{return}
             let image = UIImage.gif(name: name)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
                 self.image = image
             }
         }
@@ -22,9 +24,11 @@ extension UIImageView {
     
     @available(iOS 9.0, *)
     public func loadGif(asset: String) {
-        DispatchQueue.global().async {
+        DispatchQueue.global().async {[weak self] in
+            guard let self = self else{return}
             let image = UIImage.gif(asset: asset)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
                 self.image = image
             }
         }
@@ -37,7 +41,7 @@ extension UIImage {
     public class func gif(data: Data) -> UIImage? {
         // Create source from data
         guard let source = CGImageSourceCreateWithData(data as CFData, nil) else {
-            print("SwiftGif: Source for the image does not exist")
+            
             return nil
         }
         

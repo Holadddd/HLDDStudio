@@ -1,4 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14903" systemVersion="18G95" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="DrumMachinePatternCoreData">
+    <entity name="DrumMachinePatternCoreData" representedClassName="DrumMachinePatternCoreData" syncable="YES" codeGenerationType="class">
+        <attribute name="barFourBeatFour" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barFourBeatOne" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barFourBeatThree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barFourBeatTwo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barOneBeatFour" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barOneBeatOne" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barOneBeatThree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barOneBeatTwo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barThreeBeatFour" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barThreeBeatOne" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barThreeBeatThree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barThreeBeatTwo" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barTwoBeatFour" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barTwoBeatOne" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barTwoBeatThree" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
+        <attribute name="barTwoBeatTwo" optional="YES" attributeType="Boolean" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="drumTypeRawValue" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pan" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+        <attribute name="sampleFileIndex" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="sampleFileName" optional="YES" attributeType="String"/>
+        <attribute name="seq" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="vol" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
+    </entity>
+    <elements>
+        <element name="DrumMachinePatternCoreData" positionX="-63" positionY="-18" width="128" height="373"/>
+    </elements>
 </model>

@@ -103,7 +103,7 @@ class Fader: UIControl {
         if offsetY < maxY  && offsetY > minY  {
             
             let percentageOfFader = abs( (offsetY - maxY) / absRange )
-            //print(String(format: "%.2f", percentageOfFader))
+           
             let valueRange = maximumValue - minimumValue
             value = Float(CGFloat(minimumValue) + CGFloat(abs(valueRange)) * CGFloat(percentageOfFader))
         } else {
@@ -124,7 +124,8 @@ class Fader: UIControl {
         if value < maximumValue && value > minimumValue {
             let absRange = abs(maxY - minY)
             let percntageOfFaderOffsetY = abs((value - minimumValue)/valueRange)
-            DispatchQueue.main.async {
+            DispatchQueue.main.async {[weak self] in
+                guard let self = self else{return}
                 self.faderKnobView.frame.origin.y = CGFloat(maxY - CGFloat(percntageOfFaderOffsetY) * absRange)
             }
         } else {
@@ -191,11 +192,11 @@ private class RotationGestureRecognizer: UIPanGestureRecognizer {
         }
         let touchPoint = touch.location(in: view)
         if touchPoint.y != Offset.manager.offsetY && (touchPoint.y - Offset.manager.offsetY) < 0{
-            //print("上升中")
+            
             dirIsUp = true
-            //每一次triger可以用來旋轉角度
+            
         } else {
-            //print("下降中")
+           
             dirIsUp = false
         }
         touchOffsetY = touchPoint.y

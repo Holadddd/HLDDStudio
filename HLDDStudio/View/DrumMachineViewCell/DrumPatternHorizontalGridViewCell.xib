@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14868" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14824"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clipsSubviews="YES" contentMode="scaleToFill" restorationIdentifier="DrumPatternHorizontalGridViewCell" id="u4p-bD-cak" customClass="DrumPatternHorizontalGridViewCell" customModule="HLDDStudio" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Br6-NT-4DZ">
+                    <rect key="frame" x="0.0" y="0.0" width="338" height="376"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.5" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusLabel" translatesAutoresizingMaskIntoConstraints="NO" id="dSq-Ez-eXy">
+                            <rect key="frame" x="-5" y="0.0" width="348" height="376"/>
+                        </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Adf-PT-dWX">
+                            <rect key="frame" x="-5" y="14" width="348" height="348"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="height" id="LGY-FQ-nZY"/>
+                            </constraints>
+                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <state key="normal" image="Pad_Off"/>
+                            <state key="selected" image="Pad_On_Blue"/>
+                        </button>
+                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NxN-vk-56D">
+                            <rect key="frame" x="47" y="66" width="244" height="244"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="width" secondItem="NxN-vk-56D" secondAttribute="height" multiplier="1:1" id="tjG-d5-cDD"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="width" secondItem="dSq-Ez-eXy" secondAttribute="width" id="6jT-52-7LF"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="centerY" secondItem="Adf-PT-dWX" secondAttribute="centerY" id="8nr-Uv-ZIc"/>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="centerX" secondItem="dSq-Ez-eXy" secondAttribute="centerX" id="EbU-U8-aNj"/>
+                        <constraint firstAttribute="trailing" secondItem="dSq-Ez-eXy" secondAttribute="trailing" constant="-5" id="FKG-Ei-8fX"/>
+                        <constraint firstAttribute="bottom" secondItem="dSq-Ez-eXy" secondAttribute="bottom" id="Kq4-A0-v1i"/>
+                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="leading" secondItem="Br6-NT-4DZ" secondAttribute="leading" constant="-5" id="MmZ-Qw-k6J"/>
+                        <constraint firstItem="Adf-PT-dWX" firstAttribute="centerY" secondItem="dSq-Ez-eXy" secondAttribute="centerY" id="O28-2T-Wgn"/>
+                        <constraint firstItem="dSq-Ez-eXy" firstAttribute="top" secondItem="Br6-NT-4DZ" secondAttribute="top" id="OY5-aB-gbb"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="centerX" secondItem="Adf-PT-dWX" secondAttribute="centerX" id="Ora-X7-WG1"/>
+                        <constraint firstItem="NxN-vk-56D" firstAttribute="width" secondItem="Adf-PT-dWX" secondAttribute="width" multiplier="0.7" id="zLS-dd-ty6"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="0.0" green="0.086966839273078592" blue="0.23159898477157359" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="Br6-NT-4DZ" secondAttribute="bottom" id="Bqr-YV-bp0"/>
+                <constraint firstItem="Br6-NT-4DZ" firstAttribute="leading" secondItem="u4p-bD-cak" secondAttribute="leading" id="NR2-aB-gIj"/>
+                <constraint firstAttribute="trailing" secondItem="Br6-NT-4DZ" secondAttribute="trailing" id="Q4d-U0-NyU"/>
+                <constraint firstItem="Br6-NT-4DZ" firstAttribute="top" secondItem="u4p-bD-cak" secondAttribute="top" id="ofR-dY-wUR"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="LGh-ov-HWH"/>
+            <connections>
+                <outlet property="animateView" destination="NxN-vk-56D" id="88v-qz-c2l"/>
+                <outlet property="selectButton" destination="Adf-PT-dWX" id="0Rj-Tu-Rlh"/>
+            </connections>
+            <point key="canvasLocation" x="198.55072463768118" y="-419.19642857142856"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="BarStatusLabel" width="831" height="200"/>
+        <image name="Pad_Off" width="500" height="500"/>
+        <image name="Pad_On_Blue" width="500" height="500"/>
+    </resources>
+</document>

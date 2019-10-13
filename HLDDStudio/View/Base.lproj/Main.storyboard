@@ -25,7 +25,7 @@
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="BarStatusView" translatesAutoresizingMaskIntoConstraints="NO" id="ghE-pf-j7m">
                                                 <rect key="frame" x="-5" y="0.0" width="424" height="40"/>
                                             </imageView>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-Yg-vQR">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Bq-Yg-vQR">
                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
@@ -35,7 +35,7 @@
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b7L-dh-CJE">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Out:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="b7L-dh-CJE">
                                                 <rect key="frame" x="345.5" y="0.0" width="33" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" secondItem="b7L-dh-CJE" secondAttribute="height" multiplier="33:40" id="RxR-vE-A57"/>
@@ -76,13 +76,13 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mbb-Pe-cha" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                        <rect key="frame" x="95.5" y="4" width="169.5" height="16"/>
+                                                        <rect key="frame" x="100.5" y="4" width="164.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.13747042417526245" green="0.16146188974380493" blue="0.11371187120676041" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="H2y-ol-4uZ" customClass="MarqueeLabel" customModule="MarqueeLabel">
-                                                        <rect key="frame" x="95.5" y="20" width="169.5" height="16"/>
+                                                        <rect key="frame" x="100.5" y="20" width="164.5" height="16"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                         <color key="textColor" red="0.13725490196078433" green="0.16078431372549018" blue="0.11372549019607843" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
@@ -104,7 +104,7 @@
                                                     <constraint firstItem="Mam-Yr-hz0" firstAttribute="width" secondItem="Fyv-bj-98N" secondAttribute="width" multiplier="0.3" id="BAX-VG-Z7Y"/>
                                                     <constraint firstItem="pSh-Sf-W8e" firstAttribute="height" secondItem="Mam-Yr-hz0" secondAttribute="height" id="CfG-3Y-ple"/>
                                                     <constraint firstItem="Mam-Yr-hz0" firstAttribute="height" secondItem="Fyv-bj-98N" secondAttribute="height" multiplier="0.8" id="F1j-5J-4Ga"/>
-                                                    <constraint firstItem="Fyv-bj-98N" firstAttribute="leading" secondItem="mbb-Pe-cha" secondAttribute="leading" id="GCi-UH-mZM"/>
+                                                    <constraint firstItem="Fyv-bj-98N" firstAttribute="leading" secondItem="mbb-Pe-cha" secondAttribute="leading" constant="-5" id="GCi-UH-mZM"/>
                                                     <constraint firstItem="Acf-EJ-vXq" firstAttribute="leading" secondItem="Fyv-bj-98N" secondAttribute="leading" id="GUP-oO-ozS"/>
                                                     <constraint firstItem="Mam-Yr-hz0" firstAttribute="centerY" secondItem="xrF-Nc-Kct" secondAttribute="centerY" id="Haf-VL-8Hz"/>
                                                     <constraint firstItem="pSh-Sf-W8e" firstAttribute="centerX" secondItem="Mam-Yr-hz0" secondAttribute="centerX" id="JHn-hS-CGH"/>
@@ -300,12 +300,14 @@
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jB8-Oy-R7W">
                                                 <rect key="frame" x="330" y="22" width="80" height="18.5"/>
                                                 <color key="backgroundColor" white="0.35611979170000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="nNM-Cz-rKi">
                                                 <rect key="frame" x="330" y="44.5" width="80" height="18.5"/>
                                                 <color key="backgroundColor" white="0.35611979170000002" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                             </textField>
@@ -368,7 +370,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="747"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodStickView2" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-4s-CRv">
-                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747.00000000000364"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="5" id="o36-aH-z4U"/>
                                                 </constraints>
@@ -377,7 +379,7 @@
                                                 <rect key="frame" x="41.5" y="560.5" width="55" height="168"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="FileName" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MEm-BN-jsc">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder=" FileName" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MEm-BN-jsc">
                                                 <rect key="frame" x="17" y="48" width="109" height="24"/>
                                                 <color key="backgroundColor" red="0.48680762649930054" green="0.61302640291475097" blue="0.73542298552588836" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <constraints>
@@ -406,7 +408,7 @@
                                                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                                                         </state>
                                                     </button>
-                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Drum Machine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="h3u-1E-Rfk">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="→Drum Machine" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="h3u-1E-Rfk">
                                                         <rect key="frame" x="0.0" y="0.0" width="124" height="124"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                         <color key="textColor" red="0.70092086669999998" green="0.73025860220000005" blue="0.61378425930000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

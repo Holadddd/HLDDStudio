@@ -370,7 +370,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="747"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodStickView2" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-4s-CRv">
-                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747.00000000000364"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="5" id="o36-aH-z4U"/>
                                                 </constraints>
@@ -440,7 +440,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d89-jf-rJX">
                                                         <rect key="frame" x="0.0" y="0.0" width="133" height="66.5"/>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" →User Manual     " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTU-dJ-hWS">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" →Users Manual     " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bTU-dJ-hWS">
                                                         <rect key="frame" x="0.0" y="0.0" width="133" height="66.5"/>
                                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
                                                         <color key="textColor" red="0.70196078431372544" green="0.72941176470588232" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
@@ -626,8 +626,8 @@
                                     <constraint firstItem="PRc-Nd-pdx" firstAttribute="leading" secondItem="U2m-oN-kiO" secondAttribute="leading" id="mVt-5n-JFx"/>
                                 </constraints>
                             </view>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="User Manual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDP-FS-Mj4">
-                                <rect key="frame" x="159" y="57" width="96" height="20.5"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Users Manual" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sDP-FS-Mj4">
+                                <rect key="frame" x="155" y="57" width="104.5" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -701,7 +701,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="bhs-cP-jzv" secondAttribute="trailing" constant="12" id="EPt-uH-UxD"/>
                                                                     <constraint firstItem="qdb-Pc-LVt" firstAttribute="leading" secondItem="wCB-em-TqR" secondAttribute="leading" constant="12" id="FUA-gS-Pgn"/>
@@ -728,7 +728,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="hVv-Y0-O5Y" secondAttribute="trailing" constant="12" id="O2u-6w-aAA"/>
                                                                     <constraint firstAttribute="bottom" secondItem="hVv-Y0-O5Y" secondAttribute="bottom" constant="8" id="ZDV-Z7-f8e"/>
@@ -757,7 +757,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="45R-bx-vxe" firstAttribute="leading" secondItem="9za-N6-Yks" secondAttribute="leading" constant="12" id="9ti-LU-XHH"/>
                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="45R-bx-vxe" secondAttribute="trailing" constant="20" symbolic="YES" id="FFL-ZC-7gm"/>
@@ -769,22 +769,22 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLV-6u-ih2">
-                                                                <rect key="frame" x="0.0" y="419.5" width="414" height="299"/>
+                                                                <rect key="frame" x="0.0" y="419.5" width="414" height="67.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Button" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-nz-PPX">
-                                                                        <rect key="frame" x="12" y="8" width="104.5" height="254.5"/>
+                                                                        <rect key="frame" x="12" y="8" width="104.5" height="23"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The stop button rewinds the files to beginning." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4N-H0-rmV">
-                                                                        <rect key="frame" x="12" y="270.5" width="414" height="20.5"/>
+                                                                        <rect key="frame" x="12" y="39" width="414" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="S4N-H0-rmV" firstAttribute="top" secondItem="0Uy-nz-PPX" secondAttribute="bottom" constant="8" id="7M3-hz-xJF"/>
                                                                     <constraint firstAttribute="bottom" secondItem="S4N-H0-rmV" secondAttribute="bottom" constant="8" id="JIY-tH-EP8"/>
@@ -796,22 +796,22 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DlW-rN-NEN">
-                                                                <rect key="frame" x="0.0" y="726.5" width="414" height="100"/>
+                                                                <rect key="frame" x="0.0" y="495" width="414" height="331.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play And Pause Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-b1-fUg">
-                                                                        <rect key="frame" x="12" y="0.0" width="197.5" height="23"/>
+                                                                        <rect key="frame" x="12" y="0.0" width="197.5" height="254.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The play and pause button toggles playback of the song or simply pauses playback and doesn’t rewind." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TbF-PD-cgL">
-                                                                        <rect key="frame" x="12" y="31" width="390" height="61"/>
+                                                                        <rect key="frame" x="12" y="262.5" width="390" height="61"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="TbF-PD-cgL" firstAttribute="leading" secondItem="DlW-rN-NEN" secondAttribute="leading" constant="12" id="3Xf-lm-aqI"/>
                                                                     <constraint firstItem="js8-b1-fUg" firstAttribute="leading" secondItem="DlW-rN-NEN" secondAttribute="leading" constant="12" id="Eng-Ve-kyC"/>
@@ -838,7 +838,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="spI-7e-bek" firstAttribute="top" secondItem="R1C-5L-C4f" secondAttribute="bottom" constant="8" id="Fc7-1s-PIH"/>
                                                                     <constraint firstItem="R1C-5L-C4f" firstAttribute="top" secondItem="e1x-fD-Urr" secondAttribute="top" id="Icj-rd-zRW"/>
@@ -865,7 +865,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="waR-2n-mcU" secondAttribute="trailing" constant="12" id="6e2-Gy-1mP"/>
                                                                     <constraint firstItem="waR-2n-mcU" firstAttribute="top" secondItem="GwV-1l-Bw1" secondAttribute="bottom" constant="8" id="7mh-Jy-iEz"/>
@@ -892,7 +892,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstItem="HS6-nE-FqU" firstAttribute="top" secondItem="vly-G2-nre" secondAttribute="bottom" constant="8" id="0M4-HX-LDX"/>
                                                                     <constraint firstAttribute="bottom" secondItem="HS6-nE-FqU" secondAttribute="bottom" constant="8" id="1Eu-iu-2pN"/>
@@ -919,7 +919,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3sL-eg-0hf" secondAttribute="trailing" constant="20" symbolic="YES" id="Kum-Bd-BN8"/>
                                                                     <constraint firstAttribute="bottom" secondItem="duq-gG-vX7" secondAttribute="bottom" id="OQF-jK-Oxf"/>

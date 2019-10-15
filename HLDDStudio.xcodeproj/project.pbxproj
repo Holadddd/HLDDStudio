@@ -62,6 +62,7 @@
 		DB0CDC37233FBED200D8583C /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB0CDC36233FBED200D8583C /* StorageManager.swift */; };
 		DB4A5020233A301800A9DCEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */; };
 		DB4A5023233A352A00A9DCEB /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */; };
+		DB510AE623562875005275AA /* HLDDStudioTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB510AE523562875005275AA /* HLDDStudioTests.swift */; };
 		DB744F2F233B50C600AA8AFC /* DrumEditingGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB744F2E233B50C600AA8AFC /* DrumEditingGridViewCell.xib */; };
 		DB744F31233B50E400AA8AFC /* DrumEditingGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F30233B50E400AA8AFC /* DrumEditingGridViewCell.swift */; };
 		DB744F33233B544000AA8AFC /* DrumBarGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB744F32233B544000AA8AFC /* DrumBarGridViewCell.swift */; };
@@ -89,6 +90,16 @@
 		DBB3B9DB2348456500415E99 /* UserManualViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBB3B9DA2348456500415E99 /* UserManualViewController.swift */; };
 		DBCB3700233B3E2100DFBF83 /* IOGridViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = DBCB3702233B3E2100DFBF83 /* IOGridViewCell.xib */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		DB510AE823562875005275AA /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 01717201232380D900049F3B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01717208232380D900049F3B;
+			remoteInfo = HLDDStudio;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0106320C2333584D00214672 /* UIColor+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extension.swift"; sourceTree = "<group>"; };
@@ -151,6 +162,9 @@
 		DB4A501F233A301800A9DCEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		DB4A5021233A352A00A9DCEB /* HLDDStudio.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = HLDDStudio.entitlements; sourceTree = "<group>"; };
 		DB4A5022233A352A00A9DCEB /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		DB510AE323562875005275AA /* HLDDStudioTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = HLDDStudioTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB510AE523562875005275AA /* HLDDStudioTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HLDDStudioTests.swift; sourceTree = "<group>"; };
+		DB510AE723562875005275AA /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DB744F2E233B50C600AA8AFC /* DrumEditingGridViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DrumEditingGridViewCell.xib; sourceTree = "<group>"; };
 		DB744F30233B50E400AA8AFC /* DrumEditingGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumEditingGridViewCell.swift; sourceTree = "<group>"; };
 		DB744F32233B544000AA8AFC /* DrumBarGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrumBarGridViewCell.swift; sourceTree = "<group>"; };
@@ -186,6 +200,13 @@
 			files = (
 				248335A4075FFACCB19A506D /* Pods_HLDDStudio.framework in Frameworks */,
 				DB4A5023233A352A00A9DCEB /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB510AE023562875005275AA /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				0171720B232380D900049F3B /* HLDDStudio */,
+				DB510AE423562875005275AA /* HLDDStudioTests */,
 				0171720A232380D900049F3B /* Products */,
 				E74390EB015D20E17D329B98 /* Pods */,
 				FBC3863B548245343EED54AB /* Frameworks */,
@@ -247,6 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				01717209232380D900049F3B /* HLDDStudio.app */,
+				DB510AE323562875005275AA /* HLDDStudioTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,6 +379,15 @@
 			path = PlugInTableViewcell;
 			sourceTree = "<group>";
 		};
+		DB510AE423562875005275AA /* HLDDStudioTests */ = {
+			isa = PBXGroup;
+			children = (
+				DB510AE523562875005275AA /* HLDDStudioTests.swift */,
+				DB510AE723562875005275AA /* Info.plist */,
+			);
+			path = HLDDStudioTests;
+			sourceTree = "<group>";
+		};
 		DB744F2D233B504F00AA8AFC /* DrumMachineViewCell */ = {
 			isa = PBXGroup;
 			children = (
@@ -459,18 +491,40 @@
 			productReference = 01717209232380D900049F3B /* HLDDStudio.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DB510AE223562875005275AA /* HLDDStudioTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DB510AEC23562875005275AA /* Build configuration list for PBXNativeTarget "HLDDStudioTests" */;
+			buildPhases = (
+				DB510ADF23562875005275AA /* Sources */,
+				DB510AE023562875005275AA /* Frameworks */,
+				DB510AE123562875005275AA /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				DB510AE923562875005275AA /* PBXTargetDependency */,
+			);
+			name = HLDDStudioTests;
+			productName = HLDDStudioTests;
+			productReference = DB510AE323562875005275AA /* HLDDStudioTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		01717201232380D900049F3B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1020;
+				LastSwiftUpdateCheck = 1100;
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = wu1221;
 				TargetAttributes = {
 					01717208232380D900049F3B = {
 						CreatedOnToolsVersion = 10.2.1;
+					};
+					DB510AE223562875005275AA = {
+						CreatedOnToolsVersion = 11.0;
+						TestTargetID = 01717208232380D900049F3B;
 					};
 				};
 			};
@@ -488,6 +542,7 @@
 			projectRoot = "";
 			targets = (
 				01717208232380D900049F3B /* HLDDStudio */,
+				DB510AE223562875005275AA /* HLDDStudioTests */,
 			);
 		};
 /* End PBXProject section */
@@ -520,6 +575,13 @@
 				DB744F35233B546200AA8AFC /* DrumBarGridViewCell.xib in Resources */,
 				015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */,
 				DB744F46233CB0CE00AA8AFC /* DrumPatternHorizontalGridViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DB510AE123562875005275AA /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -648,7 +710,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DB510ADF23562875005275AA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB510AE623562875005275AA /* HLDDStudioTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		DB510AE923562875005275AA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 01717208232380D900049F3B /* HLDDStudio */;
+			targetProxy = DB510AE823562875005275AA /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		01717210232380D900049F3B /* Main.storyboard */ = {
@@ -844,6 +922,48 @@
 			};
 			name = Release;
 		};
+		DB510AEA23562875005275AA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R8WVK7NKZV;
+				INFOPLIST_FILE = HLDDStudioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Holadddd.HLDDStudioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HLDDStudio.app/HLDDStudio";
+			};
+			name = Debug;
+		};
+		DB510AEB23562875005275AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = R8WVK7NKZV;
+				INFOPLIST_FILE = HLDDStudioTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Holadddd.HLDDStudioTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/HLDDStudio.app/HLDDStudio";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -861,6 +981,15 @@
 			buildConfigurations = (
 				0171721F232380DB00049F3B /* Debug */,
 				01717220232380DB00049F3B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DB510AEC23562875005275AA /* Build configuration list for PBXNativeTarget "HLDDStudioTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DB510AEA23562875005275AA /* Debug */,
+				DB510AEB23562875005275AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -11,7 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlugInBarView" customModule="HLDDStudio" customModuleProvider="target">
             <connections>
                 <outlet property="bypassButton" destination="uoV-kl-pOK" id="RWK-54-dbh"/>
-                <outlet property="contentView" destination="iN0-l3-epB" id="LKj-RZ-NhT"/>
+                <outlet property="contentView" destination="iN0-l3-epB" id="3Ou-8b-0iC"/>
                 <outlet property="plugInTitleLabel" destination="3pm-w8-xsY" id="5n9-8h-1Aq"/>
                 <outlet property="presetTextField" destination="mmQ-jZ-wyX" id="f27-F8-Z1K"/>
             </connections>

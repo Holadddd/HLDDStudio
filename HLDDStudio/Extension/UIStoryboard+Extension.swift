@@ -13,7 +13,6 @@ private struct StoryboardCategory {
     static let main = "Main"
     
     static let drumMachine = "DrumMachine"
-    
 }
 
 extension UIStoryboard {

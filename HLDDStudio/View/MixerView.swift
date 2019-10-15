@@ -40,6 +40,8 @@ protocol MixerDelegate: AnyObject {
     func masterVolumeDidChange(volume: Float)
     
     func showDrumVC()
+    
+    func showUserManualVC()
 }
 
 protocol MixerDatasource: AnyObject {
@@ -246,6 +248,8 @@ class MixerView: UIView {
     
     @IBOutlet weak var showDrumVCButton: UIButton!
     
+    @IBOutlet weak var showUserManualVCButton: UIButton!
+    
     @IBOutlet weak var masterFader: RedFader!
     
     weak var delegate: MixerDelegate?
@@ -293,24 +297,28 @@ class MixerView: UIView {
         inputDeviceButton.isSelected = true
         
         metronomeButton.addTarget(self,
-                                  action: #selector(MixerView.metronomeState),
+                                  action: #selector(metronomeState),
                                   for: .touchUpInside)
         
         stopButton.addTarget(self,
-                             action: #selector(MixerView.stopButtonAction),
+                             action: #selector(stopButtonAction),
                              for: .touchUpInside)
         
         playAndResumeButton.addTarget(self,
-                                      action: #selector(MixerView.playAndResumeButtonAction),
+                                      action: #selector(playAndResumeButtonAction),
                                       for: .touchUpInside)
         
         recordButton.addTarget(self,
-                               action: #selector(MixerView.recordButtonAction),
+                               action: #selector(recordButtonAction),
                                for: .touchUpInside)
         
         showDrumVCButton.addTarget(self,
-                                   action: #selector(MixerView.showDrumVCButtonAction),
+                                   action: #selector(showDrumVCButtonAction),
                                    for: .touchUpInside)
+        
+        showUserManualVCButton.addTarget(self,
+                                         action: #selector(showUserManualVCButtonAction),
+                                         for: .touchUpInside)
         
         masterFader.delegate = self
         
@@ -609,9 +617,14 @@ extension MixerView {
 
 extension MixerView {
     
-    @objc func showDrumVCButtonAction(_ sender:Any) {
+    @objc func showDrumVCButtonAction(_ sender: Any) {
         
         delegate?.showDrumVC()
+    }
+    
+    @objc func showUserManualVCButtonAction(_ sender: Any){
+        
+        delegate?.showUserManualVC()
     }
 }
 

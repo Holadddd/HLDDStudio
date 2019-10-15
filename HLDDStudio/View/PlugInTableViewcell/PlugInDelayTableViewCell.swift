@@ -44,21 +44,21 @@ class PlugInDelayTableViewCell: UITableViewCell, HLDDKnobDelegate {
         //set timeKnob
         timeKnob.delegate = self
         
-        timeKnob.maximumValue = 10
+        timeKnob.maximumValue = PlugInManager.shared.defaultParameter.delay.maxTime
         
-        timeKnob.minimumValue = 0
+        timeKnob.minimumValue = PlugInManager.shared.defaultParameter.delay.minTime
         //set feedbackKnob
         feedbackKnob.delegate = self
         
-        feedbackKnob.maximumValue = 1
+        feedbackKnob.maximumValue = PlugInManager.shared.defaultParameter.delay.maxFeedback
         
-        feedbackKnob.minimumValue = 0
+        feedbackKnob.minimumValue = PlugInManager.shared.defaultParameter.delay.minFeedback
         //set mixKnob
         mixKnob.delegate = self
         
-        mixKnob.maximumValue = 1
+        mixKnob.maximumValue = PlugInManager.shared.defaultParameter.delay.maxDryWetMix
         
-        mixKnob.minimumValue = 0
+        mixKnob.minimumValue = PlugInManager.shared.defaultParameter.delay.minDryWetMix
     }
 
     override func setSelected(_ selected: Bool,

@@ -48,27 +48,27 @@ class PlugInChorusTableViewCell: UITableViewCell, HLDDKnobDelegate {
         //set feedbackKnob
         feedbackKnob.delegate = self
         
-        feedbackKnob.maximumValue = 0.95
+        feedbackKnob.maximumValue = PlugInManager.shared.defaultParameter.chorus.maxFeedback
         
-        feedbackKnob.minimumValue = -0.95
+        feedbackKnob.minimumValue = PlugInManager.shared.defaultParameter.chorus.minFeedback
         //set depthKnob
         depthKnob.delegate = self
         
-        depthKnob.maximumValue = 1
+        depthKnob.maximumValue = PlugInManager.shared.defaultParameter.chorus.maxDepth
         
-        depthKnob.minimumValue = 0
+        depthKnob.minimumValue = PlugInManager.shared.defaultParameter.chorus.minDepth
         //set mixKnob
         mixKnob.delegate = self
         
-        mixKnob.maximumValue = 1
+        mixKnob.maximumValue = PlugInManager.shared.defaultParameter.chorus.maxDryWetMix
         
-        mixKnob.minimumValue = 0
+        mixKnob.minimumValue = PlugInManager.shared.defaultParameter.chorus.minDryWetMix
         //set frequencyKnob
         frequencyKnob.delegate = self
         
-        frequencyKnob.maximumValue = 10
+        frequencyKnob.maximumValue = PlugInManager.shared.defaultParameter.chorus.maxFrequency
         
-        frequencyKnob.minimumValue = 0
+        frequencyKnob.minimumValue = PlugInManager.shared.defaultParameter.chorus.minFrequency
     }
 
     override func setSelected(_ selected: Bool,

@@ -109,14 +109,14 @@ class PlugInBarView: UIView {
     
     override func awakeFromNib() {
         
-        super .awakeFromNib()
+        super.awakeFromNib()
     }
 
     private func initPlugInBarView() {
         
-        Bundle.main.loadNibNamed(String(describing: self),
-                                 owner: self,
-                                 options: nil)
+        let name = String(describing: type(of: self))
+        let nib = UINib(nibName: name, bundle: .main)
+        nib.instantiate(withOwner: self, options: nil)
         
         stickSubView(contentView)
         

@@ -13,20 +13,15 @@ enum ImageAsset: String {
     //Product page
     case Icons_24px_CollectionView
     case Icons_24px_ListView
-    
     //Product size and color picker
     case Image_StrikeThrough
-    
     //PlaceHolder
     case Image_Placeholder
-    
     //Back button
     case Icons_24px_Back02
-    
     //Drop down
     case Icons_24px_DropDown
     case Icons_24px_Drawer //For 下拉秀出各個 list
-    
     //Save Star
     case ic_star_border_24px
     case ic_star_filled_24px
@@ -65,11 +60,8 @@ enum ImageAsset: String {
     case drumPercussion
     case drumSnares
 }
-
 // swiftlint:enable identifier_name
-
 extension UIImage {
-    
     
     static func asset(_ asset: ImageAsset) -> UIImage? {
         

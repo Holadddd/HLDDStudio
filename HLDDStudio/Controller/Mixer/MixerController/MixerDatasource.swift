@@ -18,7 +18,7 @@ extension ViewController: MixerDatasource {
     
     func currentInputDevice() -> DeviceID {
         
-        guard let inputDeviceID = AudioKit.inputDevice?.deviceID else {return "NO INPUT"}
+        guard let inputDeviceID = AudioKit.inputDevice?.deviceID else { return "NO INPUT" }
         
         return inputDeviceID
     }

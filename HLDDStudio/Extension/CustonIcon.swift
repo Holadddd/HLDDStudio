@@ -13,7 +13,4 @@ import ImageIO
 class CustomIcon {
     
     let manager = CustomIcon()
-    
-    
-    
 }

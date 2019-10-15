@@ -14,6 +14,7 @@ class StorageManager {
     static let sharedManager = StorageManager()
     
     var fetchedOrderList: [DrumMachinePatternCoreData] = []
+    
     private init () {}
      // MARK: - Core Data stack
     

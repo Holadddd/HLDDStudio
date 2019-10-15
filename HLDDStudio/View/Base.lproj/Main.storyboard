@@ -370,7 +370,7 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="138" height="747"/>
                                             </imageView>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="WoodStickView2" translatesAutoresizingMaskIntoConstraints="NO" id="zBP-4s-CRv">
-                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="5" height="747.00000000000364"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="5" id="o36-aH-z4U"/>
                                                 </constraints>
@@ -713,7 +713,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGp-yA-oNB">
-                                                                <rect key="frame" x="0.0" y="203" width="414" height="311.5"/>
+                                                                <rect key="frame" x="0.0" y="203" width="414" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-m0-cnb">
                                                                         <rect key="frame" x="12" y="0.0" width="109.5" height="23"/>
@@ -722,7 +722,7 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The route picker displays controls for picking playback routes." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVv-Y0-O5Y">
-                                                                        <rect key="frame" x="12" y="31" width="390" height="272.5"/>
+                                                                        <rect key="frame" x="12" y="31" width="390" height="41"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
@@ -740,7 +740,7 @@
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9za-N6-Yks">
-                                                                <rect key="frame" x="0.0" y="522.5" width="414" height="120.5"/>
+                                                                <rect key="frame" x="0.0" y="291" width="414" height="120.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Metronome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-bx-vxe">
                                                                         <rect key="frame" x="12" y="0.0" width="100.5" height="23"/>
@@ -769,16 +769,16 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLV-6u-ih2">
-                                                                <rect key="frame" x="0.0" y="651" width="414" height="67.5"/>
+                                                                <rect key="frame" x="0.0" y="419.5" width="414" height="299"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Button" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-nz-PPX">
-                                                                        <rect key="frame" x="12" y="8" width="104.5" height="23"/>
+                                                                        <rect key="frame" x="12" y="8" width="104.5" height="254.5"/>
                                                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="19"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The stop button rewinds the files to beginning." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="S4N-H0-rmV">
-                                                                        <rect key="frame" x="12" y="39" width="414" height="20.5"/>
+                                                                        <rect key="frame" x="12" y="270.5" width="414" height="20.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>

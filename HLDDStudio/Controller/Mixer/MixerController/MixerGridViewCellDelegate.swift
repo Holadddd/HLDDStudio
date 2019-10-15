@@ -91,12 +91,12 @@ extension ViewController: PlugInGridViewCellDelegate {
         
         PlugInManager.shared.showingTrackOnPlugInVC = column
         
-        DispatchQueue.main.async { [ weak self ] in
+//        DispatchQueue.main.async { [ weak self ] in
             
-            guard let strongSelf = self else { return }
+//            guard let strongSelf = self else { return }
             
-            strongSelf.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
-        }
+            performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
+//        }
     }
     
     func resetTrackOn(Track track: Int) {

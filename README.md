@@ -111,7 +111,7 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
         
         <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_8.gif" width="200">
         
-        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_9.gif" heigh="200">
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_9.gif" width="340">
 
     - #### Tempo Selector
         

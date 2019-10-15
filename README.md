@@ -46,12 +46,15 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
     - #### PlugIn editing
 
         - 開關
+        
         效果器右側圓形按鈕可以切換效果器開關狀態
         
         - 刪除
+        
         點擊圓形按鈕並向左側滑動，可以將效果器從音軌上移除
 
         - 編輯
+        
         點擊螢幕上效果器有效區域，則可進入效果器編輯畫面
     
      

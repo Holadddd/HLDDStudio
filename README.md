@@ -8,14 +8,20 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
  
     - #### Device input output picker
          透過左側的 **Input Device Picker** ，可以更換 Mixer 將要使用的輸入訊號。右側的 **Route Picker** 可以選擇將要使用的輸出裝置。
+         
+         <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_1.gif" width="200">
 
     - #### Metronome 
         開啟節拍器並選擇特定的速度，則可以透過在播放與錄音的狀態下聽到節拍效果。節拍速度由每分鐘 40 - 240 下。
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_2.gif" width="200">
     
 
     
     - #### Mixer Input picker
         **Mixer Input picker** 可選擇裝置 (同 **Input Device Picker** 所選擇裝置) / 音樂檔案 / Drum machine 為將在音軌上使用的訊號源
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_3.gif" width="200">
 
     - #### Stop Button
         點擊 **Stop Button** 將重置（停止）所有狀態（動作）與節拍器功能，如有選擇音樂檔案的音軌，音樂檔案將被重新播放
@@ -39,9 +45,13 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
          
         當系統自動結束錄音過程，此時錄音檔案才可視為**有效的**錄音檔案並存放在 App 的 ```documents``` 資料夾下，檔案名稱可在錄音前於右側的輸入匡命名，如果無特別命名檔案名稱，系統會將有效的錄音檔案以```時間戳```的命名方式存放檔案
         
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_4.gif" width="200">
+        
     
     - #### PlugIn selector
         當點擊白色按鈕 (切換器）時，顯示器會不斷循環顯示已擁有的效果器。當螢幕顯示為所需效果器時，點擊右側 **AddPlugin Button** 則會將音軌加上此效果器的功能。（效果器與音源之間以串連的方式連接。不會重複輸出同一音源。）
+        
+        
     
     - #### PlugIn editing
 
@@ -56,6 +66,10 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
         - 編輯
         
         點擊螢幕上效果器有效區域，則可進入效果器編輯畫面
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_5.gif" width="200">
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_6.gif" width="200">
     
      
     - #### Pan knob
@@ -75,6 +89,8 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
         點選 **Drumkit Picker** 可以選擇將要播放的 Drumkit category(Kicks, Snare, Percussion, Hihats, Classic)
         點選 **Samples Picker** 可以選擇不同的 sample source
         點選左側 **Sample Button** 可以播放所選擇的 sample source
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_7.gif" width="200">
     
 
     - #### Pan knob
@@ -83,21 +99,25 @@ HLDDStudio is designed to be a simple, flexible and functional music applicatio
         上下滑動 **Volume Fader** 可控制所選擇 sample source 0% - 100% 的音量調整。
     - #### DrumMachineEditor
         
-        點擊 **Rotated Button** 可以依據不同使用情境做畫面調整。
+        點擊 **Rotated Button** 可以依據不同使用情境做畫面調整
+        
         當畫面呈現直立時， Editor 可以依據使用者喜好隨意拖拉方向（不侷限單一方向）
+        
         當畫面呈現水平時， Editor 將呈現全部 **16** 拍的編輯狀態，提供更快速地編輯方式
+        
         點選 Editor 按鈕時，則會切換 sample source 在 drum machine 的播放狀態
         
         點擊播放鍵啟動並播放 Drum machine ，播放狀態的按鈕（藍色）會呈現閃光動畫
         
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_8.gif" width="200">
+        
+        <img src="https://github.com/Holadddd/HLDDStudio/blob/feature_UserManualPage/HLDDStudio/GifEffects/HLDDGif_9.gif" heigh="200">
 
     - #### Tempo Selector
         
         **Tempo Picker** 可調整鼓機啟動後的播放速度 
     
-    ```
-    Code 
-    ```
+    
 
 
 ## Requirements

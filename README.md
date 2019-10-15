@@ -8,7 +8,7 @@ HLDDStudio
 - ### Mixer
     - Device input output picker
     > 透過左側的 input device picker ，可以更換將要使用在 Mixer 的輸入訊號。右側的 route picker 可以選擇將要使用的輸出裝置
-    (影片-選擇不同裝置)
+    
     - Metronome 
     >開啟節拍器並選擇特定的速度，則可以透過在播放與錄音的狀態下聽到節拍效果。
     >節拍速度由每分鐘 40 - 240 下

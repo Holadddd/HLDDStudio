@@ -29,35 +29,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         let moc = StorageManager.sharedManager.persistentContainer.viewContext
+        
         let drumFetchRequest = NSFetchRequest<DrumMachinePatternCoreData>(entityName: "DrumMachinePatternCoreData")
+        
         let result = Result{try moc.fetch(drumFetchRequest)}
+        
         switch result {
+            
         case .success(let data):
             
             StorageManager.sharedManager.fetchedOrderList = data.sorted{ $0.seq < $1.seq }
         case .failure(let error):
+            
             print(error)
         }
         
         IQKeyboardManager.shared().isEnabled = true
+        
         IQKeyboardManager.shared().toolbarBarTintColor = .black
+        
         IQKeyboardManager.shared().toolbarTintColor = .white
         //GA
         FirebaseApp.configure()
+        
         Fabric.with([Crashlytics.self]);
+        
         Fabric.sharedSDK().debug = true;
         
         for raw in 0...4{
+            
             guard let drumType = DrumType(rawValue: raw) else { fatalError() }
+            
             sampleGet(drumType: drumType)
         }
         
         if userDefault.object(forKey: "NeedDefaultPattern") == nil {
+            
             userDefault.setValue(true, forKey: "NeedDefaultPattern")
         }
         
         guard let neededDefault = userDefault.object(forKey: "NeedDefaultPattern") as? Bool else { fatalError() }
-        
         
         needDefaultDrumPattern(bool: neededDefault )
         

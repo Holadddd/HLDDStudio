@@ -93,9 +93,9 @@ extension ViewController: PlugInGridViewCellDelegate {
         
         DispatchQueue.main.async { [ weak self ] in
             
-            guard let self = self else { return }
+            guard let strongSelf = self else { return }
             
-            self.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
+            strongSelf.performSegue(withIdentifier: "PlugInTableViewSegue", sender: nil)
         }
     }
     

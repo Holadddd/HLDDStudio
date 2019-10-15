@@ -24,7 +24,6 @@
 		01371C352338D20700617A9D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01371C342338D20700617A9D /* FirebaseManager.swift */; };
 		015FBD4C233240E80055B2FC /* PlugInChorusTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */; };
 		015FBD4D233240E80055B2FC /* PlugInChorusTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */; };
-		016F4D25232561B50027D507 /* ReverbSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D24232561B50027D507 /* ReverbSet.swift */; };
 		016F4D282325F10A0027D507 /* PlugInManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D272325F10A0027D507 /* PlugInManager.swift */; };
 		016F4D2A23264F0E0027D507 /* MixerManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 016F4D2923264F0E0027D507 /* MixerManger.swift */; };
 		0171720D232380D900049F3B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0171720C232380D900049F3B /* AppDelegate.swift */; };
@@ -109,7 +108,6 @@
 		01371C342338D20700617A9D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		015FBD4A233240E80055B2FC /* PlugInChorusTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInChorusTableViewCell.swift; sourceTree = "<group>"; };
 		015FBD4B233240E80055B2FC /* PlugInChorusTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlugInChorusTableViewCell.xib; sourceTree = "<group>"; };
-		016F4D24232561B50027D507 /* ReverbSet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReverbSet.swift; sourceTree = "<group>"; };
 		016F4D272325F10A0027D507 /* PlugInManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugInManager.swift; sourceTree = "<group>"; };
 		016F4D2923264F0E0027D507 /* MixerManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MixerManger.swift; sourceTree = "<group>"; };
 		01717209232380D900049F3B /* HLDDStudio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HLDDStudio.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -226,7 +224,6 @@
 		016F4D26232561C10027D507 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				016F4D24232561B50027D507 /* ReverbSet.swift */,
 				DB0CDC36233FBED200D8583C /* StorageManager.swift */,
 				016F4D272325F10A0027D507 /* PlugInManager.swift */,
 				016F4D2923264F0E0027D507 /* MixerManger.swift */,
@@ -599,7 +596,6 @@
 				010632172333622800214672 /* UIStoryboard+Extension.swift in Sources */,
 				017172352323993800049F3B /* PlugInTableViewCell.swift in Sources */,
 				010632192333687F00214672 /* FaderEqualizer+Panner.swift in Sources */,
-				016F4D25232561B50027D507 /* ReverbSet.swift in Sources */,
 				0171720F232380D900049F3B /* ViewController.swift in Sources */,
 				DB8D0E382345DF0300FA9595 /* MixerGridViewCellDelegate.swift in Sources */,
 				DB8D0E322345D8AE00FA9595 /* MixerDatasource.swift in Sources */,

@@ -701,18 +701,19 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="bhs-cP-jzv" secondAttribute="trailing" constant="12" id="EPt-uH-UxD"/>
                                                                     <constraint firstItem="qdb-Pc-LVt" firstAttribute="leading" secondItem="wCB-em-TqR" secondAttribute="leading" constant="12" id="FUA-gS-Pgn"/>
                                                                     <constraint firstItem="qdb-Pc-LVt" firstAttribute="top" secondItem="wCB-em-TqR" secondAttribute="top" id="HHi-zZ-MgW"/>
                                                                     <constraint firstItem="bhs-cP-jzv" firstAttribute="top" secondItem="qdb-Pc-LVt" secondAttribute="bottom" constant="8" id="bJc-X3-6dc"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="qdb-Pc-LVt" secondAttribute="trailing" constant="20" symbolic="YES" id="dF8-yd-3Gl"/>
                                                                     <constraint firstItem="bhs-cP-jzv" firstAttribute="leading" secondItem="wCB-em-TqR" secondAttribute="leading" constant="12" id="dkP-2w-7I7"/>
                                                                     <constraint firstAttribute="bottom" secondItem="bhs-cP-jzv" secondAttribute="bottom" constant="8" id="g1q-cS-Sff"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YGp-yA-oNB">
-                                                                <rect key="frame" x="0.0" y="203" width="414" height="80"/>
+                                                                <rect key="frame" x="0.0" y="203" width="414" height="311.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Route picker" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CTf-m0-cnb">
                                                                         <rect key="frame" x="12" y="0.0" width="109.5" height="23"/>
@@ -721,24 +722,25 @@
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The route picker displays controls for picking playback routes." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hVv-Y0-O5Y">
-                                                                        <rect key="frame" x="12" y="31" width="390" height="41"/>
+                                                                        <rect key="frame" x="12" y="31" width="390" height="272.5"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="hVv-Y0-O5Y" secondAttribute="trailing" constant="12" id="O2u-6w-aAA"/>
                                                                     <constraint firstAttribute="bottom" secondItem="hVv-Y0-O5Y" secondAttribute="bottom" constant="8" id="ZDV-Z7-f8e"/>
                                                                     <constraint firstItem="hVv-Y0-O5Y" firstAttribute="leading" secondItem="YGp-yA-oNB" secondAttribute="leading" constant="12" id="dp9-uo-YtL"/>
                                                                     <constraint firstItem="CTf-m0-cnb" firstAttribute="leading" secondItem="YGp-yA-oNB" secondAttribute="leading" constant="12" id="erQ-do-5zo"/>
                                                                     <constraint firstItem="CTf-m0-cnb" firstAttribute="top" secondItem="YGp-yA-oNB" secondAttribute="top" id="iEX-6M-C2V"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="CTf-m0-cnb" secondAttribute="trailing" constant="20" symbolic="YES" id="lUh-KK-z3V"/>
                                                                     <constraint firstItem="hVv-Y0-O5Y" firstAttribute="top" secondItem="CTf-m0-cnb" secondAttribute="bottom" constant="8" id="vlU-3l-QfZ"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9za-N6-Yks">
-                                                                <rect key="frame" x="0.0" y="291" width="414" height="120.5"/>
+                                                                <rect key="frame" x="0.0" y="522.5" width="414" height="120.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Metronome" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="45R-bx-vxe">
                                                                         <rect key="frame" x="12" y="0.0" width="100.5" height="23"/>
@@ -755,9 +757,10 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="45R-bx-vxe" firstAttribute="leading" secondItem="9za-N6-Yks" secondAttribute="leading" constant="12" id="9ti-LU-XHH"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="45R-bx-vxe" secondAttribute="trailing" constant="20" symbolic="YES" id="FFL-ZC-7gm"/>
                                                                     <constraint firstItem="2vW-23-8Qp" firstAttribute="leading" secondItem="9za-N6-Yks" secondAttribute="leading" constant="12" id="Hnd-wd-RHZ"/>
                                                                     <constraint firstItem="2vW-23-8Qp" firstAttribute="top" secondItem="45R-bx-vxe" secondAttribute="bottom" constant="8" id="jyl-Bl-eT0"/>
                                                                     <constraint firstAttribute="bottom" secondItem="2vW-23-8Qp" secondAttribute="bottom" constant="8" id="kAD-dl-iBo"/>
@@ -766,7 +769,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLV-6u-ih2">
-                                                                <rect key="frame" x="0.0" y="419.5" width="414" height="67.5"/>
+                                                                <rect key="frame" x="0.0" y="651" width="414" height="67.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stop Button" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Uy-nz-PPX">
                                                                         <rect key="frame" x="12" y="8" width="104.5" height="23"/>
@@ -781,10 +784,11 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="S4N-H0-rmV" firstAttribute="top" secondItem="0Uy-nz-PPX" secondAttribute="bottom" constant="8" id="7M3-hz-xJF"/>
                                                                     <constraint firstAttribute="bottom" secondItem="S4N-H0-rmV" secondAttribute="bottom" constant="8" id="JIY-tH-EP8"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="0Uy-nz-PPX" secondAttribute="trailing" constant="20" symbolic="YES" id="MyU-Nj-Ycz"/>
                                                                     <constraint firstItem="0Uy-nz-PPX" firstAttribute="top" secondItem="FLV-6u-ih2" secondAttribute="top" constant="8" id="eKa-2X-Bpi"/>
                                                                     <constraint firstItem="0Uy-nz-PPX" firstAttribute="leading" secondItem="FLV-6u-ih2" secondAttribute="leading" constant="12" id="iCD-Mg-FLB"/>
                                                                     <constraint firstItem="S4N-H0-rmV" firstAttribute="leading" secondItem="FLV-6u-ih2" secondAttribute="leading" constant="12" id="iTK-Hf-ITs"/>
@@ -792,7 +796,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DlW-rN-NEN">
-                                                                <rect key="frame" x="0.0" y="495" width="414" height="100"/>
+                                                                <rect key="frame" x="0.0" y="726.5" width="414" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Play And Pause Button" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="js8-b1-fUg">
                                                                         <rect key="frame" x="12" y="0.0" width="197.5" height="23"/>
@@ -807,18 +811,19 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="TbF-PD-cgL" firstAttribute="leading" secondItem="DlW-rN-NEN" secondAttribute="leading" constant="12" id="3Xf-lm-aqI"/>
                                                                     <constraint firstItem="js8-b1-fUg" firstAttribute="leading" secondItem="DlW-rN-NEN" secondAttribute="leading" constant="12" id="Eng-Ve-kyC"/>
                                                                     <constraint firstAttribute="trailing" secondItem="TbF-PD-cgL" secondAttribute="trailing" constant="12" id="ZXb-YH-HRu"/>
                                                                     <constraint firstItem="TbF-PD-cgL" firstAttribute="top" secondItem="js8-b1-fUg" secondAttribute="bottom" constant="8" id="abe-rk-zcz"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="js8-b1-fUg" secondAttribute="trailing" constant="20" symbolic="YES" id="dWw-JC-U2g"/>
                                                                     <constraint firstAttribute="bottom" secondItem="TbF-PD-cgL" secondAttribute="bottom" constant="8" id="sRg-UB-fua"/>
                                                                     <constraint firstItem="js8-b1-fUg" firstAttribute="top" secondItem="DlW-rN-NEN" secondAttribute="top" id="vJp-al-bl9"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e1x-fD-Urr">
-                                                                <rect key="frame" x="0.0" y="603" width="414" height="100"/>
+                                                                <rect key="frame" x="0.0" y="834.5" width="414" height="100"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Button" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1C-5L-C4f">
                                                                         <rect key="frame" x="12" y="0.0" width="125.5" height="23"/>
@@ -833,7 +838,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="spI-7e-bek" firstAttribute="top" secondItem="R1C-5L-C4f" secondAttribute="bottom" constant="8" id="Fc7-1s-PIH"/>
                                                                     <constraint firstItem="R1C-5L-C4f" firstAttribute="top" secondItem="e1x-fD-Urr" secondAttribute="top" id="Icj-rd-zRW"/>
@@ -841,10 +846,11 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                     <constraint firstItem="R1C-5L-C4f" firstAttribute="leading" secondItem="e1x-fD-Urr" secondAttribute="leading" constant="12" id="Yfb-or-uNQ"/>
                                                                     <constraint firstAttribute="trailing" secondItem="spI-7e-bek" secondAttribute="trailing" constant="12" id="dSz-vX-WLs"/>
                                                                     <constraint firstItem="spI-7e-bek" firstAttribute="leading" secondItem="e1x-fD-Urr" secondAttribute="leading" constant="12" id="f60-rB-ggx"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="R1C-5L-C4f" secondAttribute="trailing" constant="20" symbolic="YES" id="fg1-WA-BHm"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IYq-9Y-KsV">
-                                                                <rect key="frame" x="0.0" y="711" width="414" height="80"/>
+                                                                <rect key="frame" x="0.0" y="942.5" width="414" height="80"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Record Region Selector" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GwV-1l-Bw1">
                                                                         <rect key="frame" x="12" y="0.0" width="205" height="23"/>
@@ -859,7 +865,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="trailing" secondItem="waR-2n-mcU" secondAttribute="trailing" constant="12" id="6e2-Gy-1mP"/>
                                                                     <constraint firstItem="waR-2n-mcU" firstAttribute="top" secondItem="GwV-1l-Bw1" secondAttribute="bottom" constant="8" id="7mh-Jy-iEz"/>
@@ -867,10 +873,11 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                     <constraint firstItem="GwV-1l-Bw1" firstAttribute="top" secondItem="IYq-9Y-KsV" secondAttribute="top" id="I0o-VY-Amr"/>
                                                                     <constraint firstAttribute="bottom" secondItem="waR-2n-mcU" secondAttribute="bottom" constant="8" id="cCD-Tl-gG9"/>
                                                                     <constraint firstItem="GwV-1l-Bw1" firstAttribute="leading" secondItem="IYq-9Y-KsV" secondAttribute="leading" constant="12" id="dKL-z8-zQ8"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GwV-1l-Bw1" secondAttribute="trailing" constant="20" symbolic="YES" id="zKy-15-eqC"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QVO-W4-97K">
-                                                                <rect key="frame" x="0.0" y="799" width="414" height="59.5"/>
+                                                                <rect key="frame" x="0.0" y="1030.5" width="414" height="59.5"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tempo Digital Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vly-G2-nre">
                                                                         <rect key="frame" x="12" y="0.0" width="188" height="23"/>
@@ -885,18 +892,19 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="HS6-nE-FqU" firstAttribute="top" secondItem="vly-G2-nre" secondAttribute="bottom" constant="8" id="0M4-HX-LDX"/>
                                                                     <constraint firstAttribute="bottom" secondItem="HS6-nE-FqU" secondAttribute="bottom" constant="8" id="1Eu-iu-2pN"/>
                                                                     <constraint firstItem="vly-G2-nre" firstAttribute="top" secondItem="QVO-W4-97K" secondAttribute="top" id="1Hq-qY-1IP"/>
                                                                     <constraint firstItem="HS6-nE-FqU" firstAttribute="leading" secondItem="QVO-W4-97K" secondAttribute="leading" constant="12" id="IA6-tp-O8j"/>
                                                                     <constraint firstAttribute="trailing" secondItem="HS6-nE-FqU" secondAttribute="trailing" constant="12" id="LlL-tF-b6P"/>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vly-G2-nre" secondAttribute="trailing" constant="20" symbolic="YES" id="i01-Ar-OuP"/>
                                                                     <constraint firstItem="vly-G2-nre" firstAttribute="leading" secondItem="QVO-W4-97K" secondAttribute="leading" constant="12" id="p1T-LD-O5g"/>
                                                                 </constraints>
                                                             </view>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0gt-Ra-RAG">
-                                                                <rect key="frame" x="0.0" y="866.5" width="414" height="303.5"/>
+                                                                <rect key="frame" x="0.0" y="1098" width="414" height="72"/>
                                                                 <subviews>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information Digital Display" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sL-eg-0hf">
                                                                         <rect key="frame" x="12" y="0.0" width="229" height="23"/>
@@ -905,14 +913,15 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Display the change of mixer status and information user needed." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="duq-gG-vX7">
-                                                                        <rect key="frame" x="12" y="31" width="390" height="272.5"/>
+                                                                        <rect key="frame" x="12" y="31" width="390" height="41"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                 </subviews>
-                                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
+                                                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3sL-eg-0hf" secondAttribute="trailing" constant="20" symbolic="YES" id="Kum-Bd-BN8"/>
                                                                     <constraint firstAttribute="bottom" secondItem="duq-gG-vX7" secondAttribute="bottom" id="OQF-jK-Oxf"/>
                                                                     <constraint firstItem="3sL-eg-0hf" firstAttribute="leading" secondItem="0gt-Ra-RAG" secondAttribute="leading" constant="12" id="PDI-yO-BPU"/>
                                                                     <constraint firstAttribute="trailing" secondItem="duq-gG-vX7" secondAttribute="trailing" constant="12" id="Rze-kJ-BFf"/>
@@ -1061,6 +1070,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                             <constraint firstItem="sJG-TK-GiA" firstAttribute="trailing" secondItem="U2m-oN-kiO" secondAttribute="trailing" constant="8" id="We1-0E-F2O"/>
                             <constraint firstItem="wNa-ea-4vm" firstAttribute="leading" secondItem="sJG-TK-GiA" secondAttribute="leading" constant="12" id="aXN-1m-fFJ"/>
                             <constraint firstItem="U2m-oN-kiO" firstAttribute="centerY" secondItem="wNa-ea-4vm" secondAttribute="centerY" id="sXd-yn-X8x"/>
+                            <constraint firstItem="U2m-oN-kiO" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="wNa-ea-4vm" secondAttribute="trailing" constant="8" symbolic="YES" id="szz-9q-38V"/>
                             <constraint firstItem="U2m-oN-kiO" firstAttribute="height" secondItem="wNa-ea-4vm" secondAttribute="height" id="yu2-FU-Imq"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sJG-TK-GiA"/>
@@ -1183,6 +1193,7 @@ Tap picker to change the tempo in the range of 40 to 240 bpm (beats per minute)<
                         <viewLayoutGuide key="safeArea" id="03C-dX-lvn"/>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
+                    <navigationItem key="navigationItem" id="iIg-s0-9XE"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="backButton" destination="ecJ-Ec-gG0" id="Aqt-XB-npx"/>

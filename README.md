@@ -37,3 +37,22 @@ HLDDStudio
     
     - PlugIn selector
     >當點擊白色按鈕 (切換器）時，顯示器會不斷循環顯示已擁有的效果器。當螢幕顯示為所需效果器時，點擊右側 AddPlugin Button 則會將音軌加上此效果器的功能。（效果器與音源之間以串連的方式連接。不會重複輸出同一音源。）
+
+## Requirements
+* iOS 12.0+
+* XCode 11.0+
+## Libraries
+* AudioKit
+* G3GridView
+* IQKeyboardManager
+* MarqueeLabel
+* SwipeCellKit
+* Firebase
+* Crashlytics
+## Version History
+
+## Contacts
+
+Ting Hui WU 
+
+wu19931221@gmail.com
